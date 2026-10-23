@@ -1,9 +1,10 @@
 # Your Own — Milestone and Task Index
 
-- **Version:** 0.1
-- **Status:** Execution plan; all implementation and approval tasks are initially unverified
-- **Start:** [M00 — Decisions and validation](00-decisions-and-validation.md), task **M00-T01**
-- **Active task:** None
+- **Version:** 0.9
+- **Status:** M00 in progress; M00-T01/T02 owner decisions and M00-T03 static audit verified; all application implementation tasks unverified
+- **Current milestone:** [M00 — Decisions and validation](00-decisions-and-validation.md)
+- **Active task:** [M00-T04 — Toolchain and workspace review](00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review), In progress; T04-A–D directions accepted and ApexCharts hold confirmed in Decision 0004. The [candidate review](../cookbook/toolchain-review.md) and [compatibility follow-up](../cookbook/toolchain-compatibility.md) establish the published SDK pair, withdraw EOL ESLint 9 and retain unresolved frontend lint coverage, runtime/final-pin validation and ApexCharts entitlement. A chart-free disposable probe is proposed, not authorized. The [static audit](../cookbook/reference-app-audit.md) and [license/provenance register](../cookbook/reference-app-licenses.md) are complete; no reference code/assets or dependency tree adopted.
+- **Accepted decisions:** [0001 — Android-first pilot and release tracks](../cookbook/decisions/0001-scope-and-release-tracks.md) · [0002 — Rounded icons and chart rendering](../cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) · [0003 — Product defaults](../cookbook/decisions/0003-product-defaults.md) · [0004 — Toolchain directions and icon family](../cookbook/decisions/0004-toolchain-directions-and-icon-family.md). These decisions do not complete dependency/design validation or authorize installation, spikes or scaffolding.
 - **Authority:** [PRD](../PRD.md), [Architecture](../cookbook/architecture.md), and the platform specifications. This plan sequences that scope; it does not approve pending technologies or add features.
 - **Repository entry:** [README](../../README.md) · [Agent instructions](../../AGENT.md)
 
@@ -11,20 +12,20 @@
 
 Work through one bounded task at a time. The numbered files give a recommended order; the dependency column identifies real prerequisites. A later independent track can be brought forward with a recorded decision, but never skip a safety/approval gate to make the schedule look complete.
 
-The initial plan contains **20 milestone files and 224 tasks**, including optional M19. All task checkboxes begin unchecked. These files describe intended work, not completed code, tests, infrastructure, approvals, or promised dates. Application and evidence paths mentioned below are targets until those artifacts exist.
+The initial plan contains **20 milestone files and 224 tasks**, including optional M19. Checkboxes start unchecked and change only with evidence: **M00-T01 through M00-T03 are verified; the other 221 tasks remain unchecked**. Plans alone do not prove completed code, tests, infrastructure or approvals and do not promise dates. Application and evidence paths are targets until those artifacts exist.
 
 ## Milestone map
 
-| ID | Milestone / task file | Required prerequisites | Product track | Initial status |
+| ID | Milestone / task file | Required prerequisites | Product track | Current status |
 |---|---|---|---|---|
-| M00 | [Decisions, audit, and validation](00-decisions-and-validation.md) | None | Approval gate | Planned |
+| M00 | [Decisions, audit, and validation](00-decisions-and-validation.md) | None | Approval gate | In progress |
 | M01 | [Repository and app foundations](01-foundations.md) | M00 | API/mobile foundation | Planned |
 | M02 | [Identity and personal data foundation](02-identity-and-data-foundation.md) | M01 | V1-A foundation | Planned |
 | M03 | [Water logging end-to-end slice](03-water-vertical-slice.md) | M02 | First verified V1-A slice | Planned |
 | M04 | [Read mode](04-read-mode.md) | M03 | V1-A | Planned |
 | M05 | [Focus mode and durable timer](05-focus-mode.md) | M03 | V1-A | Planned |
 | M06 | [Complete Intake](06-intake-mode.md) | M03 | V1-A | Planned |
-| M07 | [Manual Money](07-money-mode.md) | M03 | V1-A | Planned |
+| M07 | [Manual Money](07-money-mode.md) | M03; approved Money/currency/savings decisions from M00 | V1-A | Planned |
 | M08 | [Today, Progress, private cards, data controls](08-personal-experience.md) | M04, M05, M06, M07 | V1-A completion | Planned |
 | M09 | [Personal release and recovery readiness](09-personal-release-readiness.md) | M08 | V1-A release gate | Planned |
 | M10 | [User-web foundation and public presence](10-web-foundation-w0.md) | M00, M01 | W0 | Planned |
@@ -76,7 +77,7 @@ Task | Status | Owner / date | Evidence | Notes / next action
 Mxx-Tnn | In progress | actual owner / actual date | existing artifact link | current scope
 ```
 
-Architecture decisions can later live in app-local `docs/decisions/` or a repository decision location agreed in M00. Do not scatter duplicate versions. Root specs remain the source of requirements; task logs and app-local `TRACEABILITY.md` link them to code/evidence.
+Repository-wide decisions live in `docs/cookbook/decisions/`, as accepted in [Decision 0001](../cookbook/decisions/0001-scope-and-release-tracks.md). The project owner approves; agents investigate and record evidence. App-local `docs/decisions/` may hold genuinely local decisions and reference shared records, never conflicting copies. Root specs remain the source of requirements; task logs and app-local `TRACEABILITY.md` link them to code/evidence.
 
 ## Checks required throughout
 

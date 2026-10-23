@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.2
+- **Version:** 0.3
 - **Status:** Verification plan; no application scaffold/test suite exists yet
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -163,6 +163,9 @@ Theme/component acceptance also covers:
 - Theme changes preserve drafts, timer state, focus, scroll, selected records, hidden amounts, and source permissions without domain writes.
 - Poster preview/export retains fixed dimensions and chosen template-version appearance regardless of viewer theme/size; avatars/covers retain original pixels.
 - Font fallback/large text/long localization, 48-unit targets, keyboard/IME entry, and screen-reader navigation remain usable across the inventory.
+- One rounded icon family covers explicit and implicit controls, including back/close/pickers, tables, dialogs and retained chart toolbars. Check source/asset provenance for Material/built-in/starter fallbacks, and inspect actual glyphs/weights/coverage; a rounded container alone does not pass. Check licenses, accessible names and decorative semantics.
+- User-web ApexCharts has tested client-only loading, production build/hydration, theme/resize/selection, keyboard/touch/value alternatives and reduced motion. Verify private values do not leak through tooltips, hidden DOM, summaries or unapproved exports; clear chart state on account changes. Test zero/negative/large/missing values and exact Money labels separately from approximate plotting coordinates.
+- Flutter custom charts have explicit semantics/data alternatives, interactive hit-testing where applicable, bounded repaint performance, text scaling and all four sizes/themes. Pixel goldens alone cannot pass a canvas accessibility check. See the [chart contract](design-system.md#73-chart-rendering-and-platform-ownership).
 
 The documented palette ratios are calculations, not executed component/accessibility tests. Synthetic visual fixtures and implementation evidence must be added as components ship.
 

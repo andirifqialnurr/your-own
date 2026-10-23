@@ -1,13 +1,13 @@
 # Your Own — User Website PRD & Next.js Specification
 
-- **Version:** 0.3
+- **Version:** 0.7
 - **Status:** Detailed draft; no website scaffold implemented
 - **Confirmed framework:** Next.js for the user website
 - **Shared backend:** NestJS; no separate web financial/social backend
 - **Product authority:** [PRD.md](PRD.md)
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
 - **Related specifications:** [Mobile](MOBILE_TECH_SPEC.md) · [Backend](BACKEND_TECH_SPEC.md) · [Admin CMS](ADMIN_CMS_PRD.md)
-- **Pending approval:** Supporting packages, identity/session integration, hosting/domains, browser baseline, release dates, and anonymous/indexing policies
+- **Pending approval/validation:** Exact pins and remaining packages/primitives, identity/session integration, hosting/domains, browser baseline, release dates, anonymous/indexing policies and ApexCharts entitlement
 
 > A useful browser experience for personal progress—not an endless social feed, and not a copy of the admin dashboard.
 
@@ -48,9 +48,11 @@ This document specifies the user-facing website, including product requirements 
 
 **Confirmed:** Flutter mobile, NestJS backend, and Next.js for both the user website and a separate admin CMS application.
 
-**Proposed defaults:** TypeScript, App Router, Tailwind CSS, shadcn/ui, TanStack Query, React Hook Form, Zod, generated REST/OpenAPI clients, and a server-side browser session/BFF arrangement.
+**Selected visual tooling direction:** [Decision 0002](cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) selects ApexCharts for user-web charts and requires a complete rounded icon family instead of Material/default starter icons. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) selects **Hugeicons Free Stroke Rounded** and confirms ApexCharts installation/integration on hold pending licensing clarification. Exact pins, notices and integration evidence remain pending.
 
-Only the framework choices are confirmed. Exact versions, libraries, identity provider, session protocol, database, and hosting need approval/compatibility checks. Routes in this document are illustrative until the public URL contract is approved.
+**Accepted supporting directions (Decision 0004):** App Router/React, strict TypeScript, Tailwind CSS with semantic tokens, TanStack Query, React Hook Form/Zod and owned accessible components in a lean pnpm workspace. Exact versions are not approved. shadcn/ui/underlying primitives, generated REST/OpenAPI tooling and specific browser-session/BFF libraries remain candidates.
+
+Framework choices, the release-track priorities in [Decision 0001](cookbook/decisions/0001-scope-and-release-tracks.md), and the visual tooling direction above are confirmed. Exact versions, other libraries, identity provider, session protocol, database, and hosting still need approval/compatibility checks. Routes in this document are illustrative until the public URL contract is approved.
 
 **Must** indicates a requirement of the stage in which the feature ships. **Proposed** indicates a reviewable default. **Later** is outside the initial web scope. Mobile V1 timing does not automatically commit the complete website to the same launch date.
 
@@ -104,7 +106,7 @@ Web stages are a separate rollout track; they map to backend capabilities rather
 | **W2: Social publishing** | Profiles, public/private following, canonical publishing, feed, likes/comments, authorized sharing, reporting/blocking | Backend V1-B and operational admin moderation |
 | **W3: Social completion** | Reposts, one-to-one DMs/requests, realtime recovery | Backend V1-C |
 
-Proposed delivery order: minimal admin capability before mobile public social launch; user web expands afterwards. Do not delay required moderation until all web trackers are built.
+Accepted delivery priority: mobile personal utility first, minimal admin capability before public social, and user web on its independent track. W0 may be brought forward after its prerequisites; complete browser parity is not a condition of the first mobile pilot. Do not delay required moderation until all web trackers are built.
 
 A W0 release must not suggest that all browser features already work. Hide unavailable entry points with honest availability copy; backend flags still enforce access.
 
@@ -154,23 +156,27 @@ Navigation adapts between bottom/drawer navigation and a sidebar. Today remains 
 
 ## 6. Recommended frontend stack
 
-| Concern | Proposal | Boundary |
+| Concern | Proposal / selected direction | Boundary |
 |---|---|---|
 | Framework | Next.js App Router | Framework confirmed; exact compatible version pending |
 | Language | TypeScript strict | Types do not replace runtime validation |
 | Styling | Tailwind CSS + owned semantic design tokens | Centralize responsive/content-width policy |
-| Components | shadcn/ui and accessible underlying primitives | Components are owned application code; verify actual accessibility |
+| Components | Owned accessible components; shadcn/ui/underlying primitives remain candidates | Direction accepted, specific primitives unselected; verify actual accessibility |
 | Remote interactive state | TanStack Query | Session-scoped queries/mutations, not the domain source of truth |
 | Forms | React Hook Form + Zod | Client feedback and typed forms; NestJS revalidates |
 | API client | Generated TypeScript REST/OpenAPI client | Shared contract with mobile; no Prisma in product-page code |
 | Browser sessions | Provider-aware server adapter + opaque secure session cookie | Specific library/store selected after identity approval |
-| Charts/calendar | Evaluated lightweight chart library or custom accessible components | Numeric/text alternatives required |
+| Icons | **Hugeicons Free Stroke Rounded**; first-party Flutter/React package directions, pins pending | Shared semantic adapter; no Material or starter/component-default glyphs; coverage/notices still need validation |
+| Data charts | **ApexCharts selected in principle; integration on hold** pending licensing clarification | Browser-only adapter, exact-value/text alternatives, explicit theme/privacy controls after rights clearance |
+| Calendar/progress primitives | Purpose-built accessible calendar/cells/bars where appropriate | Not a second data-chart library or a dependency on ApexCharts for every control |
 | Dates/currency | Intl plus audited timezone/exact-amount utilities | No floating-point Money ledger calculations |
 | Realtime | Socket.IO client if backend proposal approved | Authorized hints and gap recovery |
 | Tests | Vitest or equivalent, Testing Library, Playwright, axe-based checks | Unit, component, browser/security/adaptive tests |
 | Diagnostics | Privacy-configured error/performance tool | No private screen replay or input capture by default |
 
-Pin tested package/runtime versions and the lockfile at bootstrap. Validate UI, query, form, API-generation, and deployment compatibility; this table is not a completed dependency audit.
+Pin tested package/runtime versions and the lockfile at bootstrap. Validate UI, query, form, API-generation, and deployment compatibility; this table is not a completed dependency audit. ApexCharts selection does not approve a paid license or establish compatibility: verify the chosen versions' applicable terms/entitlements before installation.
+
+Follow the shared [rounded icon](cookbook/design-system.md#56-rounded-icon-system) and [chart rendering](cookbook/design-system.md#73-chart-rendering-and-platform-ownership) contracts. Isolate browser-dependent ApexCharts code behind a Client Component/browser-only adapter, with an accessible summary/loading/error frame and tested hydration. Override default palettes, typography and retained toolbar icons; disable unapproved export/download controls. Chart coordinates never become Money arithmetic, hidden values must not leak through labels/tooltips/exports, and account changes clear chart state. Do not substitute a shadcn Recharts chart or default icon imports for the selected system.
 
 ## 7. Architecture and project boundaries
 
@@ -548,6 +554,8 @@ Serve approved App Links/Universal Links association files once domains and bund
 
 ## 13. Account onboarding and settings
 
+[Decision 0003](cookbook/decisions/0003-product-defaults.md) supplies shared product defaults when these browser features ship: account-required tracking without guest mode, private signup, followers-only new publication drafts, Today landing/selected modes, mL/US-fluid-ounce preferences, restricted historical Focus editing, one currency locked after monetary records and independent savings. The English-first Android pilot does not promise bilingual browser delivery; follow approved language coverage rather than inferring it from sample copy.
+
 - Signup/login/recovery follows the approved identity adapter.
 - Collect username/display name, visibility choice, mode selection, units/timezone, and base currency if Money is enabled.
 - Avatar/bio/goals/notifications are optional.
@@ -586,7 +594,8 @@ Use semantic forms and shortcuts that do not override browser/screen-reader cont
 - A countdown stops at its intended end, not when the tab wakes hours later.
 - Count-up elapsed time remains self-reported, not verified attention.
 - Pause/resume/finalize/discard use idempotent server actions and exclude pauses/breaks.
-- Breaks/next intervals do not auto-start in V1.
+- Editable defaults are 25-minute focus, 5-minute short break and 15-minute long break after four focus intervals; breaks/next intervals do not auto-start in V1.
+- No manual historical session creation or duration edits; task/label/private-note correction and deletion remain supported.
 - A browser tab and mobile device cannot silently create two authoritative online timers.
 - BroadcastChannel or supported browser coordination may improve multi-tab behavior, but the server remains the authority. Never rely only on a localStorage lock.
 
@@ -788,11 +797,11 @@ No application tests have been run by creating this document; these are implemen
 
 ### Decisions before implementation
 
-1. Approve App Router, TypeScript, UI/query/form/testing packages and compatible versions.
+1. Decision 0004 accepts App Router/React, TypeScript, Tailwind, query/form and owned-component directions; validate and approve exact compatible pins, remaining primitives/testing tools and icon distribution notices. Resolve ApexCharts entitlement before installation/integration.
 2. Approve identity/session library, secure session store, CSRF protocol, and logout behavior.
 3. Confirm public URL/domain structure, association files, anonymous rendering, metadata, and indexing defaults.
 4. Confirm online-first web scope, draft retention, timer limitations, browser baseline, and optional notifications.
-5. Approve release order W0–W3, feature availability labels, and whether any parity feature is deliberately deferred.
+5. W0–W3 sequencing is accepted in Decision 0001; approve concrete release scope, availability labels, dates and any deliberate parity deferral before shipping.
 6. Approve hosting, exact performance budgets, analytics/consent, policy content ownership, and support process.
 
 ## 28. Website readiness definition

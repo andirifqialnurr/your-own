@@ -1,8 +1,9 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.4
+- **Version:** 0.9
 - **Status:** Technical proposal for review; no application scaffold implemented yet
-- **Platforms:** Android phones/tablets and iPhone/iPad; launch order and minimum OS versions pending approval
+- **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
+- **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
 - **Confirmed:** Flutter mobile, NestJS backend, Next.js user/admin web clients, four tracking modes, adaptive Small/Medium/Large/Largest layouts
 - **Source product requirements:** [PRD.md](PRD.md)
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
@@ -52,10 +53,15 @@ The PRD owns product scope and user-visible behavior. This document translates t
 - Next.js user web and admin CMS are separate clients of that backend. Their browser constraints/rollout do not silently change Flutter's mobile requirements.
 - Focus, Read, Intake, and Money belong in the intended full V1.
 - Phone and tablet adaptation, including large iPads, is a V1 requirement.
+- Android-first is the accepted limited-pilot distribution order, not a waiver of iOS/iPad spikes, adaptive requirements or native verification gates.
 - The social layer is progress-card based, with the full V1 interactions defined in the PRD.
+- [Decision 0002](cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) requires one external rounded icon family instead of Material/built-in icons, and permits custom Flutter charts where needed; [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) selects **Hugeicons Free Stroke Rounded** with first-party Flutter/React packages behind semantic adapters. Exact icon pins and rendering/notice handling remain unverified; no mobile chart package is selected.
 
-**Recommended defaults, not yet approved selections:**
-- Riverpod, Drift/SQLite, Dio, and go_router.
+[Decision 0003](cookbook/decisions/0003-product-defaults.md) accepts account-required V1 (no guest), private signup/followers-only publication defaults, Today/selected-mode navigation, English-first Android UI, mL/US-fluid-ounce support, 25/5/15 timer defaults with no historical duration edits, locked single-base-currency semantics, independent savings and all CARD-07 outputs privately in V1-A. Provider, exact conversions/currency metadata and sync behavior remain technical gates.
+
+**Accepted supporting-stack directions (Decision 0004):** isolated current compatible stable Flutter SDK, Riverpod, Drift, Dio and go_router. Exact SDK/package pins, encrypted SQLite driver/keys, compatibility and platform evidence remain gates; no upgrade or installation is authorized.
+
+**Other recommended defaults, not yet approved selections:**
 - Feature-first modular architecture within one Flutter application.
 - Local-first personal tracking with explicit synchronization.
 - REST/OpenAPI integration with the confirmed NestJS backend.
@@ -69,13 +75,14 @@ Flutter, NestJS, and Next.js have been confirmed for their respective clients/ba
 
 Use one primary solution per concern. Do not combine Riverpod, Bloc, and GetX simply because the existing applications use different libraries.
 
-| Concern | Proposed selection | Responsibility and constraints |
+| Concern | Candidate / accepted direction | Responsibility and constraints |
 |---|---|---|
 | UI/runtime | Flutter stable + Dart | Shared Android/iOS application; pin an exact tested SDK at bootstrap |
 | State and dependency injection | `flutter_riverpod` | Feature controllers, repository injection, reactive queries; not a database |
 | Routing | `go_router` | Auth-aware routes, deep links, nested navigation, adaptive list/detail destinations |
 | Local persistence | `drift`, `drift_dev`, supported SQLite driver | Typed queries, transactions, migrations, reactive personal data; not automatic cloud sync |
 | HTTP | `dio` | Authenticated API calls, timeouts, cancellation, structured failures |
+| Icons | Hugeicons Free Stroke Rounded; first-party `hugeicons` package direction | Selected family, pins pending; SVG-backed artwork behind owned semantic adapter, no built-in glyph fallback |
 | API serialization | `json_annotation`, `json_serializable`, OpenAPI-generated client where suitable | DTOs and contract alignment; generated transport models stay out of domain/UI APIs |
 | Generation | `build_runner` | Drift and serialization generation; generated files are not manually edited |
 | Models | Immutable Dart classes, sealed states, enums | Domain invariants; add `freezed` only where its value justifies another generator |
@@ -99,7 +106,8 @@ Use one primary solution per concern. Do not combine Riverpod, Bloc, and GetX si
 - Commit the application lockfile and SDK pin; review upgrades intentionally.
 - Review maintenance, license, platform requirements, native permissions, and security before adding packages.
 - Prefer Flutter primitives for simple layouts, forms, and contribution cells. Do not add a dependency for every widget.
-- For charts, evaluate `fl_chart` or a small custom implementation during the design spike. Provide accessible numeric summaries regardless of chart library.
+- For charts, use native widgets/custom rendering such as `CustomPainter` where needed to meet the shared chart contract. Test semantics, exact-value alternatives, hit testing, reduced motion and repaint/resize behavior. No chart package is selected; do not automatically install `fl_chart` or embed ApexCharts in a WebView. Any optional library still needs explicit review/approval.
+- Use the selected Hugeicons Free Stroke Rounded family; validate matching web assets, complete coverage, exact pins and distribution/poster notices before adoption. Do not use Material Icons/Symbols, built-in `Icons.*`/`CupertinoIcons.*`, or implicit widget icon defaults for app-owned artwork; route icons through the shared semantic adapter.
 - Do not add a global screen-scaling package as the basis of responsiveness.
 - Database encryption needs a validated driver/key-management decision; ordinary Drift/SQLite is not automatically application-level encrypted.
 
@@ -390,6 +398,8 @@ Implement the [Your Own design system and component contracts](cookbook/design-s
 
 Bundle approved fonts/assets where practical rather than requiring runtime font downloads for basic rendering. Review licenses.
 
+Follow the [rounded icon contract](cookbook/design-system.md#56-rounded-icon-system) and [chart rendering contract](cookbook/design-system.md#73-chart-rendering-and-platform-ownership). Material widget primitives may still provide behavior, but back/close/picker/menu and other app-owned glyphs must come from the chosen icon family. Native OS share sheets/keyboards retain their system artwork.
+
 ### 9.2 Accessibility requirements
 
 - Target the applicable WCAG 2.2 AA expectations in the PRD.
@@ -401,7 +411,7 @@ Bundle approved fonts/assets where practical rather than requiring runtime font 
 - Provide readable alternatives to charts, not hundreds of unstructured accessibility nodes.
 - Respect reduced-motion preferences and avoid flashing or guilt-inducing effects.
 - Do not announce a countdown every second through a screen reader.
-- Verify long Indonesian/English labels and localized dates/numbers without truncating essential meaning.
+- Verify long English/pseudolocalized labels and locale-formatted dates/numbers without truncating essential meaning. Indonesian remains a later candidate; testing long strings does not claim translated pilot coverage.
 
 ## 10. Local persistence and data contracts
 
@@ -447,7 +457,7 @@ This inventory is not a final SQL schema:
 
 **Money:** Use integer minor units with explicit currency metadata; never use `double` for ledger values. Send large integer amounts as decimal strings in JSON to avoid precision loss across JavaScript clients. Confirm range limits and currency exponent/formatting rules with the API. Do not assume every currency uses two display decimals.
 
-**Water:** Store a canonical milliliter quantity. Convert supported fluid-ounce input/display through a tested conversion rule; do not repeatedly convert rounded display values back into storage.
+**Water:** Store a canonical milliliter quantity; mL is the default unit. Optional US fluid-ounce input/display uses a tested one-time conversion rule, not Imperial ounces; do not repeatedly convert rounded display values back into storage. Exact representation/rounding remains a contract decision.
 
 **Coffee:** Separate cups from shots; no fabricated common caffeine unit.
 
@@ -1049,16 +1059,16 @@ A successful unsigned build is not proof of notification, signing, or store-dist
 
 ## 25. Existing-app reuse assessment
 
-Initial inspection found these useful starting points:
+The completed M00-T03 static audit retains these reference ideas, not source code or dependency selections:
 
 | Repository | Observed technical direction | Candidate reuse |
 |---|---|---|
 | `personal_finance_tracker` | Riverpod, sqflite, balance service, finance-related tests | Transaction semantics, balance fixtures, forms and reporting interactions |
 | `water_intake_logger` | Bloc, Drift, hydration repository | Local storage/query patterns, daily targets, quick capture |
-| `coffee_shot_track` | GetX, sqflite, local image-related dependencies | Logging interactions and useful record fields after further review |
-| `book_read_tracker` | Riverpod, sqflite repository interfaces/implementations | Shelf flows, progress interactions, repository boundaries |
+| `coffee_shot_track` | GetX, sqflite, local image-related dependencies | Quick-entry/edit interaction only; rebuild cups/shots model, exclude beans/cafes/orders/photos |
+| `book_read_tracker` | Riverpod-coupled repository interface, sqflite implementation | Shelf/progress interactions; rebuild a framework-independent boundary |
 
-This was an initial dependency and selected-code inspection, not a complete audit. Some README descriptions may lag implementation; code and tests must be checked directly.
+The [M00-T03 static audit](cookbook/reference-app-audit.md) and [dependency/provenance register](cookbook/reference-app-licenses.md) record source identities, resolved notices, storage/export/migration paths and final reference-only/rebuild/exclude dispositions. M00-T03 is Verified as an inventory task, not runtime or legal clearance. Some README descriptions lag implementation; source observations and unrun test assertions are not passing application tests. No reference code/assets or dependency tree is adopted; uncleared provenance remains a copying blocker.
 
 Do not:
 - Merge four navigation shells or theme systems.
@@ -1067,7 +1077,7 @@ Do not:
 - Assume local-only models already handle multi-user IDs, revisions, synchronization, or access control.
 - Import old features beyond V1 just because code exists.
 
-Extract domain rules and test fixtures deliberately. Rebuild shared navigation, design tokens, identity, storage metadata, and sync foundations coherently.
+Use the recorded domain/test ideas to write new requirement-based synthetic fixtures; do not copy fixture implementations without provenance review. Rebuild shared navigation, design tokens, identity, encrypted storage metadata, exports and sync foundations coherently. Finance's native Apex port does not select a Flutter chart package or establish user-web licensing; obsolete SQLCipher-named dependencies in water do not prove encryption.
 
 Importing users' existing local data is not yet promised. If required, design and test an explicit versioned import rather than silently replacing old app storage.
 
@@ -1117,7 +1127,7 @@ These are dependency stages, not promised calendar dates. Estimate after the tec
 
 - Approve Riverpod, Drift, Dio, go_router, and the exact compatible SDK/package set.
 - Confirm the repository location and target OS/minimum versions.
-- Confirm launch order for Android/iPhone/iPad and obtain a macOS testing path.
+- Follow the accepted Android-first pilot order and obtain a macOS testing path; iPhone/iPad validation remains required.
 - Approve initial design tokens and validate the proposed breakpoints with real content.
 
 ### Before real sensitive data
@@ -1125,7 +1135,7 @@ These are dependency stages, not promised calendar dates. Estimate after the tec
 - Validate encrypted persistence/key management, backup rules, and local retention.
 - Approve the auth provider and secure session persistence behavior.
 - Define sync idempotency/revision/cursor contracts and conflict UX with the API.
-- Confirm currency representation, savings-ledger semantics, timezone rules, and data import expectations.
+- Validate exact currency representation, timezone/rounding rules and data import expectations. Single currency locked after monetary records and independent savings semantics are accepted in Decision 0003; implementation correctness is not yet verified.
 
 ### Before social rollout
 

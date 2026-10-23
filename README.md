@@ -8,14 +8,14 @@ A mobile-first personal progress app: **Focus, Read, Intake, and Money**, with o
 
 **Planning and documentation only.** The repository contains specifications, engineering guides, agent instructions, and an implementation task plan. No application scaffolds, dependency installations, migrations, CI pipelines, or deployments exist yet. Documentation validation is not evidence that application behavior works.
 
-Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate Next.js applications** for users and staff. Supporting packages, exact versions, database/providers, sessions, and hosting still require the recorded approval gates.
+Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate Next.js applications** for users and staff. [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts the pnpm/mobile/web supporting-stack directions and **Hugeicons Free Stroke Rounded** family. ApexCharts remains selected for user-web charts but integration is on hold pending licensing clarification; custom Flutter charts remain permitted where needed. Exact pins, compatibility, distribution notices, database/providers, sessions and hosting retain their validation/approval gates.
 
 ## Start here
 
 1. Read the [product requirements](docs/PRD.md).
 2. Read the [system architecture and application maps](docs/cookbook/architecture.md).
 3. Follow the [milestone index and task workflow](docs/milestones/README.md).
-4. Start with **M00-T01** in [decisions, audits, and approval gates](docs/milestones/00-decisions-and-validation.md).
+4. Continue **M00-T04 — toolchain and workspace review** in [decisions, audits, and approval gates](docs/milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review). The [candidate review](docs/cookbook/toolchain-review.md) records accepted T04-A–D directions and the confirmed ApexCharts hold; The [compatibility follow-up](docs/cookbook/toolchain-compatibility.md) establishes the published Flutter/Dart pair and withdraws EOL ESLint 9; maintained frontend lint coverage, actual runtime verification, final pins and ApexCharts entitlement remain unresolved.
 5. Before making changes, read [AGENT.md](AGENT.md). [AGENTS.md](AGENTS.md) is a compatibility pointer to those same instructions.
 
 No install/run command is provided yet because no application or package scripts exist. The foundation milestone must add tested commands and prerequisites to each application README rather than assuming them now. Android development can run on Windows; iOS/iPad build and native validation require a macOS/Xcode path.
@@ -36,6 +36,7 @@ docs/
   WEB_PRD.md
   ADMIN_CMS_PRD.md
   cookbook/                   Cross-cutting engineering guides
+    decisions/                Repository-wide decision records
   milestones/                 Ordered task plans, dependencies, evidence logs
 
 apps/                         Planned; not scaffolded
@@ -67,6 +68,14 @@ One repository does not mean one deployment, one session, or one unrestricted co
 | [Deployment](docs/cookbook/deployment.md) | Environments, release, backup, restore and incident rules |
 | [Design system](docs/cookbook/design-system.md) | Standalone visual system, components, light/dark themes and sizes |
 | [Milestones](docs/milestones/README.md) | What to do next, prerequisites, task IDs and completion evidence |
+| [Decision 0001](docs/cookbook/decisions/0001-scope-and-release-tracks.md) | Accepted release priorities, Android-first pilot, decision location and authority |
+| [Decision 0002](docs/cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) | Rounded icon-bank requirement, ApexCharts for user web, custom Flutter charts where needed |
+| [Decision 0003](docs/cookbook/decisions/0003-product-defaults.md) | Accepted privacy, account, language/unit, Focus, Money and card defaults |
+| [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) | Accepted workspace/mobile/web directions and Hugeicons Free Stroke Rounded; ApexCharts integration hold |
+| [Reference-app audit](docs/cookbook/reference-app-audit.md) | Completed static inventory and reference-only/rebuild/exclude assessment; not runtime verification |
+| [Reference dependency/provenance register](docs/cookbook/reference-app-licenses.md) | Resolved direct notices, lockfile identities, asset exclusions and remaining licensing gates |
+| [Toolchain/workspace candidate review](docs/cookbook/toolchain-review.md) | Runtime/library candidates, rounded-icon evidence and ApexCharts licensing blocker; not approved pins |
+| [Toolchain compatibility follow-up](docs/cookbook/toolchain-compatibility.md) | Published SDK identity, metadata/support checks and proposed disposable probe awaiting authorization |
 
 ## Product boundaries
 
@@ -81,6 +90,8 @@ One repository does not mean one deployment, one session, or one unrestricted co
 
 Build one verified vertical slice before copying its architecture to other modes. The product progresses through **V1-A personal → V1-B social publishing → V1-C reposts/messaging**. User web progresses through **W0–W3**; admin through **A0 safety → A1 operations**, with **A2 editorial/configuration optional**.
 
+The accepted first distribution is an **Android-first limited personal pilot**, after its readiness gate. iPhone/iPad remain required targets; Android results do not verify them. No release date or actual deployment is authorized by this sequencing decision.
+
 Admin A0 and operational policies must be ready before public social launch. Each application can release independently after its own stage gates; the milestone order is a dependency-aware working plan, not a promise of simultaneous releases or delivery dates.
 
-All implementation tasks currently remain unverified. Use the milestone checklists and evidence logs; do not infer completion from the existence of a specification or folder.
+**M00-T01/M00-T02 are verified owner decisions; M00-T03 is a verified static audit. M00-T04 is in progress: directions are accepted, but exact pins, verification and ApexCharts entitlement remain pending.** All application implementation tasks remain unverified. Use the milestone checklists and evidence logs; do not infer implementation from the existence of a specification, decision or folder.

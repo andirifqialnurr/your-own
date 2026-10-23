@@ -1,6 +1,6 @@
 # Your Own — Proposed Data Schema
 
-- **Version:** 0.1
+- **Version:** 0.2
 - **Status:** Logical design for review, not an executable Prisma schema or applied migration
 - **Related:** [Architecture](architecture.md) · [Backend](../BACKEND_TECH_SPEC.md) · [Security](security.md) · [Testing](testing.md)
 
@@ -114,6 +114,8 @@ This is a proposal to avoid unsafe asynchronous mass audience updates. Publicati
 | `active_focus_slots` | owner PK, session FK, version, timing/coordination metadata | One authoritative online slot; recover abandonment without inventing completed time |
 | `focus_goals` | owner, metric/target, applicable weekdays, effective date | Optional; history uses effective target context |
 
+Decision 0003 permits task/label/private-note correction and deletion, but no manual historical session creation or duration edits. Runtime/persistence reconciliation is still a contract gate, not permission for arbitrary history edits.
+
 Break phase is distinct from focused work. Device timer state and optional break UI do not become completed focus minutes. Session finalization updates history/projections and releases coordination atomically. Unresolved offline overlap must not count twice.
 
 ## 5. Reading
@@ -136,9 +138,11 @@ Finish is an explicit book transition. Multiple reading cycles per book are outs
 | `water_targets` | owner, effective date, `target_ml?`, revision | Unique effective date per owner; null may represent disabled goal if approved |
 | `coffee_entries` | owner, kind (`CUP`/`SHOT`), quantity, activity context, note? | Separate measures, positive count; fractional-count support remains a decision |
 
-Integer milliliters are the proposed canonical water unit. Approve supported ounce convention and one-time conversion rounding before implementation. Do not repeatedly round stored totals through display conversions. Coffee does not count toward the water goal; exceeding a water target does not imply higher achievement.
+Integer milliliters remain the proposed canonical representation. [Decision 0003](decisions/0003-product-defaults.md) accepts mL as the default and optional US fluid ounces (not Imperial); approve exact one-time conversion rounding/precision before implementation. Do not repeatedly round stored totals through display conversions. Coffee does not count toward the water goal; exceeding a water target does not imply higher achievement.
 
 ## 7. Money
+
+The owner-approved product semantics are a single user-selected base currency locked after monetary records exist, amount-based monthly budgets and an independent manual savings ledger (Decision 0003). The schema and transaction constraints below remain implementation proposals requiring validation; never silently relabel historical amounts or add a destructive currency-reset workaround.
 
 ### Tables
 

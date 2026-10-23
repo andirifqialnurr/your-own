@@ -1,9 +1,11 @@
 # Your Own — Product Requirements Document
 
-- **Version:** 0.5
-- **Status:** Draft for product review
+- **Version:** 0.9
+- **Status:** Scope/release priorities and P01–P11 product defaults accepted; technical/policy gates remain
+- **Accepted product defaults:** [Decision 0003](cookbook/decisions/0003-product-defaults.md)
+- **Accepted scope/release decision:** [Decision 0001 — Android-first limited personal pilot](cookbook/decisions/0001-scope-and-release-tracks.md)
 - **Product:** Your Own
-- **Technical stack:** Flutter mobile, NestJS backend, and Next.js for the user website and separate admin CMS are confirmed; remaining choices pending approval
+- **Technical stack:** Flutter, NestJS and separate Next.js clients confirmed; [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts bounded supporting-stack/icon directions, not exact pins or implementation
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
 - **Related specifications:**
   - [Flutter mobile](MOBILE_TECH_SPEC.md)
@@ -36,7 +38,7 @@ It describes the intended full first version, including four tracking modes and 
 - **Later:** Explicitly outside V1.
 - **Proposed:** A product default suggested in this draft, not an already approved decision.
 
-Flutter is confirmed for mobile, NestJS for the backend, and Next.js for two separate web applications: the user website and the admin CMS. API conventions, database, hosting, supporting libraries, mobile state management, and detailed architecture recommendations remain subject to approval.
+Flutter is confirmed for mobile, NestJS for the backend, and Next.js for two separate web applications: the user website and the admin CMS. Decision 0004 separately accepts lean pnpm, mobile state/routing/HTTP/Drift and web styling/query/form directions, plus Hugeicons Free Stroke Rounded. Exact pins, remaining libraries, API conventions, database, hosting and detailed architecture still require validation/approval; ApexCharts integration is on hold pending licensing clarification.
 
 ## 2. Product summary
 
@@ -61,6 +63,7 @@ The defining product loop is:
 
 - Product name: **Your Own**.
 - Mobile framework: **Flutter**.
+- Mobile-first delivery with an **Android-first limited personal pilot** after the V1-A gate. iPhone/iPad remain required targets; their validation and release gates are not waived.
 - Backend framework: **NestJS**.
 - User-facing website framework: **Next.js**.
 - Separate internal admin CMS framework: **Next.js**, using the same NestJS backend rather than a second domain backend.
@@ -75,19 +78,15 @@ The defining product loop is:
 - Social publishing uses generated progress posters/cards.
 - No video or reels.
 - Social features include likes, comments, sharing, reposts, DMs, and public/private accounts.
+- Full V1 messaging is limited to one-to-one text and progress-card DMs, as accepted in Decision 0001.
 - The product must avoid encouraging doomscrolling.
 - Training, games, and additional trackers are future possibilities.
 
-### 3.2 Proposed in this draft
+### 3.2 Accepted product defaults and remaining proposals
 
-- Mobile-first rollout; launch platform order remains open. The Flutter design must support phones and tablets, including iPad, rather than assuming phone-only use.
-- Personal dashboard as the default landing screen.
-- One account for all modes; users can hide modes they do not use.
-- Optional per-post followers-only visibility for public accounts.
-- One-to-one text and progress-card DMs only in V1.
-- One base currency per user in V1.
-- No named group/circle management in V1; following and approved followers provide the initial social graph.
-- English and Indonesian are localization candidates; launch language coverage needs approval.
+[Decision 0003](cookbook/decisions/0003-product-defaults.md) accepts P01–P11: Today as the default landing screen, one required account for selected modes (no guest), private signup and followers-only post defaults, the Focus/Read/Intake/Money/Circle labels, an English-first Android pilot, milliliters with optional US fluid ounces, lightweight tasks and restricted historical Focus edits, one base currency, independent savings and staged card coverage. Detailed behavior appears in the requirements below.
+
+No named group/circle management is introduced; Circle is a social destination label. Indonesian remains a later localization candidate, not promised pilot coverage. Technical implementations, detailed sync/contact policies, unsupported unit/currency conventions and remaining explicitly proposed behaviors still require their separate decisions.
 
 ## 4. Problem and opportunity
 
@@ -160,6 +159,8 @@ Your Own should provide:
 
 The **full V1** includes every required capability below. Staging is an implementation and validation sequence, not a change to the agreed product vision.
 
+The owner accepted these stage boundaries and the Android-first limited personal pilot in [Decision 0001](cookbook/decisions/0001-scope-and-release-tracks.md). Web remains an independent release track; A0 precedes public social, and A2 is optional. Actual releases still require their acceptance gates and explicit authorization.
+
 | Stage | Scope | Exit condition |
 |---|---|---|
 | **V1-A: Personal foundation** | Accounts, onboarding, four tracking modes, Today, progress views, private card previews/exports, core data controls | Users can complete the principal private tracking journeys reliably |
@@ -204,7 +205,7 @@ The admin A0 safety/moderation capability defined in [ADMIN_CMS_PRD.md](ADMIN_CM
 
 Messaging must have a clearly visible entry point and unread state. Its exact placement is a design decision, not a requirement for a fifth navigation tab.
 
-"Circle" is a proposed label for the social destination; it does not imply group-chat or named-circle functionality in V1.
+"Circle" is the accepted label for the social destination; it does not imply group-chat or named-circle functionality in V1. Today is the default landing screen.
 
 Primary navigation must adapt to available window space: bottom navigation on compact layouts, with a navigation rail or sidebar on wider layouts where appropriate. Destinations, permissions, and user state must remain consistent across layout changes. See NFR-07 and NFR-08.
 
@@ -222,13 +223,13 @@ Primary navigation must adapt to available window space: bottom navigation on co
 
 Users must be able to create an account, authenticate, sign out, recover access, and request account deletion. Authentication methods are selected during technical planning.
 
-Tracking must not require following anyone or publishing a post. Guest use is an open decision, not a V1 assumption.
+Tracking must not require following anyone or publishing a post. An account is required for personal tracking in V1; guest mode and guest-to-account migration are not included. This does not require connectivity for every mobile log; authorized offline/session behavior is finalized in the technical contracts.
 
 ### ACC-02 — Onboarding
 
 Onboarding must collect only what is necessary:
 - Unique username and display name.
-- Initial public/private account choice, explained before confirmation.
+- Initial public/private account choice, defaulting to private and explained before confirmation.
 - Preferred timezone and units, with sensible device-derived suggestions.
 - Base currency if Money is enabled.
 - Selected modes; no requirement to enable all four.
@@ -283,7 +284,7 @@ Users must be able to:
 - Add or remove a task from Today independently of its due date.
 - View Today, upcoming, overdue, and completed tasks.
 
-Labels should support Work, Study, Personal, and user-created labels. A label is not a separate project-management system.
+Labels must support Work, Study, Personal, and user-created labels. A label is not a separate project-management system.
 
 Completing a task does not require a timer. Starting a timer does not require a task.
 
@@ -298,7 +299,7 @@ V1 must support:
 - A clear distinction between focus and break time.
 - Optional completion notification/sound.
 
-**Proposed defaults:** 25-minute focus, 5-minute short break, 15-minute long break after four completed focus intervals. Breaks and subsequent intervals must not start without an explicit user action in V1.
+**Accepted editable defaults:** 25-minute focus, 5-minute short break, 15-minute long break after four completed focus intervals. Breaks and subsequent intervals must not start without an explicit user action in V1.
 
 Only one authoritative active focus timer is allowed per account. Online attempts to start another must offer to resume or end the existing session. If temporarily offline devices create conflicting sessions, surface the conflict during reconciliation; never silently count overlapping time twice. Exact reconciliation behavior is finalized during technical planning.
 
@@ -311,9 +312,9 @@ Only one authoritative active focus timer is allowed per account. Online attempt
 - Restore the active timer state after ordinary app backgrounding or restart.
 - Show a clear resolution path if the active state conflicts across devices.
 - Session history includes date, duration, status, task/label where present, and an optional private note.
-- Users can correct a session's label/task, or delete an incorrect session.
+- Users can correct a session's label/task/private note, or delete an incorrect session.
 
-V1 does not require manual creation of historical focus sessions. Whether duration corrections are allowed is an open decision; edits must never be presented as verified timer output.
+V1 does not allow manual historical session creation or duration edits. Metadata corrections are not permission to fabricate timing fields; even recorded sessions are not verified proof of attention.
 
 ### FOC-04 — Focus summaries
 
@@ -367,12 +368,12 @@ V1 supports one reading history per book entry. Re-reading editions and multiple
 
 Users must be able to:
 - Log a configurable quick-add amount or a custom positive amount.
-- Choose milliliters or supported fluid-ounce display units.
+- Use milliliters by default or explicitly labeled US fluid-ounce display/input units; Imperial ounces are not supported in V1.
 - Set an optional personal daily target.
 - Edit amount/time and delete an entry.
 - View daily totals, history, and days meeting their own target.
 
-Unit conversion must not repeatedly round or inflate stored totals. The app must explain which ounce unit is supported.
+Unit conversion must not repeatedly round or inflate stored totals. The app must label US fluid ounces explicitly; exact canonical representation and one-time conversion rounding remain a technical contract gate.
 
 Targets are user-defined tracking preferences, not medical prescriptions. Exceeding a target must not generate escalating rewards, rankings, or prompts to drink more.
 
@@ -419,7 +420,7 @@ Users must be able to:
 
 Opening balances and balance adjustments must be distinguished from ordinary income/expenses in reports.
 
-V1 uses one user-selected base currency across all wallets. No exchange-rate conversion or multi-currency aggregation. Changing currency after records exist must not silently relabel historical amounts.
+V1 uses one user-selected base currency across all wallets. No exchange-rate conversion or multi-currency aggregation. Base-currency changes are not allowed after monetary records exist; never silently relabel history or use a destructive reset workaround. The exact supported currency-code/precision list remains a contract gate; no global IDR/USD default is implied.
 
 ### MON-02 — Transactions
 
@@ -467,7 +468,7 @@ Users must be able to create a goal with:
 - Manually recorded contributions and withdrawals/corrections.
 - Current recorded progress and contribution history.
 
-**Proposed V1 model:** A savings goal is a separate planning ledger. Recording a contribution does not move money, change a wallet balance, or create an expense. If funds actually move between wallets, the user records a transfer separately.
+**Accepted V1 model:** A savings goal is a separate manual planning ledger. Recording a contribution does not move money, change a wallet balance, or create an expense. If funds actually move between wallets, the user records a transfer separately.
 
 The interface must explain this distinction. Savings-goal totals must not be added to account balances to calculate assets, and contributions must not imply that the app has reserved or verified the funds.
 
@@ -609,7 +610,7 @@ No standalone freeform feed posts, videos, reels, unrelated photos, arbitrary at
 
 ### CARD-07 — Initial template coverage
 
-Templates may reuse layouts, but must cover these supported outputs:
+Templates may reuse layouts, but must cover these supported outputs for **private preview/export in V1-A**, then deliberate publication in V1-B:
 
 | Mode | Required outputs | Default privacy behavior |
 |---|---|---|
@@ -636,10 +637,11 @@ A user may choose to publish a specific progress summary, but profiles must neve
 **Public account:**
 - Public posts are viewable by other users and through permitted public links.
 - Users can follow without approval, unless blocked.
-- Proposed option: restrict an individual post to followers only.
+- Users can restrict an individual post to followers only; new publication drafts start followers-only even for public accounts. Public publication requires explicit selection and preview.
 
 **Private account:**
 - Following requires approval.
+- Posts are followers-only; public publication requires an explicit account-visibility change and explicit post audience selection. Private save/export never creates a feed post.
 - Posts and progress-card details require approved-follower access.
 - A minimal discovery profile can show username, display name, avatar, and an explicitly public bio; onboarding must explain that these fields remain discoverable.
 - Post thumbnails, card metrics, comments, and likes must not leak through discovery or link previews.
@@ -907,7 +909,8 @@ Cross-device merge rules and the supported offline boundary must be finalized du
 
 ### NFR-06 — Localization and dates
 
-- Use localized currency, number, date, and time formatting.
+- English-first Android pilot; localizable strings from the start. Indonesian is a later candidate, not promised pilot coverage.
+- Use localized currency, number, date, and time formatting; suggest device timezone/formatting and allow correction rather than hardcoding a country or zone.
 - Examples using rupiah do not imply IDR is the only supported base currency.
 - Define week-start behavior and timezone handling consistently.
 - Store sufficient context to explain the activity date shown to the user.
@@ -980,6 +983,7 @@ Use automated Flutter layout/widget tests for representative sizes and breakpoin
 ### NFR-09 — Appearance and shared visual system
 
 - Follow [the Your Own design system](cookbook/design-system.md), which defines the product's light/dark themes, component contracts, and adaptive behavior without requiring an external style-reference file.
+- Use the selected **Hugeicons Free Stroke Rounded** family consistently across app-owned mobile/web/admin UI and icon-bearing posters; no Material Design or built-in/starter-default icon sets. [Decision 0002](cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) also selects ApexCharts for user-web charts and native/custom Flutter rendering where needed; exact assets, licenses and integrations still need validation.
 - Provide System / Light / Dark on mobile, user web, and admin as those surfaces ship. Default System; an explicit choice overrides OS appearance. Persist per installation/browser origin initially; cross-device synchronization is not implied.
 - Theme all applicable components and states, including forms, overlays, charts, tables, errors, and loading states. Both themes must pass accessibility and adaptive-layout checks for the current release stage.
 - Appearance changes preserve drafts, timers, focus, selected records, and hidden-value privacy; they cannot duplicate mutations.
@@ -1151,20 +1155,20 @@ Flutter has been confirmed for the new mobile application. Existing apps' state 
 
 ### Product/scope approval
 
-1. Approve the four-mode boundary and staged full V1 definition.
-2. Confirm launch platforms and whether an earlier limited release is desirable.
-3. Confirm public/private signup default; **proposed: private**.
-4. Confirm per-post followers-only publishing for public accounts.
-5. Confirm initial labels: Focus, Read, Intake/Asupan, Money, Circle.
-6. Confirm lightweight task fields and whether historical focus-duration edits are allowed.
-7. Confirm savings as an independent manual planning ledger rather than wallet-linked allocation.
-8. Confirm one base currency and amount-based monthly budget editing for V1.
-9. Confirm which card templates are required at each stage.
-10. Confirm launch languages and unit support.
+1. **Resolved by [Decision 0001](cookbook/decisions/0001-scope-and-release-tracks.md):** four-mode boundary and V1-A/B/C, W0–W3, A0/A1 stages accepted; A2 optional.
+2. **Resolved:** Android-first limited personal pilot; iPhone/iPad remain required. Exact OS/device baselines, dates and actual release authorization remain separate gates.
+3. **Resolved by [Decision 0003](cookbook/decisions/0003-product-defaults.md):** private signup default; explained public/private choice.
+4. **Resolved:** followers-only post support for public accounts, with every new draft followers-only until explicit public selection/preview.
+5. **Resolved:** Focus, Read, Intake, Money and Circle labels; Today landing; one account with hideable modes.
+6. **Resolved:** title plus optional note/due date/label; Work/Study/Personal/custom labels; editable 25/5/15 timer defaults; no manual historical sessions or duration edits, metadata correction/deletion allowed.
+7. **Resolved:** independent manual savings ledger, not wallet-linked allocation.
+8. **Resolved:** one user-selected base currency, locked after monetary records exist; amount-based monthly budgets with planned savings separate. Supported codes/precision remain a contract gate.
+9. **Resolved:** every CARD-07 output for private V1-A preview/export, then V1-B publication; final assets/dimensions still need validation.
+10. **Resolved:** English-first Android pilot; milliliters default with optional US fluid ounces, separate cups/shots and device-suggested editable locale/timezone. Exact conversion rounding remains a contract gate.
 
 ### Technical planning inputs — remaining choices
 
-11. Decide authentication methods, guest-use policy, and offline scope.
+11. Decide authentication methods and detailed offline/session scope. Account-required V1 without guest mode is accepted in Decision 0003.
 12. Define cross-device timer/conflict behavior and exact recovery guarantees.
 13. Define public-link rendering, supported deep links, and export formats.
 14. Establish supported device profiles, measurable performance budgets, and backup/recovery targets.

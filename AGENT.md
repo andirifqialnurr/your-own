@@ -15,6 +15,7 @@ Documentation authority:
 - [Mobile](docs/MOBILE_TECH_SPEC.md), [Backend](docs/BACKEND_TECH_SPEC.md), [Web](docs/WEB_PRD.md), [Admin](docs/ADMIN_CMS_PRD.md): platform-specific contracts and file maps.
 - [Design system](docs/cookbook/design-system.md), [Security](docs/cookbook/security.md), [Testing](docs/cookbook/testing.md), [Schema](docs/cookbook/schema.md), [Deployment](docs/cookbook/deployment.md): cross-cutting requirements.
 - [Milestones](docs/milestones/README.md): execution order and evidence, not a replacement specification.
+- Repository-wide decisions live in `docs/cookbook/decisions/`; [Decision 0001](docs/cookbook/decisions/0001-scope-and-release-tracks.md) records the accepted scope/release priorities and owner-approval process. App-local decisions link to shared records instead of duplicating them.
 
 Resolve conflicts explicitly. Do not silently make a proposal approved by copying it into code or another document. The standalone design system needs no external style-reference file.
 
@@ -22,7 +23,7 @@ Resolve conflicts explicitly. Do not silently make a proposal approved by copyin
 
 At creation of these instructions, this is a documentation-only repository. Re-check the working tree as implementation progresses; update status documents when reality changes.
 
-Confirmed: Flutter, NestJS, separate Next.js user/admin apps, a monorepo direction, four tracking modes, adaptive layouts, and dark-mode support. Supporting libraries, versions, database/ORM, provider integrations, deployment details, and sensitive policies require recorded decisions.
+Confirmed: Flutter, NestJS, separate Next.js user/admin apps, a monorepo direction, four tracking modes, adaptive layouts, and dark-mode support. [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts lean pnpm, Node 24 LTS/TypeScript 6 candidate direction, isolated stable Flutter with Riverpod/go_router/Dio/Drift, and App Router/React/Tailwind/TanStack Query/RHF/Zod directions. Exact pins, remaining libraries, database/ORM, provider integrations, deployment details and sensitive policies still require validation/decisions. Direction approval is not installation, spike or scaffold authorization.
 
 - Do not invent package scripts, installed tools, completed migrations, test results, or provisioned resources.
 - Validate compatibility, then pin approved versions and commit the appropriate lockfiles when scaffolding is authorized.
@@ -57,6 +58,7 @@ Confirmed: Flutter, NestJS, separate Next.js user/admin apps, a monorepo directi
 - Treat sockets/connectivity as hints, not durable truth. Do not claim exactly-once external push delivery or guaranteed background execution.
 - Reauthorize media, SSR/metadata, caches, workers, previews, and operator actions. Private data must not leak during loading, logout, account switching, resizing, or theme changes.
 - Use the semantic design system in both themes. Support all four size classes, usable height, text scaling, keyboard/insets, screen readers, pointer/touch, and preserved drafts/timers.
+- Follow [Decision 0002](docs/cookbook/decisions/0002-rounded-icons-and-chart-rendering.md): one complete rounded icon family, never Material/built-in/starter-default glyphs for app-owned UI; ApexCharts for user-web data charts; native/custom Flutter charts where needed. Decision 0004 selects **Hugeicons Free Stroke Rounded only** with first-party Flutter/React packages behind owned semantic adapters; exact pins, coverage, distribution notices and rendering remain unverified. ApexCharts installation/integration stays on hold pending licensing clarification; no supplier outreach or purchase is authorized. Replace implicit component icons too; do not substitute a starter chart package or assume custom painting is accessible.
 - No real credentials, private messages, account balances, report evidence, or personal production datasets in source, fixtures, screenshots, logs, or ordinary telemetry. Use synthetic data.
 
 ## 6. Change workflow

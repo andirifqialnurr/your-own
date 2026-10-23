@@ -1,6 +1,6 @@
 # Your Own — System Architecture
 
-- **Version:** 0.4
+- **Version:** 0.8
 - **Status:** Proposed target architecture; documentation only, not an implemented system
 - **Confirmed frameworks:** Flutter mobile, NestJS backend, Next.js user website, separate Next.js admin CMS
 - **Product authority:** [PRD.md](../PRD.md)
@@ -44,17 +44,22 @@ This is the single end-to-end architecture overview. Read it to understand the c
 
 Product and platform specifications live directly in `docs/`; these six cross-cutting guides live in `docs/cookbook/`. The design-system guide is self-contained and does not depend on the original visual-inspiration file.
 
+Repository-wide accepted decisions live in `docs/cookbook/decisions/`, starting with [Decision 0001](decisions/0001-scope-and-release-tracks.md). The project owner approves decisions; agents record evidence and keep affected specifications synchronized. App-local decision records reference shared decisions rather than duplicating them.
+
 Product scope changes require a PRD decision. Cross-cutting documents consolidate engineering defaults; feature specifications specialize them, not silently contradict them. Resolve conflicts explicitly and update all affected documents. Proposed tables, endpoints, providers, colors, and numerical limits do not become approved merely by appearing in a second document.
 
 ## 2. Decisions and constraints
 
 ### Confirmed
 
-- Mobile-first Flutter application with phone/tablet adaptation, including large iPads.
+- Mobile-first Flutter application with an Android-first limited personal pilot; phone/tablet adaptation, including large iPads, remains required.
 - NestJS backend shared by all clients.
 - Two separate Next.js applications: user web and internal admin CMS.
 - Focus, Read, Intake, Money; generated progress-card sharing and the selected social features.
 - Manual Money only, no bank/payment integration; no videos/reels, unrelated posts, or endless feed.
+- [Decision 0002](decisions/0002-rounded-icons-and-chart-rendering.md): one comprehensive rounded icon family, ApexCharts for user-web data charts, and native/custom Flutter charts where needed. [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md) selects **Hugeicons Free Stroke Rounded** and confirms the ApexCharts integration hold pending licensing clarification. Exact pins, distribution notices, coverage and integration evidence remain separate gates.
+
+[Decision 0003](decisions/0003-product-defaults.md) accepts P01–P11 product defaults, including account-required tracking, private/followers-only defaults, English-first Android UI, explicit units, restricted historical Focus edits and locked single-currency/independent savings semantics. This product-default decision did not approve the technical baseline below. Decision 0004 separately accepts lean pnpm and the specified mobile/web directions, with Node 24 LTS/TypeScript 6 candidate direction and an isolated stable Flutter SDK; exact versions and the remaining infrastructure choices are not approved.
 
 ### Proposed technical baseline
 
@@ -63,8 +68,9 @@ Product scope changes require a PRD decision. Cross-cutting documents consolidat
 | Backend structure | Modular monolith; API and worker roles share code | Module interfaces and workload tests |
 | Public API | REST/OpenAPI with generated Dart/TypeScript clients | Contract generation and compatibility spike |
 | Main persistence | PostgreSQL + Prisma | Schema, SQL constraints, pooling, migrations |
-| Mobile | Riverpod, Drift/SQLite, Dio, go_router | Package versions, encrypted storage, platform tests |
-| Web/admin | App Router, TypeScript, Tailwind, shadcn/ui, TanStack Query | Versions, session/CSRF implementation, accessibility |
+| Mobile | Riverpod, Drift, Dio, go_router directions accepted in Decision 0004 | Exact Flutter/Dart pair and package pins, encrypted SQLite driver/keys, platform tests |
+| Web/admin | App Router/React, TypeScript, Tailwind, TanStack Query, React Hook Form/Zod and owned accessible component directions accepted | Exact pins, underlying primitives (shadcn/ui remains a candidate), browser baseline, session/CSRF and accessibility |
+| Workspace | Lean pnpm; separate Flutter SDK pin/application lockfile; no extra orchestrator by default | Manager bootstrap/version, compatible supported graph and installation authorization |
 | Identity/storage | Managed services; Supabase candidates | Actual token/session model, storage policies, cost/region |
 | Async work | PostgreSQL outbox + BullMQ/Redis | Crash recovery, queue durability, idempotent consumers |
 | Realtime/push | Socket.IO and FCM/APNs | Authorization, ticket integration, platform setup |
@@ -161,7 +167,7 @@ docs/                     Product and platform specifications
 - Domain migrations live only under `apps/api/prisma/migrations/` if Prisma is adopted. A dedicated least-privilege session store is an infrastructure exception, not another domain data path.
 - Shared code flows from apps to explicit package entry points, not from `apps/web` to `apps/admin` or vice versa. The user website imports only the user contract entry; admin operator adapters use the operator entry. Do not create a barrel that mixes privileged server code with browser-safe exports.
 - Generated client code must not be edited manually. OpenAPI user/operator artifacts are generated projections of one authoritative backend contract, not two hand-maintained APIs. Browser feature clients call same-origin BFFs; credential-bearing generated clients belong behind server adapters.
-- Start app-local and extract genuinely shared primitives when useful; after extraction, update callers/indexes and keep one implementation owner rather than divergent local/package copies. Package/workspace manager and versions remain unselected.
+- Start app-local and extract genuinely shared primitives when useful; after extraction, update callers/indexes and keep one implementation owner rather than divergent local/package copies. Lean pnpm is the accepted workspace direction; exact manager/runtime/package pins and bootstrap remain unverified.
 - Shared truth does not mean identical Flutter/React internals. Portable tokens/contracts need tested platform adapters. Create folders with approved slices, not hundreds of empty placeholders.
 
 ### 5.2 Feature-to-application path map
@@ -354,7 +360,9 @@ See [testing.md](testing.md) for proof requirements and [deployment.md](deployme
 
 ## 16. Release dependencies and decision gates
 
-- Mobile/backend V1-A: reliable private tracking and data controls.
+The owner accepted these stage priorities in [Decision 0001](decisions/0001-scope-and-release-tracks.md). Approval of sequencing is not authorization to scaffold, deploy or bypass validation.
+
+- Mobile/backend V1-A: reliable private tracking and data controls, followed by the gated Android-first limited pilot. iPhone/iPad remain required targets with independent native evidence.
 - V1-B: social publication requires admin A0 moderation/safety readiness.
 - V1-C: reposts and durable messaging complete intended social V1.
 - User web W0–W3 is a separate rollout; mobile launch does not imply immediate browser parity.

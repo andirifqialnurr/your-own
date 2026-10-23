@@ -1,13 +1,13 @@
 # Your Own — Admin CMS PRD & Next.js Specification
 
-- **Version:** 0.3
+- **Version:** 0.5
 - **Status:** Detailed draft; no admin scaffold implemented
 - **Confirmed framework:** Next.js, as a separate application from the user website
 - **Backend authority:** NestJS operator services; no direct domain-database access from the dashboard
 - **Product authority:** [PRD.md](PRD.md)
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
 - **Related specifications:** [Backend](BACKEND_TECH_SPEC.md) · [User website](WEB_PRD.md) · [Mobile](MOBILE_TECH_SPEC.md)
-- **Pending approval:** Role assignments, identity/MFA/session protocol, supporting packages, hosting, operating policies, and optional editorial CMS scope
+- **Pending approval:** Role assignments, identity/MFA/session protocol, exact pins and remaining packages/primitives, hosting, operating policies, and optional editorial CMS scope
 
 > Operate and protect the product without turning administrative access into unrestricted access to people's private lives.
 
@@ -187,11 +187,12 @@ Keep raw emails, private evidence, reasons containing personal information, secr
 
 ## 8. Recommended technical stack
 
-| Concern | Proposal | Constraint |
+| Concern | Candidate / accepted direction | Constraint |
 |---|---|---|
 | Framework | Next.js App Router | Framework confirmed; exact version compatibility pending |
 | Language | TypeScript strict | Runtime operator requests remain validated by NestJS |
-| Styling/components | Tailwind CSS, shadcn/ui, owned semantic tokens | Reuse primitives without importing user-app session behavior |
+| Styling/components | Tailwind CSS, owned semantic tokens/components; shadcn/ui primitives remain candidates | Reuse primitives without importing user-app session behavior |
+| Icons | **Hugeicons Free Stroke Rounded**, same as mobile/user web; exact pins pending | No Material or implicit starter/component-default icons; shared semantic aliases and preserved notices |
 | Server state | TanStack Query | Session/capability-scoped caches cleared on expiry/revocation |
 | Forms | React Hook Form + Zod | Reasons, confirmations, field validation; not authorization |
 | Tables | TanStack Table where useful | Server pagination/filtering; no full-database downloads |
@@ -200,7 +201,7 @@ Keep raw emails, private evidence, reasons containing personal information, secr
 | Tests | Component tests, Playwright, accessibility checks | Role, CSRF, evidence, concurrency, safe operations |
 | Diagnostics | Redacted technical telemetry | No report/evidence/body/session replay by default |
 
-Use the same approved compatible frontend baseline as the user website when practical, while permitting independent releases. Supporting libraries and exact versions remain proposals.
+Use the same approved compatible frontend baseline as the user website when practical, while permitting independent releases. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts App Router/React, TypeScript, Tailwind, TanStack Query, RHF/Zod and owned-component directions, plus Hugeicons Free Stroke Rounded. Exact pins, additional libraries, primitives and compatibility remain unverified. [Decision 0002](cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) retains the shared icon constraints. ApexCharts integration remains on hold pending licensing clarification, including any separate admin scope. If operational charts are introduced, evaluate reuse of the user-web ApexCharts adapter after scope/license review; this does not add admin charts, raw tracker access or a new chart package automatically.
 
 ## 9. Architecture and shared-code boundaries
 
@@ -670,7 +671,7 @@ Support the four proposed size classes using available **CSS pixels**: Small bel
 - Keep environment/target/effect visible during high-impact confirmation.
 - Semantic headings/landmarks, keyboard focus, labels, dialog focus restoration, readable contrast, reduced motion, and accessible statuses.
 - Target applicable WCAG 2.2 AA, 200% text/zoom and reflow checks; primary touch controls follow the shared accessible target policy.
-- Every icon-only action has a meaningful label and irreversible actions are not distinguished by color alone.
+- Every icon-only action has a meaningful label and irreversible actions are not distinguished by color alone. Use the [shared rounded icon family](cookbook/design-system.md#56-rounded-icon-system), including table/filter/menu/dialog/status controls; do not leave default starter glyphs in secondary staff workflows.
 
 Exact table density and shortcuts are usability decisions, not reasons to drop accessibility or server permissions.
 

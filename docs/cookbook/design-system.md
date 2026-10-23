@@ -1,8 +1,9 @@
 # Your Own — Cross-Platform Design System
 
-- **Version:** 0.4
+- **Version:** 0.7
 - **Status:** Standalone Your Own design specification; tokens, responsive rules, and component contracts await implementation and visual/accessibility testing
 - **Applies to:** Flutter mobile, Next.js user web, separate Next.js admin, and generated progress posters
+- **Accepted icon/chart direction:** [Decision 0002](decisions/0002-rounded-icons-and-chart-rendering.md) and [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md); Hugeicons Free Stroke Rounded, ApexCharts for user web on integration hold pending licensing clarification, native/custom Flutter charts where needed
 - **Design provenance:** Initially informed by an Awesomic-inspired light-style reference; adopted values, adaptations, and rationale are recorded here. This is Your Own's system, not an official third-party component library.
 - **Related:** [Architecture](architecture.md) · [PRD](../PRD.md) · [Mobile](../MOBILE_TECH_SPEC.md) · [Web](../WEB_PRD.md) · [Admin](../ADMIN_CMS_PRD.md) · [Testing](testing.md) · [Security](security.md)
 
@@ -115,7 +116,9 @@ Maintain one reviewed platform-neutral token source, with Flutter and web adapte
 | Theme | Explicit `ThemeData`, `ColorScheme`, `ThemeExtension` roles | Semantic CSS variables under resolved root theme |
 | Typography | Bundled approved font, `TextTheme`, supported `TextScaler` | Locally hosted font, `rem` sizes, unitless line heights, system fallback |
 | Layout | Logical pixels; `LayoutBuilder` and parent constraints | CSS viewport/container constraints; actual available content width |
-| Components | Customized Material 3 shapes, state layers, tint, targets | Owned/customized React primitives; no accidental default shadcn colors/radii |
+| Components | Customized Material 3 primitives/shapes/states; explicitly supplied app icons, not built-in glyph defaults | Owned/customized React primitives; no accidental default shadcn colors/radii/icons |
+| Icons | Semantic icon adapter using the approved external rounded family | Same family and semantic aliases through a React adapter; no starter-icon fallback |
+| Data charts | Native widgets/custom painting where needed, with explicit semantics | ApexCharts for user website; browser-only adapter; admin chart integration needs scope/license review |
 | Appearance | `theme`, `darkTheme`, `ThemeMode` | Light/dark tokens plus matching native `color-scheme` |
 | Navigation | One route/selection state across shell variants | One URL/selection model across compact/expanded variants |
 | Posters | Explicit template-version palette/font | Same canonical rendering contract, not browser theme inheritance |
@@ -420,6 +423,18 @@ These compositions apply only where the website's approved content needs them; t
 
 Automatic rotating keywords, auto-advancing carousels, and newsletter/email-capture workflows are not implied by this design system. A later approved gallery needs explicit controls, keyboard access, meaningful image alternatives, and reduced-motion handling.
 
+### 5.6 Rounded icon system
+
+Use **Hugeicons Free — Stroke Rounded only**, selected in Decision 0004 across mobile, user web, admin and icon-bearing poster templates. “Rounded” describes the glyph contours, caps and joins, not only its container. The [static review](toolchain-review.md#5-rounded-icons--selected-family-and-coverage-evidence) supports the family choice, not full visual/coverage or distribution-notice verification. First-party Flutter/React package pins and semantic adapter implementations remain unverified; no Pro packs or mixed-style/family fallbacks.
+
+- Cover mode identities, navigation, back/close/menu/chevrons, capture/edit/delete, privacy, sync/status, social/messaging, settings and staff workflows in one visual family. Audit implicit picker/dialog/menu/component icons too.
+- Do not use Material Icons/Material Symbols, including Rounded variants, or Flutter's built-in Material/Cupertino icon sets for app-owned iconography. Next.js has no built-in icon family; replace icons copied from starters/shadcn or supplied by component defaults rather than accepting them automatically.
+- Define semantic names through `AppIcon`-style Flutter/React adapters and an icon catalog. Features reference meaning, not vendor-specific glyph names scattered through screens. Keep stroke weight, optical size and any selected/unselected variants coherent within the chosen family.
+- Review actual glyph coverage and matching source assets/Flutter/React support, license, cost, attribution and poster-output rights. Bundle approved used assets locally; do not require a runtime icon CDN. No silent fallback to another library, emoji or an unlicensed paid asset when a glyph is missing.
+- Baseline visual size is 20/24 within the existing minimum 48×48 action target. Preserve contrast, accessible names, meaningful labels and appropriate directional mirroring; decorative icons do not duplicate spoken text.
+- This icon-artwork restriction does not prohibit accessible Material widget primitives or Flutter's `Icon` renderer. OS-owned share sheets/keyboards and approved provider brand marks keep their required artwork; they are not app-icon fallback sources.
+- Validate a representative icon contact sheet in Light/Dark and at actual sizes, then add source/asset and component checks against prohibited or implicit default glyphs. No particular icon package is approved just by writing this rule.
+
 ## 6. Forms and data entry
 
 ### 6.1 Form primitives
@@ -492,6 +507,20 @@ The proposed 0–4 intensity counts distinct modes with qualifying recorded acti
 | Progress / V1-A | Contribution grid, period/mode filters, goal summary, metric chart/table, selected-day timeline, shareable recap entry | Empty/partial/loading, timezone boundary, corrected history, hidden/unavailable values; rest/restart without guilt |
 
 Goal bars/rings show numeric actual/target separately; visual saturation stops at the goal while over-target numbers remain truthful. This does not erase records or turn unlimited spending/intake into achievement.
+
+### 7.3 Chart rendering and platform ownership
+
+**User website: ApexCharts is selected in principle, with installation/integration on hold pending licensing clarification under Decision 0004.** Core/React-wrapper versions, license/entitlements, Next.js compatibility, browser support and bundle cost must still pass M00-T04/M00-T09 review. Do not substitute a starter's Recharts/Chart.js component without an explicit decision. Admin may reuse this adapter for approved operational charts after scope/license review; this adds no private staff tracking dashboard.
+
+- Keep ApexCharts behind a browser-only entry/adapter. Do not evaluate browser-dependent chart modules during server rendering; if an SSR-disabled dynamic import is needed, place it inside a Client Component. Keep a stable accessible summary/loading/error frame and test actual production build/hydration behavior.
+- Load chart code only where a released feature needs it, not on every public page. Use bundled/local approved assets; no hosted chart/embed service receiving private records.
+- Override library defaults with semantic light/dark tokens, typography, neutral/patterned series, direct labels and rounded line ends/bar corners where suitable. Rounding must not distort values, stack boundaries or zero/negative meaning. Do not smooth curves into fabricated intermediate measurements.
+- Replace any retained toolbar icons with the selected rounded icon family or disable unused controls. Downloads/CSV/image export require explicit feature/privacy review; a library default does not grant that capability.
+- Provide keyboard/touch access and readable exact-value summaries/tables independent of hover, color or the chart library's claimed accessibility. Respect reduced motion, all four sizes and local container changes without resetting selection.
+- Money calculations and formatted labels/tooltips/tables use exact canonical values. Bounded approximate plotting coordinates are presentation only; handle large/negative/missing values without silently rounding the ledger or reporting false precision. Hide/unmount/redact sensitive series when hidden values could otherwise be exposed; clear chart state on session/account changes.
+- Contribution calendars/date navigation and simple progress bars/rings may remain purpose-built semantic components. ApexCharts is the user-web data-chart engine, not a requirement to turn every calendar/control into a chart or a replacement for the versioned poster renderer.
+
+**Flutter: native/custom where needed.** Use widgets and, where needed, `CustomPainter` behind reusable chart contracts. Supply explicit semantics/data alternatives, hit testing and selection when interactive, constraint-aware layout, text scaling, reduced motion and bounded repaint cost. A painted chart without accessible values is incomplete. No Flutter chart library is selected; any dependency requires review, and an ApexCharts WebView is not implied.
 
 ## 8. Cards and social interactions
 
@@ -602,7 +631,7 @@ Target applicable WCAG 2.2 AA through actual testing, not source appearance or c
 - Tables/charts/calendars have text/value access. Virtualization must preserve meaningful keyboard/screen-reader navigation or offer an accessible alternative.
 - Tooltips are supplementary. Drag/swipe/reorder gestures, if introduced for approved flows, require equivalent explicit controls; no hover-only or gesture-only primary action.
 - Respect password-manager/autofill/paste and IME composition. No inaccessible custom control merely to reproduce the marketing sample.
-- English/Indonesian remain language candidates, not confirmed launch coverage. Keep mode keys stable if labels change. Format dates/numbers/currency without changing stored units or snapshot meaning.
+- [Decision 0003](decisions/0003-product-defaults.md) accepts an English-first Android pilot with localizable strings; Indonesian remains a later candidate. Use the accepted Focus/Read/Intake/Money/Circle labels and stable mode keys. Format dates/numbers/currency without changing stored units or snapshot meaning.
 - Test long titles/names, translated controls, large/negative Money values, and missing glyphs. Truncation requires access to the full essential value; privacy-hidden values stay hidden everywhere.
 
 ## 12. Governance and design acceptance
@@ -610,7 +639,7 @@ Target applicable WCAG 2.2 AA through actual testing, not source appearance or c
 ### 12.1 Scope and ownership
 
 - This standalone file owns Your Own's design tokens, rationale, light/dark themes, adaptive rules, and component contracts. The retired visual-inspiration file is not a dependency; record future design changes here rather than restoring that dependency.
-- Record approved font/license/assets and token changes; exact values remain candidates until visual/device validation. Do not maintain a second ad hoc palette or component system in admin/mobile.
+- Record approved font/icon licenses, assets, chart integrations and token changes; exact values remain candidates until visual/device validation. Do not maintain a second ad hoc palette or component system in admin/mobile.
 - Build a synthetic component/state catalog with the section 5 contract, then test real Flutter/web/admin adapters. Screenshots alone do not prove semantics or authorization.
 - Version poster templates independently from app theme updates; old publications do not silently change.
 - Add visual, keyboard, screen-reader, privacy, resize, theme persistence, and first-paint checks with components. See [Testing](testing.md#8-adaptive-ui-and-accessibility).
@@ -636,6 +665,8 @@ The inventory covers current planned component families, not every speculative f
 - [ ] Small/Medium/Large/Largest, phone/tablet/desktop, short height, split-screen, keyboard, and live resize are covered in both themes.
 - [ ] Zinc surfaces, neutral CTAs, 12/14/24/36 role geometry, single-font hierarchy, and sparse orange badges match this mapping; no old palette/radius rules remain.
 - [ ] Approved font and fallback scripts are bundled/hosted appropriately and legible, including poster rendering.
+- [ ] One licensed rounded icon family covers app-owned explicit and implicit glyphs; no Material/built-in/starter fallback icons remain.
+- [ ] User-web ApexCharts loading/license/theme/privacy checks pass; Flutter custom charts have tested semantics, exact-value alternatives and resize/performance behavior.
 - [ ] System/Light/Dark persists locally; explicit choice wins; System responds to OS changes; web first paint/hydration agree.
 - [ ] Fields, dialogs, native controls, tooltips, charts, tables, skeletons, and error states work in Dark—not only page backgrounds.
 - [ ] Real component contrast, status recognition, focus visibility, keyboard/screen-reader interaction, and text scaling pass testing.

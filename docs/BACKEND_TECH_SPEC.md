@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.3
+- **Version:** 0.6
 - **Status:** Detailed proposal for review; no backend scaffold or service implemented yet
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -82,7 +82,7 @@ Endpoint paths, entities, examples, and limits below form a **draft API design**
 - A transactional PostgreSQL outbox, with BullMQ/Redis for asynchronous execution when publishing/jobs require it.
 - Containerized persistent API and worker processes rather than relying on request-scoped background execution.
 
-These are not all confirmed simply because NestJS was approved. Validate exact versions, adapter compatibility, provider costs, and deployment constraints during the foundation spike.
+These are not all confirmed simply because NestJS was approved. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts lean pnpm with Node 24 LTS/TypeScript 6 candidate direction, not exact versions, the Express adapter or the other backend proposals. Validate exact pins, adapter compatibility, provider costs and deployment constraints in separately authorized work; no installation or scaffold is approved.
 
 ### 2.3 Why a modular monolith
 
@@ -116,7 +116,7 @@ A release of V1-A alone is a limited release, not the complete social product. E
 
 | Concern | Proposed selection | Purpose / constraint |
 |---|---|---|
-| Runtime | Supported Node.js LTS + TypeScript | Pin exact compatible versions; do not infer versions from the developer's installed Node |
+| Runtime | Node 24 LTS / strict TypeScript 6 candidate direction accepted | Exact supported compatible pins still require review; do not infer versions from the developer's installed Node |
 | HTTP framework | NestJS, Express adapter initially | Modules, controllers, services, guards, exception filters; framework is confirmed, adapter is proposed |
 | Contracts | `@nestjs/swagger`, OpenAPI | Versioned REST documentation and Dart/TypeScript client generation |
 | Validation | `class-validator`, `class-transformer`, explicit DTOs | Runtime validation and allowlisted fields; TypeScript types alone do not validate network input |
@@ -300,7 +300,7 @@ apps/api/
   scripts/                             # Repeatable contract/migration/check tooling
 ```
 
-Only add a separate dispatcher entry point if deployment needs it; otherwise an explicitly enabled worker role runs dispatch. Do not accidentally start consumers/dispatchers in every API process. Both process roles reuse application modules, with transport modules composed separately. Package-manager/workspace selection and runtime pins remain approval gates; use the chosen workspace lockfile rather than accidental competing JS lockfiles.
+Only add a separate dispatcher entry point if deployment needs it; otherwise an explicitly enabled worker role runs dispatch. Do not accidentally start consumers/dispatchers in every API process. Both process roles reuse application modules, with transport modules composed separately. Decision 0004 accepts lean pnpm as the workspace direction; its exact bootstrap/version and runtime pins remain validation/approval gates. Use the chosen workspace lockfile rather than accidental competing JS lockfiles.
 
 ### 7.2 Module layout — Money example
 
@@ -609,12 +609,14 @@ Publish approved schemas as CI artifacts. Contract examples must be executable f
 
 ## 12. Profile and preference requirements
 
+Implement the product defaults accepted in [Decision 0003](cookbook/decisions/0003-product-defaults.md): account-required V1 without guest migration, private signup default, followers-only new publication drafts with explicit public selection, and mL/US-fluid-ounce preferences. Raw records remain owner-only. English-first pilot scope does not select a country/timezone/currency; auth/provider and exact numerical contracts remain pending.
+
 - Enforce approved username normalization/uniqueness and safe display-name/bio lengths.
 - Store account visibility separately from private tracking data.
 - Keep units, mode visibility, timezone, language, notification settings, DM permission, and amount-hiding preferences user-scoped.
 - Effective-dated goals/targets preserve historical attainment.
 - Changing timezone must not rewrite stored historical activity dates.
-- Changing base currency after Money records exist cannot simply relabel amounts. V1 has no implicit FX conversion.
+- Reject base-currency changes after monetary records exist; never relabel history or supply a destructive reset workaround. V1 has no FX conversion; supported currency metadata remains a contract gate.
 - Do not expose complete personal progress, bookshelf, balances, or task lists through a profile DTO.
 - People search returns minimal permitted fields and enforces blocking, suspension, and rate limits.
 
@@ -659,7 +661,7 @@ Publish approved schemas as CI artifacts. Contract examples must be executable f
 | `PATCH/DELETE /v1/focus/sessions/:id` | Allowed metadata correction or deletion |
 | `POST /v1/focus/session-conflicts/:id/resolve` | Explicit owner conflict resolution |
 
-Historical duration editing is still a PRD open decision; do not implement it silently. Metadata edits are not a general permission to fabricate timing fields.
+Decision 0003 excludes manual historical session creation and duration edits in V1. Allow task/label/private-note correction or deletion only through the permitted paths; metadata edits cannot fabricate timing fields. Editable Pomodoro defaults are 25/5/15 minutes, with explicit interval starts.
 
 **Acceptance:** Two accepted 25-minute intervals yield 50 focus minutes. Replayed finalization yields no extra session, and two concurrent online starts cannot create two authoritative active sessions.
 
@@ -762,7 +764,7 @@ This is not a claim of a full double-entry accounting system; external counterpa
 
 ### 16.5 Savings goals
 
-Follow the PRD's proposed independent planning ledger:
+Follow the PRD's accepted independent manual planning ledger:
 - Name, positive target amount, optional deadline, and manual contribution/withdrawal history.
 - A contribution does not move funds, reserve a wallet balance, create an expense, or increase assets.
 - Transfers between real-world wallets are recorded separately.
