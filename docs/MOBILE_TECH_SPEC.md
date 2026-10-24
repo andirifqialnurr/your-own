@@ -1,7 +1,7 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.10
-- **Status:** Technical proposal for review; no application scaffold implemented yet
+- **Version:** 0.12
+- **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
 - **Confirmed:** Flutter mobile, NestJS backend, Next.js user/admin web clients, four tracking modes, adaptive Small/Medium/Large/Largest layouts
@@ -120,7 +120,7 @@ Use one primary solution per concern. Do not combine Riverpod, Bloc, and GetX si
 - Portrait and landscape; no application-wide portrait lock.
 - Dynamic resizing, keyboard-visible layouts, system text scaling, and tablet pointer/keyboard use.
 
-Minimum Android API level, iOS/iPadOS version, and reference devices must be selected after dependency validation. Minimums in the old applications do not automatically carry over.
+Minimum Android API level, iOS/iPadOS version, and reference devices require owner approval and compatibility validation against the eventual native dependencies. [Decision 0011](cookbook/decisions/0011-supported-environment-review-order.md) permits reviewing provisional targets before M00-T04 closes; the [environment review](cookbook/supported-environments-review.md) contains recommendations, not selected minimums or confirmed device access. Reconcile approved targets with SDK/native-driver constraints before final pins; minimums in the old applications do not automatically carry over.
 
 ### 3.2 Native integration policy
 
@@ -191,7 +191,7 @@ Durable outbox and synchronization coordinator
 
 ## 5. Proposed project structure
 
-Suggested eventual repository location: `apps/mobile/`. This is a structure proposal, not a directory already created by this document.
+The initial [mobile scaffold](../apps/mobile/README.md) now exists at `apps/mobile/` under [Decision 0012](cookbook/decisions/0012-local-development-bootstrap.md), using installed Flutter 3.38.9 / Dart 3.10.8 for local development. The larger feature map below remains a proposal; no storage, identity, network client or tracking feature is implemented. Host tests are not Android/iOS/iPad validation.
 
 ```text
 apps/mobile/

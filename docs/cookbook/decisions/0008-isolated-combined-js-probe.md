@@ -1,6 +1,6 @@
 # Decision 0008 — Isolated Combined JS and Launcher Probe
 
-- **Status:** Authorized attempt stopped at its security gate; no changed-scope retry, production policy or final pins approved
+- **Status:** Authorized attempt stopped at its security gate; no changed-scope retry approved by this decision. Decision 0009 separately authorizes that retry; production policy/final pins remain unapproved
 - **Task:** [M00-T04](../../milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review), In progress / unchecked
 - **Approved by:** Project owner (user in this conversation)
 - **Approval recorded:** 2026-10-24 UTC
@@ -49,4 +49,4 @@ Existing root/embedded/native/font attribution and notice-delivery gaps remain e
 
 ## Recorded outcome
 
-The [combined report](../toolchain-combined-probe.md) records verified tool reuse/launcher checks and fresh lock-only resolution, followed by audit exit 1 for high-severity GHSA-q7qp-rjg7-q26m in the adapter's exact Multer 2.4.0 dependency. Application installation, builds, lint and servers did not run. The subsequent “continue” led only to static advisory/fix review. Multer 2.5.0 is a reviewed candidate, not an installed or approved override; changing the exact dependency edge requires a separate explicit authorization. No remaining test was counted as passed.
+The [combined report](../toolchain-combined-probe.md) records verified tool reuse/launcher checks and fresh lock-only resolution, followed by audit exit 1 for high-severity GHSA-q7qp-rjg7-q26m in the adapter's exact Multer 2.4.0 dependency. Application installation, builds, lint and servers did not run. The subsequent “continue” led only to static advisory/fix review. At that point Multer 2.5.0 was a reviewed candidate, not an installed or approved override; changing the edge required separate explicit authorization. No unrun test was counted as passed. The owner subsequently answered the explicit override-retry question in [Decision 0009](0009-isolated-multer-override-retry.md). Its [separate passing experiment](../toolchain-multer-retry.md) does not erase this original stop, broaden this decision or approve production adoption.

@@ -1,6 +1,6 @@
 # Your Own — Admin CMS PRD & Next.js Specification
 
-- **Version:** 0.5
+- **Version:** 0.7
 - **Status:** Detailed draft; no admin scaffold implemented
 - **Confirmed framework:** Next.js, as a separate application from the user website
 - **Backend authority:** NestJS operator services; no direct domain-database access from the dashboard
@@ -201,7 +201,7 @@ Keep raw emails, private evidence, reasons containing personal information, secr
 | Tests | Component tests, Playwright, accessibility checks | Role, CSRF, evidence, concurrency, safe operations |
 | Diagnostics | Redacted technical telemetry | No report/evidence/body/session replay by default |
 
-Use the same approved compatible frontend baseline as the user website when practical, while permitting independent releases. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts App Router/React, TypeScript, Tailwind, TanStack Query, RHF/Zod and owned-component directions, plus Hugeicons Free Stroke Rounded. Exact pins, additional libraries, primitives and compatibility remain unverified. [Decision 0002](cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) retains the shared icon constraints. ApexCharts integration remains on hold pending licensing clarification, including any separate admin scope. If operational charts are introduced, evaluate reuse of the user-web ApexCharts adapter after scope/license review; this does not add admin charts, raw tracker access or a new chart package automatically.
+Use the same approved compatible frontend baseline as the user website when practical, while permitting independent releases. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts App Router/React, TypeScript, Tailwind, TanStack Query, RHF/Zod and owned-component directions, plus Hugeicons Free Stroke Rounded. Exact pins, additional libraries, primitives and full compatibility remain open. [Decision 0010](cookbook/decisions/0010-conditional-dependency-exceptions.md) separately accepts conditional eligibility of only the three exact lint peer allowances with project-owner/30-day review, revalidation and safe removal. This does not establish upstream peer support or approve a production baseline, final pins, installation or scaffolding. [Decision 0002](cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) retains the shared icon constraints. ApexCharts integration remains on hold pending licensing clarification, including any separate admin scope. If operational charts are introduced, evaluate reuse of the user-web ApexCharts adapter after scope/license review; this does not add admin charts, raw tracker access or a new chart package automatically.
 
 ## 9. Architecture and shared-code boundaries
 
@@ -673,7 +673,7 @@ Support the four proposed size classes using available **CSS pixels**: Small bel
 - Target applicable WCAG 2.2 AA, 200% text/zoom and reflow checks; primary touch controls follow the shared accessible target policy.
 - Every icon-only action has a meaningful label and irreversible actions are not distinguished by color alone. Use the [shared rounded icon family](cookbook/design-system.md#56-rounded-icon-system), including table/filter/menu/dialog/status controls; do not leave default starter glyphs in secondary staff workflows.
 
-Exact table density and shortcuts are usability decisions, not reasons to drop accessibility or server permissions.
+Exact table density and shortcuts are usability decisions, not reasons to drop accessibility or server permissions. The [supported-environment review](cookbook/supported-environments-review.md), brought forward by [Decision 0011](cookbook/decisions/0011-supported-environment-review-order.md), proposes shared browser/device/accessibility coverage; no baseline or test environment is accepted yet. Admin retains phone/tablet access to core actions, not a desktop-only exemption.
 
 ## 20. API integration and safe mutations
 

@@ -1,7 +1,7 @@
 # Your Own — System Architecture
 
-- **Version:** 0.8
-- **Status:** Proposed target architecture; documentation only, not an implemented system
+- **Version:** 0.11
+- **Status:** Target architecture; local API/mobile foundations exist, full system not implemented
 - **Confirmed frameworks:** Flutter mobile, NestJS backend, Next.js user website, separate Next.js admin CMS
 - **Product authority:** [PRD.md](../PRD.md)
 
@@ -60,6 +60,12 @@ Product scope changes require a PRD decision. Cross-cutting documents consolidat
 - [Decision 0002](decisions/0002-rounded-icons-and-chart-rendering.md): one comprehensive rounded icon family, ApexCharts for user-web data charts, and native/custom Flutter charts where needed. [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md) selects **Hugeicons Free Stroke Rounded** and confirms the ApexCharts integration hold pending licensing clarification. Exact pins, distribution notices, coverage and integration evidence remain separate gates.
 
 [Decision 0003](decisions/0003-product-defaults.md) accepts P01–P11 product defaults, including account-required tracking, private/followers-only defaults, English-first Android UI, explicit units, restricted historical Focus edits and locked single-currency/independent savings semantics. This product-default decision did not approve the technical baseline below. Decision 0004 separately accepts lean pnpm and the specified mobile/web directions, with Node 24 LTS/TypeScript 6 candidate direction and an isolated stable Flutter SDK; exact versions and the remaining infrastructure choices are not approved.
+
+[Decision 0010](decisions/0010-conditional-dependency-exceptions.md) conditionally accepts only the three exact tested ESLint peer allowances and the exact Nest-parent Multer override as eligible for a later separately approved baseline. Project-owner accountability, at-most-30-day review, fresh revalidation and safe removal apply; no baseline, final pins, install/execution or scaffolding is approved. It does not resolve notices, targets, omitted libraries or ApexCharts entitlement.
+
+[Decision 0011](decisions/0011-supported-environment-review-order.md) permits M00-T05's [supported-environment review](supported-environments-review.md) before M00-T04 completion, to resolve target-dependent pin questions. T04 remains open/unchecked and paused; no target baseline, device access, infrastructure or executable work is accepted by this task-order adjustment.
+
+[Decision 0012](decisions/0012-local-development-bootstrap.md) subsequently authorizes local workspace/API/mobile setup using installed tools before full M00 completion. The [bootstrap](local-development-bootstrap.md) contains only a health API and Flutter setup shell; no domain service, database, provider or worker exists. Local pins do not select a release baseline, and Next.js apps remain later work.
 
 ### Proposed technical baseline
 
@@ -127,7 +133,7 @@ API/worker are deployment roles from one codebase, not a microservice per featur
 
 ## 5. Repository and code boundaries
 
-Target repository structure: `docs/` and `docs/cookbook/` exist; application/package directories below remain proposed, not scaffolded:
+Target repository structure: `docs/`, `docs/cookbook/`, `apps/api/` and `apps/mobile/` now exist. Web/admin and shared packages below remain proposed, not scaffolded:
 
 ```text
 apps/
@@ -212,7 +218,7 @@ Each app gets a short `README.md` navigation entry and local `docs/` indexes whe
 | Requirement/evidence | `TRACEABILITY.md` | `TRACEABILITY.md` | `TRACEABILITY.md` |
 | Decisions | `decisions/` | `decisions/` | `decisions/` |
 
-Use existing requirement IDs, implementation paths, route/operation IDs, test/evidence paths, and release stage in each traceability row. Statuses are **Planned → In progress → Implemented → Verified**, with actual evidence before Verified. Feature/module READMEs link public contracts and tests. These are navigation indexes, not duplicated PRDs, editable copies of generated API schemas, or repositories of real user data.
+Use existing requirement IDs, implementation paths, route/operation IDs, test/evidence paths, and release stage in each traceability row. Statuses are **Planned → In progress → Implemented → Verified**, with actual evidence before Verified. Feature/module READMEs link public contracts and tests. These are navigation indexes, not duplicated PRDs, editable copies of generated API schemas, or repositories of real user data. The initial API/mobile READMEs currently provide their small source/test maps; fuller indexes remain M01-T08 work.
 
 Tests primarily mirror their owned source modules/features; real integration/concurrency and full browser/API journeys have dedicated suites. A route/module/contract move must update its indexes and affected tests in the same change. Naming conventions distinguish `.spec.ts` backend tests and frontend `.test.tsx`/browser `.spec.ts` examples, but exact runners remain subject to the selected stack.
 

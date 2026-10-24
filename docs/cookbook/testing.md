@@ -1,7 +1,7 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.3
-- **Status:** Verification plan; no application scaffold/test suite exists yet
+- **Version:** 0.8
+- **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
 The goal is evidence of correct behavior across clients and failure modes, not only a high line-coverage percentage. This file consolidates shared tests; detailed acceptance IDs remain in the product/mobile/backend/web/admin specifications.
@@ -28,14 +28,18 @@ The goal is evidence of correct behavior across clients and failure modes, not o
 | Pure Dart/domain | Dart/Flutter tests, injected clock/IDs | Local calculations, timer rules, field selection |
 | Flutter persistence | Drift tests and real supported SQLite/encryption integration | Atomic local writes, migration/outbox preservation |
 | Flutter UI/device | Widget, golden, integration tests; Android/iOS devices/simulators | Adaptive flows, semantics, lifecycle/native integrations |
-| NestJS domain/API | Jest, Supertest | Validation, handlers, policy, response projections |
+| NestJS domain/API | Node built-in runner and loopback HTTP for the initial shell; Jest/Supertest remain later candidates | Initial config/health behavior now; domain/policy coverage later |
 | Database/concurrency | Real PostgreSQL fixtures/Testcontainers where appropriate | Actual constraints, locks, isolation, commit-order behavior |
 | Queues/recovery | Real selected Redis/worker integration plus controlled failures | Durable outbox, retries, duplicate handling |
 | React/browser | Unit/component tests, Testing Library, Playwright | Forms, sessions, cache safety, browser journeys |
 | Accessibility | Automated checks plus keyboard/screen-reader review | Real usability beyond snapshots |
 | Contracts | OpenAPI generation and Dart/TypeScript compile fixtures | Compatible schemas, precision, errors, dates |
 
-Exact package versions and runners are pending. SQLite/in-memory mocks cannot prove PostgreSQL locking. Golden images cannot prove authorization or accessibility. Provider mocks do not prove real APNs, identity callback, or storage behavior.
+[Decision 0011](decisions/0011-supported-environment-review-order.md) permits an early [supported-environment review](supported-environments-review.md) to resolve targets needed by final toolchain selection. Its device/browser lanes, accountable test assignments and measurement budgets are proposals, not available equipment or approved environments. Record exact accepted tuples and human test ownership before claiming coverage; neither a host test nor a WebKit runner substitutes for native iPad/Safari evidence.
+
+The [Windows/emulator plan](windows-emulator-validation-plan.md) records a separately authorized read-only P0 host inventory, resource/isolation prerequisites and eight future synthetic cases. Metadata collection is complete and the [P1 static feasibility review](windows-emulator-feasibility.md) holds setup on unresolved constraints and an unaccepted budget; all eight cases remain Not run. Neither the plan, inventory nor source comparison authorizes SDK installation or emulator execution. Emulator ABI/lifecycle/timing results remain supplementary to physical Android/iOS/iPad and actual browser evidence.
+
+[Decision 0012](decisions/0012-local-development-bootstrap.md) authorizes local coding independently of the emulator investigation. See the [bootstrap report](local-development-bootstrap.md), [API tests](../../apps/api/README.md#check) and [Flutter checks](../../apps/mobile/README.md#host-setup-and-checks) for actual commands and coverage. Node's built-in runner avoids adding a test framework for the initial API shell; Flutter uses its SDK test runner. Further package versions and runners remain pending. SQLite/in-memory mocks cannot prove PostgreSQL locking. Golden images cannot prove authorization or accessibility. Provider mocks do not prove real APNs, identity callback, or storage behavior.
 
 ## 2. Deterministic environments and fixtures
 

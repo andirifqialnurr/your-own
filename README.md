@@ -6,7 +6,7 @@ A mobile-first personal progress app: **Focus, Read, Intake, and Money**, with o
 
 ## Current status
 
-**Planning and documentation only.** The repository contains specifications, engineering guides, agent instructions, and an implementation task plan. No application scaffolds, dependency installations, migrations, CI pipelines, or deployments exist **in this repository**. A separately authorized [temporary compatibility probe](docs/cookbook/toolchain-probe.md) ran outside it; its limited results are not product implementation or release evidence. Documentation validation alone does not prove application behavior.
+**Local development has started.** The pnpm workspace, a loopback-only NestJS API and a Flutter setup screen now exist under [Decision 0012](docs/cookbook/decisions/0012-local-development-bootstrap.md). The setup uses the laptop's existing tools. No database, authentication, tracking features, Docker services, CI or deployment exists yet. Android/iOS device builds remain unverified; local coding does not need to wait for full release validation.
 
 Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate Next.js applications** for users and staff. [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts the pnpm/mobile/web supporting-stack directions and **Hugeicons Free Stroke Rounded** family. ApexCharts remains selected for user-web charts but integration is on hold pending licensing clarification; custom Flutter charts remain permitted where needed. Exact pins, compatibility, distribution notices, database/providers, sessions and hosting retain their validation/approval gates.
 
@@ -15,10 +15,38 @@ Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate
 1. Read the [product requirements](docs/PRD.md).
 2. Read the [system architecture and application maps](docs/cookbook/architecture.md).
 3. Follow the [milestone index and task workflow](docs/milestones/README.md).
-4. Continue **M00-T04 — toolchain and workspace review** in [decisions, audits, and approval gates](docs/milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review). The [candidate review](docs/cookbook/toolchain-review.md) records accepted T04-A–D directions and the confirmed ApexCharts hold; the [executed probe](docs/cookbook/toolchain-probe.md) verified isolated Windows tools and limited Nest/Next build/HTTP behavior, and the separately authorized mobile 2.16.2 retry passed generation, analysis and six host tests after the initial 2.17.0 retraction failure. [Decision 0007](docs/cookbook/decisions/0007-isolated-lint-probe.md) separately authorized the [lint experiment](docs/cookbook/toolchain-lint-probe.md): 668 focused diagnostic checks and both synthetic apps' clean lint/strict type checks passed using Next's original rules with three exact temporary peer exceptions. This is not an unqualified strict-peer pass or approval for production exceptions. The [notice/readiness follow-up](docs/cookbook/toolchain-notices.md) traces 16 missing-file cases: 14 have text/declaration mappings; `client-only` and `stable-hash` retain attribution gaps. The [trace follow-up](docs/cookbook/toolchain-notice-trace.md) locates existing upstream requests, triages 17 embedded paths and proposed the combined-graph/launcher check subsequently authorized by [Decision 0008](docs/cookbook/decisions/0008-isolated-combined-js-probe.md). That [combined attempt](docs/cookbook/toolchain-combined-probe.md) passed tool/lock-only resolution checks but stopped before installation/build/lint when the fresh audit reported a high-severity Multer advisory. A fixed-version override retry is proposed, not authorized. Embedded/native notices, combined runtime verification, production policy, final pins and ApexCharts rights remain unresolved.
-5. Before making changes, read [AGENT.md](AGENT.md). [AGENTS.md](AGENTS.md) is a compatibility pointer to those same instructions.
+4. Use the setup commands below and the [M01 foundation task log](docs/milestones/01-foundations.md).
+5. Read [AGENT.md](AGENT.md) before changing code; [AGENTS.md](AGENTS.md) points to the same instructions.
 
-No install/run command is provided yet because no application or package scripts exist. The foundation milestone must add tested commands and prerequisites to each application README rather than assuming them now. Android development can run on Windows; iOS/iPad build and native validation require a macOS/Xcode path.
+## Local setup
+
+Installed-tool baseline: **Node 24.18.0 · pnpm 12.8.1 · Flutter 3.38.9 / Dart 3.10.8**. No global upgrade or extra workspace orchestrator is needed.
+
+```bash
+pnpm install --frozen-lockfile
+pnpm check
+pnpm dev:api
+```
+
+Before the first API run on another checkout, copy `apps/api/.env.example` to `apps/api/.env` **only if it does not exist**. This laptop's setup already has the local copy. The API serves `http://127.0.0.1:3000/v1/health/live`; readiness deliberately returns 503 until application services exist. Stop with Ctrl+C. `dev:api` compiles and starts, without hot reload.
+
+```bash
+cd apps/mobile
+flutter pub get --enforce-lockfile
+flutter gen-l10n
+flutter analyze --no-pub
+flutter test --no-pub
+```
+
+See [API setup](apps/api/README.md), [mobile setup and native prerequisites](apps/mobile/README.md), and the [bootstrap results](docs/cookbook/local-development-bootstrap.md). Docker is authorized if later needed, but is unnecessary for this shell. Next.js web/admin remain later roadmap work.
+
+<details>
+<summary>Historical planning context before local setup</summary>
+
+The previous active work was **M00-T05 — supported-environment review**, brought forward by [Decision 0011](docs/cookbook/decisions/0011-supported-environment-review-order.md). The [review](docs/cookbook/supported-environments-review.md) separates published constraints from proposed targets, device/browser coverage, macOS access, accessibility and performance. The owner reports **no test devices or Mac access yet**; T05 is **Blocked / unchecked**, with target/access/budget choices still unapproved. The [Windows/emulator plan](docs/cookbook/windows-emulator-validation-plan.md) now records the separately authorized read-only P0 host inventory. Metadata was collected without admin or network; acceleration, compatibility and resource budgets remain unverified. The [P1 static review](docs/cookbook/windows-emulator-feasibility.md) now holds setup on unresolved WHPX/GPU/native-tool evidence and an unaccepted storage proposal. The next narrow host-read proposal needs separate permission; all eight synthetic cases remain Not run. **M00-T04 stays open/unchecked**, paused with its blockers retained in [the milestone](docs/milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review). The [candidate review](docs/cookbook/toolchain-review.md) records accepted T04-A–D directions and the confirmed ApexCharts hold; the [executed probe](docs/cookbook/toolchain-probe.md) verified isolated Windows tools and limited Nest/Next build/HTTP behavior, and the separately authorized mobile 2.16.2 retry passed generation, analysis and six host tests after the initial 2.17.0 retraction failure. [Decision 0007](docs/cookbook/decisions/0007-isolated-lint-probe.md) separately authorized the [lint experiment](docs/cookbook/toolchain-lint-probe.md): 668 focused diagnostic checks and both synthetic apps' clean lint/strict type checks passed using Next's original rules with three exact temporary peer exceptions. This is not an unqualified strict-peer pass or approval for production exceptions. The [notice/readiness follow-up](docs/cookbook/toolchain-notices.md) traces 16 missing-file cases: 14 have text/declaration mappings; `client-only` and `stable-hash` retain attribution gaps. The [trace follow-up](docs/cookbook/toolchain-notice-trace.md) locates existing upstream requests, triages 17 embedded paths and proposed the combined-graph/launcher check subsequently authorized by [Decision 0008](docs/cookbook/decisions/0008-isolated-combined-js-probe.md). That [combined attempt](docs/cookbook/toolchain-combined-probe.md) passed tool/lock-only resolution checks but stopped before installation/build/lint when the fresh audit reported a high-severity Multer advisory. [Decision 0009](docs/cookbook/decisions/0009-isolated-multer-override-retry.md) subsequently authorized the exact-parent Multer 2.5.0 [retry](docs/cookbook/toolchain-multer-retry.md): ten regressions, combined builds/HTTP, 668 lint expectations, 16 clean files and frozen equality passed; fresh audits reported zero known advisories. Embedded/native notices, final pins and ApexCharts rights remain unresolved. [Decision 0010](docs/cookbook/decisions/0010-conditional-dependency-exceptions.md) separately accepts both exact policies and the [adoption packet's controls](docs/cookbook/toolchain-adoption-review.md): project-owner accountability, at-most-30-day review, revalidation and safe removal. Next policy review is due **2026-11-23 UTC**, or before adoption/change/release if earlier. Decision 0010 does not approve a baseline, final pins, new execution, installation, deployment, scaffolding or task advancement; Decision 0011 separately permits only the early T05 review.
+This historical review did not authorize coding; the owner's later explicit setup request in Decision 0012 does. It does not mark those outstanding reviews complete.
+
+</details>
 
 ## Repository layout
 
@@ -39,12 +67,12 @@ docs/
     decisions/                Repository-wide decision records
   milestones/                 Ordered task plans, dependencies, evidence logs
 
-apps/                         Planned; not scaffolded
-  mobile/                     Flutter Android/iPhone/tablet/iPad app
-  api/                        NestJS API and worker roles
-  web/                        User Next.js website
-  admin/                      Separate Next.js staff CMS
-packages/                     Optional, introduced for actual sharing needs
+apps/
+  mobile/                     Flutter shell; native wrappers generated, not device-tested
+  api/                        NestJS local health API; no workers/domain services yet
+  web/                        Planned, not created
+  admin/                      Planned, not created
+packages/                     Planned only; introduced for actual sharing needs
   api-client/
   web-ui/
   design-tokens/
@@ -75,7 +103,15 @@ One repository does not mean one deployment, one session, or one unrestricted co
 | [Decision 0005](docs/cookbook/decisions/0005-isolated-compatibility-probe.md) | Authorized isolated chart-free download/build/test experiment; no final pins or repository scaffolding |
 | [Decision 0006](docs/cookbook/decisions/0006-mobile-probe-generator-retry.md) | Authorized mobile generator retry only; no production app development or final-pin approval |
 | [Decision 0007](docs/cookbook/decisions/0007-isolated-lint-probe.md) | Authorized isolated lint experiment with exactly three temporary peer exceptions; no production policy change |
-| [Decision 0008](docs/cookbook/decisions/0008-isolated-combined-js-probe.md) | Authorized bounded combined JS/launcher attempt with the same peer exceptions; stopped at the security gate, no dependency override approved |
+| [Decision 0008](docs/cookbook/decisions/0008-isolated-combined-js-probe.md) | Authorized unchanged combined attempt; stopped at the security gate, no override authorized by that decision |
+| [Decision 0009](docs/cookbook/decisions/0009-isolated-multer-override-retry.md) | Separate exact-parent Multer 2.5.0 retry authorization; no production override or scaffold approval |
+| [Decision 0010](docs/cookbook/decisions/0010-conditional-dependency-exceptions.md) | Accepted conditional eligibility of exact lint allowances/Multer override and maintenance controls; no baseline adoption or new execution |
+| [Decision 0011](docs/cookbook/decisions/0011-supported-environment-review-order.md) | Accepted early M00-T05 review/order adjustment; T04 blockers retained, no target or execution approval |
+| [Decision 0012 — Local development bootstrap](docs/cookbook/decisions/0012-local-development-bootstrap.md) | Owner-directed setup now using installed tools; separate from production/native readiness |
+| [Bootstrap results](docs/cookbook/local-development-bootstrap.md) | Actual source, tests, local commands, dependency checks and remaining limitations |
+| [Supported-environment review](docs/cookbook/supported-environments-review.md) | Published constraints, proposed coverage and measurement plan; owner reports no test devices/Mac access yet, completion and target approval blocked |
+| [Windows/emulator validation plan](docs/cookbook/windows-emulator-validation-plan.md) | Completed P0 inventory, P1 review with setup held and eight not-run synthetic cases; no setup or physical-device replacement |
+| [Windows emulator feasibility](docs/cookbook/windows-emulator-feasibility.md) | Official host/tool constraints, unresolved WHPX/GPU evidence and unaccepted per-volume budget; no new host query or installation |
 | [Reference-app audit](docs/cookbook/reference-app-audit.md) | Completed static inventory and reference-only/rebuild/exclude assessment; not runtime verification |
 | [Reference dependency/provenance register](docs/cookbook/reference-app-licenses.md) | Resolved direct notices, lockfile identities, asset exclusions and remaining licensing gates |
 | [Toolchain/workspace candidate review](docs/cookbook/toolchain-review.md) | Runtime/library candidates, rounded-icon evidence and ApexCharts licensing blocker; not approved pins |
@@ -85,7 +121,9 @@ One repository does not mean one deployment, one session, or one unrestricted co
 | [Frontend lint probe](docs/cookbook/toolchain-lint-probe.md) | Exception-based installation, actual diagnostic/effective-config checks and clean lint/type results; not production adoption |
 | [Dependency notices and adoption readiness](docs/cookbook/toolchain-notices.md) | Sixteen notice dispositions, embedded/native inventory, support/bootstrap recommendation and remaining approval queue; no new installation or policy acceptance |
 | [Attribution trace and next validation plan](docs/cookbook/toolchain-notice-trace.md) | Existing upstream requests, 17 embedded-path dispositions, distribution boundaries and the historical combined-graph/launcher proposal |
-| [Combined JS probe and security blocker](docs/cookbook/toolchain-combined-probe.md) | Tool/lock-only results, high Multer advisory, static remediation review and unapproved scoped retry option; no application installation or runtime pass |
+| [Combined JS probe and security blocker](docs/cookbook/toolchain-combined-probe.md) | Preserved original audit stop and static remediation proposal; no application execution in that root |
+| [Multer override retry](docs/cookbook/toolchain-multer-retry.md) | Separately authorized regression/combined build/HTTP/lint results and durable evidence; production adoption still gated |
+| [Toolchain adoption decision packet](docs/cookbook/toolchain-adoption-review.md) | Conditionally accepted lint/override policies, maintenance/removal controls, saved-graph notice paths and remaining gates; baseline adoption still unapproved |
 
 ## Product boundaries
 
@@ -104,4 +142,4 @@ The accepted first distribution is an **Android-first limited personal pilot**, 
 
 Admin A0 and operational policies must be ready before public social launch. Each application can release independently after its own stage gates; the milestone order is a dependency-aware working plan, not a promise of simultaneous releases or delivery dates.
 
-**M00-T01/M00-T02 are verified owner decisions; M00-T03 is a verified static audit. M00-T04 is in progress: directions are accepted, but exact pins, verification and ApexCharts entitlement remain pending.** All application implementation tasks remain unverified. Use the milestone checklists and evidence logs; do not infer implementation from the existence of a specification, decision or folder.
+**Current work: M01 local API/mobile foundations under Decision 0012.** M00-T04/T05 and full T14 acceptance remain open; local development pins are not a release baseline. The [task log](docs/milestones/01-foundations.md) separates verified local setup from pending native/platform work. No product feature or release is complete merely because scaffolds and host tests exist.

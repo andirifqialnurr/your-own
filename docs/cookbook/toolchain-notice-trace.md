@@ -1,13 +1,13 @@
 # Attribution Trace and Next Validation Plan — M00-T04
 
-- **Version:** 0.2
+- **Version:** 0.3
 - **Observed:** 2026-10-24 UTC; Windows, public text-only research and existing-file inspection
-- **Status:** Static research complete; the later combined attempt was separately authorized by Decision 0008 and stopped at its security gate. Attribution/bundle questions and any changed-scope retry remain open
+- **Status:** Static research complete; the later combined attempt was separately authorized by Decision 0008 and stopped at its security gate. Decision 0009 subsequently authorized a separate passing exact-parent override retry; attribution/bundle and production-policy questions remain open
 - **Related:** [Notice register](toolchain-notices.md), [candidate review](toolchain-review.md), [completed lint experiment](toolchain-lint-probe.md), [M00-T04](../milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review)
 
 ## 1. Outcome and authority
 
-The **“continue”** addressed by this historical static pass was scoped to tracing the two remaining root-package attribution questions and examining embedded notices. No installation, candidate execution, expanded peer allowance, supplier contact, production selection or scaffolding occurred in that pass. Its instruction did not authorize the proposed combined check. A later explicit question/answer is now recorded separately in [Decision 0008](decisions/0008-isolated-combined-js-probe.md); the [resulting attempt](toolchain-combined-probe.md) stopped at the security gate before application installation/execution.
+The **“continue”** addressed by this historical static pass was scoped to tracing the two remaining root-package attribution questions and examining embedded notices. No installation, candidate execution, expanded peer allowance, supplier contact, production selection or scaffolding occurred in that pass. Its instruction did not authorize the proposed combined check. A later explicit question/answer is now recorded separately in [Decision 0008](decisions/0008-isolated-combined-js-probe.md); the [resulting attempt](toolchain-combined-probe.md) stopped at the security gate before application installation/execution. [Decision 0009](decisions/0009-isolated-multer-override-retry.md) later authorized only the separate [Multer 2.5.0 retry](toolchain-multer-retry.md); its bounded passing checks do not resolve the attribution findings below.
 
 The earlier **16-root register remains 14 scoped mappings / two partial cases**. Public history now identifies existing upstream requests for both partial cases; neither supplies the missing original notice. Separately, all **17 Next embedded manifest paths without sibling notices** were triaged. Parent/source notices explain several cases, while marker attribution, merged dependencies, a broken Unistore license link and actual distribution coverage remain explicit. These are not 17 independent unlicensed packages, nor 17 cleared bundles.
 
@@ -75,7 +75,7 @@ Sharp's native LGPL/Apache obligations, MPL-bearing code, CC-BY data and the pri
 
 ## 5. Proposed combined JS graph and launcher check — not authorized
 
-**Historical proposal:** the heading/plan below retain the original research boundary and link target. Decision 0008 subsequently authorized the unchanged bounded attempt, which stopped on the Multer advisory. Any version/override retry requires its own explicit scope decision; this historical proposal is not permission to bypass that stop.
+**Historical proposal:** the heading/plan below retain the original research boundary and link target. Decision 0008 subsequently authorized the unchanged bounded attempt, which stopped on the Multer advisory. A version/override retry required its own explicit scope decision, later supplied only for the exact-parent Multer retry by Decision 0009. This historical proposal itself is not permission to bypass the stop or broaden that later decision.
 
 **Purpose:** establish whether the separately successful Nest/Next and lint samples work in **one fresh JS resolution**, and test an explicit local launcher. A 509-identity set union is not that proof. This would be one bounded experiment, not production adoption or a new application scaffold.
 

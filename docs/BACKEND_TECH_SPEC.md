@@ -1,7 +1,7 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.6
-- **Status:** Detailed proposal for review; no backend scaffold or service implemented yet
+- **Version:** 0.8
+- **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
 - **Product authority:** [PRD.md](PRD.md)
@@ -82,7 +82,7 @@ Endpoint paths, entities, examples, and limits below form a **draft API design**
 - A transactional PostgreSQL outbox, with BullMQ/Redis for asynchronous execution when publishing/jobs require it.
 - Containerized persistent API and worker processes rather than relying on request-scoped background execution.
 
-These are not all confirmed simply because NestJS was approved. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts lean pnpm with Node 24 LTS/TypeScript 6 candidate direction, not exact versions, the Express adapter or the other backend proposals. Validate exact pins, adapter compatibility, provider costs and deployment constraints in separately authorized work; no installation or scaffold is approved.
+These are not all confirmed simply because NestJS was approved. [Decision 0004](cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts lean pnpm with Node 24 LTS/TypeScript 6 candidate direction, not exact versions, the Express adapter or the other backend proposals. Decision 0004 alone does not authorize installation or scaffolding. [Decision 0012](cookbook/decisions/0012-local-development-bootstrap.md) now separately permits the [local bootstrap](cookbook/local-development-bootstrap.md), including the tested Nest 12.2.0 Express adapter with Decision 0010's exact Multer override. Full production pins, provider costs and deployment constraints remain separate.
 
 ### 2.3 Why a modular monolith
 
@@ -135,7 +135,8 @@ A release of V1-A alone is a limited release, not the complete social product. E
 
 ### Selection rules
 
-- Commit lockfiles and runtime pins after a compatibility spike, not speculative version numbers in this document.
+- Commit lockfiles and runtime pins only after compatibility review, explicit final-pin approval and scaffold authorization, not speculative version numbers in this document.
+- [Decision 0010](cookbook/decisions/0010-conditional-dependency-exceptions.md) permits conditional eligibility of only `@nestjs/platform-express@12.2.0>multer: 2.5.0` for a later approved baseline, with owner/30-day review, fresh graph/security/notice checks, regressions and safe removal. It does not select a production adapter/version, approve installation or waive real Nest upload integration/limit tests; prefer a separately reviewed upstream-fixed adapter when available.
 - Confirm Prisma/managed PostgreSQL pooling and migration compatibility against the actual provider.
 - NestJS dependency injection does not replace database constraints or durable jobs.
 - PostgreSQL is authoritative for application state. Redis is not the only copy of messages, finance records, or accepted jobs.
@@ -219,7 +220,7 @@ Controllers/gateways remain thin. Modules expose application services/contracts 
 
 ### 7.1 Application map
 
-Recommended location: `apps/api/`. These are proposed paths, not scaffolded files or approved dependency versions. Create modules with their release slices rather than generating every empty folder. See the [cross-application file map](cookbook/architecture.md#51-application-and-shared-package-ownership) for web/admin ownership.
+The initial [API scaffold](../apps/api/README.md) now exists at `apps/api/` with local development pins. The larger module/provider structure below remains proposed, not implemented. Create modules with their release slices rather than generating every empty folder. See the [cross-application file map](cookbook/architecture.md#51-application-and-shared-package-ownership) for web/admin ownership.
 
 ```text
 apps/api/

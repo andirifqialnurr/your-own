@@ -1,0 +1,43 @@
+# Dependencies and local tools
+node_modules/
+.pnpm-store/
+.local/
+
+# Secrets and local configuration; safe examples are versioned
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Build/test outputs
+coverage/
+**/dist/
+**/build/
+**/.next/
+*.tsbuildinfo
+*.log
+
+# Flutter/Dart and native machine state
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.gradle/
+**/.kotlin/
+**/local.properties
+**/Pods/
+**/.symlinks/
+**/Flutter/ephemeral/
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/GeneratedPluginRegistrant.*
+**/xcuserdata/
+*.jks
+*.keystore
+
+# Editor/OS state
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

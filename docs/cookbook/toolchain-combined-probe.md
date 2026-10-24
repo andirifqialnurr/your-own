@@ -1,11 +1,12 @@
 # Combined JS Probe — Stopped at Security Gate
 
-- **Version:** 0.1
+- **Version:** 0.2
 - **Observed:** 2026-10-24 UTC, Windows
 - **Task:** [M00-T04](../milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review), In progress / unchecked
 - **Authority:** [Decision 0008](decisions/0008-isolated-combined-js-probe.md)
 - **Outcome:** Tool/launcher checks and fresh combined resolution succeeded; the audit reported a high-severity advisory. **No application installation, build, lint or server execution followed**
 - **Related:** [Original JS/mobile probe](toolchain-probe.md), [separate lint probe](toolchain-lint-probe.md), [notice trace and experiment plan](toolchain-notice-trace.md)
+- **Later outcome:** [Decision 0009](decisions/0009-isolated-multer-override-retry.md) separately authorized the exact-parent Multer 2.5.0 [retry](toolchain-multer-retry.md), which passed bounded combined checks in a new root. This stopped root/lock and snapshot remain unchanged
 
 ## 1. Authorization and actual execution
 
@@ -64,6 +65,8 @@ Do not “fix” this by adding a root Multer dependency while leaving the adapt
 
 ## 4. Static remediation review — no retry authorized
 
+**Historical proposal:** this heading preserves its link target and original approval boundary. The later Decision 0009 and separate retry report above supersede the pending-authorization status, not this stopped attempt's evidence.
+
 Multer **2.5.0** is an available stable/nondeprecated candidate. Registry metadata shows unchanged runtime dependencies (`append-field`, `busboy`, `type-is`), Node engine and MIT declaration, with no install/prepare hooks. At the two declared source commits:
 
 - The complete MIT notice is byte-identical and credits **Hage Yaapa, 2014**; preserve its actual text.
@@ -75,7 +78,7 @@ These are static observations, not proof of compatibility with Nest. No Multer 2
 ### Bounded options
 
 1. **Keep the experiment paused** until an appropriate upstream Nest adapter release naturally depends on a patched Multer. Recheck exact candidates and request any needed version-change scope; do not auto-follow `latest`.
-2. **Request a separately authorized temporary retry** using only the parent-scoped dependency override below, while retaining the same three ESLint peer allowances. This changes Decision 0008's no-override boundary and is **not currently authorized**:
+2. **Request a separately authorized temporary retry** using only the parent-scoped dependency override below, while retaining the same three ESLint peer allowances. This changes Decision 0008's no-override boundary and was **not authorized at this static-review stage**:
 
 ```yaml
 overrides:
@@ -94,4 +97,4 @@ The [combined-attempt snapshot](evidence/m00-t04-combined-probe.json) preserves 
 
 The validators check the recorded pass/failure distinction, exact peer selectors and absence of overrides, the 588/589 lock relationship/integrity matches, current affected path, advisory and source identities, no installation/scaffold, resource thresholds and all seven preserved earlier snapshots. Global/reference state is rechecked. `python .../ycp-1in0web7/validate.py` and the existing `validate_review.py` passed, as did `git -c core.safecrlf=false diff --check`. Documentation checks covered **53 Markdown files / 838 local links and anchors / four JSON examples**, 67 preserved requirement IDs and all 224 tasks/prerequisites; only M00-T01/T02/T03 remain checked. Global Node stayed 24.18.0, global Flutter stayed clean at 3.38.9 and reference HEAD/status counts matched the baseline. No matching owned Node/pnpm process was observed and no server was started. Final measured temporary file footprint was approximately **0.31 GiB**, below the 3 GiB stop threshold, with more than 20 GiB free. The stopped lock SHA-256 is `79f611945c38c631fe30e21cd781da71cd1791bf4cf1662273010159b88c6493`. Documentation validation does not turn the failed security gate or unrun application checks into passes.
 
-**M00-T04 remains active and unchecked.** The next execution choice is an upstream-fixed adapter review or an explicit bounded override-retry decision—not automatic continuation. Notice attribution/delivery, production lint policy, final pins, native/browser proof and ApexCharts entitlement remain separate gates. No outreach, replacement chart engine, spend, deployment or M01 scaffold is authorized.
+**M00-T04 remains active and unchecked.** At this historical stop, the next execution choice was an upstream-fixed adapter review or an explicit bounded override-retry decision—not automatic continuation. The later Decision 0009 authorized only the separate retry, not production policy. Notice attribution/delivery, production lint policy, final pins, native/browser proof and ApexCharts entitlement remain separate gates. No outreach, replacement chart engine, spend, deployment or M01 scaffold is authorized.

@@ -1,6 +1,6 @@
 # Your Own — User Website PRD & Next.js Specification
 
-- **Version:** 0.7
+- **Version:** 0.9
 - **Status:** Detailed draft; no website scaffold implemented
 - **Confirmed framework:** Next.js for the user website
 - **Shared backend:** NestJS; no separate web financial/social backend
@@ -174,7 +174,7 @@ Navigation adapts between bottom/drawer navigation and a sidebar. Today remains 
 | Tests | Vitest or equivalent, Testing Library, Playwright, axe-based checks | Unit, component, browser/security/adaptive tests |
 | Diagnostics | Privacy-configured error/performance tool | No private screen replay or input capture by default |
 
-Pin tested package/runtime versions and the lockfile at bootstrap. Validate UI, query, form, API-generation, and deployment compatibility; this table is not a completed dependency audit. ApexCharts selection does not approve a paid license or establish compatibility: verify the chosen versions' applicable terms/entitlements before installation.
+Pin tested, explicitly approved package/runtime versions and the lockfile only at authorized bootstrap. [Decision 0010](cookbook/decisions/0010-conditional-dependency-exceptions.md) conditionally accepts eligibility of three exact tested ESLint peer allowances with project-owner/30-day review, revalidation and safe removal; it is not upstream peer support, a production baseline, final pins or installation permission. Validate UI, query, form, API-generation, and deployment compatibility; this table is not a completed dependency audit. ApexCharts selection does not approve a paid license or establish compatibility: verify the chosen versions' applicable terms/entitlements before installation.
 
 Follow the shared [rounded icon](cookbook/design-system.md#56-rounded-icon-system) and [chart rendering](cookbook/design-system.md#73-chart-rendering-and-platform-ownership) contracts. Isolate browser-dependent ApexCharts code behind a Client Component/browser-only adapter, with an accessible summary/loading/error frame and tested hydration. Override default palettes, typography and retained toolbar icons; disable unapproved export/download controls. Chart coordinates never become Money arithmetic, hidden values must not leak through labels/tooltips/exports, and account changes clear chart state. Do not substitute a shadcn Recharts chart or default icon imports for the selected system.
 
@@ -746,7 +746,7 @@ Cross-tab logout/account change must clear session-bound state, close realtime, 
 - Pure formatting/exact-amount/date helpers and form validation.
 - Component loading/empty/error/conflict/unavailable states.
 - Generated API contract fixtures and browser-session/CSRF behavior.
-- Playwright journeys across agreed Chromium, Firefox, and WebKit/Safari baselines.
+- Playwright journeys across agreed Chromium, Firefox, and WebKit/Safari baselines. [Decision 0011](cookbook/decisions/0011-supported-environment-review-order.md) permits the early [environment review](cookbook/supported-environments-review.md), not target approval or runner installation. Apply the combined framework/CSS/native-browser constraints; a WebKit runner is not proof of real Safari/iPhone/iPad behavior.
 - Responsive widths 320, typical phone/tablet, boundary pairs 599/600, 839/840, 1199/1200, and large desktop.
 - Touch/pointer/keyboard, portrait/landscape, 200% text/zoom, narrow reflow, keyboard-open forms.
 - Reload/background/tab throttling, two tabs, mobile+web concurrent changes, expired session, interrupted requests.

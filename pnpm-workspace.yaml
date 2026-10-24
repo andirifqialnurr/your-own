@@ -1,0 +1,14 @@
+packages:
+  - apps/api
+
+# Flutter owns its separate pubspec.yaml/pubspec.lock.
+# Add web/admin and useful shared packages when their milestones start.
+strictPeerDependencies: true
+autoInstallPeers: false
+ignoreScripts: true
+engineStrict: true
+saveExact: true
+
+overrides:
+  # Decision 0010 policy B; never remove this to restore affected Multer 2.4.0.
+  '@nestjs/platform-express@12.2.0>multer': 2.5.0

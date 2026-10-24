@@ -1,13 +1,13 @@
 # Dependency Notices and Adoption Readiness — M00-T04
 
-- **Version:** 0.3
+- **Version:** 0.6
 - **Observed:** 2026-10-24 UTC; static review on Windows, no new package installation or candidate execution
 - **Status:** 16 notice dispositions recorded; production selection and M00-T04 completion remain unapproved
 - **Related:** [Candidate versions](toolchain-review.md), [tool/JS/mobile results](toolchain-probe.md), [exception-based lint results](toolchain-lint-probe.md), [Decision 0007](decisions/0007-isolated-lint-probe.md)
 
 ## 1. Outcome and scope
 
-The instruction to **continue** addressed by this static notice pass was scoped to notices and approval-readiness research. It did **not** approve production peer exceptions, final pins, another install/build experiment, supplier contact or scaffolding. The later, separate combined-attempt authorization and its security stop are distinguished in section 5.
+The instruction to **continue** addressed by this static notice pass was scoped to notices and approval-readiness research. It did **not** approve production peer exceptions, final pins, another install/build experiment, supplier contact or scaffolding. The later, separate combined-attempt authorization/security stop and Decision 0009's passing bounded override retry are distinguished in section 5; neither resolves this notice register.
 
 The lint inventory's **15 roots without a separate top-level notice file** were reviewed individually. Comparing the earlier JS inventory found one additional root, `@tokenizer/token 0.3.0`. Across these **16 cases**, **14 have identified embedded, upstream, linked or declaration-plus-terms mappings**; **two retain incomplete attribution/notice mappings: `client-only` and `stable-hash`**. A missing `LICENSE` filename is not the same as an unlicensed package. Conversely, an SPDX label or a related project's license is not a complete notice bundle.
 
@@ -73,13 +73,13 @@ Do **not** copy the guide's moving `npx`/self-update or pipe-to-shell instructio
 
 ## 5. Finite remaining approval queue
 
-This pass narrows the open work; it does not create another accepted decision.
+This pass narrows the open work; it does not create another accepted decision. The subsequent [adoption decision packet](toolchain-adoption-review.md), whose exact policies were later conditionally accepted in [Decision 0010](decisions/0010-conditional-dependency-exceptions.md), supplies the policy controls and saved-lock witness paths for all 16 root cases: 12 in root tooling, three in web/admin dependency groups and one in API dependencies. These are reachability categories, not actual distributed artifacts or new notice clearance.
 
 | Gate | Next concrete action | Current authority |
 |---|---|---|
 | Notice completion | Resolve the two root-package attribution questions using the located upstream requests/review path; address the follow-up's embedded gaps and [artifact delivery map](toolchain-notice-trace.md#4-distribution-mapping-still-required), including posters | Public static research permitted; supplier contact/disclosure and legal/risk acceptance need their own scope. No blanket clearance |
-| Reproducible whole stack | The separately authorized [combined attempt](toolchain-combined-probe.md) resolved but stopped on a high Multer advisory before installation/build/lint; choose upstream-fixed candidate review or the explicitly scoped retry proposal | Decision 0008 authorized only the unchanged bounded graph. No dependency override/version-change retry or production adoption is approved |
-| Production lint policy | Present Next's original-rule path with **exactly the three disclosed exceptions** as a candidate, including maintenance/removal criteria and retained diagnostics | Decision 0007 approves only the completed experiment. A separate explicit production-policy decision is required; no wildcard or additional exception |
+| Reproducible whole stack | Decision 0008's [combined attempt](toolchain-combined-probe.md) stopped on a high Multer advisory. Decision 0009's separate [exact-parent override retry](toolchain-multer-retry.md) passed bounded regression/build/HTTP/lint/frozen checks | Local exception-based evidence, not full-stack release certification or production override/peer-policy approval; current notices and cross-platform/native/browser gates remain |
+| Conditional exception policies | [Decision 0010](decisions/0010-conditional-dependency-exceptions.md) accepts only exact A/B eligibility with project-owner/30-day review/revalidation/removal controls; next review by 2026-11-23 UTC or an earlier adoption/change/release trigger | Decisions 0007–0009 remain experiment-only; Decision 0010 does not adopt a production baseline, clear notices or approve final pins, execution or scaffolding |
 | Final version selection | Consolidate the candidate matrix with actual compatibility, notice, support and target evidence; distinguish provisional platform constraints from tested results | No exact production pins approved here. OS/browser, provider, persistence and contract tasks keep their own gates |
 | ApexCharts | Keep integration held until an applicable entitlement determination or explicit direction amendment | No install, replacement engine, supplier contact, business disclosure or spend authorized |
 | Scaffold | Finish applicable M00 decisions/spikes and obtain M00-T14 go/no-go | No advance to M00-T05/M01 or repository applications inferred from this report |
@@ -96,4 +96,4 @@ Recorded lookup failures: guessed HumanFS/stable-hash root LICENSE paths and a R
 
 An initial own helper labelled all **101 package-config roots** as hosted dependencies. The initial output is retained and explicitly corrected: **95 hosted + five SDK + one synthetic app**. The final register verifies the 95 hosted notice hashes, not the incorrect initial label. No candidate runtime failed or prior evidence changed.
 
-Validation checks all 16 dispositions, six byte comparisons, fetched/local hashes, the 509-identity set union, Next embedded manifests/notices, the two source-lock counts, 95 mobile notice hashes, all five unchanged earlier snapshots and absence of repository app/config scaffolding. These are static inventory/documentation checks, not new runtime, browser, native-device, security or legal certification. The later [trace report and separate snapshot](toolchain-notice-trace.md#6-evidence-and-checks) preserve this 90-file snapshot unchanged and record the additional findings and historical next-experiment proposal. [Decision 0008](decisions/0008-isolated-combined-js-probe.md) later authorized that attempt; its [security stop](toolchain-combined-probe.md) is separate from this static notice review and leaves the notice gaps intact.
+Validation checks all 16 dispositions, six byte comparisons, fetched/local hashes, the 509-identity set union, Next embedded manifests/notices, the two source-lock counts, 95 mobile notice hashes, all five unchanged earlier snapshots and absence of repository app/config scaffolding. These are static inventory/documentation checks, not new runtime, browser, native-device, security or legal certification. The later [trace report and separate snapshot](toolchain-notice-trace.md#6-evidence-and-checks) preserve this 90-file snapshot unchanged and record the additional findings and historical next-experiment proposal. [Decision 0008](decisions/0008-isolated-combined-js-probe.md) later authorized that attempt; its [security stop](toolchain-combined-probe.md) is separate from this static notice review. Decision 0009's [subsequent retry](toolchain-multer-retry.md) also leaves these notice gaps intact; archive/native/root-file equality is not complete distribution clearance.
