@@ -1,16 +1,18 @@
 # Toolchain Compatibility — M00-T04 Follow-up
 
-- **Version:** 0.1
+- **Version:** 0.6
 - **Observed:** 2026-10-23 UTC, Windows / Git Bash
 - **Task:** [M00-T04](../milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review), In progress / unchecked
 - **Authority:** [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md) accepts directions, not exact pins, downloads/installs or executable integration spikes
 - **Related:** [Candidate review](toolchain-review.md), [mobile specification](../MOBILE_TECH_SPEC.md), [web specification](../WEB_PRD.md), [backend specification](../BACKEND_TECH_SPEC.md)
 
+> This document preserves the read-only investigation. [Decision 0005](decisions/0005-isolated-compatibility-probe.md) later authorized the [executed probe](toolchain-probe.md): tools/JS checks passed, while mobile resolution rejected retracted build_runner 2.17.0. The retraction was present in the earlier index but missed by the range-only review; its recommendation is withdrawn below. [Decision 0006](decisions/0006-mobile-probe-generator-retry.md) subsequently authorized the successful 2.16.2 host retry. [Decision 0007](decisions/0007-isolated-lint-probe.md) later authorized the [separate lint experiment](toolchain-lint-probe.md), which passed bounded original-rule checks with three exact temporary peer exceptions. No production exception or final pin is approved.
+
 ## 1. Findings and limits
 
-1. **Flutter 3.47.7 / Dart 3.13.5 is now established by published release metadata and pinned upstream source.** The earlier 404s used an obsolete archive path. No SDK archive was downloaded, installed or executed; runtime/native compatibility remains unverified.
+1. **Flutter 3.47.7 / Dart 3.13.5 is now established by published release metadata and pinned upstream source.** The earlier 404s used an obsolete archive path. No SDK archive was downloaded, installed or executed during this read-only phase. The later probe verified/executed the Windows SDK; its first application resolution failed, then the authorized 2.16.2 host retry passed. Native-device compatibility remains unverified.
 2. **Withdraw ESLint 9.39.4 as the recommended baseline.** The official support page says ESLint 9 reached end-of-life on 2026-08-06. Matching plugin peer ranges is not sufficient justification for selecting an unsupported toolchain.
-3. **The default frontend lint graph is still blocked.** Three inspected plugins reject ESLint 10 by their declared ranges. No peer override, unapproved paid extended support, prerelease or replacement linter has been selected.
+3. **The default frontend lint graph still conflicts under unmodified peer declarations.** Three inspected plugins exclude ESLint 10. A later experiment passed with three explicitly authorized exceptions; production exceptions, a replacement linter or paid/EOL support have not been selected.
 4. Selected Node/TS/framework and Dart generator ranges were mechanically checked. These checks narrow candidates; they are **not a full package-manager resolution, build, test suite, license clearance or security audit**.
 5. ApexCharts remains on hold. This follow-up did not contact the supplier, change the chart requirement or establish entitlement.
 
@@ -65,7 +67,7 @@ The sample contained **29 npm package records and 13 pub package records**. Only
 
 ### Dart generator candidate chain
 
-Keep **build_runner 2.17.0**, not 2.17.1, as the candidate alongside Drift 2.35.2 / drift_dev 2.35.1 and json_serializable 6.15.2. Additional inspected candidate records:
+**Correction: withdraw build_runner 2.17.0.** Its ranges overlap those inspected alongside Drift 2.35.2 / drift_dev 2.35.1 and json_serializable 6.15.2, but the later probe found it retracted. The 88 checks did not filter retractions, despite that flag being present in the saved index. See the [initial failure](toolchain-probe.md#5-mobile-blocker-and-correction-to-earlier-research) and later [authorized 2.16.2 retry](toolchain-probe.md#7-authorized-mobile-retry--build_runner-2162); the latter passed limited host checks without overriding retractions. Additional records inspected during the original range review:
 
 | Package | Version | Relevant declaration |
 |---|---|---|
@@ -74,7 +76,7 @@ Keep **build_runner 2.17.0**, not 2.17.1, as the candidate alongside Drift 2.35.
 | [source_gen](https://pub.dev/api/packages/source_gen/versions/4.3.1) | 4.3.1 | Dart `^3.11.0`; analyzer `>=14.0.0 <15.0.0`; build `>=3.0.2 <6.0.0` |
 | [json_annotation](https://pub.dev/api/packages/json_annotation/versions/4.12.0) | 4.12.0 | Dart `^3.9.0` |
 
-This shows feasible inspected intersections, not a complete solution. Do not add overrides to force these transitives or treat them as final direct dependencies. Actual `pub get`, generated-code compilation and migration tests remain unrun. Encrypted SQLite and its connection helper remain M00-T08 decisions.
+This shows feasible inspected intersections, not a complete solution. Do not add overrides to force these transitives or treat them as final direct dependencies. The first `pub get` attempt failed on the retraction; the separately approved 2.16.2 retry resolved and generated/compiled the synthetic sample. Migration/persistence tests remain unrun. Encrypted SQLite and its connection helper remain M00-T08 decisions.
 
 ## 4. Support and security findings
 
@@ -92,7 +94,9 @@ ESLint **10.13.0** is a current-line candidate. However, the inspected dependenc
 
 `eslint-config-next` itself accepting `>=9` does not remove its plugins' narrower ranges. React Hooks 7.1.1 and typescript-eslint 8.72.0 accepting 10 likewise do not certify the whole chain.
 
-Next action: evaluate a maintained ESLint 10-compatible plugin/config set or a separately reviewed alternative with equivalent Next/React/Hooks/import/accessibility coverage. Do not silently suppress peer checks, drop accessibility rules, select prereleases, replace the linter or accept EOL software to make an install pass. No frontend lint configuration is approved or implemented yet. Backend and frontend may have separate configurations, but a backend lint pass cannot certify either Next.js app.
+The subsequent [static lint review](toolchain-lint-review.md) adds an important qualification: Next now documents ESLint 10 runtime support and the exact 16.4.2 archive wraps legacy React/import rule contexts, while its documentation also acknowledges strict-peer installation failures. The blocker here is the declared graph under the retained strict-peer policy, not a demonstrated runtime crash. Import/accessibility replacements look plausible; React coverage gaps prevent selecting a complete replacement baseline. No candidate lint configuration was installed or executed during that static pass. The later [17-entry rule disposition](toolchain-lint-review.md#8-completed-static-disposition-and-owner-choice) proposed a controlled original-config test. [Decision 0007](decisions/0007-isolated-lint-probe.md) subsequently authorized its three exact temporary peer exceptions. The [execution report](toolchain-lint-probe.md) records 668 focused diagnostic checks and clean lint/type checks for both apps; this is bounded exception-based compatibility evidence, not a production bypass or complete verification.
+
+Next action: finish notice/support/bootstrap review and present explicit final-pin/production peer-policy choices informed by the experiment. Do not silently broaden its exceptions, drop accessibility rules, select a substitute prerelease, replace the linter or accept EOL software to make an install pass. No production frontend lint configuration is approved or implemented yet. Backend and frontend may have separate configurations, but a backend lint pass cannot certify either Next.js app.
 
 ### Targeted Next.js checks
 
@@ -108,14 +112,16 @@ This is a **targeted sample**, not an exhaustive vulnerability scan or a safety 
 
 ## 5. Bootstrap observations
 
+The following observations precede execution. The [probe report](toolchain-probe.md#2-tool-identity-and-isolation) supersedes their not-downloaded/not-executed status for the isolated Windows tools only; it does not approve production bootstrap or global changes.
+
 - Node 24.22.1 remains the candidate security-patch update, not an installed version. Its [published SHA-256 list](https://nodejs.org/dist/v24.22.1/SHASUMS256.txt) gives `d2046d28c2c3dcd211ac5145c0bf30e2047ef9dfb306693c8c6e2eccd8b95fa5` for `node-v24.22.1-win-x64.zip`. No archive/signature was downloaded or verified.
 - pnpm 12.15.0's registry metadata declares preinstall/postinstall scripts and platform-specific native optional dependencies. The [Windows x64 package metadata](https://registry.npmjs.org/@pnpm%2Fexe.win32-x64/12.15.0) identifies a native executable; it was **not downloaded or run**.
 - The [version-tagged pnpm install script](https://github.com/pnpm/pnpm/blob/v12.15.0/pnpm/npm/pnpm/install.js) was read only. It replaces launcher files, rewrites package bin mappings and can regenerate npm Windows shims. Do not invoke the existing Corepack/global launcher or run a global installer as an incidental experiment.
 - For an authorized Windows probe, prefer isolated verified portable tools invoked through explicit paths, with temporary package stores/config/home locations. Review the native executable's provenance/notices and bootstrap behavior first. This is a proposed probe method, not a selected production/CI bootstrap or authorization to download binaries.
 
-## 6. Proposed chart-free compatibility probe — awaiting authorization
+## 6. Chart-free compatibility probe — authorized scope
 
-Further metadata checks cannot prove the runtime claims. The next proposed bounded action is a **disposable, synthetic, chart-free M00-T04 probe**, not M01 scaffolding. Approval must explicitly cover tool/package downloads and local execution before it starts.
+Further metadata checks cannot prove runtime claims. The **disposable, synthetic, chart-free M00-T04 probe** below was subsequently authorized in Decision 0005, not as M01 scaffolding. [Execution results](toolchain-probe.md) distinguish the passing checks from the mobile blocker and untested scope.
 
 ### Scope requested
 
@@ -129,7 +135,7 @@ Further metadata checks cannot prove the runtime claims. The next proposed bound
 
 **Exit evidence:** actual tool versions/digests, exact temporary manifests/lockfiles and notices, commands/results for resolution/generation/build/tests, failures and teardown, remaining native/browser/security/licensing gaps, and a recommendation for separately approved final pins. macOS/iOS evidence remains M00-T05/T08/T09 work. M00-T04 stays unchecked while ApexCharts entitlement/integration and other required evidence are missing.
 
-No part of this probe has run or been authorized by the instruction to continue read-only investigation. A future explicit approval would authorize only this disposable scope, not production pin adoption or M01 scaffolding.
+The earlier instruction to continue read-only investigation did not authorize this probe. The later response **"continue"**, directly answering the explicit download/build/test authorization question, did authorize the bounded attempt recorded in Decision 0005. It did not approve production pins, changed candidate versions or M01 scaffolding.
 
 ## 7. Evidence and next action
 
@@ -150,4 +156,4 @@ Selected raw-response SHA-256 identities:
 
 Fetch manifests (`manifest.json`, `followup-manifest.json`, `detail-manifest.json`, `release-manifest.json`) preserve URLs and success/404 outcomes. The earlier candidate research and its five static icon/chart archives remain historical evidence, not new installs. Temporary files are not durable release evidence; retain approved graphs/notices and executed test evidence in the project before adoption.
 
-**Next:** request explicit authorization for the chart-free disposable probe, continue resolving maintained frontend lint coverage, and leave ApexCharts held for an applicable entitlement determination or an explicit owner change. No exact-pin approval, milestone completion or scheduling deferral is inferred from this follow-up.
+**Next:** follow the [probe outcome](toolchain-probe.md), including the separately authorized successful mobile retry; incorporate the separately authorized lint results into remaining production-policy/notice/final-pin review and leave ApexCharts held for entitlement or an explicit owner change. No exact-pin approval, milestone completion or scheduling deferral is inferred.

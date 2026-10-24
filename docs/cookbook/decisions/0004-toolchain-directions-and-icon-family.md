@@ -57,6 +57,8 @@ Synchronize [architecture](../architecture.md), [design system](../design-system
 
 **Next eligible work remains M00-T04:** establish the exact Flutter/Dart pair and compatible supported candidate graph, review remaining notices and define any separately authorized compatibility experiment. ApexCharts stays blocked until entitlement is resolved or the owner explicitly changes the requirement. M00-T05/T08/T09 retain their device, encrypted-lifecycle and representative visual checks; M00-T14 still owns the scaffold go/no-go.
 
+Later evidence: [Decision 0005](0005-isolated-compatibility-probe.md) separately authorizes a temporary chart-free experiment; its [results](../toolchain-probe.md) establish isolated Windows tool/limited JS behavior and reject retracted build_runner 2.17.0. This does not retroactively broaden Decision 0004's approval or select final pins.
+
 ## Supersession history
 
 This decision supersedes only pending approval for T04-A–T04-D, the unselected icon-family wording and uncertainty about whether to hold ApexCharts integration. It does not waive unresolved technical/legal gates or supersede the product/release defaults. Future changes to these accepted directions must link a new or superseding owner decision.

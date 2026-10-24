@@ -6,7 +6,7 @@ A mobile-first personal progress app: **Focus, Read, Intake, and Money**, with o
 
 ## Current status
 
-**Planning and documentation only.** The repository contains specifications, engineering guides, agent instructions, and an implementation task plan. No application scaffolds, dependency installations, migrations, CI pipelines, or deployments exist yet. Documentation validation is not evidence that application behavior works.
+**Planning and documentation only.** The repository contains specifications, engineering guides, agent instructions, and an implementation task plan. No application scaffolds, dependency installations, migrations, CI pipelines, or deployments exist **in this repository**. A separately authorized [temporary compatibility probe](docs/cookbook/toolchain-probe.md) ran outside it; its limited results are not product implementation or release evidence. Documentation validation alone does not prove application behavior.
 
 Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate Next.js applications** for users and staff. [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts the pnpm/mobile/web supporting-stack directions and **Hugeicons Free Stroke Rounded** family. ApexCharts remains selected for user-web charts but integration is on hold pending licensing clarification; custom Flutter charts remain permitted where needed. Exact pins, compatibility, distribution notices, database/providers, sessions and hosting retain their validation/approval gates.
 
@@ -15,7 +15,7 @@ Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate
 1. Read the [product requirements](docs/PRD.md).
 2. Read the [system architecture and application maps](docs/cookbook/architecture.md).
 3. Follow the [milestone index and task workflow](docs/milestones/README.md).
-4. Continue **M00-T04 — toolchain and workspace review** in [decisions, audits, and approval gates](docs/milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review). The [candidate review](docs/cookbook/toolchain-review.md) records accepted T04-A–D directions and the confirmed ApexCharts hold; The [compatibility follow-up](docs/cookbook/toolchain-compatibility.md) establishes the published Flutter/Dart pair and withdraws EOL ESLint 9; maintained frontend lint coverage, actual runtime verification, final pins and ApexCharts entitlement remain unresolved.
+4. Continue **M00-T04 — toolchain and workspace review** in [decisions, audits, and approval gates](docs/milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review). The [candidate review](docs/cookbook/toolchain-review.md) records accepted T04-A–D directions and the confirmed ApexCharts hold; the [executed probe](docs/cookbook/toolchain-probe.md) verified isolated Windows tools and limited Nest/Next build/HTTP behavior, and the separately authorized mobile 2.16.2 retry passed generation, analysis and six host tests after the initial 2.17.0 retraction failure. [Decision 0007](docs/cookbook/decisions/0007-isolated-lint-probe.md) separately authorized the [lint experiment](docs/cookbook/toolchain-lint-probe.md): 668 focused diagnostic checks and both synthetic apps' clean lint/strict type checks passed using Next's original rules with three exact temporary peer exceptions. This is not an unqualified strict-peer pass or approval for production exceptions. Remaining notices, complete verification, final pins and ApexCharts rights remain unresolved.
 5. Before making changes, read [AGENT.md](AGENT.md). [AGENTS.md](AGENTS.md) is a compatibility pointer to those same instructions.
 
 No install/run command is provided yet because no application or package scripts exist. The foundation milestone must add tested commands and prerequisites to each application README rather than assuming them now. Android development can run on Windows; iOS/iPad build and native validation require a macOS/Xcode path.
@@ -72,10 +72,16 @@ One repository does not mean one deployment, one session, or one unrestricted co
 | [Decision 0002](docs/cookbook/decisions/0002-rounded-icons-and-chart-rendering.md) | Rounded icon-bank requirement, ApexCharts for user web, custom Flutter charts where needed |
 | [Decision 0003](docs/cookbook/decisions/0003-product-defaults.md) | Accepted privacy, account, language/unit, Focus, Money and card defaults |
 | [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) | Accepted workspace/mobile/web directions and Hugeicons Free Stroke Rounded; ApexCharts integration hold |
+| [Decision 0005](docs/cookbook/decisions/0005-isolated-compatibility-probe.md) | Authorized isolated chart-free download/build/test experiment; no final pins or repository scaffolding |
+| [Decision 0006](docs/cookbook/decisions/0006-mobile-probe-generator-retry.md) | Authorized mobile generator retry only; no production app development or final-pin approval |
+| [Decision 0007](docs/cookbook/decisions/0007-isolated-lint-probe.md) | Authorized isolated lint experiment with exactly three temporary peer exceptions; no production policy change |
 | [Reference-app audit](docs/cookbook/reference-app-audit.md) | Completed static inventory and reference-only/rebuild/exclude assessment; not runtime verification |
 | [Reference dependency/provenance register](docs/cookbook/reference-app-licenses.md) | Resolved direct notices, lockfile identities, asset exclusions and remaining licensing gates |
 | [Toolchain/workspace candidate review](docs/cookbook/toolchain-review.md) | Runtime/library candidates, rounded-icon evidence and ApexCharts licensing blocker; not approved pins |
-| [Toolchain compatibility follow-up](docs/cookbook/toolchain-compatibility.md) | Published SDK identity, metadata/support checks and proposed disposable probe awaiting authorization |
+| [Toolchain compatibility follow-up](docs/cookbook/toolchain-compatibility.md) | Historical SDK/constraint/support research, corrections and bounded probe scope |
+| [Toolchain probe results](docs/cookbook/toolchain-probe.md) | Tool/JS checks, initial failures, successful mobile host retry and durable evidence; not approved production pins |
+| [Frontend lint review](docs/cookbook/toolchain-lint-review.md) | Historical static coverage map and proposal that preceded the separately authorized experiment |
+| [Frontend lint probe](docs/cookbook/toolchain-lint-probe.md) | Exception-based installation, actual diagnostic/effective-config checks and clean lint/type results; not production adoption |
 
 ## Product boundaries
 

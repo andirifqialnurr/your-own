@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.9
+- **Version:** 0.10
 - **Status:** Technical proposal for review; no application scaffold implemented yet
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -59,7 +59,7 @@ The PRD owns product scope and user-visible behavior. This document translates t
 
 [Decision 0003](cookbook/decisions/0003-product-defaults.md) accepts account-required V1 (no guest), private signup/followers-only publication defaults, Today/selected-mode navigation, English-first Android UI, mL/US-fluid-ounce support, 25/5/15 timer defaults with no historical duration edits, locked single-base-currency semantics, independent savings and all CARD-07 outputs privately in V1-A. Provider, exact conversions/currency metadata and sync behavior remain technical gates.
 
-**Accepted supporting-stack directions (Decision 0004):** isolated current compatible stable Flutter SDK, Riverpod, Drift, Dio and go_router. Exact SDK/package pins, encrypted SQLite driver/keys, compatibility and platform evidence remain gates; no upgrade or installation is authorized.
+**Accepted supporting-stack directions (Decision 0004):** isolated current compatible stable Flutter SDK, Riverpod, Drift, Dio and go_router. Exact SDK/package pins, encrypted SQLite driver/keys, compatibility and platform evidence remain gates; direction approval alone authorizes no upgrade or installation. [Decisions 0005](cookbook/decisions/0005-isolated-compatibility-probe.md)/[0006](cookbook/decisions/0006-mobile-probe-generator-retry.md) separately authorized temporary probes. The [mobile retry](cookbook/toolchain-probe.md#7-authorized-mobile-retry--build_runner-2162) passed resolution, generation, analysis and six synthetic host tests; it is not production scaffolding, native-device/encryption validation or final-pin approval.
 
 **Other recommended defaults, not yet approved selections:**
 - Feature-first modular architecture within one Flutter application.
@@ -1125,7 +1125,7 @@ These are dependency stages, not promised calendar dates. Estimate after the tec
 
 ### Before scaffolding
 
-- Approve Riverpod, Drift, Dio, go_router, and the exact compatible SDK/package set.
+- Validate and approve the exact SDK/package set for the accepted Riverpod, Drift, Dio and go_router directions, including the remaining native/security/notice gates.
 - Confirm the repository location and target OS/minimum versions.
 - Follow the accepted Android-first pilot order and obtain a macOS testing path; iPhone/iPad validation remains required.
 - Approve initial design tokens and validate the proposed breakpoints with real content.
