@@ -13,7 +13,9 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "pnpm --filter @your-own/api typecheck",
     "test": "pnpm --filter @your-own/api test",
-    "check": "pnpm lint && pnpm typecheck && pnpm test"
+    "check:boundaries": "node scripts/check-boundaries.mjs",
+    "test:boundaries": "node --test scripts/architecture/*.test.mjs",
+    "check": "pnpm test:boundaries && pnpm check:boundaries && pnpm lint && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

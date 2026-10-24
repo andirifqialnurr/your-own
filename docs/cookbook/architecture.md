@@ -176,6 +176,8 @@ docs/                     Product and platform specifications
 - Start app-local and extract genuinely shared primitives when useful; after extraction, update callers/indexes and keep one implementation owner rather than divergent local/package copies. Lean pnpm is the accepted workspace direction; exact manager/runtime/package pins and bootstrap remain unverified.
 - Shared truth does not mean identical Flutter/React internals. Portable tokens/contracts need tested platform adapters. Create folders with approved slices, not hundreds of empty placeholders.
 
+The initial API/Flutter [import-boundary implementation](import-boundaries.md) now enforces owned source roots, pure domain/contract imports, explicit cross-feature public entries and composition-only wiring. `HealthModule` owns its controller; the Flutter setup screen lives under its feature presentation layer. These guards do not introduce domain features or replace runtime/privacy/native tests.
+
 ### 5.2 Feature-to-application path map
 
 Paths are relative to each app's `src/` unless shown otherwise. They describe responsibility, not files already created. Admin deliberately has no ordinary Money/tracker feature tree.

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { HealthController } from './health/health.controller.js';
+import { HealthModule } from './health/health.module.js';
 
-// HTTP composition only. No worker consumers, providers or domain writes yet.
-@Module({ controllers: [HealthController] })
+// Compose public module entries, not their internal controllers or services.
+@Module({ imports: [HealthModule] })
 export class AppModule {}

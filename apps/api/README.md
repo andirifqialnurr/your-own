@@ -29,7 +29,7 @@ pnpm build
 pnpm audit
 ```
 
-`pnpm check` runs typed ESLint, strict TypeScript and Node's built-in test runner. Tests open ephemeral loopback ports and close their own servers; they need no external service. The ten process-isolated Multer regressions are synthetic maintenance tests, **not an application upload API**.
+`pnpm check` runs [import-boundary checks](../../docs/cookbook/import-boundaries.md), typed ESLint, strict TypeScript and Node's built-in test runner. Tests open ephemeral loopback ports and close their own servers; they need no external service. The ten process-isolated Multer regressions are synthetic maintenance tests, **not an application upload API**.
 
 ## Code and ownership
 
@@ -38,7 +38,8 @@ pnpm audit
 | `src/main.ts` | Validate environment, start HTTP, report sanitized startup failures |
 | `src/config/environment.ts` | Pure configuration validation; no provider/secret fallback |
 | `src/app.ts` | HTTP factory and response headers; testable without starting a listener |
-| `src/app.module.ts` | HTTP-only composition root; no workers imported |
+| `src/app.module.ts` | HTTP-only composition through public module entries; no workers imported |
+| `src/health/health.module.ts` | Public composition entry; owns the internal health controller |
 | `src/health/health.controller.ts` | Liveness and intentionally unavailable readiness |
 | `test/environment.test.mjs` | Configuration boundaries and actual failed CLI startup |
 | `test/health.test.mjs` | Real loopback health/404/header checks |

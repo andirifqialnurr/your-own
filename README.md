@@ -38,7 +38,7 @@ flutter analyze --no-pub
 flutter test --no-pub
 ```
 
-See [API setup](apps/api/README.md), [mobile setup and native prerequisites](apps/mobile/README.md), and the [bootstrap results](docs/cookbook/local-development-bootstrap.md). Docker is authorized if later needed, but is unnecessary for this shell. Next.js web/admin remain later roadmap work.
+See [API setup](apps/api/README.md), [mobile setup and native prerequisites](apps/mobile/README.md), and the [bootstrap results](docs/cookbook/local-development-bootstrap.md). Docker is authorized if later needed, but is unnecessary for this shell. `pnpm check` also enforces the [API/Flutter import boundaries](docs/cookbook/import-boundaries.md). Next.js web/admin remain later roadmap work.
 
 <details>
 <summary>Historical planning context before local setup</summary>

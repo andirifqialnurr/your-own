@@ -21,9 +21,13 @@ The owner explicitly requests implementation/setup now using the existing laptop
 - Native wrapper generation is setup, not an Android/iOS build or device result. Do not install an emulator, change virtualization/security settings or request unavailable Mac/phone details as a prerequisite to writing this shell.
 - The API listens on loopback only and rejects staging/production environments. No authentication, tracker writes, upload endpoint, worker, database, real personal data or deployment is enabled. Mobile staging/production entry points fail closed until configured in a later approved slice.
 
+## Local foundation continuation
+
+After the initial setup result, the owner replied **“continue”** on 2026-10-24 UTC. In the context of the explicit instruction to keep coding with the existing laptop, continue with **M01-T04's local module/import boundaries** while T03's native prerequisites remain pending. This is one bounded, device-independent continuation, not blanket roadmap/release approval. It requires no new dependencies, Docker, hardware inspection or native execution; T03 remains unchecked rather than being reported as a native pass.
+
 ## Retained gates and tracking
 
-[M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin only this bootstrap before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
+[M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin this bootstrap and the separately recorded local T04 continuation before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
 
 Decision 0010's owner, exact selectors, maintenance controls and **2026-11-23 UTC** latest review deadline remain unchanged; local setup is an earlier revalidation trigger, not automatic renewal. ApexCharts remains held. Existing thirteen immutable snapshots and failed experiments are preserved.
 

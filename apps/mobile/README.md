@@ -11,10 +11,12 @@ flutter pub get --enforce-lockfile
 flutter gen-l10n
 flutter analyze --no-pub
 flutter test --no-pub
-dart format --output=none --set-exit-if-changed lib/app lib/core lib/main.dart lib/main_development.dart lib/main_staging.dart lib/main_production.dart test
+dart format --output=none --set-exit-if-changed lib/app lib/core lib/features lib/main.dart lib/main_development.dart lib/main_staging.dart lib/main_production.dart test
 ```
 
 The initial setup used `flutter pub get --offline` against already cached packages. The application owns `pubspec.lock`, independent of the root pnpm lockfile. `.flutter-version` at the repository root records the SDK pin; it does not install or switch an SDK automatically.
+
+From the repository root, also run `pnpm check:boundaries` (or `pnpm check`) for the shared [import-boundary policy](../../docs/cookbook/import-boundaries.md). No extra Dart package is needed for this check.
 
 ## Native run, when an Android target is available
 
@@ -34,7 +36,8 @@ This is a **future device command**, not a command verified by the host tests. A
 | `lib/main_staging.dart`, `lib/main_production.dart` | Fail closed: these environments are not configured |
 | `lib/core/config/app_config.dart` | Pure environment configuration, without service URLs or secrets |
 | `lib/app/bootstrap.dart` | Validate before starting widgets or future services |
-| `lib/app/app.dart` | Scrollable setup screen, system light/dark appearance |
+| `lib/app/app.dart` | Application composition, localization and system light/dark appearance |
+| `lib/features/setup/presentation/setup_screen.dart` | Scrollable setup presentation; no storage/network access |
 | `lib/l10n/app_en.arb` | Authoritative English strings |
 | `lib/l10n/generated/` | Generated with `flutter gen-l10n`; do not hand-edit |
 | `test/config_test.dart` | Development configuration and blocked deployment entry points |
