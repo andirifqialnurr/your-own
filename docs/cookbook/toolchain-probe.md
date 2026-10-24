@@ -1,11 +1,11 @@
 # Toolchain Probe — M00-T04 Execution Evidence
 
-- **Version:** 0.3
+- **Version:** 0.4
 - **Observed:** 2026-10-23 UTC, Windows x64 / Git Bash
 - **Task:** [M00-T04](../milestones/00-decisions-and-validation.md#m00-t04--toolchain-and-workspace-review), In progress / unchecked
 - **Authorization:** [Decision 0005](decisions/0005-isolated-compatibility-probe.md) and [Decision 0006](decisions/0006-mobile-probe-generator-retry.md); temporary chart-free experiments only
 - **Related:** [Candidate review](toolchain-review.md), [metadata follow-up](toolchain-compatibility.md), [durable evidence snapshot](evidence/m00-t04-probe.json)
-- **Later follow-up:** [Decision 0007](decisions/0007-isolated-lint-probe.md) authorized a separate three-exception lint experiment on 2026-10-24 UTC; its [bounded passing results](toolchain-lint-probe.md) do not change this earlier probe or approve production exceptions/pins
+- **Later follow-up:** [Decision 0007](decisions/0007-isolated-lint-probe.md) authorized a separate three-exception lint experiment on 2026-10-24 UTC; its [bounded passing results](toolchain-lint-probe.md) do not change this earlier probe or approve production exceptions/pins. The later [Decision 0008 combined attempt](toolchain-combined-probe.md) stopped on a fresh high-severity Multer advisory affecting the existing Nest Express graph. Earlier build/audit observations remain historical, not current security clearance
 
 ## 1. Outcome
 

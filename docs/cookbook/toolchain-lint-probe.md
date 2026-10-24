@@ -1,6 +1,6 @@
 # Isolated Frontend Lint Probe — M00-T04
 
-- **Version:** 0.1
+- **Version:** 0.2
 - **Observed:** 2026-10-24 UTC, Windows x64 / Git Bash
 - **Status:** Bounded experiment passed; M00-T04 remains In progress / unchecked
 - **Authorization:** [Decision 0007](decisions/0007-isolated-lint-probe.md), following the [static rule disposition](toolchain-lint-review.md#8-completed-static-disposition-and-owner-choice)
@@ -45,7 +45,7 @@ Three registry archives independently matched SHA-512 integrity and their **five
 
 Notices retained include permissive licenses plus axe-core's MPL-2.0, language-subtag-registry's CC0-1.0, tslib's 0BSD, caniuse-lite's CC-BY-4.0, minimatch's BlueOak-1.0.0, and sharp Windows' Apache-2.0 AND LGPL-3.0-or-later. The UnRS source/binding map to commit `ccb26d205e2938b16069c64a28996b48ee97ff94` and its actual MIT notice, crediting UnRS, VoidZero and Boshen. A guessed `LICENSE.md` returned 404; the actual `LICENSE` was fetched/read. Next's missing root notices map to the previously reviewed version-tagged Vercel MIT text.
 
-**15 installed roots lack a separate top-level notice.** The inventory preserves that fact. Remaining upstream/nested/embedded notice mapping, source-offer/distribution obligations, signatures, full advisories and support remain final-adoption gates. Registry labels, local non-conveyed execution and retained notices are not legal clearance or permission to distribute a production graph.
+**15 installed roots lack a separate top-level notice.** The inventory preserves that filename-level fact. The later [static notice review](toolchain-notices.md) distinguishes embedded/linked/upstream text from missing attribution, adds one case from the earlier JS graph, and records 14 scoped mappings/two partial cases. It does not retroactively claim a complete embedded-license review. Remaining upstream/nested/embedded notice mapping, source-offer/distribution obligations, signatures, full advisories and support remain final-adoption gates. Registry labels, local non-conveyed execution and retained notices are not legal clearance or permission to distribute a production graph.
 
 ## 3. Effective configuration and actual tests
 
