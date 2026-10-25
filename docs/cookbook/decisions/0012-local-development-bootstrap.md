@@ -41,9 +41,13 @@ The same 2026-10-25 **“continue and commit and push each tasks”** instructio
 
 The owner's next **“continue”** on 2026-10-25 follows the explicit T07 next-step report after T06 was committed/pushed as `df3a85c`. Continue with **M01-T07's first shared primitives and synthetic development catalog**, including the existing Hugeicons Free Stroke Rounded adapter, widget/semantic/visual checks and a separate task commit/push. Reuse the installed SDK and packages; no new library, real-data workflow, native setup or release is authorized. T03/T05/T06 native gates remain open; this is one bounded local slice, not unattended roadmap execution.
 
+## Indexes and local-check automation continuation
+
+On 2026-10-25, after T07 was published as `c07236e`, the owner requested **“continue some tasks. commit and push it each”**. Address **M01-T08's app-local indexes**, then **M01-T09's reproducible local check entry point**, sequentially with a separate commit/push for each. Reuse the installed tools and existing dependency graph. Documentation verification can close T08; T09 remains partial until an approved macOS/native path and applicable CI evidence exist. Do not create or run hosted workflows, provision runners, install native SDKs, use signing credentials or claim native passes from host checks. No deployment, feature/provider adoption or automatic M02 continuation follows.
+
 ## Retained gates and tracking
 
-[M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin this bootstrap and the separately recorded local T04/T05/T06/T07 continuations before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
+[M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin this bootstrap and the separately recorded local T04/T05/T06/T07/T08/T09 continuations before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
 
 Decision 0010's owner, exact selectors, maintenance controls and **2026-11-23 UTC** latest review deadline remain unchanged; local setup is an earlier revalidation trigger, not automatic renewal. ApexCharts remains held. Existing thirteen immutable snapshots and failed experiments are preserved.
 

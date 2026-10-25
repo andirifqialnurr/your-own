@@ -16,7 +16,8 @@ Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate
 2. Read the [system architecture and application maps](docs/cookbook/architecture.md).
 3. Follow the [milestone index and task workflow](docs/milestones/README.md).
 4. Use the setup commands below and the [M01 foundation task log](docs/milestones/01-foundations.md).
-5. Read [AGENT.md](AGENT.md) before changing code; [AGENTS.md](AGENTS.md) points to the same instructions.
+5. Navigate implementation through the [API module/endpoint indexes](apps/api/docs/MODULE_INDEX.md) and [mobile feature/route/component indexes](apps/mobile/docs/FEATURE_INDEX.md); follow [API](apps/api/docs/TRACEABILITY.md) / [mobile](apps/mobile/docs/TRACEABILITY.md) requirement evidence without treating planned features as implemented.
+6. Read [AGENT.md](AGENT.md) before changing code; [AGENTS.md](AGENTS.md) points to the same instructions.
 
 ## Local setup
 

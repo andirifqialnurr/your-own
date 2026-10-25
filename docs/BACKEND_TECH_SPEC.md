@@ -220,7 +220,7 @@ Controllers/gateways remain thin. Modules expose application services/contracts 
 
 ### 7.1 Application map
 
-The initial [API scaffold](../apps/api/README.md) now exists at `apps/api/` with local development pins. The larger module/provider structure below remains proposed, not implemented. Create modules with their release slices rather than generating every empty folder. See the [cross-application file map](cookbook/architecture.md#51-application-and-shared-package-ownership) for web/admin ownership.
+The initial [API scaffold](../apps/api/README.md) now exists at `apps/api/` with local development pins. The [module](../apps/api/docs/MODULE_INDEX.md), [endpoint](../apps/api/docs/ENDPOINT_MAP.md), [job](../apps/api/docs/JOB_MAP.md) and [traceability](../apps/api/docs/TRACEABILITY.md) indexes now navigate current files/evidence. The larger module/provider structure below remains proposed, not implemented. Create modules with their release slices rather than generating every empty folder. See the [cross-application file map](cookbook/architecture.md#51-application-and-shared-package-ownership) for web/admin ownership.
 
 ```text
 apps/api/

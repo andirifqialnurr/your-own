@@ -2,17 +2,25 @@
 
 Local NestJS HTTP foundation only. There is no database, authentication, upload endpoint, queue consumer or tracker implementation. No Docker service is needed yet.
 
+## Navigate
+
+- [Module ownership and public entries](docs/MODULE_INDEX.md)
+- [Actual endpoints](docs/ENDPOINT_MAP.md) · [Job inventory (currently empty)](docs/JOB_MAP.md)
+- [Requirement → code → test/evidence](docs/TRACEABILITY.md)
+
+Indexes describe the existing shell; future domain modules remain explicitly planned under the root specifications. Update these links/maps with each source or contract move.
+
 ## Run
 
 From the repository root, with Node **24.18.0** and pnpm **12.8.1**:
 
 ```bash
 pnpm install --frozen-lockfile
-cp apps/api/.env.example apps/api/.env
+test -e apps/api/.env || cp apps/api/.env.example apps/api/.env
 pnpm dev:api
 ```
 
-PowerShell can use `Copy-Item` instead of `cp`. Do not overwrite an existing `.env`; this initial setup already created a local copy. The server binds **127.0.0.1:3000**, never all interfaces. Stop with Ctrl+C. `dev:api` compiles then starts; it does not yet hot-recompile TypeScript. Restart it after editing source.
+The guarded copy above is for Bash. In PowerShell, use `if (-not (Test-Path apps/api/.env)) { Copy-Item apps/api/.env.example apps/api/.env }`. Do not overwrite an existing `.env`; this initial setup already created a local copy. The server binds **127.0.0.1:3000**, never all interfaces. Stop with Ctrl+C. `dev:api` compiles then starts; it does not yet hot-recompile TypeScript. Restart it after editing source.
 
 - `GET /v1/health/live`: **200**, `{"status":"ok"}`.
 - `GET /v1/health/ready`: deliberately **503**, `{"status":"not_ready"}`. Services required for real records do not exist yet.

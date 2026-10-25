@@ -2,6 +2,14 @@
 
 Flutter **3.38.9 / Dart 3.10.8**, using the existing laptop SDK. This is a localized adaptive development shell with DM Sans, semantic zinc themes, System/Light/Dark selection and an owned Hugeicons Free Stroke Rounded adapter (28 core aliases, four used in primary navigation). Only a non-sensitive appearance preference is stored; there is no account, network client or personal-record database—not a finished tracker.
 
+## Navigate
+
+- [Feature/composition ownership](docs/FEATURE_INDEX.md) · [Actual routes](docs/ROUTE_MAP.md)
+- [Implemented component catalog](docs/COMPONENT_CATALOG.md)
+- [Requirement → code → test/evidence](docs/TRACEABILITY.md)
+
+These indexes link real initial files and distinguish partial host support from full product/native acceptance. Update them when routes, feature contracts, components or tests move.
+
 ## Host setup and checks
 
 From this directory:

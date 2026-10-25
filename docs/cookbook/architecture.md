@@ -1,6 +1,6 @@
 # Your Own — System Architecture
 
-- **Version:** 0.11
+- **Version:** 0.12
 - **Status:** Target architecture; local API/mobile foundations exist, full system not implemented
 - **Confirmed frameworks:** Flutter mobile, NestJS backend, Next.js user website, separate Next.js admin CMS
 - **Product authority:** [PRD.md](../PRD.md)
@@ -173,7 +173,7 @@ docs/                     Product and platform specifications
 - Domain migrations live only under `apps/api/prisma/migrations/` if Prisma is adopted. A dedicated least-privilege session store is an infrastructure exception, not another domain data path.
 - Shared code flows from apps to explicit package entry points, not from `apps/web` to `apps/admin` or vice versa. The user website imports only the user contract entry; admin operator adapters use the operator entry. Do not create a barrel that mixes privileged server code with browser-safe exports.
 - Generated client code must not be edited manually. OpenAPI user/operator artifacts are generated projections of one authoritative backend contract, not two hand-maintained APIs. Browser feature clients call same-origin BFFs; credential-bearing generated clients belong behind server adapters.
-- Start app-local and extract genuinely shared primitives when useful; after extraction, update callers/indexes and keep one implementation owner rather than divergent local/package copies. Lean pnpm is the accepted workspace direction; exact manager/runtime/package pins and bootstrap remain unverified.
+- Start app-local and extract genuinely shared primitives when useful; after extraction, update callers/indexes and keep one implementation owner rather than divergent local/package copies. Lean pnpm and initial local pins are implemented under Decision 0012; full production pins and release readiness remain unverified.
 - Shared truth does not mean identical Flutter/React internals. Portable tokens/contracts need tested platform adapters. Create folders with approved slices, not hundreds of empty placeholders.
 
 The initial API/Flutter [import-boundary implementation](import-boundaries.md) now enforces owned source roots, pure domain/contract imports, explicit cross-feature public entries and composition-only wiring. `HealthModule` owns its controller; the Flutter setup screen lives under its feature presentation layer. These guards do not introduce domain features or replace runtime/privacy/native tests.
@@ -212,15 +212,15 @@ SSR loaders call server adapters directly, not an HTTP loop through their own BF
 
 Each app gets a short `README.md` navigation entry and local `docs/` indexes when scaffolded:
 
-| Index | API | User web | Admin |
+| Index | API (exists) | Mobile (exists) | User web / Admin (planned) |
 |---|---|---|---|
-| Ownership | `MODULE_INDEX.md` | `FEATURE_INDEX.md` | `FEATURE_INDEX.md` |
-| Request navigation | `ENDPOINT_MAP.md` | `ROUTE_MAP.md` | `ROUTE_MAP.md` |
-| Specialized map | `JOB_MAP.md` | `COMPONENT_CATALOG.md` | `CAPABILITY_MAP.md`, `COMPONENT_CATALOG.md` |
-| Requirement/evidence | `TRACEABILITY.md` | `TRACEABILITY.md` | `TRACEABILITY.md` |
-| Decisions | `decisions/` | `decisions/` | `decisions/` |
+| Ownership | [MODULE_INDEX.md](../../apps/api/docs/MODULE_INDEX.md) | [FEATURE_INDEX.md](../../apps/mobile/docs/FEATURE_INDEX.md) | `FEATURE_INDEX.md` |
+| Request/navigation | [ENDPOINT_MAP.md](../../apps/api/docs/ENDPOINT_MAP.md) | [ROUTE_MAP.md](../../apps/mobile/docs/ROUTE_MAP.md) | `ROUTE_MAP.md` |
+| Specialized map | [JOB_MAP.md](../../apps/api/docs/JOB_MAP.md) | [COMPONENT_CATALOG.md](../../apps/mobile/docs/COMPONENT_CATALOG.md) | `COMPONENT_CATALOG.md`; admin also `CAPABILITY_MAP.md` |
+| Requirement/evidence | [TRACEABILITY.md](../../apps/api/docs/TRACEABILITY.md) | [TRACEABILITY.md](../../apps/mobile/docs/TRACEABILITY.md) | `TRACEABILITY.md` |
+| Decisions | Shared repository records; local `decisions/` only when needed | Shared repository records; no duplicate local decisions | `decisions/` when needed |
 
-Use existing requirement IDs, implementation paths, route/operation IDs, test/evidence paths, and release stage in each traceability row. Statuses are **Planned → In progress → Implemented → Verified**, with actual evidence before Verified. Feature/module READMEs link public contracts and tests. These are navigation indexes, not duplicated PRDs, editable copies of generated API schemas, or repositories of real user data. The initial API/mobile READMEs currently provide their small source/test maps; fuller indexes remain M01-T08 work.
+Use existing requirement IDs, implementation paths, route/operation IDs, test/evidence paths, and release stage in each traceability row. Statuses are **Planned → In progress → Implemented → Verified**, with actual evidence before Verified. Feature/module READMEs link public contracts and tests. These are navigation indexes, not duplicated PRDs, editable copies of generated API schemas, or repositories of real user data. M01-T08 now adds the linked API/mobile indexes and health/setup READMEs. They distinguish current source/host evidence from planned domain capabilities and unresolved native/release acceptance.
 
 Tests primarily mirror their owned source modules/features; real integration/concurrency and full browser/API journeys have dedicated suites. A route/module/contract move must update its indexes and affected tests in the same change. Naming conventions distinguish `.spec.ts` backend tests and frontend `.test.tsx`/browser `.spec.ts` examples, but exact runners remain subject to the selected stack.
 
