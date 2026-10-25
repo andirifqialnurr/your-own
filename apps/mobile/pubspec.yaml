@@ -13,6 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: 0.20.2
+  shared_preferences: 2.5.4
 
 dev_dependencies:
   flutter_test:
@@ -21,4 +22,10 @@ dev_dependencies:
 
 flutter:
   generate: true
-  # No bundled Material icon font, starter artwork, chart or provider SDK.
+  # No Material icon font, runtime font downloader, chart or identity SDK.
+  assets:
+    - assets/fonts/OFL.txt
+  fonts:
+    - family: DM Sans
+      fonts:
+        - asset: assets/fonts/DMSans-Variable.ttf

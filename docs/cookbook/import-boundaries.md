@@ -2,12 +2,13 @@
 
 - **Task:** M01-T04; local foundation work under [Decision 0012's continuation](decisions/0012-local-development-bootstrap.md#local-foundation-continuation)
 - **Authority:** [Architecture](architecture.md#51-application-and-shared-package-ownership), [backend module layout](../BACKEND_TECH_SPEC.md#72-module-layout--money-example), [mobile layers](../MOBILE_TECH_SPEC.md#4-architecture-and-dependency-rules)
-- **Scope:** API TypeScript source and Flutter Dart libraries; no new dependency or feature behavior
+- **Scope:** API TypeScript source and Flutter Dart libraries; T04 itself added no dependency or feature behavior
 
 ## Current ownership
 
 - `apps/api/src/app.module.ts` composes `HealthModule`. `health/health.module.ts` owns its controller; the application no longer imports the controller directly. HTTP behavior stays unchanged, and no worker is introduced.
 - `apps/mobile/lib/app/app.dart` owns app configuration, localization and theme composition. `features/setup/presentation/setup_screen.dart` owns the existing setup screen, without networking or persistence. There is still one Flutter source tree, not separate phone/tablet applications.
+- The later [T05 appearance slice](mobile-appearance-foundation.md) adds a pure core-domain preference contract, an owned `core/preferences` adapter and shared semantic UI tokens. Presentation receives callbacks; it still cannot import the preference package or concrete store. No policy/allowlist relaxation was needed.
 - No product domain, repository or cross-feature service exists yet. Do not create empty mode folders or pretend the checker fixtures implement Money/Read/Progress.
 
 ## Enforced import policy
@@ -50,6 +51,10 @@ pnpm check
 The TypeScript reader includes imports, type imports, re-exports, literal dynamic imports and `require`/`require.resolve`; computed loading fails. The Dart reader checks imports, exports, URI-based parts and **every conditional branch**, skipping comments/annotation strings and stopping before declarations. Escaped/interpolated dependency URIs and named `part of` forms are unsupported and fail rather than silently pass. New TS aliases/import maps need resolver support before adoption. The optional CLI `--root` is used for disposable test fixtures, not a second application workspace.
 
 This is a static architecture guard, **not a security sandbox or proof of runtime purity**. It does not discover arbitrary reflective loading, validate every Dart body construct, detect all dependency cycles, or replace code review, TypeScript compilation, Flutter analysis and behavior tests. Compilers still own module existence/type correctness. Platform adapters may live inside their owned infrastructure; native wrappers outside `lib/` are not duplicate Flutter application trees.
+
+## Current regression checkpoint — 2026-10-25 UTC
+
+T05 adds eight explicit preference/theme ownership cases: **80 boundary tests** pass, with **24 source files / 66 dependency directives** scanned. Its dependency/asset changes and 51 Flutter host tests are recorded separately in the [appearance report](mobile-appearance-foundation.md); the original policy is unchanged.
 
 ## Verification — 2026-10-24 UTC
 

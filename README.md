@@ -6,7 +6,7 @@ A mobile-first personal progress app: **Focus, Read, Intake, and Money**, with o
 
 ## Current status
 
-**Local development has started.** The pnpm workspace, a loopback-only NestJS API and a Flutter setup screen now exist under [Decision 0012](docs/cookbook/decisions/0012-local-development-bootstrap.md). The setup uses the laptop's existing tools. No database, authentication, tracking features, Docker services, CI or deployment exists yet. Android/iOS device builds remain unverified; local coding does not need to wait for full release validation.
+**Local development has started.** The pnpm workspace, a loopback-only NestJS API and a Flutter setup screen now exist under [Decision 0012](docs/cookbook/decisions/0012-local-development-bootstrap.md). The setup uses the laptop's existing tools. Flutter now includes [semantic zinc tokens, bundled DM Sans and System/Light/Dark selection](docs/cookbook/mobile-appearance-foundation.md), with a single non-sensitive preference adapter. No personal database, authentication, tracking features, Docker services, CI or deployment exists yet. Android/iOS device builds remain unverified; local coding does not need to wait for full release validation.
 
 Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate Next.js applications** for users and staff. [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts the pnpm/mobile/web supporting-stack directions and **Hugeicons Free Stroke Rounded** family. ApexCharts remains selected for user-web charts but integration is on hold pending licensing clarification; custom Flutter charts remain permitted where needed. Exact pins, compatibility, distribution notices, database/providers, sessions and hosting retain their validation/approval gates.
 
@@ -38,7 +38,7 @@ flutter analyze --no-pub
 flutter test --no-pub
 ```
 
-See [API setup](apps/api/README.md), [mobile setup and native prerequisites](apps/mobile/README.md), and the [bootstrap results](docs/cookbook/local-development-bootstrap.md). Docker is authorized if later needed, but is unnecessary for this shell. `pnpm check` also enforces the [API/Flutter import boundaries](docs/cookbook/import-boundaries.md). Next.js web/admin remain later roadmap work.
+See [API setup](apps/api/README.md), [mobile setup and native prerequisites](apps/mobile/README.md), and the [bootstrap results](docs/cookbook/local-development-bootstrap.md). Docker is authorized if later needed, but is unnecessary for this shell. `pnpm check` also enforces the [API/Flutter import boundaries](docs/cookbook/import-boundaries.md), generated-token consistency and font/license hashes. Edit `design/tokens.json` and run `pnpm tokens:generate` to update the Flutter token adapter. Next.js web/admin remain later roadmap work.
 
 <details>
 <summary>Historical planning context before local setup</summary>
@@ -72,6 +72,8 @@ apps/
   api/                        NestJS local health API; no workers/domain services yet
   web/                        Planned, not created
   admin/                      Planned, not created
+design/tokens.json            Implemented platform-neutral foundation tokens
+scripts/                      Import, token-generation and asset checks
 packages/                     Planned only; introduced for actual sharing needs
   api-client/
   web-ui/

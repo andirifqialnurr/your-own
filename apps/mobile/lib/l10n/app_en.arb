@@ -3,5 +3,17 @@
   "appName": "Your Own",
   "setupTitle": "Your space to make progress.",
   "setupDescription": "Focus, Read, Intake, and Money.",
-  "setupNotice": "Development setup only. Tracking and sign-in are not available yet. No personal data is stored."
+  "setupNotice": "Development setup only. Tracking and sign-in are not available yet. No personal data is stored.",
+  "appearanceTitle": "Appearance",
+  "appearanceDescription": "Choose how this app looks on this device.",
+  "appearanceSystem": "System",
+  "appearanceLight": "Light",
+  "appearanceDark": "Dark",
+  "appearanceSaving": "Saving appearance…",
+  "appearanceStorageError": "Appearance could not be restored or saved. Your current choice applies only to this session until saving succeeds.",
+  "retry": "Retry",
+  "fontLicense": "DM Sans license",
+  "licenseLoading": "Loading license…",
+  "licenseError": "The bundled license could not be loaded.",
+  "close": "Close"
 }

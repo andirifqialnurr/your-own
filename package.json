@@ -15,7 +15,11 @@
     "test": "pnpm --filter @your-own/api test",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "test:boundaries": "node --test scripts/architecture/*.test.mjs",
-    "check": "pnpm test:boundaries && pnpm check:boundaries && pnpm lint && pnpm typecheck && pnpm test"
+    "tokens:generate": "node scripts/generate-theme-tokens.mjs",
+    "tokens:check": "node scripts/generate-theme-tokens.mjs --check",
+    "check:assets": "node scripts/check-mobile-assets.mjs",
+    "test:design": "node --test scripts/design/*.test.mjs",
+    "check": "pnpm tokens:check && pnpm check:assets && pnpm test:design && pnpm test:boundaries && pnpm check:boundaries && pnpm lint && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

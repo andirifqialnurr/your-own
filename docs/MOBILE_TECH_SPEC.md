@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.12
+- **Version:** 0.13
 - **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -191,7 +191,7 @@ Durable outbox and synchronization coordinator
 
 ## 5. Proposed project structure
 
-The initial [mobile scaffold](../apps/mobile/README.md) now exists at `apps/mobile/` under [Decision 0012](cookbook/decisions/0012-local-development-bootstrap.md), using installed Flutter 3.38.9 / Dart 3.10.8 for local development. The larger feature map below remains a proposal; no storage, identity, network client or tracking feature is implemented. Host tests are not Android/iOS/iPad validation.
+The initial [mobile scaffold](../apps/mobile/README.md) now exists at `apps/mobile/` under [Decision 0012](cookbook/decisions/0012-local-development-bootstrap.md), using installed Flutter 3.38.9 / Dart 3.10.8 for local development. The [appearance foundation](cookbook/mobile-appearance-foundation.md) adds semantic themes, bundled DM Sans and a single non-sensitive local preference. The larger feature map below remains a proposal; no personal-record storage, identity, network client or tracking feature is implemented. Host tests are not native preference, Android/iOS/iPad or release validation.
 
 ```text
 apps/mobile/

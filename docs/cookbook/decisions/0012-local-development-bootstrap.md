@@ -25,9 +25,17 @@ The owner explicitly requests implementation/setup now using the existing laptop
 
 After the initial setup result, the owner replied **“continue”** on 2026-10-24 UTC. In the context of the explicit instruction to keep coding with the existing laptop, continue with **M01-T04's local module/import boundaries** while T03's native prerequisites remain pending. This is one bounded, device-independent continuation, not blanket roadmap/release approval. It requires no new dependencies, Docker, hardware inspection or native execution; T03 remains unchecked rather than being reported as a native pass.
 
+## Appearance continuation
+
+The owner's next **“continue”**, following the explicit M01-T05 next-step summary, authorizes local Flutter semantic tokens and System/Light/Dark appearance with non-sensitive per-installation preference storage. Use the existing SDK; review and pin the needed preference adapter and bundle the selected DM Sans font with its license. This does not authorize personal-data persistence, runtime font downloads, a new icon family, Docker, emulator setup or release. Native storage/system-bar behavior remains to be checked on actual targets; T03 and full M00 gates remain open.
+
+## Per-task publication instruction
+
+On 2026-10-25 UTC the owner requested **“continue and commit and push each tasks”**. Commit and push reviewed task-sized changes separately, beginning with the existing T05 implementation. A commit records implemented work and its verification limits; it does not turn an unchecked/native-pending task into Verified. Use the existing repository remote and normal pushes, not force pushes or history rewriting. Preserve unrelated changes and stop/report authentication or remote-history conflicts rather than bypassing them. This instruction changes the earlier no-unrequested-commit/push boundary, not deployment/release authority or permission to execute the entire roadmap unattended.
+
 ## Retained gates and tracking
 
-[M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin this bootstrap and the separately recorded local T04 continuation before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
+[M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin this bootstrap and the separately recorded local T04/T05 continuations before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
 
 Decision 0010's owner, exact selectors, maintenance controls and **2026-11-23 UTC** latest review deadline remain unchanged; local setup is an earlier revalidation trigger, not automatic renewal. ApexCharts remains held. Existing thirteen immutable snapshots and failed experiments are preserved.
 

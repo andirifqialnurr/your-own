@@ -34,6 +34,10 @@ const allowed = [
   ['mobile', 'features/money/public.dart', 'domain/amount.dart'],
   ['mobile', 'features/money/data/store.dart', '../domain/repository.dart'],
   ['mobile', 'core/network/client.dart', 'dart:io'],
+  ['mobile', 'app/bootstrap.dart', '../core/preferences/shared_preferences_appearance_store.dart'],
+  ['mobile', 'core/preferences/shared_preferences_appearance_store.dart', 'package:shared_preferences/shared_preferences.dart'],
+  ['mobile', 'features/setup/presentation/setup_screen.dart', '../../../core/domain/appearance_preference.dart'],
+  ['mobile', 'features/setup/presentation/setup_screen.dart', '../../../shared_ui/theme/app_tokens.g.dart'],
 ];
 for (const row of allowed) test(`allows ${row.join(' -> ')}`, () => assert.equal(check(...row), null));
 
@@ -79,6 +83,10 @@ const rejected = [
   ['mobile', 'features/money/domain/amount.dart', './unscanned.txt'],
   ['api', 'modules/money/domain/amount.ts', './unscanned.json'],
   ['mobile', 'core/domain/id.dart', 'package:flutter/foundation.dart'],
+  ['mobile', 'core/domain/appearance_preference.dart', 'package:shared_preferences/shared_preferences.dart'],
+  ['mobile', 'features/setup/presentation/setup_screen.dart', 'package:shared_preferences/shared_preferences.dart'],
+  ['mobile', 'shared_ui/theme/app_theme.dart', 'package:shared_preferences/shared_preferences.dart'],
+  ['mobile', 'features/setup/presentation/setup_screen.dart', '../../../core/preferences/shared_preferences_appearance_store.dart'],
   ['mobile', 'main.dart', 'file:///other/app.dart'],
   ['mobile', 'main.dart', '/other/app.dart'],
 ];
