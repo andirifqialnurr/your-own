@@ -39,7 +39,7 @@ pnpm audit
 
 `pnpm check` runs [import-boundary checks](../../docs/cookbook/import-boundaries.md), typed ESLint, strict TypeScript and Node's built-in test runner. Tests open ephemeral loopback ports and close their own servers; they need no external service. API test files run serially (`--test-concurrency=1`) while retaining process isolation and the existing startup timeout. The ten process-isolated Multer regressions are synthetic maintenance tests, **not an application upload API**.
 
-Root `pnpm check:docs` checks navigation links/examples and owned JS/TS/JSON whitespace. `pnpm test:tooling` exercises the check helpers. For the complete pinned Windows API + Flutter host lane, use `pnpm check:local` (optional `--offline`); see [verification and CI/native limits](../../docs/cookbook/local-verification.md). No hosted CI result is implied.
+Root `pnpm check:docs` checks navigation links/examples and owned JS/TS/JSON whitespace. `pnpm test:tooling` exercises the check helpers. For the complete pinned Windows API + Flutter host lane, use `node scripts/check-local.mjs` (optional `--offline`) on a fresh checkout. Once dependencies are installed, `pnpm check:local` is an alias. pnpm scripts reject missing/outdated dependencies rather than automatically installing them; see [verification and CI/native limits](../../docs/cookbook/local-verification.md). No hosted CI result is implied.
 
 ## Code and ownership
 

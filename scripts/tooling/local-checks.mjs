@@ -5,7 +5,7 @@ import path from 'node:path';
 export function checkArguments(args) {
   if (args.length === 0) return { offline: false };
   if (args.length === 1 && args[0] === '--offline') return { offline: true };
-  throw new Error('Usage: pnpm check:local [--offline] (installed pinned tools; no native builds)');
+  throw new Error('Usage: node scripts/check-local.mjs [--offline] (or pnpm check:local after install; no native builds)');
 }
 
 export function validateVersions({ node, pnpm, flutter, dart }, pins) {

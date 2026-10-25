@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync, unlinkSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
@@ -7,6 +8,38 @@ import { checkArguments, launchSpec, localPlan, protectedSnapshot, runPlan, snap
 
 const pins = { node: '24.18.0', pnpm: '12.8.1', flutter: '3.38.9', dart: '3.10.8' };
 const versions = { node: 'v24.18.0', pnpm: '12.8.1\n', flutter: { frameworkVersion: '3.38.9', dartSdkVersion: '3.10.8' }, dart: 'Dart SDK version: 3.10.8 (stable) on "windows_x64"' };
+
+test('workspace fails before scripts instead of implicitly installing dependencies', t => {
+  const policy = readFileSync(new URL('../../pnpm-workspace.yaml', import.meta.url), 'utf8');
+  assert.match(policy, /^verifyDepsBeforeRun: error\r?$/m);
+  const root = mkdtempSync(path.join(tmpdir(), 'your-own-bootstrap-test-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  // Match a real locked checkout, including its public manifests and lock.
+  // Copy only public manifests/lock, never .env, sources or dependency trees.
+  for (const name of ['package.json', 'pnpm-lock.yaml', 'apps/api/package.json']) {
+    mkdirSync(path.dirname(path.join(root, name)), { recursive: true });
+    writeFileSync(path.join(root, name), readFileSync(new URL(`../../${name}`, import.meta.url)));
+  }
+  const manifest = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
+  manifest.scripts = { probe: 'node probe.mjs' };
+  writeFileSync(path.join(root, 'package.json'), JSON.stringify(manifest));
+  writeFileSync(path.join(root, 'pnpm-workspace.yaml'), policy);
+  writeFileSync(path.join(root, 'probe.mjs'), "import { writeFileSync } from 'node:fs'; writeFileSync('ran', 'unexpected');\n");
+  const launch = launchSpec('pnpm', ['--config.offline=true', 'run', 'probe'], process.platform);
+  // pnpm marks nested script processes already verified. This fixture models a
+  // new operator invocation, so remove only that inherited bypass, not the policy.
+  const env = { ...process.env };
+  for (const key of Object.keys(env)) {
+    if (key.toLowerCase() === 'pnpm_config_verify_deps_before_run') delete env[key];
+  }
+  const result = spawnSync(launch.command, launch.args, { cwd: root, env, encoding: 'utf8', timeout: 10000 });
+  assert.ifError(result.error);
+  assert.equal(result.signal, null);
+  assert.equal(result.status, 1);
+  assert.match(result.stdout + result.stderr, /ERR_PNPM_VERIFY_DEPS_BEFORE_RUN/);
+  for (const name of ['node_modules', 'apps/api/node_modules', 'ran']) assert.equal(existsSync(path.join(root, name)), false, name);
+  assert.deepEqual(readFileSync(path.join(root, 'pnpm-lock.yaml')), readFileSync(new URL('../../pnpm-lock.yaml', import.meta.url)));
+});
 
 test('requires actual matching Node/pnpm/Flutter/bundled and PATH Dart versions', () => {
   assert.doesNotThrow(() => validateVersions(versions, pins));

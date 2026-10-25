@@ -194,7 +194,7 @@ Rehearse migrations, database restore, outbox/job/media reconciliation, identity
 
 ## 11. CI and release gates
 
-The [M01-T09 local lane](local-verification.md) now provides `pnpm check:local` for pinned/frozen, generated-drift, documentation, formatting/lint/types, API build/unit/HTTP and Flutter widget/golden checks on the reviewed Windows host. Its 20 helper tests use isolated synthetic temp fixtures. No hosted workflow or native/macOS lane is configured; T09 remains unchecked until those applicable requirements are satisfied. Local results are not CI/native/release acceptance.
+The [M01-T09 local lane](local-verification.md) now provides `node scripts/check-local.mjs` for dependency-free fresh bootstrap (`pnpm check:local` after setup), with pinned/frozen, generated-drift, documentation, formatting/lint/types, API build/unit/HTTP and Flutter widget/golden checks on the reviewed Windows host. Its initial 20 helper tests use isolated synthetic temp fixtures; [T10](fresh-checkout-review.md) adds a real-pnpm missing-dependency regression with public manifest/lock copies and no private configuration. No hosted workflow or native/macOS lane is configured; T09 remains unchecked until those applicable requirements are satisfied. Local results are not CI/native/release acceptance.
 
 | Gate | Evidence |
 |---|---|

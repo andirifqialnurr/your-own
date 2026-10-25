@@ -6,6 +6,9 @@ packages:
 strictPeerDependencies: true
 autoInstallPeers: false
 ignoreScripts: true
+# Fail instead of implicitly installing before script-level pin/offline checks.
+# A fresh checkout bootstraps with node scripts/check-local.mjs [--offline].
+verifyDepsBeforeRun: error
 engineStrict: true
 saveExact: true
 

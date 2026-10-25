@@ -9,10 +9,12 @@
 From the repository root with the already-installed pinned tools:
 
 ```bash
-pnpm check:local
+node scripts/check-local.mjs
 # When all locked packages are already cached:
-pnpm check:local --offline
+node scripts/check-local.mjs --offline
 ```
+
+**Fresh-checkout correction (T10):** use the dependency-free Node entry above on an uninstalled checkout. `pnpm check:local` remains an alias after setup. [T10's review](fresh-checkout-review.md) found pnpm 12's default pre-script install ran before the helper; the workspace now sets `verifyDepsBeforeRun: error`, retaining (not disabling) dependency checks. Explicit frozen install inside the helper still runs after tool validation. A raw pnpm script on missing/outdated dependencies fails rather than silently repairing them.
 
 The [entry point](../../scripts/check-local.mjs) verifies Node, pnpm, Flutter and both Flutter's bundled Dart and the PATH Dart launcher before dependency installation. It checks manifest/runtime-pin agreement and **never upgrades an SDK**. Offline mode adds offline flags to both managers; a missing cache is a failure, not permission to fall back online. The complete lane currently requires Windows because its golden images were reviewed there; other hosts need a reviewed lane/baselines. This is not a Windows product-support commitment.
 
@@ -53,4 +55,4 @@ External execution/preservation evidence: `C:/Users/HP/AppData/Local/Temp/your-o
 
 A future approved macOS lane must actually build the configured development shell and exercise applicable iPhone/iPad/native behavior; an unsigned compile is neither signing/store acceptance nor a substitute for those tests. Do not run the root specification's illustrative production commands against the fail-closed current entry points. No false iOS pass or `continue-on-error` native waiver is supplied.
 
-Next bounded local proposal: **M01-T10's fresh-checkout reproduction review**, with native/environment limitations retained. M02 and release gates are not opened by these two task commits.
+The original next proposal was M01-T10; its [subsequent fresh-checkout review](fresh-checkout-review.md) now records reproduction, the bootstrap correction and 321 tests including one additional real-pnpm regression. The 320-test paragraph above remains the historical T09 checkpoint. Native/environment limitations remain retained. M02 and release gates are not opened by these two task commits.

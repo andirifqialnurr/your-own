@@ -21,17 +21,18 @@ Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate
 
 ## Local setup
 
-For the complete current **Windows host** lane, use `pnpm check:local` (or `pnpm check:local --offline` with populated caches). It verifies tool pins, frozen installs, generated content, documentation, API build/tests and Flutter analysis/format/widget/golden checks sequentially. See [scope, commands and CI/native blockers](docs/cookbook/local-verification.md). It does not install SDKs, build native targets or claim an iOS pass. The individual commands remain below.
+For the complete current **Windows host** lane, bootstrap a fresh checkout with `node scripts/check-local.mjs` (or append `--offline` with populated caches). This entry needs no installed project dependencies. After setup, `pnpm check:local` remains a convenient alias; `verifyDepsBeforeRun: error` prevents pnpm from implicitly installing before the script's guards. It verifies tool pins, frozen installs, generated content, documentation, API build/tests and Flutter analysis/format/widget/golden checks sequentially. See [scope, commands and CI/native blockers](docs/cookbook/local-verification.md). It does not install SDKs, build native targets or claim an iOS pass. The individual commands remain below.
 
 Installed-tool baseline: **Node 24.18.0 · pnpm 12.8.1 · Flutter 3.38.9 / Dart 3.10.8**. No global upgrade or extra workspace orchestrator is needed.
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm check
+test -e apps/api/.env || cp apps/api/.env.example apps/api/.env
 pnpm dev:api
 ```
 
-Before the first API run on another checkout, copy `apps/api/.env.example` to `apps/api/.env` **only if it does not exist**. This laptop's setup already has the local copy. The API serves `http://127.0.0.1:3000/v1/health/live`; readiness deliberately returns 503 until application services exist. Stop with Ctrl+C. `dev:api` compiles and starts, without hot reload.
+The guarded copy above uses Bash and **never overwrites an existing `.env`**; see the [PowerShell equivalent](apps/api/README.md#run). This laptop's original checkout already has its local copy. Never copy private configuration from another checkout. The [fresh-checkout review](docs/cookbook/fresh-checkout-review.md) records actual reproduction, the pnpm bootstrap correction and remaining native/CI blockers. The API serves `http://127.0.0.1:3000/v1/health/live`; readiness deliberately returns 503 until application services exist. Stop with Ctrl+C. `dev:api` compiles and starts, without hot reload.
 
 ```bash
 cd apps/mobile
