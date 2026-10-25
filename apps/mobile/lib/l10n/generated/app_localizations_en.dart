@@ -58,4 +58,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get close => 'Close';
+
+  @override
+  String get navToday => 'Today';
+
+  @override
+  String get navProgress => 'Progress';
+
+  @override
+  String get navCircle => 'Circle';
+
+  @override
+  String get navYou => 'You';
+
+  @override
+  String get primaryNavigation => 'Primary navigation';
+
+  @override
+  String get navigationScrollHint => 'Scroll to reach all destinations.';
+
+  @override
+  String get settingsTitle => 'Your settings';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get messagesTitle => 'Messages';
+
+  @override
+  String get messagesEntry => 'Messages (unavailable)';
+
+  @override
+  String get messagesUnavailable =>
+      'Messaging and unread status are not available in this development setup.';
+
+  @override
+  String get progressUnavailable =>
+      'Personal summaries are not available in this development setup.';
+
+  @override
+  String get circleUnavailable =>
+      'Social sharing is not available in this development setup.';
+
+  @override
+  String get routeUnavailable => 'Page unavailable';
+
+  @override
+  String get routeUnavailableDescription =>
+      'This page is not available in this development setup. No records were loaded.';
 }

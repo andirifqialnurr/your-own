@@ -189,6 +189,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Close'**
   String get close;
+
+  /// No description provided for @navToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get navToday;
+
+  /// No description provided for @navProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get navProgress;
+
+  /// No description provided for @navCircle.
+  ///
+  /// In en, this message translates to:
+  /// **'Circle'**
+  String get navCircle;
+
+  /// No description provided for @navYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get navYou;
+
+  /// No description provided for @primaryNavigation.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary navigation'**
+  String get primaryNavigation;
+
+  /// No description provided for @navigationScrollHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll to reach all destinations.'**
+  String get navigationScrollHint;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your settings'**
+  String get settingsTitle;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @messagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get messagesTitle;
+
+  /// No description provided for @messagesEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages (unavailable)'**
+  String get messagesEntry;
+
+  /// No description provided for @messagesUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Messaging and unread status are not available in this development setup.'**
+  String get messagesUnavailable;
+
+  /// No description provided for @progressUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal summaries are not available in this development setup.'**
+  String get progressUnavailable;
+
+  /// No description provided for @circleUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Social sharing is not available in this development setup.'**
+  String get circleUnavailable;
+
+  /// No description provided for @routeUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Page unavailable'**
+  String get routeUnavailable;
+
+  /// No description provided for @routeUnavailableDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This page is not available in this development setup. No records were loaded.'**
+  String get routeUnavailableDescription;
 }
 
 class _AppLocalizationsDelegate

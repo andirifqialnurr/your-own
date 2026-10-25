@@ -1,7 +1,7 @@
 # Your Own — Cross-Platform Design System
 
-- **Version:** 0.8
-- **Status:** Standalone design specification; initial Flutter tokens/appearance implemented and host-tested, full components/adaptive/native visual-accessibility validation pending
+- **Version:** 0.9
+- **Status:** Standalone design specification; initial Flutter tokens/appearance/adaptive shell implemented and host-tested; full components and native visual-accessibility validation pending
 - **Applies to:** Flutter mobile, Next.js user web, separate Next.js admin, and generated progress posters
 - **Accepted icon/chart direction:** [Decision 0002](decisions/0002-rounded-icons-and-chart-rendering.md) and [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md); Hugeicons Free Stroke Rounded, ApexCharts for user web on integration hold pending licensing clarification, native/custom Flutter charts where needed
 - **Design provenance:** Initially informed by an Awesomic-inspired light-style reference; adopted values, adaptations, and rationale are recorded here. This is Your Own's system, not an official third-party component library.
@@ -11,7 +11,7 @@ This document is the standalone source of truth for Your Own's design system and
 
 Light/dark palettes, typography, geometry, component states, adaptive behavior, accessibility requirements, and product workflows are specified below. **System / Light / Dark** appearance is required; System is the proposed default. Exact token values are implementation candidates, not shipped components or an accessibility certification.
 
-**Implementation checkpoint:** [M01-T05](mobile-appearance-foundation.md) adds `design/tokens.json`, its generated Flutter adapter, bundled DM Sans and the local appearance selector. This foundation subset does not complete the full catalog, native/system-bar/persistence checks, web/admin or poster rendering. Token contrast tests are not full accessibility certification.
+**Implementation checkpoint:** [M01-T05](mobile-appearance-foundation.md) adds `design/tokens.json`, its generated Flutter adapter, bundled DM Sans and the local appearance selector. This foundation subset does not complete the full catalog, native/system-bar/persistence checks, web/admin or poster rendering. Token contrast tests are not full accessibility certification. [M01-T06](mobile-adaptive-shell.md) implements the shared width/height policy, stable branch layout, bounded pages and four Free Stroke Rounded navigation aliases. Rail labels are measured with current text scaling; compact navigation scrolls deliberately with a visible scrollbar/semantic hint, and sidebar labels wrap. Full icon coverage/catalog and native visual review remain pending.
 
 **Reference retirement:** The original root `DESIGN.md` is no longer required and can be deleted. Its adopted guidance and the rationale for departures have been incorporated here; implementation and documentation navigation must not depend on that file. Historical comparisons below are explanatory, not instructions to consult another specification.
 

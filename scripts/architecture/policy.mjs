@@ -67,6 +67,8 @@ export function edgeViolation(language, source, specifier, apiPackages = new Set
     if (specifier.startsWith('dart:')) return !isUi || dartPure.has(specifier) || specifier === 'dart:ui' ? null : 'presentation must not perform direct I/O';
     const packageName = /^package:([a-z_][a-z_0-9]*)\//.exec(specifier)?.[1];
     if (!packageName) return 'unsupported dependency URI scheme';
+    if (packageName === 'hugeicons') return source === 'shared_ui/icons/app_icon.dart' ? null : 'Hugeicons must go through the owned AppIcon adapter';
+    if (packageName === 'go_router') return source.startsWith('app/') ? null : 'router integration belongs in app composition; inject feature callbacks';
     return !isUi || uiPackages.has(packageName) ? null : 'presentation package needs review; keep transport/storage in data adapters';
   }
   if (target === '..' || target.startsWith('../') || path.posix.isAbsolute(target)) return 'dependency escapes this application source root';

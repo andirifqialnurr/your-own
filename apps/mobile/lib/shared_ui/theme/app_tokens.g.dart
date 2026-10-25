@@ -28,6 +28,13 @@ abstract final class AppTokens {
   static const double focusOffset = 2;
   static const double motionFastMs = 120;
   static const double motionStandardMs = 180;
+  static const double windowMedium = 600;
+  static const double windowLarge = 840;
+  static const double windowLargest = 1200;
+  static const double shortHeight = 480;
+  static const double railWidth = 80;
+  static const double sidebarWidth = 240;
+  static const double navigationIconSize = 24;
 
   static const textTheme = TextTheme(
     displayLarge: TextStyle(

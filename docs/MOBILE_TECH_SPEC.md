@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.13
+- **Version:** 0.14
 - **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -82,7 +82,7 @@ Use one primary solution per concern. Do not combine Riverpod, Bloc, and GetX si
 | Routing | `go_router` | Auth-aware routes, deep links, nested navigation, adaptive list/detail destinations |
 | Local persistence | `drift`, `drift_dev`, supported SQLite driver | Typed queries, transactions, migrations, reactive personal data; not automatic cloud sync |
 | HTTP | `dio` | Authenticated API calls, timeouts, cancellation, structured failures |
-| Icons | Hugeicons Free Stroke Rounded; first-party `hugeicons` package direction | Selected family, pins pending; SVG-backed artwork behind owned semantic adapter, no built-in glyph fallback |
+| Icons | Hugeicons Free Stroke Rounded; first-party `hugeicons` package direction | Local T06 pin 1.2.0 for four navigation symbols; full coverage/native/distribution checks pending. SVG-backed owned adapter, no built-in glyph fallback |
 | API serialization | `json_annotation`, `json_serializable`, OpenAPI-generated client where suitable | DTOs and contract alignment; generated transport models stay out of domain/UI APIs |
 | Generation | `build_runner` | Drift and serialization generation; generated files are not manually edited |
 | Models | Immutable Dart classes, sealed states, enums | Domain invariants; add `freezed` only where its value justifies another generator |
@@ -191,7 +191,7 @@ Durable outbox and synchronization coordinator
 
 ## 5. Proposed project structure
 
-The initial [mobile scaffold](../apps/mobile/README.md) now exists at `apps/mobile/` under [Decision 0012](cookbook/decisions/0012-local-development-bootstrap.md), using installed Flutter 3.38.9 / Dart 3.10.8 for local development. The [appearance foundation](cookbook/mobile-appearance-foundation.md) adds semantic themes, bundled DM Sans and a single non-sensitive local preference. The larger feature map below remains a proposal; no personal-record storage, identity, network client or tracking feature is implemented. Host tests are not native preference, Android/iOS/iPad or release validation.
+The initial [mobile scaffold](../apps/mobile/README.md) now exists at `apps/mobile/` under [Decision 0012](cookbook/decisions/0012-local-development-bootstrap.md), using installed Flutter 3.38.9 / Dart 3.10.8 for local development. The [appearance foundation](cookbook/mobile-appearance-foundation.md) adds semantic themes, bundled DM Sans and a single non-sensitive local preference. The [adaptive shell](cookbook/mobile-adaptive-shell.md) adds locally pinned `go_router 17.5.0`, a four-symbol `hugeicons 1.2.0` adapter and retained navigation. The larger feature map below remains a proposal; no personal-record storage, identity, network client or tracking feature is implemented. Host tests are not native preference, Android/iOS/iPad or release validation.
 
 ```text
 apps/mobile/
@@ -289,6 +289,8 @@ On logout/account switch, dispose user-scoped providers, sockets, image caches, 
 ### 7.1 Navigation shell
 
 Use go_router with a state-preserving shell for the proposed destinations Today, Progress, Circle, and You. Messaging has a visible entry point; exact placement remains a design choice.
+
+**Local checkpoint:** T06 implements `/today`, `/progress`, `/circle`, `/you` plus an explicitly unavailable `/messages` page and neutral fallback. You hosts appearance settings; other product functions remain placeholders. Messages is visibly linked from Circle, with unread status explicitly unavailable rather than a fabricated zero. The app owns one router and retains branch navigators in stable layout slots. See the [current route/test map](../apps/mobile/README.md#entry-points-and-boundaries). Native links, auth guards, domain detail panes and process-death restoration are not implemented.
 
 Compact and expanded navigation must use the same logical route state. Rebuilding the shell at a breakpoint must not create duplicate navigators, repeated API writes, or a second timer.
 

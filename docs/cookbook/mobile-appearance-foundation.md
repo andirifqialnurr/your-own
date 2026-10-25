@@ -92,3 +92,5 @@ The local review/checkpoint files are at `C:/Users/HP/AppData/Local/Temp/your-ow
 M01-T05 stays **unchecked: Implemented, host verified, native pending**. Before claiming full completion, build the actual adapters with the selected toolchain; verify restart persistence for each choice, OS changes while running/resuming, native launch-screen transitions and status/navigation-bar contrast (including Android edge-to-edge). Check real keyboard/TalkBack/VoiceOver, large text and applicable tablet/iPad windows. Re-run state/privacy cases with actual feature state when those features exist.
 
 No device/Mac access is invented and the deferred hardware inventory is not restarted. On a subsequent bounded continuation, the next local coding slice is **M01-T06 — adaptive shell and route state**; it is not started here. T03, M00 and full release gates remain open.
+
+**Subsequent continuation:** The owner later requested per-task commits/pushes; T05 was published as `983de74`. [T06's adaptive checkpoint](mobile-adaptive-shell.md) now records the next implemented slice. The results and no-commit statement above describe the original T05 checkpoint, not the later publication.

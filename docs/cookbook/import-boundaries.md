@@ -23,7 +23,7 @@
 | API composition | `.module.ts` composition files may import `<name>.module.ts` or `<name>.http.module.ts`, not another module's controller/service. Worker composition must not import an HTTP module entry |
 | API internal direction | Application must not import transport/infrastructure; transport must not import its concrete infrastructure directly |
 | Flutter internal direction | Presentation must not import data; data must not import presentation. UI may use pure core-domain contracts, not core infrastructure; direct I/O/transport/storage packages are rejected |
-| UI packages | Flutter, Flutter localizations and intl only for now; new state/router/icon packages require an explicit policy update alongside their reviewed dependency addition |
+| UI packages | Flutter, Flutter localizations and intl; T06 additionally permits `go_router` only in `app/` composition and `hugeicons` only in `shared_ui/icons/app_icon.dart`. Features receive callbacks/semantic aliases, not vendor imports. Further packages need review and explicit policy changes. |
 | Shared code | Cannot import feature code or application composition. Application composition can wire its owned feature implementations |
 | Application isolation | Relative and self-package imports may not escape `src/` or `lib/`. Encoded/query/fragment/backslash URIs and unrecognized source extensions are rejected |
 
@@ -54,7 +54,9 @@ This is a static architecture guard, **not a security sandbox or proof of runtim
 
 ## Current regression checkpoint — 2026-10-25 UTC
 
-T05 adds eight explicit preference/theme ownership cases: **80 boundary tests** pass, with **24 source files / 66 dependency directives** scanned. Its dependency/asset changes and 51 Flutter host tests are recorded separately in the [appearance report](mobile-appearance-foundation.md); the original policy is unchanged.
+T05 adds eight explicit preference/theme ownership cases: **80 boundary tests** pass, with **24 source files / 66 dependency directives** scanned. Its dependency/asset changes and 51 Flutter host tests are recorded separately in the [appearance report](mobile-appearance-foundation.md); the original policy is unchanged at that checkpoint.
+
+[T06](mobile-adaptive-shell.md) subsequently adds the two narrowly scoped router/icon rules above and eight regression cases (two permitted, six rejected). **88 boundary tests** pass; **31 source files / 101 dependency directives** are scanned. Domain/presentation/shared-UI restrictions remain; this static guard is still not a runtime/security sandbox.
 
 ## Verification — 2026-10-24 UTC
 

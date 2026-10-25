@@ -15,6 +15,7 @@ import 'package:your_own/shared_ui/theme/app_tokens.g.dart';
 
 import 'support/appearance_store.dart';
 import 'support/load_fonts.dart';
+import 'support/navigation.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -169,12 +170,17 @@ void main() {
     addTearDown(tester.view.reset);
     final appearance = await _mount(tester, FakeAppearanceStore());
     await tester.drag(
-      find.byType(SingleChildScrollView),
+      find.byKey(const PageStorageKey('setup-scroll')),
       const Offset(0, -250),
     );
     await tester.pumpAndSettle();
     final element = tester.element(find.byType(SetupScreen));
-    final scroll = tester.state<ScrollableState>(find.byType(Scrollable));
+    final scroll = tester.state<ScrollableState>(
+      find.descendant(
+        of: find.byKey(const PageStorageKey('setup-scroll')),
+        matching: find.byType(Scrollable),
+      ),
+    );
     final offset = scroll.position.pixels;
     expect(offset, greaterThan(0));
     await appearance.select(AppearancePreference.dark);
@@ -279,6 +285,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
+      await selectDestination(tester, 'you');
       await tester.ensureVisible(find.text('DM Sans license'));
       await tester.tap(find.text('DM Sans license'));
       await tester.pumpAndSettle();
@@ -307,6 +314,7 @@ Future<AppearanceController> _mount(
     ),
   );
   await tester.pumpAndSettle();
+  await selectDestination(tester, 'you');
   return appearance;
 }
 

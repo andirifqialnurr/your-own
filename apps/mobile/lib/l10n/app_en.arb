@@ -15,5 +15,20 @@
   "fontLicense": "DM Sans license",
   "licenseLoading": "Loading license…",
   "licenseError": "The bundled license could not be loaded.",
-  "close": "Close"
+  "close": "Close",
+  "navToday": "Today",
+  "navProgress": "Progress",
+  "navCircle": "Circle",
+  "navYou": "You",
+  "primaryNavigation": "Primary navigation",
+  "navigationScrollHint": "Scroll to reach all destinations.",
+  "settingsTitle": "Your settings",
+  "back": "Back",
+  "messagesTitle": "Messages",
+  "messagesEntry": "Messages (unavailable)",
+  "messagesUnavailable": "Messaging and unread status are not available in this development setup.",
+  "progressUnavailable": "Personal summaries are not available in this development setup.",
+  "circleUnavailable": "Social sharing is not available in this development setup.",
+  "routeUnavailable": "Page unavailable",
+  "routeUnavailableDescription": "This page is not available in this development setup. No records were loaded."
 }

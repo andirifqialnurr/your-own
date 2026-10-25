@@ -6,6 +6,7 @@ import 'package:your_own/core/config/app_config.dart';
 
 import 'support/appearance_store.dart';
 import 'support/load_fonts.dart';
+import 'support/navigation.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +46,7 @@ void main() {
         await tester.ensureVisible(
           find.textContaining('No personal data is stored.'),
         );
+        await selectDestination(tester, 'you');
         for (final choice in ['system', 'light', 'dark']) {
           final button = find.byKey(ValueKey('appearance-$choice'));
           await tester.ensureVisible(button);
