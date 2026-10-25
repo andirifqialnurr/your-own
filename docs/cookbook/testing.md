@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.11
+- **Version:** 0.12
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -193,6 +193,8 @@ Existing investigation budgets—mobile local acknowledgement p95 200 ms, backen
 Rehearse migrations, database restore, outbox/job/media reconciliation, identity mapping, and post-backup deletion/suspension/staff revocation recovery. Keep restored environments isolated until authorization/lifecycle state is safe. Measure actual RPO/RTO before approving targets.
 
 ## 11. CI and release gates
+
+The [M01-T09 local lane](local-verification.md) now provides `pnpm check:local` for pinned/frozen, generated-drift, documentation, formatting/lint/types, API build/unit/HTTP and Flutter widget/golden checks on the reviewed Windows host. Its 20 helper tests use isolated synthetic temp fixtures. No hosted workflow or native/macOS lane is configured; T09 remains unchecked until those applicable requirements are satisfied. Local results are not CI/native/release acceptance.
 
 | Gate | Evidence |
 |---|---|

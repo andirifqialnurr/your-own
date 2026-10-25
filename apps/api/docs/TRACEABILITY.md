@@ -13,4 +13,6 @@ This index navigates existing evidence; it does not copy or approve requirements
 | [SEC-01–SEC-12](../../../docs/cookbook/security.md#release-controls) | Full release gates pending | No complete implementation (narrow SEC-09 control above only) | [Required security strategy](../../../docs/cookbook/security.md); no production security certification follows from a health server. |
 | [PRD tracking/social/data requirements](../../../docs/PRD.md), [backend PRD mapping](../../../docs/BACKEND_TECH_SPEC.md#294-prd-traceability) | Planned V1-A/B/C | None | No raw tracking, account, Money, publishing, DM, notification or lifecycle capability exists. Health/404 tests do not fulfill those requirements. |
 
+The [T09 local verification lane](../../../docs/cookbook/local-verification.md) now automates the documented checks, without introducing a hosted/native/release pass.
+
 For each new slice add specific requirement IDs, actual code and test links, release stage, execution environment/result and unresolved manual/operational proof. Keep historical checkpoint counts dated rather than treating them as a perpetual current test total.

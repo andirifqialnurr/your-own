@@ -84,7 +84,7 @@ Names below are illustrative categories, not an existing `.env` contract:
 6. Deploy staging, migrate in a controlled step, run smoke/cross-client/security/adaptive checks.
 7. Record artifact/version/config references and approve promotion for the relevant stage.
 
-No package scripts, Dockerfile, CI workflow, or deployment command is implied to exist yet. Do not run speculative commands against production. Establish artifact retention, signing ownership, and permissions before implementing the pipeline.
+The [local host verification scripts](local-verification.md) now exist and run API build/tests plus Flutter analysis/widget checks; no Dockerfile, hosted CI workflow or deployment command is implied to exist. Do not run speculative commands against production. Establish artifact retention, signing ownership, and permissions before implementing the pipeline.
 
 ## 5. Release and migration order
 

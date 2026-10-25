@@ -12,7 +12,9 @@ These indexes link real initial files and distinguish partial host support from 
 
 ## Host setup and checks
 
-From this directory:
+From the repository root, `pnpm check:local` runs the complete current Windows host lane, including both frozen installs, actual SDK-pin checks and generated-file drift detection. Use `--offline` only with populated caches. It compares goldens without updating them; no native build or hosted CI execution occurs. See [commands, fixture isolation and macOS blockers](../../docs/cookbook/local-verification.md).
+
+Individual commands from this directory:
 
 ```bash
 flutter pub get --enforce-lockfile

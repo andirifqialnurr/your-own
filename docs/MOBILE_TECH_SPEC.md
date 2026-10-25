@@ -1027,6 +1027,8 @@ Public base URLs and public provider configuration may be build-time settings. S
 
 ### 24.2 Quality checks
 
+Current executed commands and generated/lock freshness checks live in the [local verification lane](cookbook/local-verification.md). `pnpm check:local` runs the reviewed Windows host checks only; no Android/iOS build or hosted CI pass exists. The native commands below remain illustrative future work, not runnable current production configuration.
+
 After scaffolding and dependency approval, the CI pipeline should run:
 - Formatting verification.
 - Static analysis.

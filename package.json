@@ -20,7 +20,10 @@
     "check:assets": "node scripts/check-mobile-assets.mjs",
     "test:design": "node --test scripts/design/*.test.mjs",
     "check:ui": "node scripts/check-mobile-ui.mjs",
-    "check": "pnpm tokens:check && pnpm check:assets && pnpm check:ui && pnpm test:design && pnpm test:boundaries && pnpm check:boundaries && pnpm lint && pnpm typecheck && pnpm test"
+    "check:docs": "node scripts/check-docs.mjs",
+    "test:tooling": "node --test scripts/tooling/*.test.mjs",
+    "check:local": "node scripts/check-local.mjs",
+    "check": "pnpm check:docs && pnpm test:tooling && pnpm tokens:check && pnpm check:assets && pnpm check:ui && pnpm test:design && pnpm test:boundaries && pnpm check:boundaries && pnpm lint && pnpm typecheck && pnpm test"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

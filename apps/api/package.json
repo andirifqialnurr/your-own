@@ -8,7 +8,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "start": "node --env-file-if-exists=.env dist/main.js",
     "dev": "pnpm build && pnpm start",
-    "test": "pnpm build && node --test test/*.test.mjs"
+    "test": "pnpm build && node --test --test-concurrency=1 test/*.test.mjs"
   },
   "dependencies": {
     "@nestjs/common": "12.2.0",

@@ -72,7 +72,7 @@ Confirmed: Flutter, NestJS, separate Next.js user/admin apps, a monorepo directi
 3. Inspect existing implementation and tests. Preserve unrelated user changes; no destructive reset/cleanup, history rewrite, or unrequested commit/push.
 4. Implement the smallest coherent change and the relevant tests. Do not rewrite unrelated modules or add dependencies for convenience without review.
 5. Update contracts, migrations, documentation links, route/module/component indexes, and traceability affected by the change.
-6. Run actual available checks for the affected slice and shared dependents. Use real database/device/browser checks where mocks cannot prove the behavior.
+6. Run actual available checks for the affected slice and shared dependents. The current full Windows host lane is `pnpm check:local` (optional `--offline` for populated caches); `pnpm check` alone does not run Flutter. See [local verification](docs/cookbook/local-verification.md) for generated drift handling and CI/native limitations. Use real database/device/browser checks where mocks cannot prove the behavior.
 7. Record outcome/evidence and a clear next action. A blocked or untested task stays unchecked.
 
 Generated files must be regenerated from their authoritative source using the selected toolchain, not manually patched. Recheck generated contracts, shared packages, and client compatibility after API/schema changes. Never use delete-and-recreate storage or production schema reset as a migration shortcut.
