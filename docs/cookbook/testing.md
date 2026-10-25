@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.10
+- **Version:** 0.11
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -156,6 +156,8 @@ Real push/Universal Links/iPad sharing checks need approved device/sandbox valid
 Use the full [design-system viewport matrix](design-system.md#43-mobile-tablet-and-desktop-verification-matrix) and [component contract](design-system.md#51-universal-component-contract). Flutter sizes are logical pixels; web uses CSS pixels, not raw display resolution. Test split-screen/live resize, enlarged text, supported zoom/reflow, long localized labels, pointer/keyboard, and safe/keyboard insets.
 
 Assert accessible primary actions, no unintended overflow, meaningful screen-reader navigation, focus restoration, contrast/reduced motion, calendar text alternatives, and no second timer/write on reflow. Preserve selected records, message/editor drafts, and practical scroll context.
+
+The [T07 checkpoint](mobile-shared-ui.md#verification-and-traceability) adds shared-control semantic/layout/interaction cases and [ten host golden baselines](../../apps/mobile/test/goldens/README.md). Actual font/SVG loading is awaited, not replaced with placeholders. Source/implicit-glyph checks supplement rendered controls; neither proves all future SDK defaults are safe.
 
 Use automated screenshots/goldens plus real keyboard/screen-reader/device review. Do not disable text scaling to make a test pass. Essential intentional chart/table scrolling is treated differently from broken page overflow.
 

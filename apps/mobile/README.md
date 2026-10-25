@@ -1,6 +1,6 @@
 # Your Own Mobile
 
-Flutter **3.38.9 / Dart 3.10.8**, using the existing laptop SDK. This is a localized adaptive development shell with DM Sans, semantic zinc themes, System/Light/Dark selection and four Hugeicons Free Stroke Rounded navigation symbols. Only a non-sensitive appearance preference is stored; there is no account, network client or personal-record database—not a finished tracker.
+Flutter **3.38.9 / Dart 3.10.8**, using the existing laptop SDK. This is a localized adaptive development shell with DM Sans, semantic zinc themes, System/Light/Dark selection and an owned Hugeicons Free Stroke Rounded adapter (28 core aliases, four used in primary navigation). Only a non-sensitive appearance preference is stored; there is no account, network client or personal-record database—not a finished tracker.
 
 ## Host setup and checks
 
@@ -44,13 +44,16 @@ The preference adapter's Android source declares AGP 8.13.1/Kotlin 2.3.0, wherea
 | `lib/core/preferences/shared_preferences_appearance_store.dart` | Single-key non-sensitive preference adapter |
 | `lib/app/router/`, `lib/app/shell/` | Stateful branch composition and adaptive navigation; no feature/domain services |
 | `lib/shared_ui/layout/` | Usable-window policy and bounded scrollable content |
-| `lib/shared_ui/icons/app_icon.dart` | Only vendor-icon import; four closed semantic navigation aliases |
+| `lib/shared_ui/icons/app_icon.dart` | Only vendor-icon import; 28 closed semantic aliases and directional mirroring |
+| `lib/shared_ui/controls/`, `surfaces/`, `feedback/`, `overlays/` | First shared buttons/fields/cards/status/dialogs; no storage or service ownership |
+| `lib/app/catalog/catalog_screen.dart` | Debug-only, in-memory synthetic catalog; guarded simulation/confirmation examples |
 | `lib/shared_ui/theme/` | Generated semantic tokens, ThemeData, focus outline and bundled-font license dialog |
 | `assets/fonts/` | DM Sans, full OFL and reviewed provenance |
 | `lib/features/setup/presentation/setup_screen.dart` | Settings/appearance presentation under You; no storage/network access |
 | `lib/l10n/app_en.arb` | Authoritative English strings |
 | `lib/l10n/generated/` | Generated with `flutter gen-l10n`; do not hand-edit |
 | `test/adaptive_shell_test.dart`, `test/layout_policy_test.dart`, `test/app_icon_test.dart` | Breakpoints, insets, 19 viewport cases, both themes/100–200% text, keyboard/focus, stateful history/Back and icon mapping |
+| `test/shared_ui_test.dart`, `test/catalog_golden_test.dart`, `test/goldens/` | Component semantics, 200% text, clipboard/modal/focus/reflow behavior and ten reviewed host images |
 | `test/config_test.dart` | Development configuration and blocked deployment entry points |
 | `test/app_test.dart` | Five window sizes, both themes, actual DM Sans, 200% text and reachable 48-unit targets |
 | `test/appearance_*_test.dart`, `test/theme_test.dart` | Preference/adapter failures, OS precedence, keyboard/semantics, state retention, contrast and font/license checks |
@@ -67,10 +70,13 @@ The [T06 adaptive report](../../docs/cookbook/mobile-adaptive-shell.md) records 
 | `/you` | Working appearance settings and font notice |
 | `/messages` | Explicitly unavailable messaging/unread status; safe Back |
 | `/unavailable`, unmatched routes | Neutral page, no input/record details echoed |
+| `/dev/catalog` (debug only) | Synthetic shared UI catalog, linked from You |
 
 External-looking/query/fragment routes are rejected to the neutral page. This is not authenticated deep-link support; no native link registrations, session guards, public URL contracts or message service exist. No fake unread count is shown. Navigation state is session-only, not process-death restoration or encrypted draft persistence. Domain flows and master/detail panels remain later work.
 
-The full component/icon catalog (T07), charts, auth and encrypted personal storage remain later work. Material layout primitives do not authorize Material icon artwork. No runtime font download or starter glyph is used.
+The [first shared UI catalog (T07)](../../docs/cookbook/mobile-shared-ui.md) is available at **You → UI development catalog** in debug builds only. Its **Actions / Fields / Feedback / Icons** sections use synthetic fixtures, with no domain request or persistence. `AppButton.busy` is controlled presentation: callers still own synchronous submission guards and outcome handling. The plain-text field is not a Money/password parser. See [visual baseline instructions and notices](test/goldens/README.md); normal `flutter test` compares images, and deliberate regeneration requires inspection followed by a normal repeat. `flutter_svg 2.3.0`, already used by Hugeicons, is directly pinned for test loader synchronization without changing any resolved version/hash. Run root `pnpm check:ui` for the conservative artwork guard.
+
+The remaining product component/icon inventory, charts, auth and encrypted personal storage remain later work. Material layout primitives do not authorize Material icon artwork. No runtime font download or starter glyph is used.
 
 Widget checks run on the Windows Flutter test host. They do not establish Android/iOS/iPad lifecycle, device accessibility, encryption or release readiness.
 

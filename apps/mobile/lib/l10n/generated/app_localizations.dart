@@ -268,6 +268,258 @@ abstract class AppLocalizations {
   /// **'Social sharing is not available in this development setup.'**
   String get circleUnavailable;
 
+  /// No description provided for @catalogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'UI development catalog'**
+  String get catalogTitle;
+
+  /// No description provided for @catalogNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Synthetic examples only. No records, requests or messages are saved or sent.'**
+  String get catalogNotice;
+
+  /// No description provided for @catalogActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get catalogActions;
+
+  /// No description provided for @catalogFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Fields'**
+  String get catalogFields;
+
+  /// No description provided for @catalogFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get catalogFeedback;
+
+  /// No description provided for @catalogIcons.
+  ///
+  /// In en, this message translates to:
+  /// **'Icons'**
+  String get catalogIcons;
+
+  /// No description provided for @catalogPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary action'**
+  String get catalogPrimary;
+
+  /// No description provided for @catalogSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'Secondary action'**
+  String get catalogSecondary;
+
+  /// No description provided for @catalogGhost.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet action'**
+  String get catalogGhost;
+
+  /// No description provided for @catalogDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable action'**
+  String get catalogDisabled;
+
+  /// No description provided for @catalogBusy.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulated saving…'**
+  String get catalogBusy;
+
+  /// No description provided for @catalogSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected choice'**
+  String get catalogSelected;
+
+  /// No description provided for @catalogHover.
+  ///
+  /// In en, this message translates to:
+  /// **'Hover preview'**
+  String get catalogHover;
+
+  /// No description provided for @catalogPressed.
+  ///
+  /// In en, this message translates to:
+  /// **'Pressed preview'**
+  String get catalogPressed;
+
+  /// No description provided for @catalogFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Keyboard focus example'**
+  String get catalogFocus;
+
+  /// No description provided for @catalogNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Example note (required)'**
+  String get catalogNote;
+
+  /// No description provided for @catalogHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Use synthetic text only. This input is kept only while this page is open.'**
+  String get catalogHelper;
+
+  /// No description provided for @catalogRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a synthetic note before continuing.'**
+  String get catalogRequired;
+
+  /// No description provided for @catalogFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulated failure. Your draft is unchanged; you can retry.'**
+  String get catalogFailure;
+
+  /// No description provided for @catalogSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulate save'**
+  String get catalogSave;
+
+  /// No description provided for @catalogAttempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulation attempts: {count}'**
+  String catalogAttempts(int count);
+
+  /// No description provided for @catalogReadonly.
+  ///
+  /// In en, this message translates to:
+  /// **'Read-only example'**
+  String get catalogReadonly;
+
+  /// No description provided for @catalogReadonlyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'This value can be selected and copied, but not edited.'**
+  String get catalogReadonlyHint;
+
+  /// No description provided for @catalogDisabledField.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled example'**
+  String get catalogDisabledField;
+
+  /// No description provided for @catalogInvalidField.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid example'**
+  String get catalogInvalidField;
+
+  /// No description provided for @catalogSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Synthetic example'**
+  String get catalogSample;
+
+  /// No description provided for @catalogCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Static card'**
+  String get catalogCardTitle;
+
+  /// No description provided for @catalogCardBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This surface is not a button. Its content wraps without stretching across a large window.'**
+  String get catalogCardBody;
+
+  /// No description provided for @catalogLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading example'**
+  String get catalogLoading;
+
+  /// No description provided for @catalogLoadingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown duration is not a percentage. This static indicator also respects reduced motion.'**
+  String get catalogLoadingBody;
+
+  /// No description provided for @catalogEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet'**
+  String get catalogEmpty;
+
+  /// No description provided for @catalogEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No synthetic items have been added. This is not a zero-valued personal summary.'**
+  String get catalogEmptyBody;
+
+  /// No description provided for @catalogError.
+  ///
+  /// In en, this message translates to:
+  /// **'Example error'**
+  String get catalogError;
+
+  /// No description provided for @catalogUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable example'**
+  String get catalogUnavailable;
+
+  /// No description provided for @catalogUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is not available. No permission or service is implied.'**
+  String get catalogUnavailableBody;
+
+  /// No description provided for @catalogDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Open confirmation example'**
+  String get catalogDialog;
+
+  /// No description provided for @catalogDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm the example?'**
+  String get catalogDialogTitle;
+
+  /// No description provided for @catalogDialogBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This only demonstrates a dialog. Confirming does not delete, publish or save anything.'**
+  String get catalogDialogBody;
+
+  /// No description provided for @catalogCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get catalogCancel;
+
+  /// No description provided for @catalogConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm example'**
+  String get catalogConfirm;
+
+  /// No description provided for @catalogConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Example confirmed. No data changed.'**
+  String get catalogConfirmed;
+
+  /// No description provided for @catalogCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Example cancelled. No data changed.'**
+  String get catalogCancelled;
+
   /// No description provided for @routeUnavailable.
   ///
   /// In en, this message translates to:

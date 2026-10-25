@@ -58,6 +58,8 @@ T05 adds eight explicit preference/theme ownership cases: **80 boundary tests** 
 
 [T06](mobile-adaptive-shell.md) subsequently adds the two narrowly scoped router/icon rules above and eight regression cases (two permitted, six rejected). **88 boundary tests** pass; **31 source files / 101 dependency directives** are scanned. Domain/presentation/shared-UI restrictions remain; this static guard is still not a runtime/security sandbox.
 
+[T07](mobile-shared-ui.md) retains that policy unchanged: the shared primitives import no app/features/services, and the synthetic catalog is app composition. The current scan is **37 source files / 131 dependency directives**, with all **88 boundary tests** passing. A separate conservative artwork guard supplements, rather than replaces, ownership checks.
+
 ## Verification — 2026-10-24 UTC
 
 All **72 boundary tests** pass, including actual CLI pass/fail exit controls in isolated synthetic fixtures. The local source scan passes for **16 source files / 36 dependency references**. Existing strict lint/types/build, **19 API tests** (including the ten unchanged Multer regression areas) and **12 Flutter host tests** pass after the ownership refactor. Formatting reports ten owned Dart files unchanged. No dependencies, lockfile, SDK, provider, database, Docker service or native target was added. Native build/access work remains pending in T03; M00 and release gates remain open.

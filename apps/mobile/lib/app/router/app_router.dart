@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -5,6 +6,7 @@ import '../../features/setup/presentation/foundation_page.dart';
 import '../../features/setup/presentation/setup_screen.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../appearance/appearance_controller.dart';
+import '../catalog/catalog_screen.dart';
 import '../shell/app_shell.dart';
 import 'app_destination.dart';
 
@@ -27,6 +29,23 @@ GoRouter createAppRouter(
   errorPageBuilder: (context, state) =>
       NoTransitionPage<void>(key: state.pageKey, child: _unavailable(context)),
   routes: [
+    if (kDebugMode)
+      GoRoute(
+        path: '/dev/catalog',
+        pageBuilder: (context, state) => NoTransitionPage<void>(
+          key: state.pageKey,
+          child: CatalogScreen(
+            onBack: () {
+              final router = GoRouter.of(context);
+              if (router.canPop()) {
+                router.pop();
+              } else {
+                router.go(AppDestination.you.path);
+              }
+            },
+          ),
+        ),
+      ),
     GoRoute(
       path: '/unavailable',
       pageBuilder: (context, state) => NoTransitionPage<void>(
@@ -102,6 +121,11 @@ GoRouter createAppRouter(
                               storageError: appearance.storageError,
                               onPreferenceChanged: appearance.select,
                               onRetry: appearance.retry,
+                              onOpenCatalog: kDebugMode
+                                  ? () => GoRouter.of(
+                                      context,
+                                    ).push('/dev/catalog')
+                                  : null,
                             );
                           }
                           return FoundationPage(

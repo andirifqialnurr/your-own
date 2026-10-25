@@ -1,6 +1,6 @@
 # Your Own — Cross-Platform Design System
 
-- **Version:** 0.9
+- **Version:** 0.10
 - **Status:** Standalone design specification; initial Flutter tokens/appearance/adaptive shell implemented and host-tested; full components and native visual-accessibility validation pending
 - **Applies to:** Flutter mobile, Next.js user web, separate Next.js admin, and generated progress posters
 - **Accepted icon/chart direction:** [Decision 0002](decisions/0002-rounded-icons-and-chart-rendering.md) and [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md); Hugeicons Free Stroke Rounded, ApexCharts for user web on integration hold pending licensing clarification, native/custom Flutter charts where needed
@@ -11,7 +11,7 @@ This document is the standalone source of truth for Your Own's design system and
 
 Light/dark palettes, typography, geometry, component states, adaptive behavior, accessibility requirements, and product workflows are specified below. **System / Light / Dark** appearance is required; System is the proposed default. Exact token values are implementation candidates, not shipped components or an accessibility certification.
 
-**Implementation checkpoint:** [M01-T05](mobile-appearance-foundation.md) adds `design/tokens.json`, its generated Flutter adapter, bundled DM Sans and the local appearance selector. This foundation subset does not complete the full catalog, native/system-bar/persistence checks, web/admin or poster rendering. Token contrast tests are not full accessibility certification. [M01-T06](mobile-adaptive-shell.md) implements the shared width/height policy, stable branch layout, bounded pages and four Free Stroke Rounded navigation aliases. Rail labels are measured with current text scaling; compact navigation scrolls deliberately with a visible scrollbar/semantic hint, and sidebar labels wrap. Full icon coverage/catalog and native visual review remain pending.
+**Implementation checkpoint:** [M01-T05](mobile-appearance-foundation.md) adds `design/tokens.json`, its generated Flutter adapter, bundled DM Sans and the local appearance selector. This foundation subset does not complete the full catalog, native/system-bar/persistence checks, web/admin or poster rendering. Token contrast tests are not full accessibility certification. [M01-T06](mobile-adaptive-shell.md) implements the shared width/height policy, stable branch layout, bounded pages and four Free Stroke Rounded navigation aliases. Rail labels are measured with current text scaling; compact navigation scrolls deliberately with a visible scrollbar/semantic hint, and sidebar labels wrap. [M01-T07](mobile-shared-ui.md) subsequently adds the first shared controls/surfaces/dialogs, 28 semantic aliases and a synthetic development catalog with ten reviewed host goldens. Full product icon/component coverage and native visual review remain pending.
 
 **Reference retirement:** The original root `DESIGN.md` is no longer required and can be deleted. Its adopted guidance and the rationale for departures have been incorporated here; implementation and documentation navigation must not depend on that file. Historical comparisons below are explanatory, not instructions to consult another specification.
 
@@ -427,7 +427,7 @@ Automatic rotating keywords, auto-advancing carousels, and newsletter/email-capt
 
 ### 5.6 Rounded icon system
 
-Use **Hugeicons Free — Stroke Rounded only**, selected in Decision 0004 across mobile, user web, admin and icon-bearing poster templates. “Rounded” describes the glyph contours, caps and joins, not only its container. The [static review](toolchain-review.md#5-rounded-icons--selected-family-and-coverage-evidence) supports the family choice, not full visual/coverage or distribution-notice verification. First-party Flutter/React package pins and semantic adapter implementations remain unverified; no Pro packs or mixed-style/family fallbacks.
+Use **Hugeicons Free — Stroke Rounded only**, selected in Decision 0004 across mobile, user web, admin and icon-bearing poster templates. “Rounded” describes the glyph contours, caps and joins, not only its container. The [static review](toolchain-review.md#5-rounded-icons--selected-family-and-coverage-evidence) supports the family choice, not full visual/coverage or distribution-notice verification. Flutter's local `hugeicons 1.2.0` adapter now has 28 core aliases and host contact-sheet checks; React, full product/native coverage and final distribution/poster checks remain unverified. No Pro packs or mixed-style/family fallbacks.
 
 - Cover mode identities, navigation, back/close/menu/chevrons, capture/edit/delete, privacy, sync/status, social/messaging, settings and staff workflows in one visual family. Audit implicit picker/dialog/menu/component icons too.
 - Do not use Material Icons/Material Symbols, including Rounded variants, or Flutter's built-in Material/Cupertino icon sets for app-owned iconography. Next.js has no built-in icon family; replace icons copied from starters/shadcn or supplied by component defaults rather than accepting them automatically.

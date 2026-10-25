@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.14
+- **Version:** 0.15
 - **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -82,7 +82,7 @@ Use one primary solution per concern. Do not combine Riverpod, Bloc, and GetX si
 | Routing | `go_router` | Auth-aware routes, deep links, nested navigation, adaptive list/detail destinations |
 | Local persistence | `drift`, `drift_dev`, supported SQLite driver | Typed queries, transactions, migrations, reactive personal data; not automatic cloud sync |
 | HTTP | `dio` | Authenticated API calls, timeouts, cancellation, structured failures |
-| Icons | Hugeicons Free Stroke Rounded; first-party `hugeicons` package direction | Local T06 pin 1.2.0 for four navigation symbols; full coverage/native/distribution checks pending. SVG-backed owned adapter, no built-in glyph fallback |
+| Icons | Hugeicons Free Stroke Rounded; first-party `hugeicons` package direction | Local pin 1.2.0; T07 adds 28 core aliases and a synthetic catalog. Full product/native/distribution checks pending. SVG-backed owned adapter, no built-in glyph fallback |
 | API serialization | `json_annotation`, `json_serializable`, OpenAPI-generated client where suitable | DTOs and contract alignment; generated transport models stay out of domain/UI APIs |
 | Generation | `build_runner` | Drift and serialization generation; generated files are not manually edited |
 | Models | Immutable Dart classes, sealed states, enums | Domain invariants; add `freezed` only where its value justifies another generator |
@@ -399,6 +399,8 @@ Use Flutter theming/ThemeExtension-style tokens for semantic colors, typography,
 Implement the [Your Own design system and component contracts](cookbook/design-system.md), including the zinc-neutral palette, rounded geometry, single-font policy, and light/dark themes. System / Light / Dark appearance is required by PRD NFR-09; default System, persist the local choice, and preserve drafts, timers, focus, and privacy on change. Use explicit light/dark semantic tokens across all widgets, overlays, charts, and states rather than a seeded palette or scattered hardcoded colors.
 
 Bundle approved fonts/assets where practical rather than requiring runtime font downloads for basic rendering. Review licenses.
+
+**Local T07 checkpoint:** [Shared primitives/catalog](cookbook/mobile-shared-ui.md) now implement buttons, plain-text fields, cards, status panels, adaptive dialogs and 28 rounded icon aliases. `/dev/catalog` and its You entry are `kDebugMode`-guarded; synthetic state never reaches a service/store. Widget/semantic checks and ten Windows-host goldens pass. This is not the complete product inventory, native accessibility/IME evidence or a release-artifact audit.
 
 Follow the [rounded icon contract](cookbook/design-system.md#56-rounded-icon-system) and [chart rendering contract](cookbook/design-system.md#73-chart-rendering-and-platform-ownership). Material widget primitives may still provide behavior, but back/close/picker/menu and other app-owned glyphs must come from the chosen icon family. Native OS share sheets/keyboards retain their system artwork.
 

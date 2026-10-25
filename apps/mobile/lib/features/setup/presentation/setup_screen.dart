@@ -15,6 +15,7 @@ class SetupScreen extends StatelessWidget {
     required this.storageError,
     required this.onPreferenceChanged,
     required this.onRetry,
+    this.onOpenCatalog,
     super.key,
   });
 
@@ -23,6 +24,7 @@ class SetupScreen extends StatelessWidget {
   final bool storageError;
   final ValueChanged<AppearancePreference> onPreferenceChanged;
   final VoidCallback onRetry;
+  final VoidCallback? onOpenCatalog;
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +117,13 @@ class SetupScreen extends StatelessWidget {
               child: Text(strings.fontLicense),
             ),
           ),
+          if (onOpenCatalog != null)
+            AppFocusOutline(
+              child: TextButton(
+                onPressed: onOpenCatalog,
+                child: Text(strings.catalogTitle),
+              ),
+            ),
         ],
       ),
     );

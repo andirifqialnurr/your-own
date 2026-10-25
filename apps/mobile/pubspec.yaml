@@ -21,6 +21,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: 6.0.0
+  # Already resolved via hugeicons; await actual SVG loads in visual tests.
+  flutter_svg: 2.3.0
 
 flutter:
   generate: true

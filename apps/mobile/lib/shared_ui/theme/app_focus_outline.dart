@@ -25,7 +25,8 @@ class _AppFocusOutlineState extends State<AppFocusOutline> {
       child: Container(
         padding: const EdgeInsets.all(AppTokens.focusOffset),
         decoration: BoxDecoration(
-          color: colors.canvas,
+          // The focus gap inherits its actual parent surface (including cards).
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(
             AppTokens.radiusControl +
                 AppTokens.focusWidth +
