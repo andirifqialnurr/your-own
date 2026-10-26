@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.8
+- **Version:** 0.9
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -134,6 +134,8 @@ A release of V1-A alone is a limited release, not the complete social product. E
 | Operations | Docker, managed database/storage, CI/CD | Persistent services with explicit lifecycle, health, migrations, backups |
 
 ### Selection rules
+
+The [2026-10-26 M00-T06 review](cookbook/provider-baseline-review.md) prepares the PostgreSQL/Prisma and Supabase Auth/private Storage directions for owner decision. It records broad quickstart-role, direct-data exposure, JWT/logout, server-only BFF, SMTP and object-backup limitations. All provider/ORM/session/hosting selections remain pending; no exact dependency or resource is adopted by that review.
 
 - Commit lockfiles and runtime pins only after compatibility review, explicit final-pin approval and scaffold authorization, not speculative version numbers in this document.
 - [Decision 0010](cookbook/decisions/0010-conditional-dependency-exceptions.md) permits conditional eligibility of only `@nestjs/platform-express@12.2.0>multer: 2.5.0` for a later approved baseline, with owner/30-day review, fresh graph/security/notice checks, regressions and safe removal. It does not select a production adapter/version, approve installation or waive real Nest upload integration/limit tests; prefer a separately reviewed upstream-fixed adapter when available.

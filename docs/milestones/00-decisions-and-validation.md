@@ -1,6 +1,6 @@
 # M00 — Decisions, Audit, and Validation
 
-- **Status:** In progress — M00-T01 through M00-T03 Verified; T04/T05 remain blocked/open and paused during owner-authorized local bootstrap; all remaining M00 tasks unchecked
+- **Status:** In progress — T01–T03 Verified; T06 provider review prepared, blocked awaiting owner choices under Decision 0012; T04/T05 and all remaining M00 tasks stay open/unchecked
 - **Depends on:** None
 - **Next:** [M01](01-foundations.md) initial local setup is now authorized by Decision 0012; full baseline/native/release acceptance remains open
 - **Targets:** Approved decision records and disposable spike evidence, not production application scaffolding
@@ -164,6 +164,10 @@ Nine official text responses and two retained Xcode-page transport failures are 
 
 **Later owner direction:** [Decision 0012](../cookbook/decisions/0012-local-development-bootstrap.md) replaces further host investigation as the next action with local API/mobile setup using installed tools. The proposed WHPX/GPU read is not performed. T05, target/budget acceptance and physical/native proof remain open; unavailable phone/Mac details need not be requested again to write the initial code.
 
+## M00-T06 — Infrastructure and provider review
+
+The owner's 2026-10-26 continuation after T10 permits bounded decision preparation before full T04/T05/M01 acceptance, as recorded in [Decision 0012](../cookbook/decisions/0012-local-development-bootstrap.md#provider-baseline-review-continuation). The [review and acceptance register](../cookbook/provider-baseline-review.md) is now prepared: seven official documents reviewed, with recommendations and explicit DB role, JWT/logout, server-only BFF, SMTP and object-backup limitations. T06 is **Blocked awaiting owner choices / unchecked**; PostgreSQL/Prisma, Supabase identity/private storage, session storage and hosted topology remain proposals, not accepted providers. No resource, credential, account, container, database or M02 implementation is created by this review.
+
 ## M00-T14 — Limited local go, full baseline pending
 
 The owner explicitly requested “mulai saja dari setupnya dulu” and use of the existing laptop, with Docker permitted if needed. Decision 0012 authorizes M01-T01–T03's local bootstrap now, overriding the earlier documentation-only/order restriction for that slice. Full baseline/spike acceptance is **not Verified**: T04/T05 and remaining M00 criteria stay unchecked. This is a partial local go, not permission to use personal data, select all proposed providers, deploy, ship or claim native readiness. Docker was not needed or launched.
@@ -178,6 +182,7 @@ Use the [status/evidence workflow](README.md#task-workflow-and-evidence). Record
 
 | Task | Status | Owner / date | Evidence | Notes / next action |
 |---|---|---|---|---|
+| M00-T06 | Blocked awaiting owner choices / unchecked | Coding agent (recommendation only) / 2026-10-26 UTC | [Provider review](../cookbook/provider-baseline-review.md); [review-order authorization](../cookbook/decisions/0012-local-development-bootstrap.md#provider-baseline-review-continuation); public source evidence `your-own-providers-8_va6yfr` | Seven official text requests succeeded. INF-01–05 remain proposed; hosting/regions/cost ceiling, methods, keys/operators and recovery targets unapproved. Documentation/preservation and 142 root tests pass; no Flutter/native/provider test, installation, Docker, account, external notification or provisioning. Next: owner's scoped directions, not automatic M02. |
 | M00-T14 | Limited local go; full task unchecked | Project owner (authorization); coding agent (recording) / 2026-10-24 UTC | [Decision 0012](../cookbook/decisions/0012-local-development-bootstrap.md), exact owner instruction; [M01 results](../cookbook/local-development-bootstrap.md) | Subsequent direction: start workspace/API/mobile with installed tools, not further hardware inventory. Full M00 baseline/native/real-data/release criteria retained. Historical events below keep their original approval limits. |
 | M00-T01 | In progress | Coding agent (review preparation) / 2026-10-23 UTC | [Scope/release review](#m00-t01--scope-and-release-review); repository and relevant product/platform specifications inspected | Historical event: review prepared; owner answers were pending at this point. |
 | M00-T01 | Verified | Project owner (approval); coding agent (recording) / 2026-10-23 UTC | [Decision 0001](../cookbook/decisions/0001-scope-and-release-tracks.md), including the exact approval response | All three M00-T01 answers accepted; Android-first order and decision ownership/location synchronized. This verifies a decision, not application behavior. |

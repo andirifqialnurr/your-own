@@ -51,6 +51,10 @@ After T08/T09 were separately published as `b4c4f0c` / `28c5e2f`, the owner's **
 
 The review found pnpm 12's default `verifyDepsBeforeRun: install` ran before the helper's pin/offline guards on a fresh checkout. Correct only that bootstrap behavior to `verifyDepsBeforeRun: error` and document the dependency-free `node scripts/check-local.mjs` entry. Do not disable dependency verification or relax strict peers, disabled lifecycle scripts, exact pins, the Multer override or Decision 0010's review controls. A separate clean retry and real-pnpm regression verify the correction.
 
+## Provider-baseline review continuation
+
+Following publication of T10 as `7b9fc4e` and its explicit next-step proposal, the owner's **“continue”** on 2026-10-26 authorizes a bounded **M00-T06 infrastructure/provider decision review**, before T04/T05 and M01's native/CI exit are complete. Review existing contracts and public official documentation, recommend choices and request the owner's decision; no provider/database/ORM selection is inferred from this reply. Record unresolved hosting/regions/costs, secrets/recovery ownership and session/native requirements. This exception changes only review order: no package installation, database/container start, account creation, credential collection, supplier contact, hosted resource, spending, deployment or M02 execution is authorized by it. Keep T06 unchecked until its approval criteria are met; ordinary separate commit/push remains authorized.
+
 ## Retained gates and tracking
 
 [M00](../../milestones/00-decisions-and-validation.md) remains open. T04 and T05 blockers, full baseline acceptance and T14's full acceptance criteria are not retroactively marked Verified. [M01](../../milestones/01-foundations.md) may begin this bootstrap and the separately recorded local T04/T05/T06/T07/T08/T09/T10 continuations before those tasks finish; web/admin and later features retain their roadmap order. Native Android/iPhone/iPad, actual Safari, accessibility, persistence/privacy and release evidence remain required before their affected use/release gates.
