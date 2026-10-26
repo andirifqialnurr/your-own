@@ -68,6 +68,8 @@ S0 acceptance, all **Not run/not implemented** here:
 
 No empty framework/provider/DB scaffolding, Flutter auth screen, Next.js app or global SDK installation is needed for S0. The current scanner permits owned `modules/identity/contracts`, `domain` and `index.ts` while enforcing purity; API scripts compile source then run `test/*.test.mjs`. These are actual repository constraints, not newly invented commands.
 
+**Subsequent S0 authorization/result:** after `bfbd918`, the owner answered the explicit S0-only/order-exception question with “continue”, recorded in [Decision 0024](decisions/0024-local-identity-contract-s0.md). Its [contract/pure-policy slice](identity-contract-s0.md) now exists with synthetic tests, no concrete authority or composition. That is separate permission/evidence, not this packet retrospectively approving later package/schema/route adoption or full M02.
+
 ## 5. Gates before later auth/DB integration
 
 | Gate | Required next evidence/decision | Current status |

@@ -27,8 +27,11 @@ test('readiness honestly remains unavailable until application services exist', 
   assert.equal(response.headers.get('cache-control'), 'no-store');
 });
 
-test('there is no upload, sync, operator or tracker endpoint', async () => {
-  for (const path of ['/upload', '/v1/sync/commands', '/v1/operator/session', '/v1/money/transactions']) {
+test('uncomposed identity adds no auth, upload, sync, operator or tracker endpoint', async () => {
+  for (const path of [
+    '/v1/identity', '/v1/auth/login', '/v1/auth/refresh', '/v1/auth/reset',
+    '/upload', '/v1/sync/commands', '/v1/operator/session', '/v1/money/transactions',
+  ]) {
     const response = await fetch(origin + path, { method: 'POST' });
     assert.equal(response.status, 404);
     await response.arrayBuffer();

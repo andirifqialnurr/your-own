@@ -2,7 +2,7 @@
 
 [README](../README.md) · [Modules](MODULE_INDEX.md) · [Traceability](TRACEABILITY.md)
 
-**Current inventory: zero jobs, durable events, processors or queue consumers.** [AppModule](../src/app.module.ts) imports only HealthModule. Neither a worker entry point nor a dispatcher, database outbox, queue adapter or scheduler exists. Health requests produce no work. [HTTP tests](../test/health.test.mjs) exercise only the local shell.
+**Current inventory: zero jobs, durable events, processors or queue consumers.** [AppModule](../src/app.module.ts) imports only HealthModule. Neither a worker entry point nor a dispatcher, database outbox, queue adapter or scheduler exists. Health requests produce no work. The uncomposed [S0 identity contracts/pure policy](../src/modules/identity/README.md) declare no service implementation, audit/outbox event, sender or job and add no work. [HTTP tests](../test/health.test.mjs) exercise only the local shell.
 
 ## Planned, not implemented
 

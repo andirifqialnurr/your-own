@@ -1,6 +1,6 @@
 # Your Own API
 
-Local NestJS HTTP foundation only. There is no database, authentication, upload endpoint, queue consumer or tracker implementation. No Docker service is needed yet.
+Local NestJS HTTP foundation with an uncomposed [S0 identity contract/pure-policy boundary](src/modules/identity/README.md). There is no database, working authentication service, upload endpoint, queue consumer or tracker implementation. S0 has no provider, dependency or route wiring; no Docker service is needed.
 
 ## Navigate
 
@@ -8,7 +8,7 @@ Local NestJS HTTP foundation only. There is no database, authentication, upload 
 - [Actual endpoints](docs/ENDPOINT_MAP.md) · [Job inventory (currently empty)](docs/JOB_MAP.md)
 - [Requirement → code → test/evidence](docs/TRACEABILITY.md)
 
-Indexes describe the existing shell; future domain modules remain explicitly planned under the root specifications. Update these links/maps with each source or contract move.
+Indexes describe the health shell and S0's contract-only code; provider/identity runtime and other domain modules remain explicitly planned under the root specifications. Update these links/maps with each source or contract move.
 
 ## Run
 
@@ -51,6 +51,10 @@ Root `pnpm check:docs` checks navigation links/examples and owned JS/TS/JSON whi
 | `src/app.module.ts` | HTTP-only composition through public module entries; no workers imported |
 | `src/health/health.module.ts` | Public composition entry; owns the internal health controller |
 | `src/health/health.controller.ts` | Liveness and intentionally unavailable readiness |
+| `src/modules/identity/index.ts` | S0 public types/pure policy only; not composed into AppModule |
+| `src/modules/identity/contracts/` | Authority-owned actor/outcome types and unimplemented request-bound authority port |
+| `src/modules/identity/domain/identity-access.ts` | Conservative policy for already trusted context; no authentication or I/O |
+| `test/identity-context.test.mjs` | Synthetic pure-policy/type/compiler tests; not a provider/API integration test |
 | `test/environment.test.mjs` | Configuration boundaries and actual failed CLI startup |
 | `test/health.test.mjs` | Real loopback health/404/header checks |
 | `test/multer.test.mjs` | Exact override regression runner |

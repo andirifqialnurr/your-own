@@ -1,6 +1,6 @@
 # M02 — Identity and Personal Data Foundation
 
-- **Status:** Planned
+- **Status:** Planned; only S0 preparatory contracts/pure policies brought forward under Decision 0024
 - **Depends on:** [M01](01-foundations.md)
 - **Targets:** API identity/users/authorization and database infrastructure; Flutter auth/onboarding/session scope, database, network, and sync primitives
 - **Requirements:** ACC-01–03; NFR-02/03/05/06/09; applicable backend/security identity and ownership controls
@@ -9,6 +9,8 @@
 ## Goal
 
 Establish authenticated ownership and recoverable per-user storage before adding real tracker records. Full synchronization is proven with water in M03, not assumed here.
+
+**Narrow preparation exception:** the owner's explicit S0 continuation in [Decision 0024](../cookbook/decisions/0024-local-identity-contract-s0.md) permits only the [uncomposed identity contract/pure-policy portion](../cookbook/identity-contract-s0.md) of T02 before full M00/M01 acceptance. No provider, verifier, DB, runtime context producer or route is composed. This is not authorization to execute the full ordered checklist or a waiver of any native/CI/real-data gate; every M02 task remains unchecked.
 
 ## Ordered tasks
 
@@ -34,4 +36,5 @@ Use the [status/evidence workflow](README.md#task-workflow-and-evidence).
 
 | Task | Status | Owner / date | Evidence | Notes / next action |
 |---|---|---|---|---|
-| — | Not started | — | — | Await M01. |
+| — | Not started | — | — | Historical full-milestone checkpoint: await M01. |
+| M02-T02 | S0 preparatory contract/policy portion implemented; full task unchecked | Project owner (explicit S0/order exception); coding agent (implementation) / 2026-10-26 UTC | [Decision 0024](../cookbook/decisions/0024-local-identity-contract-s0.md); [module](../../apps/api/src/modules/identity/README.md); [scope/evidence](../cookbook/identity-contract-s0.md) | Read-only internal contracts, unimplemented authority port and pure conservative policies with synthetic tests only. No credential verification/issuer/key/live-state/freshness/HTTP/DB authority proof. AppModule/config/dependencies unchanged; full M02 remains Planned. |
