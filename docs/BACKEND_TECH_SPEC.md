@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.19
+- **Version:** 0.20
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -197,7 +197,7 @@ Request cancellation or an HTTP timeout does not prove a transaction was not com
 
 | Module | Owns | Must not do |
 |---|---|---|
-| Identity | Token verification adapter, external-subject mapping, active-user context | Store custom password hashes unless identity strategy explicitly changes |
+| Identity | Nest-owned maintained identity integration ports, active-user/credential/session context; external-subject mapping only if an external issuer is later adopted | Implement bespoke password/reset crypto, create parallel client password authorities, or leak private SDK/store details across modules |
 | Users | Profile, preferences, lifecycle, visibility epochs | Expose raw trackers through public profiles |
 | Staff access | Staff grants/scopes, trusted assurance, operator session context | Promote an ordinary user based on a browser-controlled role/MFA flag |
 | Authorization | Reusable policy evaluation and viewer projections | Treat a client flag/role as authoritative |
@@ -258,7 +258,7 @@ apps/api/
         database.module.ts
         prisma.service.ts
         transaction-runner.ts
-      identity/                        # Selected provider/JWKS implementation
+      identity/                        # Selected maintained identity SDK/store transport
       storage/                         # Private-object storage adapter
       queue/                           # Redis/BullMQ transport, if adopted
       push/                            # FCM/APNs delivery integration
@@ -483,7 +483,7 @@ Login/recovery routes depend on the reviewed non-Supabase auth integration and p
 [Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [synthetic protocol experiment](cookbook/authentication-session-spike.md) passes local invariant checks, not real auth/session/MFA evidence; Decision 0016 subsequently changes the provider direction without validating a replacement implementation. Exact timeout/algorithm/CSRF/revocation/staff-context/store implementation and provider integration remain gates; no application auth endpoint exists. The [review](cookbook/authentication-session-review.md) retains the original proposal/evidence matrix.
 
 - Document token refresh and logout/all-session revocation behavior using the actual approved auth/session model.
-- JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise. The [account-transaction/access-invalidation review](cookbook/authentication-transaction-review.md), scoped by [Decision 0021](cookbook/decisions/0021-auth-transaction-design-review.md), proposes a monotonic credential generation plus live revocable grants and one typed unit of work. It explicitly retains opaque access as an alternative and the real library's hashing/event/independent-store transaction blockers. No model/claims/schema is adopted or runtime-proved by this static review. The later [Decision 0022 prototype](cookbook/account-transaction-prototype.md) supplies selected real service/process/SQL evidence: durable synthetic users/grants, typed shared transactions, reset rollback and deferred COMMIT rejection, intended-denial commits and live access invalidation. It does not adopt the disposable coordinator into the app or establish full HTTP/BFF/platform/operational/key-custody/restore acceptance.
+- JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise. The [account-transaction/access-invalidation review](cookbook/authentication-transaction-review.md), scoped by [Decision 0021](cookbook/decisions/0021-auth-transaction-design-review.md), proposes a monotonic credential generation plus live revocable grants and one typed unit of work. It explicitly retains opaque access as an alternative and the real library's hashing/event/independent-store transaction blockers. No model/claims/schema is adopted or runtime-proved by this static review. The later [Decision 0022 prototype](cookbook/account-transaction-prototype.md) supplies selected real service/process/SQL evidence: durable synthetic users/grants, typed shared transactions, reset rollback and deferred COMMIT rejection, intended-denial commits and live access invalidation. It does not adopt the disposable coordinator into the app or establish full HTTP/BFF/platform/operational/key-custody/restore acceptance. The [Decision 0023 adoption packet](cookbook/authentication-app-adoption.md) recommends an uncomposed dependency-free identity-contract slice (S0), pending explicit owner scope/order exception. No package/model/route adoption follows; provider/guard integration, idle-cookie store ownership, verified-email projection and the actual combined graph remain gates.
 - Keep mobile credential storage concerns in the mobile spec; server credentials belong only in managed secrets.
 - Operator authentication requires MFA, restricted roles/scopes, trusted assurance and fresh step-up where required, and audited actions before public social operations.
 

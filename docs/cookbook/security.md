@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.10
+- **Version:** 0.11
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -69,6 +69,8 @@ The [non-Supabase framework review](framework-auth-review.md) recommends evaluat
 - Server-side request authorization and sensitive transaction coordination must account for concurrent lifecycle changes.
 
 The [Decision 0021 review](authentication-transaction-review.md) proposes live account-generation/grant checks after signature verification and coordinated account/reset/revocation commits; these remain recommendations, not runtime evidence or approved policy. Post-commit authorization must be distinguished from recalling in-flight responses. Positive stale caches, upgrading an old token to the current generation, rolled-back refresh-reuse revocation and rollback-erased MFA failures would violate the proposed model. Authority-read failure must not become signature-only permission; provider diagnostics are not durable audit/outbox events. Exact availability, transaction/hash bounds, secrets and staff revision handling still need approval/testing. The later [Decision 0022 evaluation](account-transaction-prototype.md) supplies selected owned-coordinator evidence: post-reset/cutoff live JWT denial despite a valid signature, typed reset atomicity with actual deferred COMMIT failure, refresh-reuse/factor-failure commit outcomes and staff remove/regrant revision checks. The bare library's earlier JWT limit is unchanged. Independent service IPC/SQL tests do not establish complete HTTP/BFF/browser/native or backup/key-custody/production security acceptance.
+
+The [Decision 0023 app-adoption packet](authentication-app-adoption.md) recommends contract-only S0 as a separate owner decision, not authentication enablement. Type brands/trusted-context shapes cannot authenticate client JSON or replace live authority checks. Static review also identifies a cookie-idle integration mismatch between standalone validation and transaction-required touch; resolve/test it before real cookie integration, never weaken idle/transaction policy to hide it. A later principal must project verified-email and current scope/assurance appropriately; the fixture's `{id}` provider result is not full authorization.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

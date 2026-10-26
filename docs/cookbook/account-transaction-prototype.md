@@ -72,6 +72,8 @@ This proves a **selected service/process/SQL subset** of the design, not every r
 
 Next bounded preparation should review **whether this owned coordination is an acceptable maintained integration and define an explicit app-adoption packet**, including the missing HTTP/operational/graph gates, rather than automatically porting the fixture. Opaque access remains an alternative. Full T06/T07/M01/M02 stay open; seven tasks remain checked.
 
+**Subsequent review:** the owner's next “continue” is [Decision 0023](decisions/0023-auth-app-adoption-review.md). Its [app-adoption packet](authentication-app-adoption.md) is prepared with S0 proposed contract-only scope and explicit remaining guard/HTTP/graph/operational gates. Static review identifies idle-cookie touch/transaction ownership and principal projection as further integration work; this does not erase or broaden the service-level results above. No prototype port or package/model adoption is authorized.
+
 ## 6. Repository verification
 
 `pnpm check` passes on its first run: **142 existing root tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build and **37-source / 131-directive** import scan. Documentation passes **107 Markdown / 1,728 local links / four JSON examples**, plus 29 owned JS/TS/JSON whitespace checks.
