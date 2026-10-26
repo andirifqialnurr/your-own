@@ -1,10 +1,10 @@
 # Your Own — Deployment & Operations Plan
 
-- **Version:** 0.2
+- **Version:** 0.3
 - **Status:** Proposed runbook/topology; no cloud resources, containers, workflows, or store builds provisioned
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Testing](testing.md)
 
-Hosting vendors, regions, resource sizes, exact versions, numerical service targets, RPO/RTO, retention, and costs require approval. This is not a copy-and-run production installation guide. The [M00-T06 baseline review](provider-baseline-review.md#4-full-t06-acceptance-register) now tracks the candidate stack and pending hosting/region/budget/secret/recovery answers; no proposed direction is accepted or provisioned.
+Hosting vendors, regions, resource sizes, exact versions, numerical service targets, RPO/RTO, retention, and costs require approval. This is not a copy-and-run production installation guide. The [M00-T06 baseline review](provider-baseline-review.md#4-full-t06-acceptance-register) tracks the stack and pending hosting/region/budget/secret/recovery answers. [Decision 0013](decisions/0013-provider-and-session-directions.md) subsequently accepts scoped DB/ORM/provider/session directions; physical hosting/session store, exact versions and operations remain undecided. No resource is provisioned.
 
 ## Contents
 

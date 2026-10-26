@@ -1,12 +1,12 @@
 # M00-T06 — Infrastructure and provider baseline review
 
 - **Reviewed:** 2026-10-26 UTC; published foundation `7b9fc4e28d0c79ce23d659939304ade958b74e00`.
-- **Status:** Recommendation prepared; **Blocked awaiting owner choices / unchecked**. Nothing in this document is an accepted provider, account, budget, region or release baseline.
+- **Status:** Original recommendation checkpoint retained; subsequent [Decision 0013](decisions/0013-provider-and-session-directions.md) accepts INF-01–04 directions and the server-side/separate part of INF-05. **Full T06 remains open/unchecked**; account, exact packages, physical hosting, budget, region and recovery are not approved.
 - **Scope:** [Owner-authorized review](decisions/0012-local-development-bootstrap.md#provider-baseline-review-continuation), [T06 acceptance](../milestones/00-decisions-and-validation.md#m00-t06--infrastructure-and-provider-review), [architecture](architecture.md), [backend](../BACKEND_TECH_SPEC.md), [security](security.md), [deployment](deployment.md).
 
 ## 1. Recommended direction for owner review
 
-Keep the existing one-NestJS authority; do not build a second backend inside a provider SDK or a Next.js BFF. The following is a **candidate subset**, not enough to close T06:
+Keep the existing one-NestJS authority; do not build a second backend inside a provider SDK or a Next.js BFF. The following table is the **original candidate subset** presented to the owner, not enough to close T06. Decision 0013 records what was subsequently accepted; do not treat all unmentioned details (notably the physical session store) as approved:
 
 | ID | Recommendation | Why / boundaries and alternative |
 |---|---|---|
@@ -47,13 +47,13 @@ Raw/text copies, response URLs/times/SHA-256 values and the bounded fetch helper
 
 ## 4. Full T06 acceptance register
 
-All rows are **Pending owner approval and/or validation**, not promises. The project owner is the decision authority; technical agents may prepare evidence but are not assigned operational custody by this table.
+Direction approval is now scoped by Decision 0013; **implementation, operational choices and validation remain pending**, not promises. The project owner is the decision authority; technical agents may prepare evidence but are not assigned operational custody by this table.
 
 | Required decision | Candidate / missing answer | Gate or next proof |
 |---|---|---|
-| Database/ORM | INF-01/02; exact PostgreSQL/Prisma/driver versions unreviewed | Owner direction, exact dependency review, then separately authorized isolated synthetic migrations/rollback/concurrency/pooling tests |
+| Database/ORM | INF-01/02; exact PostgreSQL/Prisma/driver versions unreviewed | Direction accepted; exact dependency review and separately authorized isolated synthetic migrations/rollback/concurrency/pooling tests remain |
 | Identity/methods | INF-03; first login/recovery method and issuer configuration undecided | Owner method choice; M00-T07 verification/revocation/assurance spike; actual secure native persistence remains M00-T08 |
-| Private storage | INF-04; object-region, limits/retention/provider-key scope undecided | Owner choice; deny unauthorized access, revocation and reconciliation evidence before media slice |
+| Private storage | INF-04; object-region, limits/retention/provider-key scope undecided | Provider direction accepted; deny unauthorized access, revocation and reconciliation evidence before media slice |
 | Browser session store | INF-05; library, role isolation, encryption/key custody and lifetimes undecided | M00-T07 server-only refresh/CSRF/grant/MFA/logout evidence; later web/admin execution stays in roadmap order |
 | Hosting/topology | No API/worker/Next hosting vendor, plan, capacity or public domains selected | Persistent API needs, actual connection/resource budget and owner access/rollback responsibility before provisioning |
 | Regions/data residency | No database/object/identity/API/backup region selected; launch jurisdiction unknown | Owner geography/privacy choice, provider feature/availability and latency/residency review; language is not region |
@@ -70,4 +70,4 @@ This slice changes documentation only. Local-link/anchor/table/fence/JSON and pr
 
 Executed on the existing Windows workspace: `pnpm check` passed **142 tests** (21 tooling, 14 design/artwork, 88 boundaries and 19 API), lint/types/API build and the 37-file/131-directive boundary scan. Documentation checks passed **84 Markdown / 1,444 local links / four JSON examples**. Preservation checks retained 67 requirement IDs, 224 tasks/20 plans/seven checked tasks, both locks/policies, fonts/goldens/native wrappers and all 13 historical snapshots. Saved HTML hashes and LF-normalized parsed-text hashes matched; an initial raw-text-byte comparison failed on Windows CRLF normalization and was corrected without changing the saved sources. `git diff --check` passed. No Flutter/native/provider result is claimed.
 
-**Owner response needed:** accept/adjust INF-01–04 as directions and indicate whether INF-05 matches the intended server-only session approach. Cloud budget/region/ownership/recovery and auth method can be resolved explicitly afterward; if deferred, T06 stays open. Do not request credentials, create an account or spend anything just to answer these choices. After approval, record exact accepted/deferred scope in a decision; request a separately bounded local synthetic DB/identity spike before installation/execution. Do not proceed into M02 automatically.
+**Historical next question at the review checkpoint:** accept/adjust INF-01–04 as directions and indicate whether INF-05 matches the intended server-only session approach. Cloud budget/region/ownership/recovery and auth method can be resolved explicitly afterward; if deferred, T06 stays open. Do not request credentials, create an account or spend anything just to answer these choices. After approval, record exact accepted/deferred scope in a decision; request a separately bounded local synthetic DB/identity spike before installation/execution. Do not proceed into M02 automatically. The owner's subsequent “continue” is now recorded in [Decision 0013](decisions/0013-provider-and-session-directions.md): directions accepted within that question's scope, not full T06 or spike execution. Next is the separately requested [local DB probe](local-database-spike-plan.md), currently planned/not run.

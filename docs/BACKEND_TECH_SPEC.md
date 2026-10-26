@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.9
+- **Version:** 0.10
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -8,7 +8,8 @@
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
 - **Mobile integration:** [MOBILE_TECH_SPEC.md](MOBILE_TECH_SPEC.md)
 - **Web integration:** [User website](WEB_PRD.md) · [Admin CMS](ADMIN_CMS_PRD.md)
-- **Pending approval:** Database/ORM, identity/storage providers, API conventions, queues, hosting, numerical limits, and operating policies
+- **Accepted directions:** PostgreSQL/Prisma and Supabase Auth/private Storage under Decision 0013; not installed or provisioned
+- **Pending approval/validation:** Exact DB/ORM/SDK pins, auth methods/session protocol/store, API conventions, queues, hosting/regions/costs, numerical limits and operating policies
 
 > One authoritative backend for personal tracking, privacy-conscious progress sharing, and reliable social interactions. Not a separate backend per mode.
 
@@ -75,9 +76,9 @@ Endpoint paths, entities, examples, and limits below form a **draft API design**
 ### 2.2 Recommended defaults
 
 - TypeScript with strict settings, a supported Node.js LTS release, and the standard NestJS Express adapter initially.
-- A modular monolith with PostgreSQL and Prisma.
+- A modular monolith with PostgreSQL and Prisma (direction accepted in Decision 0013, implementation unverified).
 - Versioned REST and OpenAPI for Dart and TypeScript clients; no tRPC-only public boundary.
-- Managed identity and storage, with Supabase as the current candidate.
+- Managed identity and private storage through Supabase (direction accepted in Decision 0013, projects/integration unconfigured).
 - Socket.IO for authorized realtime hints; REST/database records remain durable truth.
 - A transactional PostgreSQL outbox, with BullMQ/Redis for asynchronous execution when publishing/jobs require it.
 - Containerized persistent API and worker processes rather than relying on request-scoped background execution.
@@ -122,8 +123,8 @@ A release of V1-A alone is a limited release, not the complete social product. E
 | Validation | `class-validator`, `class-transformer`, explicit DTOs | Runtime validation and allowlisted fields; TypeScript types alone do not validate network input |
 | Database | PostgreSQL | Relational integrity, atomic transactions, version checks, indexes |
 | Database access | Prisma | Typed access and reviewed migrations; use deliberate SQL where Prisma cannot represent required constraints/locking |
-| Identity | Supabase Auth candidate; JWT/JWKS verification adapter such as `jose` where appropriate | Managed identities, with application authorization in NestJS |
-| Object storage | Supabase Storage candidate behind a storage interface | Private posters/exports and controlled avatar objects |
+| Identity | Supabase Auth direction accepted; JWT/JWKS verification adapter such as `jose` where appropriate | Managed identities, with application authorization in NestJS |
+| Object storage | Supabase private Storage direction accepted behind a storage interface | Private posters/exports and controlled avatar objects |
 | Realtime | `@nestjs/websockets`, Socket.IO | Authenticated user/conversation events; not durable message storage |
 | Background jobs | `@nestjs/bullmq`, BullMQ, Redis | Retried rendering, push, exports, cleanup; introduced when needed |
 | Commit-to-job reliability | PostgreSQL transactional outbox | Avoid losing work between database commit and queue insertion |
@@ -135,7 +136,7 @@ A release of V1-A alone is a limited release, not the complete social product. E
 
 ### Selection rules
 
-The [2026-10-26 M00-T06 review](cookbook/provider-baseline-review.md) prepares the PostgreSQL/Prisma and Supabase Auth/private Storage directions for owner decision. It records broad quickstart-role, direct-data exposure, JWT/logout, server-only BFF, SMTP and object-backup limitations. All provider/ORM/session/hosting selections remain pending; no exact dependency or resource is adopted by that review.
+The [2026-10-26 M00-T06 review](cookbook/provider-baseline-review.md) prepares the PostgreSQL/Prisma and Supabase Auth/private Storage directions for owner decision. It records broad quickstart-role, direct-data exposure, JWT/logout, server-only BFF, SMTP and object-backup limitations. The subsequent [Decision 0013](cookbook/decisions/0013-provider-and-session-directions.md) accepts the DB/ORM/provider directions and separate server-side web/admin session approach. Exact dependency pins, physical DB/session-store hosting, protocols and operational choices remain pending; no resource or integration is created by acceptance.
 
 - Commit lockfiles and runtime pins only after compatibility review, explicit final-pin approval and scaffold authorization, not speculative version numbers in this document.
 - [Decision 0010](cookbook/decisions/0010-conditional-dependency-exceptions.md) permits conditional eligibility of only `@nestjs/platform-express@12.2.0>multer: 2.5.0` for a later approved baseline, with owner/30-day review, fresh graph/security/notice checks, regressions and safe removal. It does not select a production adapter/version, approve installation or waive real Nest upload integration/limit tests; prefer a separately reviewed upstream-fixed adapter when available.

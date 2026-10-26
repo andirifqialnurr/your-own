@@ -10,7 +10,7 @@ A mobile-first personal progress app: **Focus, Read, Intake, and Money**, with o
 
 Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate Next.js applications** for users and staff. [Decision 0004](docs/cookbook/decisions/0004-toolchain-directions-and-icon-family.md) accepts the pnpm/mobile/web supporting-stack directions and **Hugeicons Free Stroke Rounded** family. ApexCharts remains selected for user-web charts but integration is on hold pending licensing clarification; custom Flutter charts remain permitted where needed. Exact pins, compatibility, distribution notices, database/providers, sessions and hosting retain their validation/approval gates.
 
-The [M00-T06 provider review](docs/cookbook/provider-baseline-review.md) now recommends PostgreSQL/Prisma, candidate Supabase Auth/private Storage and a separate server-only session approach. **Owner approval is pending**; no provider account/resource, database, installation or M02 implementation follows from the review.
+[Decision 0013](docs/cookbook/decisions/0013-provider-and-session-directions.md) accepts **PostgreSQL + Prisma, Supabase Auth/private Storage and separate server-side web/admin sessions** as directions. Full T06, exact packages/methods, physical hosting/session store, costs/regions and recovery remain open. The [local DB probe](docs/cookbook/local-database-spike-plan.md) is proposed, not run; no provider resource, installation or M02 implementation is authorized by direction approval.
 
 ## Start here
 

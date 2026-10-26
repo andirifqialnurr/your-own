@@ -1,10 +1,10 @@
 # Your Own — Proposed Data Schema
 
-- **Version:** 0.2
+- **Version:** 0.3
 - **Status:** Logical design for review, not an executable Prisma schema or applied migration
 - **Related:** [Architecture](architecture.md) · [Backend](../BACKEND_TECH_SPEC.md) · [Security](security.md) · [Testing](testing.md)
 
-PostgreSQL/Prisma remain recommendations. This document makes the proposed relational model concrete enough to review; exact names, types, indexes, physical migrations, retention, and provider integration require approval.
+PostgreSQL/Prisma are accepted directions under [Decision 0013](decisions/0013-provider-and-session-directions.md), not installed packages or an accepted physical schema. This document makes the proposed relational model concrete enough to review; exact names, types, indexes, physical migrations, retention, identity/session details and provider integration still require approval and validation.
 
 ## Contents
 
