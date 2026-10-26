@@ -1,6 +1,6 @@
 # Decision 0015 — Auth methods and local synthetic protocol spike
 
-- **Status:** Accepted directions; authorized local synthetic phase executed, not provider integration or full T06/T07 acceptance
+- **Status:** Accepted method directions/synthetic phase retained; Supabase/provider-managed implementation assumption superseded by [Decision 0016](0016-framework-auth-and-r2-storage.md); not provider integration or full T06/T07 acceptance
 - **Approved by:** Project owner, 2026-10-26 UTC
 - **Recorded by:** Coding agent
 - **Sources:** [Method/session review](../authentication-session-review.md), [accepted provider directions](0013-provider-and-session-directions.md)

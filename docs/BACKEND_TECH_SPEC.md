@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.12
+- **Version:** 0.13
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -8,7 +8,7 @@
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
 - **Mobile integration:** [MOBILE_TECH_SPEC.md](MOBILE_TECH_SPEC.md)
 - **Web integration:** [User website](WEB_PRD.md) · [Admin CMS](ADMIN_CMS_PRD.md)
-- **Accepted directions:** PostgreSQL/Prisma and Supabase Auth/private Storage under Decision 0013; not installed or provisioned
+- **Accepted directions:** PostgreSQL/Prisma, framework-appropriate non-Supabase auth and Cloudflare R2 private storage under Decisions 0013/0016; app integration not implemented
 - **Pending approval/validation:** Exact DB/ORM/SDK pins, auth integration/password policy/session protocol/store, API conventions, queues, hosting/regions/costs, numerical limits and operating policies
 
 > One authoritative backend for personal tracking, privacy-conscious progress sharing, and reliable social interactions. Not a separate backend per mode.
@@ -78,7 +78,7 @@ Endpoint paths, entities, examples, and limits below form a **draft API design**
 - TypeScript with strict settings, a supported Node.js LTS release, and the standard NestJS Express adapter initially.
 - A modular monolith with PostgreSQL and Prisma (direction accepted in Decision 0013, implementation unverified).
 - Versioned REST and OpenAPI for Dart and TypeScript clients; no tRPC-only public boundary.
-- Managed identity and private storage through Supabase (direction accepted in Decision 0013, projects/integration unconfigured).
+- Maintained, framework-appropriate auth integration with one Nest identity authority, plus private Cloudflare R2 storage (Decision 0016 supersedes Supabase; exact libraries/session/private-public policy remain unvalidated).
 - Socket.IO for authorized realtime hints; REST/database records remain durable truth.
 - A transactional PostgreSQL outbox, with BullMQ/Redis for asynchronous execution when publishing/jobs require it.
 - Containerized persistent API and worker processes rather than relying on request-scoped background execution.
@@ -123,8 +123,8 @@ A release of V1-A alone is a limited release, not the complete social product. E
 | Validation | `class-validator`, `class-transformer`, explicit DTOs | Runtime validation and allowlisted fields; TypeScript types alone do not validate network input |
 | Database | PostgreSQL | Relational integrity, atomic transactions, version checks, indexes |
 | Database access | Prisma | Typed access and reviewed migrations; use deliberate SQL where Prisma cannot represent required constraints/locking |
-| Identity | Supabase Auth direction accepted; JWT/JWKS verification adapter such as `jose` where appropriate | Managed identities, with application authorization in NestJS |
-| Object storage | Supabase private Storage direction accepted behind a storage interface | Private posters/exports and controlled avatar objects |
+| Identity | Non-Supabase, maintained framework-appropriate auth integration; exact libraries/protocol pending | One Nest identity/application authority; no separate client password databases or automatic secure framework default |
+| Object storage | Cloudflare R2 behind a server-owned storage interface | Private bucket for restricted files, separate public bucket only for deliberately public assets; no client credentials |
 | Realtime | `@nestjs/websockets`, Socket.IO | Authenticated user/conversation events; not durable message storage |
 | Background jobs | `@nestjs/bullmq`, BullMQ, Redis | Retried rendering, push, exports, cleanup; introduced when needed |
 | Commit-to-job reliability | PostgreSQL transactional outbox | Avoid losing work between database commit and queue insertion |
@@ -136,15 +136,15 @@ A release of V1-A alone is a limited release, not the complete social product. E
 
 ### Selection rules
 
-The [2026-10-26 M00-T06 review](cookbook/provider-baseline-review.md) prepares the PostgreSQL/Prisma and Supabase Auth/private Storage directions for owner decision. It records broad quickstart-role, direct-data exposure, JWT/logout, server-only BFF, SMTP and object-backup limitations. The subsequent [Decision 0013](cookbook/decisions/0013-provider-and-session-directions.md) accepts the DB/ORM/provider directions and separate server-side web/admin session approach. Exact dependency pins, physical DB/session-store hosting, protocols and operational choices remain pending; no resource or integration is created by acceptance.
+The [2026-10-26 M00-T06 review](cookbook/provider-baseline-review.md) prepares the PostgreSQL/Prisma and Supabase Auth/private Storage directions for owner decision. It records broad quickstart-role, direct-data exposure, JWT/logout, server-only BFF, SMTP and object-backup limitations. Decision 0013 accepted that historical subset; [Decision 0016](cookbook/decisions/0016-framework-auth-and-r2-storage.md) subsequently withdraws Supabase Auth/Storage in favor of framework-appropriate auth and R2 while retaining PostgreSQL/Prisma and separate server-side web/admin sessions. The [read-only R2/CDN probe](cookbook/r2-connection-check.md) verifies signed metadata access, not private/public file policy or full integration. Exact dependency pins, physical DB/session-store hosting, protocols and operational choices remain pending; no resource or integration is created by acceptance.
 
 - Commit lockfiles and runtime pins only after compatibility review, explicit final-pin approval and scaffold authorization, not speculative version numbers in this document.
 - [Decision 0010](cookbook/decisions/0010-conditional-dependency-exceptions.md) permits conditional eligibility of only `@nestjs/platform-express@12.2.0>multer: 2.5.0` for a later approved baseline, with owner/30-day review, fresh graph/security/notice checks, regressions and safe removal. It does not select a production adapter/version, approve installation or waive real Nest upload integration/limit tests; prefer a separately reviewed upstream-fixed adapter when available.
 - Confirm Prisma/managed PostgreSQL pooling and migration compatibility against the actual provider.
 - NestJS dependency injection does not replace database constraints or durable jobs.
 - PostgreSQL is authoritative for application state. Redis is not the only copy of messages, finance records, or accepted jobs.
-- If Supabase is used, its generated data API must not expose a second unrestricted path to application tables. Use database privileges and RLS/disabled exposure as appropriate; never rely on hidden client code.
-- JWT verification depends on the approved provider's real issuer, audience, signing algorithms, key rotation, and session model.
+- No storage SDK, data API or browser session library may expose a second unrestricted path to application records. Keep database/storage privileges least-privileged; never rely on hidden client code.
+- If JWT is selected, verification requires approved real issuer/audience/algorithms/key rotation and current-session semantics. A framework auth recipe does not establish these policies.
 
 ## 5. Runtime architecture and transaction boundaries
 
@@ -453,11 +453,11 @@ Some partial unique indexes, check constraints, and locking queries require revi
 
 ### 9.1 Identity integration
 
-The proposed managed provider owns signup, credentials, recovery, provider sign-in, and token issuance. NestJS owns the application-user record and all business permissions.
+Decision 0016 withdraws the managed-Supabase assumption. NestJS remains the identity/application authority, using reviewed maintained auth/session/password/MFA integrations rather than the disposable test harness. Exact libraries, token/session/hash protocols, email verification/recovery delivery and operational ownership require review before implementation. Neither NestJS nor the client frameworks provide a complete secure auth service by default.
 
-Verify JWT signature, approved algorithm, issuer, audience, expiry, and applicable temporal claims against trusted provider configuration. Do not accept arbitrary keys/issuers supplied by the request. Support safe JWKS rotation/caching.
+If JWT is selected, verify its signature, approved algorithm, issuer, audience, expiry and applicable temporal claims against fixed trusted configuration; reject request-supplied keys/issuers and support reviewed rotation/cache behavior. Opaque-session alternatives require equivalent current-session verification.
 
-Map external identity using issuer+subject, never email alone. An email change or provider link must not attach another person's tracking records.
+Bind authentication to a stable internal user identity, never mutable email alone. If an external issuer is later explicitly adopted, map issuer+subject. Email changes or future account linking must not attach another person's tracking records.
 
 ### 9.2 Application lifecycle checks
 
@@ -469,20 +469,20 @@ Proposed endpoints:
 
 | Method/path | Purpose |
 |---|---|
-| `POST /v1/me/bootstrap` | Idempotently resolve/create the application profile after provider authentication |
+| `POST /v1/me/bootstrap` | Idempotently resolve/create the application profile after authentication |
 | `GET /v1/me` | Own profile and onboarding state |
 | `PATCH /v1/me` | Allowlisted own profile changes |
 | `GET/PATCH /v1/me/preferences` | Own preferences/units/timezone/mode settings |
 | `POST /v1/me/exports` | Reauthenticated personal export request |
 | `POST /v1/me/deletion-requests` | Reauthenticated account-deletion request |
 
-Login/recovery routes depend on the approved identity provider; do not invent a second password system simply because NestJS has an Auth module.
+Login/recovery routes depend on the reviewed non-Supabase auth integration and protocol; do not implement parallel client password systems or hand-rolled password/reset cryptography simply because NestJS has an Auth module.
 
 ### 9.3 Sessions and operator access
 
-[Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [synthetic protocol experiment](cookbook/authentication-session-spike.md) passes local invariant checks, not real Supabase/session/MFA evidence. Exact timeout/algorithm/CSRF/revocation/staff-context/store implementation and provider integration remain gates; no application auth endpoint exists. The [review](cookbook/authentication-session-review.md) retains the original proposal/evidence matrix.
+[Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [synthetic protocol experiment](cookbook/authentication-session-spike.md) passes local invariant checks, not real auth/session/MFA evidence; Decision 0016 subsequently changes the provider direction without validating a replacement implementation. Exact timeout/algorithm/CSRF/revocation/staff-context/store implementation and provider integration remain gates; no application auth endpoint exists. The [review](cookbook/authentication-session-review.md) retains the original proposal/evidence matrix.
 
-- Document token refresh and logout/all-session revocation behavior using the actual provider model.
+- Document token refresh and logout/all-session revocation behavior using the actual approved auth/session model.
 - JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise.
 - Keep mobile credential storage concerns in the mobile spec; server credentials belong only in managed secrets.
 - Operator authentication requires MFA, restricted roles/scopes, trusted assurance and fresh step-up where required, and audited actions before public social operations.

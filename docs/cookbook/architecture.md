@@ -1,6 +1,6 @@
 # Your Own — System Architecture
 
-- **Version:** 0.13
+- **Version:** 0.14
 - **Status:** Target architecture; local API/mobile foundations exist, full system not implemented
 - **Confirmed frameworks:** Flutter mobile, NestJS backend, Next.js user website, separate Next.js admin CMS
 - **Product authority:** [PRD.md](../PRD.md)
@@ -59,7 +59,7 @@ Product scope changes require a PRD decision. Cross-cutting documents consolidat
 - Manual Money only, no bank/payment integration; no videos/reels, unrelated posts, or endless feed.
 - [Decision 0002](decisions/0002-rounded-icons-and-chart-rendering.md): one comprehensive rounded icon family, ApexCharts for user-web data charts, and native/custom Flutter charts where needed. [Decision 0004](decisions/0004-toolchain-directions-and-icon-family.md) selects **Hugeicons Free Stroke Rounded** and confirms the ApexCharts integration hold pending licensing clarification. Exact pins, distribution notices, coverage and integration evidence remain separate gates.
 
-[Decision 0003](decisions/0003-product-defaults.md) accepts P01–P11 product defaults, including account-required tracking, private/followers-only defaults, English-first Android UI, explicit units, restricted historical Focus edits and locked single-currency/independent savings semantics. This product-default decision did not approve the technical baseline below. Decision 0004 separately accepts lean pnpm and the specified mobile/web directions, with Node 24 LTS/TypeScript 6 candidate direction and an isolated stable Flutter SDK; exact versions remain separate. [Decision 0013](decisions/0013-provider-and-session-directions.md) later accepts PostgreSQL/Prisma, Supabase Auth/private Storage and separate server-side web/admin sessions as directions only; physical hosting/store, methods/protocols, costs/regions and recovery remain open.
+[Decision 0003](decisions/0003-product-defaults.md) accepts P01–P11 product defaults, including account-required tracking, private/followers-only defaults, English-first Android UI, explicit units, restricted historical Focus edits and locked single-currency/independent savings semantics. This product-default decision did not approve the technical baseline below. Decision 0004 separately accepts lean pnpm and the specified mobile/web directions, with Node 24 LTS/TypeScript 6 candidate direction and an isolated stable Flutter SDK; exact versions remain separate. [Decision 0013](decisions/0013-provider-and-session-directions.md) accepted PostgreSQL/Prisma and separate server-side web/admin sessions. [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md) replaces its Supabase Auth/Storage choices with framework-appropriate non-Supabase auth and **Cloudflare R2** for private storage. Exact libraries, identity/session/store protocols, private/public bucket separation, hosting, costs/regions and recovery remain open.
 
 [Decision 0010](decisions/0010-conditional-dependency-exceptions.md) conditionally accepts only the three exact tested ESLint peer allowances and the exact Nest-parent Multer override as eligible for a later separately approved baseline. Project-owner accountability, at-most-30-day review, fresh revalidation and safe removal apply; no baseline, final pins, install/execution or scaffolding is approved. It does not resolve notices, targets, omitted libraries or ApexCharts entitlement.
 
@@ -77,12 +77,13 @@ Product scope changes require a PRD decision. Cross-cutting documents consolidat
 | Mobile | Riverpod, Drift, Dio, go_router directions accepted in Decision 0004 | Exact Flutter/Dart pair and package pins, encrypted SQLite driver/keys, platform tests |
 | Web/admin | App Router/React, TypeScript, Tailwind, TanStack Query, React Hook Form/Zod and owned accessible component directions accepted | Exact pins, underlying primitives (shadcn/ui remains a candidate), browser baseline, session/CSRF and accessibility |
 | Workspace | Lean pnpm; separate Flutter SDK pin/application lockfile; no extra orchestrator by default | Manager bootstrap/version, compatible supported graph and installation authorization |
-| Identity/storage | Supabase Auth/private Storage direction accepted in Decision 0013 | Actual token/session model, storage policies, cost/region |
+| Identity | Framework-appropriate maintained auth integration, one Nest authority; no Supabase under Decision 0016 | Exact libraries/token/session/password/MFA/email/recovery model; no automatic secure framework default |
+| Storage | Cloudflare R2 behind Nest-owned private storage adapter | Separate private/public buckets, current authorization, cache/deletion/backup policies; [connection evidence](r2-connection-check.md) is not private-file acceptance |
 | Async work | PostgreSQL outbox + BullMQ/Redis | Crash recovery, queue durability, idempotent consumers |
 | Realtime/push | Socket.IO and FCM/APNs | Authorization, ticket integration, platform setup |
 | Deployment | Persistent NestJS processes; independently deployed web/admin | Hosting, budgets, backups, operating ownership |
 
-No Kubernetes, Kafka, service-per-mode deployment, separate financial database, or second domain backend is required initially. No exact framework/runtime versions or cloud vendor are selected here.
+No Kubernetes, Kafka, service-per-mode deployment, separate financial database, or second domain backend is required initially. Exact framework/runtime adoption pins and deployment hosting remain separate; naming R2 does not approve a private/public policy, bucket provisioning or app integration.
 
 ## 3. System context
 
@@ -97,8 +98,8 @@ flowchart TB
     BFF --> API
     ABFF --> API
     API --> DB[(Proposed PostgreSQL)]
-    API --> Media[Private object storage]
-    API --> Auth[Managed identity adapter]
+    API --> Media[Private Cloudflare R2 adapter]
+    API --> Auth[Nest-owned auth integration]
     Mobile -. sign in and refresh .-> Auth
     BFF -. user identity session .-> Auth
     ABFF -. staff authentication .-> Auth

@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.14
+- **Version:** 0.15
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -115,7 +115,9 @@ Use known synthetic private field canaries to inspect unauthorized responses, me
 
 ## 6. Browser and staff security
 
-The [M00-T06/T07 review matrix](authentication-session-review.md#4-required-evidence-matrix-for-t07) remains the full required proof, not a checked-off list. [Decision 0015's](decisions/0015-auth-methods-and-local-protocol-spike.md) authorized [local synthetic phase](authentication-session-spike.md) now passes 92 cases twice with six expected-red guard-removal controls. Real signed-token/loopback HTTP and explicit barriers exercise a disposable protocol with in-memory authorities; hosted Supabase revocation/MFA, actual browser cookie/CSRF and native callback/storage proof remain unrun. Neither health nor DB probes nor these doubles establish full identity acceptance.
+The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
+
+The [M00-T06/T07 review matrix](authentication-session-review.md#4-required-evidence-matrix-for-t07) remains the full required proof, not a checked-off list. [Decision 0015's](decisions/0015-auth-methods-and-local-protocol-spike.md) authorized [local synthetic phase](authentication-session-spike.md) now passes 92 cases twice with six expected-red guard-removal controls. Real signed-token/loopback HTTP and explicit barriers exercise a disposable protocol with in-memory authorities; real auth revocation/MFA, actual browser cookie/CSRF and native callback/storage proof remain unrun. Decision 0016 subsequently withdraws Supabase; those historical provider-specific assumptions must not be carried into a replacement implementation without review. Neither health nor DB probes nor these doubles establish full identity acceptance.
 
 - CSRF from unrelated origins and hostile sibling subdomains; missing/invalid tokens/Origin must follow the approved policy.
 - OAuth state/PKCE/nonce, safe redirects, replayed callbacks, session fixation/rotation.

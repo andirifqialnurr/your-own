@@ -1,6 +1,6 @@
 # Decision 0013 — Provider and session directions
 
-- **Status:** Accepted for the scoped directions below; full M00-T06 remains open
+- **Status:** Historical scoped acceptance; INF-03/04 superseded by [Decision 0016](0016-framework-auth-and-r2-storage.md); PostgreSQL/Prisma and separate server-side sessions retained, full M00-T06 remains open
 - **Approved by:** Project owner, 2026-10-26 UTC
 - **Recorded by:** Coding agent
 - **Sources:** [Provider review INF-01–05](../provider-baseline-review.md), [T06 acceptance](../../milestones/00-decisions-and-validation.md#m00-t06--infrastructure-and-provider-review)

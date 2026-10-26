@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.17
+- **Version:** 0.18
 - **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -65,9 +65,9 @@ The PRD owns product scope and user-visible behavior. This document translates t
 - Feature-first modular architecture within one Flutter application.
 - Local-first personal tracking with explicit synchronization.
 - REST/OpenAPI integration with the confirmed NestJS backend.
-- Socket.IO and FCM integration behind mobile-owned interfaces. Supabase Auth is now an accepted provider direction under Decision 0013, but its SDK, method, persistence and integration remain unreviewed/unimplemented.
+- Socket.IO and FCM integration behind mobile-owned interfaces. Auth uses a mobile-owned interface to the one Nest identity authority; Decision 0016 withdraws Supabase Auth. Exact client/session/secure-storage libraries remain unreviewed/unimplemented.
 
-Flutter, NestJS, and Next.js have been confirmed for their respective clients/backend. [Decision 0013](cookbook/decisions/0013-provider-and-session-directions.md) separately accepts the PostgreSQL/Prisma and Supabase Auth/private Storage directions. [Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) subsequently accepts initial email/password with verified-email recovery; staff TOTP belongs to the staff assurance boundary. API conventions, exact package versions, additional auth methods/password policy/session protocols, secure persistence, hosting and app execution remain gated; direction approval alone does not install an SDK or authorize a database spike.
+Flutter, NestJS, and Next.js have been confirmed for their respective clients/backend. [Decision 0013](cookbook/decisions/0013-provider-and-session-directions.md) accepts PostgreSQL/Prisma; [Decision 0016](cookbook/decisions/0016-framework-auth-and-r2-storage.md) replaces its Supabase choices with framework-appropriate non-Supabase auth and Cloudflare R2. Storage credentials remain server-only, not Flutter configuration. [Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) subsequently accepts initial email/password with verified-email recovery; staff TOTP belongs to the staff assurance boundary. API conventions, exact package versions, additional auth methods/password policy/session protocols, secure persistence, hosting and app execution remain gated; direction approval alone does not install an SDK or authorize a database spike.
 
 **Non-goals:** Selecting the complete backend/web architecture, implementing server schemas, building Flutter Web, GPS training, games, meals/nutrition, bank connections, or advanced project management.
 
@@ -89,7 +89,7 @@ Use one primary solution per concern. Do not combine Riverpod, Bloc, and GetX si
 | Identifiers | `uuid` | Client-generated entity/operation IDs that survive offline retries |
 | Dates/formatting | `intl`, `timezone`; device-zone adapter such as `flutter_timezone` if needed | Locale-aware display and IANA-zone calculations, not hand-built UTC offsets |
 | Credentials | `flutter_secure_storage` through a credential-store interface | OS-backed credential/key storage; not a place for large databases |
-| Authentication | Supabase Auth direction accepted; `supabase_flutter` remains an unadopted SDK candidate | Identity/session integration only; business-data access goes through the API |
+| Authentication | Framework-appropriate client of Nest-owned auth; exact libraries/session integration pending | No Supabase SDK or separate Flutter password store; business-data access remains through the API |
 | Realtime | `socket_io_client`, if the API uses Socket.IO | Authorized live updates; durable messages still belong to the server/database |
 | Push | `firebase_core`, `firebase_messaging` | FCM registration and delivery; iOS also requires APNs configuration |
 | Local notifications | `flutter_local_notifications` | Focus completion and optional water reminders, subject to OS limits |
@@ -559,11 +559,11 @@ Provide clear pending/syncing/synced/failed/conflict indicators, with a settings
 
 ### 12.1 Auth abstraction
 
-Expose an AuthRepository/session interface to the app. Under the accepted Supabase Auth direction, an eventual reviewed adapter handles signup/login/recovery/session refresh; feature code must not depend directly on provider session objects.
+Expose an AuthRepository/session interface to the app. Under Decision 0016, a reviewed adapter integrates signup/login/recovery/session refresh with the one backend authority, without Supabase. Flutter has no built-in identity service; do not invent a client password database or hand-roll cryptography. Feature code must not depend directly on auth library/session objects.
 
 The app sends the access token to the business API. The API verifies identity and enforces ownership/audiences. A successful login does not authorize every post or conversation.
 
-The [local synthetic session experiment](cookbook/authentication-session-spike.md) does not exercise a Supabase SDK, password/recovery/TOTP flow, secure persistence or native callback. No auth capability is enabled in the Flutter shell.
+The [historical local synthetic session experiment](cookbook/authentication-session-spike.md) predates the provider change and does not exercise real auth libraries, password/recovery/TOTP, secure persistence or native callbacks. No auth capability is enabled in the Flutter shell.
 
 ### 12.2 Credential storage
 

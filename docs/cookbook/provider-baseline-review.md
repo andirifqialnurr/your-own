@@ -2,6 +2,7 @@
 
 - **Reviewed:** 2026-10-26 UTC; published foundation `7b9fc4e28d0c79ce23d659939304ade958b74e00`.
 - **Status:** Original recommendation checkpoint retained; subsequent [Decision 0013](decisions/0013-provider-and-session-directions.md) accepts INF-01–04 directions and the server-side/separate part of INF-05. **Full T06 remains open/unchecked**; account, exact packages, physical hosting, budget, region and recovery are not approved.
+- **Current override:** [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md) withdraws Supabase Auth/Storage: use framework-appropriate non-Supabase auth and Cloudflare R2. [Signed connection checks](r2-connection-check.md) pass; public object delivery/private bucket isolation remain unverified. The tables below retain the historical Supabase review/acceptance checkpoint, not the current adoption direction.
 - **Scope:** [Owner-authorized review](decisions/0012-local-development-bootstrap.md#provider-baseline-review-continuation), [T06 acceptance](../milestones/00-decisions-and-validation.md#m00-t06--infrastructure-and-provider-review), [architecture](architecture.md), [backend](../BACKEND_TECH_SPEC.md), [security](security.md), [deployment](deployment.md).
 
 ## 1. Recommended direction for owner review

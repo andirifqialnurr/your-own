@@ -1,10 +1,10 @@
 # Your Own — Deployment & Operations Plan
 
-- **Version:** 0.3
-- **Status:** Proposed runbook/topology; no cloud resources, containers, workflows, or store builds provisioned
+- **Version:** 0.4
+- **Status:** Target runbook/topology; application cloud deployment/CI/store builds absent; owner-existing R2 tested read-only, not provisioned by the agent
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Testing](testing.md)
 
-Hosting vendors, regions, resource sizes, exact versions, numerical service targets, RPO/RTO, retention, and costs require approval. This is not a copy-and-run production installation guide. The [M00-T06 baseline review](provider-baseline-review.md#4-full-t06-acceptance-register) tracks the stack and pending hosting/region/budget/secret/recovery answers. [Decision 0013](decisions/0013-provider-and-session-directions.md) subsequently accepts scoped DB/ORM/provider/session directions; physical hosting/session store, exact versions and operations remain undecided. No resource is provisioned.
+Hosting vendors, regions, resource sizes, exact versions, numerical service targets, RPO/RTO, retention, and costs require approval. This is not a copy-and-run production installation guide. The [M00-T06 baseline review](provider-baseline-review.md#4-full-t06-acceptance-register) tracks the stack and pending hosting/region/budget/secret/recovery answers. [Decision 0013](decisions/0013-provider-and-session-directions.md) subsequently accepts scoped DB/ORM/provider/session directions; physical hosting/session store, exact versions and operations remain undecided. [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md) replaces Supabase with framework-appropriate non-Supabase auth and Cloudflare R2. The owner supplied an existing R2 bucket/public endpoint for [read-only metadata checks](r2-connection-check.md): signed reads work, public file delivery remains unverified and private/public separation is unresolved. No resource was provisioned or configured by the agent.
 
 ## Contents
 
@@ -32,7 +32,7 @@ Hosting vendors, regions, resource sizes, exact versions, numerical service targ
 | Admin | Separate Next.js server-capable deployment | Staff session/BFF and restricted workflow UI |
 | PostgreSQL | Proposed managed DB | Backups/PITR, migrations, connection budgets |
 | Redis/BullMQ | Proposed queue/coordination service | Added when workloads require; not domain truth |
-| Identity/storage/push | Approved managed services | Explicit environment policies, credentials, and ownership |
+| Auth/storage/push | Nest-owned auth integration, R2 and separately reviewed push integration | Exact maintained auth libraries and explicit environment policies, credentials, isolation and ownership |
 
 Start with a simple persistent API, managed persistence, and a worker when required. No V1 Kubernetes/service-per-mode requirement. Next.js can use suitable serverless hosting, but NestJS sockets/workers do not become request-scoped functions as a result. Static web export is insufficient for the proposed session/BFF model.
 
@@ -129,6 +129,8 @@ Alert on DB/pool failures, queue/outbox age, failed renders/exports, sync confli
 - Push-provider uncertainty can duplicate an external alert; application-level event dedupe must not be advertised as guaranteed exactly-once lock-screen delivery.
 
 ## 8. Storage and delivery
+
+R2 private storage must have public `r2.dev`/custom-domain delivery disabled. Keep any deliberately public assets in a separate approved bucket; public CDN enablement is not private authorization. The owner's supplied root `.env` is ignored and was used only by the external connectivity probe, not adopted as an application configuration contract. Credentials must remain server-side and separately scoped per environment; no upload or setting change was tested/authorized by that probe.
 
 - Private buckets for drafts, cards, and personal exports, with least-privilege credentials and explicit object metadata.
 - Current-context authorization before private media delivery; no permanent public poster URLs or inadvertent Next.js image-optimizer/CDN cache.

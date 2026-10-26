@@ -1,10 +1,10 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.3
+- **Version:** 0.4
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
-This policy spans Flutter, both Next.js applications, NestJS, workers, storage, identity, queues, and staff operations. Provider integration, encryption-driver, session, retention and legal-region decisions remain approval gates. [Decision 0015](decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verification/recovery and required staff TOTP directions. The [synthetic protocol report](authentication-session-spike.md) supplies local double/crypto/HTTP evidence only; required controls, real Supabase/session/MFA/browser/native proof, exact policies and store/key custody remain gates. The [review](authentication-session-review.md) retains its historical proposal matrix.
+This policy spans Flutter, both Next.js applications, NestJS, workers, storage, identity, queues, and staff operations. Provider integration, encryption-driver, session, retention and legal-region decisions remain approval gates. [Decision 0015](decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verification/recovery and required staff TOTP directions. The [synthetic protocol report](authentication-session-spike.md) supplies local double/crypto/HTTP evidence only; required controls, real auth/session/MFA/browser/native proof, exact policies and store/key custody remain gates. [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md) subsequently withdraws Supabase in favor of framework-appropriate maintained auth and Cloudflare R2; no replacement auth implementation is validated. The [review](authentication-session-review.md) retains its historical proposal matrix.
 
 ## Contents
 
@@ -130,6 +130,8 @@ NestJS—not a Next.js layout—verifies current staff grants, scope, required M
 The admin's proposed 15-minute idle/8-hour absolute/5-minute step-up windows remain reviewable defaults, not final policy.
 
 ## 8. Media, rendering, and caches
+
+Cloudflare R2 is the storage direction under Decision 0016. Use a private bucket with all public delivery disabled for restricted media; a publicly enabled `r2.dev`/custom-domain bucket cannot enforce application private/follower access. Keep deliberately public assets in a separate bucket if approved. Server-only S3 credentials and a successful signed bucket check do not prove private delivery: evaluate every public/custom-domain/CDN path and reauthorize current access. The [connection check](r2-connection-check.md) does not establish these controls or successful public object delivery.
 
 - Private storage keys, media IDs, and long-lived signed URLs are not access controls by themselves.
 - Reauthorize private media at delivery through a suitable proxy/API path. An issued signed URL can remain usable until expiry.
