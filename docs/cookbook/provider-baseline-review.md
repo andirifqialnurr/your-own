@@ -52,7 +52,7 @@ Direction approval is now scoped by Decision 0013; **implementation, operational
 | Required decision | Candidate / missing answer | Gate or next proof |
 |---|---|---|
 | Database/ORM | INF-01/02; exact PostgreSQL/Prisma/driver versions unreviewed | Direction accepted; exact dependency review and separately authorized isolated synthetic migrations/rollback/concurrency/pooling tests remain |
-| Identity/methods | INF-03; first login/recovery method and issuer configuration undecided | Owner method choice; M00-T07 verification/revocation/assurance spike; actual secure native persistence remains M00-T08 |
+| Identity/methods | INF-03; [A1/A2 method/session proposal](authentication-session-review.md), first login/recovery method and issuer configuration still undecided | Owner method choice; M00-T07 verification/revocation/assurance spike; actual secure native persistence remains M00-T08 |
 | Private storage | INF-04; object-region, limits/retention/provider-key scope undecided | Provider direction accepted; deny unauthorized access, revocation and reconciliation evidence before media slice |
 | Browser session store | INF-05; library, role isolation, encryption/key custody and lifetimes undecided | M00-T07 server-only refresh/CSRF/grant/MFA/logout evidence; later web/admin execution stays in roadmap order |
 | Hosting/topology | No API/worker/Next hosting vendor, plan, capacity or public domains selected | Persistent API needs, actual connection/resource budget and owner access/rollback responsibility before provisioning |

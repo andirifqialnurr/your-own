@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.12
+- **Version:** 0.13
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -114,6 +114,8 @@ Repeat after public→private→public, post deletion, audience narrowing, follo
 Use known synthetic private field canaries to inspect unauthorized responses, metadata, snapshots, ordinary logs, image output, and accessible text. Expected owner-only export/own-screen output is a different context, not a blanket ban on showing a user's own data.
 
 ## 6. Browser and staff security
+
+The [M00-T06/T07 review matrix](authentication-session-review.md#4-required-evidence-matrix-for-t07) is **Not run**. Its proposed local crypto/HTTP/session-double checks require separate authorization and cannot establish hosted Supabase revocation/MFA, browser cookie/CSRF or native callback/storage acceptance. Existing health and PostgreSQL/Prisma probe passes are not identity evidence.
 
 - CSRF from unrelated origins and hostile sibling subdomains; missing/invalid tokens/Origin must follow the approved policy.
 - OAuth state/PKCE/nonce, safe redirects, replayed callbacks, session fixation/rotation.

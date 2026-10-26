@@ -39,6 +39,10 @@ This is acceptance of directions, not proof that the candidates meet every requi
 
 M00-T06 stays **partially accepted / unchecked** until its remaining hosting/region/cost/isolation/secret/recovery criteria and required validation are resolved. Native device/Mac availability is not invented or waived.
 
+## Authentication/session review continuation
+
+After the same-revision local DB retry was published as `18c2b6d`, the owner's **“continue”** on 2026-10-26 follows the explicit next step **“keputusan metode login dan session”**. Prepare one bounded **M00-T06/T07 decision review** of login/recovery, token/session revocation, browser realm/CSRF and staff assurance, including official public documentation and a proposed synthetic evidence matrix. This permits review-order preparation before full T06/M01 acceptance, not a selection of email/password, MFA method, timeout numbers, session-store protocol or any new execution. No SDK install, auth spike, provider account/resource/email, credential collection, cloud, browser/native execution or M02 is authorized by this reply. Keep T06/T07 unchecked and request scoped owner choices before their implementation/spike.
+
 ## Recording checks
 
 On 2026-10-26, the existing Windows workspace's `pnpm check` passed **142 tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build, 37-source/131-directive import checks and **86 Markdown / 1,466 local links / four JSON examples**. This verifies the documentation/unchanged foundation, not any accepted provider. No package/image installation, provider/native/Flutter test or Docker command ran for this decision record. Preservation checks retain seven checked tasks, all existing app/policy/lock/asset bytes and 13 historical snapshots.

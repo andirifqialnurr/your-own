@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.10
+- **Version:** 0.11
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -479,6 +479,8 @@ Proposed endpoints:
 Login/recovery routes depend on the approved identity provider; do not invent a second password system simply because NestJS has an Auth module.
 
 ### 9.3 Sessions and operator access
+
+The [M00-T06/T07 method/session review](cookbook/authentication-session-review.md) prepares email/password + verification/recovery, staff TOTP and fail-closed protocol evidence for owner review. A1/A2, timeout/CSRF/revocation/staff-context details and its synthetic spike are not accepted or executed yet. Provider selection and the local DB probe do not prove those behaviors.
 
 - Document token refresh and logout/all-session revocation behavior using the actual provider model.
 - JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise.

@@ -1,10 +1,10 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.1
+- **Version:** 0.2
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
-This policy spans Flutter, both Next.js applications, NestJS, workers, storage, identity, queues, and staff operations. Provider, encryption-driver, session, retention, and legal-region decisions remain approval gates.
+This policy spans Flutter, both Next.js applications, NestJS, workers, storage, identity, queues, and staff operations. Provider integration, encryption-driver, session, retention and legal-region decisions remain approval gates. The [authentication/session review](authentication-session-review.md) proposes method and assurance choices plus a Not-run evidence matrix; it does not weaken these required controls, select policies or prove Supabase/session behavior.
 
 ## Contents
 
