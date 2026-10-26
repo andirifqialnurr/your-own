@@ -50,3 +50,7 @@ The [follow-up](../r2-connection-check.md#5-two-bucket-follow-up) confirms disti
 ## Updated public URL continuation
 
 The owner's **“ohh sorry iya benar saya lupa. saya sudah ikutkan r2 bucket base url nya.”** continues the read-only check with their updated ignored configuration. No fixture upload/delete, CORS/public-policy change, provisioning, credential change or application integration is authorized. The [07:04:05 UTC recheck](../r2-connection-check.md#6-updated-public-url-recheck) retains 200 for both signed bucket HEAD/list checks, empty listings, unsigned S3 400 and CDN base/absent-object 403. A real known-public-object test remains unrun; do not claim a CDN pass, diagnose CORS from a non-browser request or infer full private-policy acceptance.
+
+## Framework authentication review continuation
+
+Following the owner-reported browser download, **“response me in english. and continue your work”** authorizes the next bounded M00-T07 review of maintained non-Supabase auth/session integrations, not package/protocol adoption or candidate execution. The [review](../framework-auth-review.md) now recommends evaluating the first-party Nest authentication package before Better Auth or a bespoke Passport/JWT composition. Its early 0.1.1 artifact and declared peers were statically reviewed; full graph/runtime/Prisma-store/staff assurance proof remains unrun. Ask for scoped candidate-spike authorization rather than silently installing/adopting it or starting M02. R2 settings/credentials/markers and prior failed checkpoints remain untouched.

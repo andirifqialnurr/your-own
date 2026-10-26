@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.18
+- **Version:** 0.19
 - **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -563,7 +563,7 @@ Expose an AuthRepository/session interface to the app. Under Decision 0016, a re
 
 The app sends the access token to the business API. The API verifies identity and enforces ownership/audiences. A successful login does not authorize every post or conversation.
 
-The [historical local synthetic session experiment](cookbook/authentication-session-spike.md) predates the provider change and does not exercise real auth libraries, password/recovery/TOTP, secure persistence or native callbacks. No auth capability is enabled in the Flutter shell.
+The [historical local synthetic session experiment](cookbook/authentication-session-spike.md) predates the provider change and does not exercise real auth libraries, password/recovery/TOTP, secure persistence or native callbacks. No auth capability is enabled in the Flutter shell. The [framework-auth candidate review](cookbook/framework-auth-review.md) does not adopt a Flutter SDK, JWT/bearer protocol, token lifetime or secure-storage plugin; issued access JWTs must not be described as immediately revoked merely because a refresh family was revoked.
 
 ### 12.2 Credential storage
 

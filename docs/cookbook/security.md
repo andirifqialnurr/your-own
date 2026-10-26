@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.4
+- **Version:** 0.5
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -56,6 +56,8 @@ IDs, hashes, and pseudonyms can still be personal data. Unguessability is not au
 These controls address application threats; they do not prove identity, real-world activity, medical benefit, or financial correctness against external institutions.
 
 ## 3. Identity and lifecycle
+
+The [non-Supabase framework review](framework-auth-review.md) recommends evaluating a first-party Nest candidate, not installing/approving it. Published generic MFA state, JWT expiry/refresh revocation and library defaults do not prove fresh staff TOTP, current grants/admin realm, per-device access-token revocation or durable Prisma-store atomicity. Those require the proposed actual-module/store evidence; the earlier toy harness and static peer/notice/advisory checks are insufficient.
 
 - Verify approved token signature algorithms, issuer, audience, expiry, and applicable time claims using trusted configuration/rotating keys.
 - Never accept request-supplied issuer/JWKS URLs as trusted identity configuration.

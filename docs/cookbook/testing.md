@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.15
+- **Version:** 0.16
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -114,6 +114,8 @@ Repeat after public→private→public, post deletion, audience narrowing, follo
 Use known synthetic private field canaries to inspect unauthorized responses, metadata, snapshots, ordinary logs, image output, and accessible text. Expected owner-only export/own-screen output is a different context, not a blanket ban on showing a user's own data.
 
 ## 6. Browser and staff security
+
+The [framework-auth candidate matrix](framework-auth-review.md#4-proposed-ownership-and-next-local-evidence) remains **Not run**. First-party Nest package source/peer/notice review is not execution of its services or concurrency contract suite. The proposed first real-module spike would use synthetic users/mail sinks outside the app only after scoped authorization; Prisma/PostgreSQL races, actual browser/native behavior and staff TOTP freshness need later separate evidence.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 

@@ -1,0 +1,78 @@
+# M00-T07 — Non-Supabase framework authentication review
+
+- **Reviewed:** 2026-10-26 UTC, after `999d5ae`
+- **Status:** Recommendation/static artifact review only; package adoption and candidate execution pending, full T06/T07 unchecked
+- **Authority:** [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md), [English/continue instruction](r2-upload-check.md#7-subsequent-owner-browser-report), [backend identity contract](../BACKEND_TECH_SPEC.md#9-authentication-and-account-lifecycle)
+- **Current app:** Nest 12.2.0 / Node 24.18.0 / pnpm 12.8.1 / TypeScript 6.0.3, health endpoints only; no auth package, database/store or product auth route
+
+## 1. Recommendation
+
+**Evaluate first-party `@nestjs/authentication` first**, rather than writing password/reset/token/MFA cryptography or assuming Nest/Flutter/Next have automatic secure defaults. The current [official Nest authentication guide](https://docs.nestjs.com/security/authentication) now describes this package, not merely an application assembling Passport/JWT. This is a recommendation, **not an accepted pin or permission to install/run it**.
+
+The observed candidate is **0.1.1**, an early pre-1.0 API, not a mature/stability certification. Its published metadata declares Node `>=20.19.0`, Nest core/common `^12.0.0`, RxJS `^7.1.0` and compatible reflect-metadata ranges, with optional Nest websocket/microservice peers. The installed pins satisfy those declared ranges, but no frozen resolver/build/runtime compatibility test has run. It declares no additional non-peer runtime dependencies. Its publisher's Node version is not a required tool upgrade. Keep the existing tool pins and strict peer/lifecycle policies.
+
+| Approach | Why considered | Current disposition |
+|---|---|---|
+| **First-party Nest authentication 0.1.1** | Own Nest identity authority; built-in session/password/email/reset/TOTP/token services, hashed session/refresh/email tokens, encrypted TOTP and store contract tests | Preferred candidate for an isolated local verification; early API, Prisma store, real races and staff/session adaptation still require proof |
+| **Better Auth 1.7.13** | Maintained application-hosted auth library with email/password, Prisma, sessions and TOTP; not a Supabase service | Viable alternative, not selected. Official Nest integration is **community-maintained**, not Nest core. Version 2.8.0 of that wrapper declares Nest 12-compatible peers and Node `>=22.22.1`; neither wrapper nor core was installed/tested. No tool upgrade is needed/inferred |
+| Assemble Passport/JWT/session/password/reset/TOTP components | Familiar Nest ecosystem and flexible adapters | Not chosen as the first probe: a strategy/JWT library alone is not the required account/recovery/MFA/store system. Avoid creating a large bespoke security framework while calling it a default |
+
+No social login, magic links, API keys, guest mode, optional user MFA, new timeout values or auth endpoint contract is approved by a library's feature list. Retain the accepted email/password + verification/recovery and required staff TOTP directions.
+
+## 2. First-party findings and important gaps
+
+Source: official [Nest guide Markdown](https://github.com/nestjs/docs.nestjs.com/blob/master/content/security/authentication.md) plus the integrity-verified, **unexecuted** published 0.1.1 JS/types/notice. Master documentation is mutable; exact published interfaces, not a future guide alone, must govern a spike.
+
+- **Sessions:** random opaque cookie token, only its SHA-256 stored; idle/absolute session state, fixation-resistant replacement and global guard/provider interfaces. The published `SessionStore` requires conditional forward-only `touchSession` and count-returning deletion. `touchSession` is best-effort after an authenticated read, not an atomic domain authorization transaction or guaranteed fail-closed write.
+- **Passwords:** library scrypt, not the earlier disposable crypto harness. The guide describes roughly 128 MiB per default hash; benchmark and bound parallel login work before production. Do not silently lower production cost or change global thread-pool settings for fast tests. Any cheaper synthetic test has to be labeled as such.
+- **Verification/reset:** purpose-bound, hashed, single-use email tokens, with an application handler/user repository and mail transport still required. No SMTP/provider/account, sender, secret or real email is configured. The user's old Supabase-managed recovery assumption is withdrawn, not replaced by a working reset service.
+- **Mobile tokens:** access JWT plus hashed, rotating single-use refresh-token families. Reuse revokes the family; concurrent refreshes/lost responses need explicit client serialization and no blind retry. The published `TokenService.revokeAll()` explicitly says already-issued access JWTs live until expiry. `pair()` signs stored family claims plus subject; it does **not** automatically add a current-session/family binding that establishes immediate per-device access-token revocation. Choose/prove current-state semantics or explicitly approve the bounded stale-access model; no immediate-revocation claim follows.
+- **Staff TOTP:** encrypted seeds and atomic time-step/recovery-code claiming are useful, but published `MfaState` is only `pending`/`verified`. Both recovery-code and TOTP completion can reach a generic MFA result; a long-lived verified session or refreshed `amr` is not proof of a fresh TOTP challenge. Required staff enrollment, current grants, admin realm, verified method/time and recovery restrictions remain Nest-owned gates. Do not trust client metadata, `amr` input, frontend flags or a user's enrollment boolean. Do not turn off TOTP encryption outside explicitly synthetic tests.
+- **Storage:** the package uses application-supplied `SessionStore`, `RefreshTokenStore`, `MfaStore` and `EmailTokenStore` for the intended features. It does not ship a ready verified Prisma store. Missing stores fall back to memory outside production; production refusal only helps when configured correctly. App bootstrap must reject missing real stores for any later real-data environment; no `allowInMemoryStorage` bypass. Magic-link/OIDC stores are irrelevant until those features are separately approved.
+- **Prisma concurrency:** official guidance requires conditional update/delete counts, `GREATEST` for TOTP upsert, one-time purpose-specific consumes and bounded pending tokens. `recordMfaFailure`'s insert must become visible before its separate count; do not hide both in an uncommitted transaction. Recovery-code replacement needs a transaction. Auth writes are not automatically part of tracker/domain transactions. Run the published `authenticationStoreContract(..., { concurrent: true })` on real pooled PostgreSQL later; in-memory/PGlite cannot certify real multi-connection races.
+- **HTTP/BFF:** a library global guard is not route authorization. Keep `/v1/health/live` public and product unavailable; prove provider routing, limited DTO/body parsing, no-store/errors, explicit Origin/session-bound CSRF and fixed URLs. The current API deliberately has `bodyParser: false`; documentation decorators alone cannot validate an unparsed request. Browser cookie/HTTPS/Back/cache behavior still needs real browser evidence.
+
+## 3. Better Auth comparison: defaults not to copy
+
+These official sources are comparative findings, not configuration adopted in this repository:
+
+| Official source | Finding / implication |
+|---|---|
+| [Nest integration](https://www.better-auth.com/docs/integrations/nestjs) / [Express integration](https://www.better-auth.com/docs/integrations/express) | Nest wrapper is community-maintained; guard behavior and raw-body ordering must be proven. A direct core Node/Express adapter is another reviewed option, not a second auth authority or reason to install a wrapper speculatively |
+| [Email/password](https://www.better-auth.com/docs/authentication/email-password) | Verification needs a sender callback; signup enumeration protection depends on configuration. Password reset does **not** revoke other sessions by default. Prisma/Drizzle atomic reset/revocation requires explicitly enabled transactions; secondary-storage eviction failures can leave sessions alive |
+| [Prisma](https://www.better-auth.com/docs/adapters/prisma) | Provides an adapter, but guide CLI/schema generation is not migration adoption. Do not run unpinned `npx ...@latest`, overwrite the owner's `.env`, add a second migration tree or change ORM just for the example |
+| [Session management](https://www.better-auth.com/docs/concepts/session-management) | Cookie caching can accept revoked sessions until cache expiry. No database can activate stateless mode; fresh-session age is not staff TOTP time. Prefer evaluating current authoritative DB-backed lookup, with no secondary/cookie cache initially, if this alternative is selected |
+| [Bearer](https://www.better-auth.com/docs/plugins/bearer) | Returns `set-auth-token`; docs suggest localStorage, **which violates this app's browser/BFF boundary**. Bearer is a session credential, not automatically a self-contained JWT. Flutter needs actual OS-backed storage; Next clients must never receive the server-held token through headers/body/cookies by accidental forwarding |
+| [Two-factor](https://www.better-auth.com/docs/plugins/2fa) | Enrollment flags, recovery codes, OTP and trusted-device skip behavior are not mandatory fresh staff TOTP. Do not copy `trustDevice: true`, enable email/SMS alternatives or treat `twoFactorEnabled` as per-session evidence |
+| [Security](https://www.better-auth.com/docs/reference/security) / [Rate limits](https://www.better-auth.com/docs/concepts/rate-limit) | Never disable Origin/CSRF checks to make native clients work. Fixed trusted URL/origin/proxy boundaries and later cross-instance rate-limit storage are required; a client-supplied forwarded IP is not trustworthy |
+| [Telemetry](https://www.better-auth.com/docs/reference/telemetry) | Docs describe optional telemetry disabled by default; confirm explicit disabling/egress behavior before any candidate execution. Presence of a telemetry dependency is not evidence an event was sent; none of this candidate was run |
+
+## 4. Proposed ownership and next local evidence
+
+One Nest-owned identity database/adapter surface, never three independent password stores. PostgreSQL/Prisma remains the direction; auth state migration ownership eventually stays with `apps/api/prisma/`. Separate user-web/admin BFF opaque sessions and secrets remain; neither Next app becomes another domain/auth database owner. Flutter uses an owned auth interface and reviewed secure persistence. R2 keys and buckets are unrelated to sign-in and stay untouched.
+
+**Next proposal, not executed/authorized here:** a disposable, loopback-only Nest 12 / authentication 0.1.1 candidate spike outside the repo, using an exactly reviewed strict/script-denied graph, existing tools, synthetic users/secrets and an in-memory mail sink only. No SMTP/live identity/real credentials, Docker/DB, browser/native or app integration in the first phase. Memory stores establish protocol behavior only, not persistence. Cap fixture hashing concurrency/resources; close every owned listener and never copy the prototype into the app. A later real Prisma-store/PostgreSQL race phase needs its own scoped authorization; the prior DB experiment does not grant that automatically.
+
+| Required candidate evidence | Current state |
+|---|---|
+| Exact artifact/notice/origin, declared peer compatibility | Static subset reviewed; runtime/frozen full graph **not run** |
+| Password verify/malformed input, verified-email bootstrap, single-use/purpose-bound reset and safe callbacks | **Not run** |
+| Real module cookie/session fixation/rotation/logout and refresh reuse/concurrent/lost-response behavior | **Not run** |
+| Active/suspended/deleting/deleted lifecycle plus safe tombstone/bootstrap denial | **Not run** |
+| Enrolled/un-enrolled/pending MFA, code replay/recovery, admin realm/current grant and fresh TOTP distinction | **Not run** |
+| Credential/body/header redaction, explicit Origin/CSRF/rate-limit/DTO/body/health routing; independent guard-removal controls | **Not run** |
+| Prisma adapter/store contracts, real lock/barrier races, restart and isolated web/admin stores | **Not run; later separate phase** |
+| Browser enforced cookies/CSRF and native Flutter secure-store/callback/account-switch | **Not run; later platform proof** |
+
+## 5. Artifact, advisory and execution boundary
+
+- `@nestjs/authentication` **0.1.1** official npm tarball matched its metadata's SHA-512 integrity before static inspection: **215 files / 523,567 uncompressed file bytes**. Published MIT notice retained externally. No candidate script/import/service/CLI was executed; package `prepare`/build/test scripts were not run. No package installed into any application or new external dependency graph.
+- Direct-version OSV queries at **2026-10-26 09:18:59 UTC** returned no listed advisories for that package/version and Better Auth 1.7.13. This is **not** a full graph audit, exploit review, legal clearance, runtime compatibility pass or future advisory guarantee. Better Auth's full graph/artifact was not adopted or exhaustively reviewed.
+- Fifteen public documentation/registry requests succeeded, plus the Nest tarball and two direct-version advisory queries. The first guessed Nest session Markdown source returned **404**; it is retained, not silently counted as useful content. The canonical session page was fetched as ancillary material; the recommendation relies on the actual authentication guide and published package. No authenticated R2/Auth/cloud request, original `.env` use, install, mail or settings change occurred in this review.
+- Evidence: `C:/Users/HP/AppData/Local/Temp/your-own-auth-followup-fcq3q4fs/` — `sources/` captures/hashes/statuses, retained source 404, `candidate-artifact.json`, `published/`, `direct-advisories.json`, extract logs and baseline. Static publisher sources are untrusted reference data, not permission to execute their install examples.
+
+The owner has not yet accepted this exact package/protocol or authorized the proposed candidate spike. Full M00-T06/T07 and M01/native/CI gates remain open; seven checked tasks and all immutable historical checkpoints remain unchanged.
+
+## 6. Repository verification
+
+`pnpm check` passed **142 existing root tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build and the **37-source / 131-directive** scan. Documentation checks passed **97 Markdown / 1,623 local links / four JSON examples**, plus 29 owned JS/TS/JSON whitespace checks. Diff/preservation checks retain the ignored config, all app/lock/policy/font/golden/native bytes, 13 historical snapshots and **67 requirement IDs / 224 tasks / 20 plans / seven checked tasks**. Only ten documentation paths changed for this review. These are foundation/documentation checks, not tests of either auth candidate; Flutter/native/browser and auth services/stores were not run. The first preservation-helper wording assertion failed because Markdown emphasis split the phrase `not a full graph audit`; normalize emphasis in that helper and retain the original failure log. No application assertion, gate, source artifact or package policy was relaxed.

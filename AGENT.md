@@ -69,7 +69,7 @@ Confirmed: Flutter, NestJS, separate Next.js user/admin apps, a monorepo directi
 
 ## 6. Change workflow
 
-Respond in English, as explicitly requested by the owner. Their continuation after the reported browser download permits the next bounded non-Supabase auth/session decision review, not automatic library/protocol adoption, application auth/storage integration or M02.
+Respond in English, as explicitly requested by the owner. Their continuation after the reported browser download permits the [non-Supabase auth/session decision review](docs/cookbook/framework-auth-review.md), now prepared with a recommendation to evaluate first-party `@nestjs/authentication` 0.1.1. Better Auth is an alternative; no candidate is adopted/executed. Static artifact/peer/notice/direct-advisory review is not a frozen graph/runtime/store/security pass. Obtain scoped candidate-spike authorization; no automatic library/protocol adoption, application auth/storage integration or M02.
 
 1. Select one bounded eligible task from the milestone plan, or the user's explicitly requested scope.
 2. Check prerequisites and approval evidence. Record blockers instead of bypassing them.
