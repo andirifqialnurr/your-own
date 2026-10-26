@@ -1,6 +1,6 @@
 # M00-T06 — Read-only R2 and public CDN connection check
 
-- **Checked:** 2026-10-26 UTC, starting 06:24:05; repeated at 06:25:40; [two-bucket follow-up](#5-two-bucket-follow-up) at 06:40:24
+- **Checked:** 2026-10-26 UTC, starting 06:24:05; repeated at 06:25:40; [two-bucket follow-up](#5-two-bucket-follow-up) at 06:40:24; [updated URL recheck](#6-updated-public-url-recheck) at 07:04:05
 - **Status:** Signed R2 connection passes; public file delivery unverified; private-storage acceptance and full T06/T07 remain open/unchecked
 - **Authority:** [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md), owner's explicit `.env`/R2 and subsequent public-CDN test requests
 - **Scope:** Existing owner-provided bucket/configuration only; no application storage/auth integration
@@ -59,3 +59,15 @@ Anonymous CDN base HEAD and a random absent-object HEAD both returned **403**. A
 No fixture upload, delete, body download, settings/provisioning, SDK install or app integration occurred. TLS verification and redirect refusal remain enabled. Root/API `.env` bytes are unchanged and ignored. Local evidence: `C:/Users/HP/AppData/Local/Temp/your-own-r2-dual-bxkrwpaq/` — `probe.py`, reused `r2_transport.py`, sanitized `result.json`, `probe.log` and private-value-free validation output; config hashes remain external in `baseline.json`. The probe process exited and created no persistent resources. Next file-delivery proof needs a known non-sensitive public object or separate fixture upload/cleanup authorization; private public-path settings still need verification before sensitive media.
 
 Follow-up repository checks: `pnpm check` passed **142 existing root tests**, lint/types/API build and the 37-source/131-directive scan; **94 Markdown / 1,584 links / four JSON examples** passed documentation checks. `git diff --check` and preservation/secret checks passed: six documentation paths only; original config, application/lock/policy/asset/native/snapshot bytes retained; 67 requirement IDs, 224 tasks/20 plans/seven checked tasks unchanged. No Flutter/native or app-storage integration tests ran.
+
+## 6. Updated public URL recheck
+
+The owner reported **“ohh sorry iya benar saya lupa. saya sudah ikutkan r2 bucket base url nya.”** after the CDN/S3 URL explanation. Interpret this as continuation of the authorized read-only connection checks with the current ignored `.env`, not permission to upload a fixture, change CORS/public settings or integrate storage into the app. [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md#updated-public-url-continuation) records this scope.
+
+At **07:04:05 UTC**, the unchanged two-bucket probe made eight requests in **1.399 seconds**. Both private/public signed HEAD and bounded list returned **200**; both listings were empty/not truncated and unsigned S3 HEAD returned **400**. The configured CDN base and random absent-object HEAD both still returned **403**. Known-public-object HEAD remained unrun: no existing object and no upload authorization. No credential was sent to the CDN, redirect followed, TLS check weakened, object body read or remote/local configuration changed.
+
+This is a server-side script without a browser Origin/CORS enforcement step; CORS/IP allowlisting is not established as the cause or remedy. The latest URL input does not establish successful file delivery or diagnose the 403. Next: a known non-sensitive file in the public bucket, supplied by the owner, or separately authorized tiny fixture upload/cleanup. Do not enable public delivery on the private bucket. Preserve all earlier results unchanged.
+
+Sanitized evidence: `C:/Users/HP/AppData/Local/Temp/your-own-r2-url-z5w1nytu/` — reused `probe.py`/`r2_transport.py`, `result.json`, `probe.log`, and external baseline/config hashes. The process exited without persistent resources; original `.env` files remained ignored and byte-unchanged. Only this report, Decision 0016's continuation and the M00 log changed; application, lock, policy, asset/native and 13 historical snapshot bytes remain unchanged. Full T06/T07/M01/M02 remain open; no new application-storage/browser/native proof follows.
+
+`pnpm check:docs` passed **94 Markdown / 1,589 local links / four JSON examples** and 29 owned JS/TS/JSON whitespace checks. Diff/preservation/secret checks passed, retaining 67 requirement IDs, 224 tasks/20 plans/seven checked tasks. The full root/Flutter/native suites were not rerun for this three-document evidence-only continuation; the prior root results above retain their original checkpoint.
