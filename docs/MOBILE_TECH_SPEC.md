@@ -1,6 +1,6 @@
 # Your Own — Flutter Mobile Technical Specification
 
-- **Version:** 0.16
+- **Version:** 0.17
 - **Status:** Target specification; initial local Flutter shell implemented, native builds/product functionality unverified
 - **Platforms:** Android phones/tablets first for the limited personal pilot; iPhone/iPad remain required. Minimum OS versions and platform release readiness remain pending.
 - **Accepted rollout:** [Decision 0001 — scope and release tracks](cookbook/decisions/0001-scope-and-release-tracks.md)
@@ -67,7 +67,7 @@ The PRD owns product scope and user-visible behavior. This document translates t
 - REST/OpenAPI integration with the confirmed NestJS backend.
 - Socket.IO and FCM integration behind mobile-owned interfaces. Supabase Auth is now an accepted provider direction under Decision 0013, but its SDK, method, persistence and integration remain unreviewed/unimplemented.
 
-Flutter, NestJS, and Next.js have been confirmed for their respective clients/backend. [Decision 0013](cookbook/decisions/0013-provider-and-session-directions.md) separately accepts the PostgreSQL/Prisma and Supabase Auth/private Storage directions. API conventions, exact package versions, auth methods/protocols, secure persistence, hosting and execution remain gated; direction approval alone does not install an SDK or authorize a database spike.
+Flutter, NestJS, and Next.js have been confirmed for their respective clients/backend. [Decision 0013](cookbook/decisions/0013-provider-and-session-directions.md) separately accepts the PostgreSQL/Prisma and Supabase Auth/private Storage directions. [Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) subsequently accepts initial email/password with verified-email recovery; staff TOTP belongs to the staff assurance boundary. API conventions, exact package versions, additional auth methods/password policy/session protocols, secure persistence, hosting and app execution remain gated; direction approval alone does not install an SDK or authorize a database spike.
 
 **Non-goals:** Selecting the complete backend/web architecture, implementing server schemas, building Flutter Web, GPS training, games, meals/nutrition, bank connections, or advanced project management.
 
@@ -562,6 +562,8 @@ Provide clear pending/syncing/synced/failed/conflict indicators, with a settings
 Expose an AuthRepository/session interface to the app. Under the accepted Supabase Auth direction, an eventual reviewed adapter handles signup/login/recovery/session refresh; feature code must not depend directly on provider session objects.
 
 The app sends the access token to the business API. The API verifies identity and enforces ownership/audiences. A successful login does not authorize every post or conversation.
+
+The [local synthetic session experiment](cookbook/authentication-session-spike.md) does not exercise a Supabase SDK, password/recovery/TOTP flow, secure persistence or native callback. No auth capability is enabled in the Flutter shell.
 
 ### 12.2 Credential storage
 

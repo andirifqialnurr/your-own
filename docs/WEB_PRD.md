@@ -1,6 +1,6 @@
 # Your Own — User Website PRD & Next.js Specification
 
-- **Version:** 0.9
+- **Version:** 0.10
 - **Status:** Detailed draft; no website scaffold implemented
 - **Confirmed framework:** Next.js for the user website
 - **Shared backend:** NestJS; no separate web financial/social backend
@@ -435,6 +435,8 @@ features/money/forms/transaction-form.client.tsx
 - Keep these navigation indexes beside the application and update them with changes. Root PRDs, the cookbook, and generated backend contracts remain authoritative; do not duplicate those documents into each feature.
 
 ## 8. Authentication and browser sessions
+
+[Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery as a direction for the later authenticated website. Its [Node HTTP/session experiment](cookbook/authentication-session-spike.md) is not a real browser/BFF/cookie/CSRF acceptance result; no website scaffold or auth integration is created by it.
 
 ### Recommended session model
 

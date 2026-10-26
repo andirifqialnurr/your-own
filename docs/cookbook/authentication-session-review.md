@@ -1,21 +1,21 @@
 # M00-T06/T07 — Authentication method and session review
 
 - **Checkpoint:** 2026-10-26 UTC; repository base `18c2b6dd5b446a2750e455c31eb06c6b1f7fb3f3`.
-- **Status:** Proposed decisions and evidence plan; **owner choices/spike execution pending**. No login method, timeout, store protocol or SDK is selected by this document; T06/T07 remain unchecked.
+- **Status:** Historical proposal retained; the owner's subsequent “lanjut saja” in [Decision 0015](decisions/0015-auth-methods-and-local-protocol-spike.md) accepts A1/A2 directions and authorizes the local synthetic phase. [Results](authentication-session-spike.md) now supply that portion only; timeout/store/protocol/SDK and full T06/T07 acceptance remain open/unchecked.
 - **Authority:** [Decision 0013 review continuation](decisions/0013-provider-and-session-directions.md#authenticationsession-review-continuation), [ACC-01](../PRD.md#acc-01--account-lifecycle), [backend identity](../BACKEND_TECH_SPEC.md#9-authentication-and-account-lifecycle), [mobile isolation](../MOBILE_TECH_SPEC.md#12-authentication-and-account-isolation), [browser sessions](../WEB_PRD.md#8-authentication-and-browser-sessions), [staff assurance](../ADMIN_CMS_PRD.md#6-staff-authentication-and-sessions), [security](security.md).
 
 [Decision 0013](decisions/0013-provider-and-session-directions.md) already accepts Supabase Auth and separate server-side web/admin sessions as directions, **not** their methods/protocol/physical store. The completed [local DB/ORM probe](prisma-engine-follow-up.md) proves no identity, JWT revocation, browser security or native credential-storage behavior.
 
 ## 1. Two scoped owner choices
 
-These are proposal labels, not new product requirement IDs:
+These were the proposal labels presented to the owner, not new product requirement IDs. Decision 0015 records their subsequent scoped acceptance; the original recommendation/rationale below is retained.
 
 | Choice | Recommendation | Why / not selected |
 |---|---|---|
 | **A1 — First user login method** | **Email + password, verified email before personal bootstrap, provider-managed reset/recovery** | One initial method across mobile and later web; no second Nest password/hash database. Supports password managers and avoids requiring email delivery on every returning login. Still depends on real delivery for verification/recovery and tested provider password/abuse policy. Magic link/email OTP, Google/Apple, passkeys and phone/SMS remain alternatives/later choices, **not enabled or promised**. No guest/anonymous account. |
 | **A2 — Staff second factor** | **TOTP required before staff access**, with current grants and fresh step-up for high-impact actions | Fits the required MFA boundary without selecting SMS billing. Enrolled factor alone is insufficient: verify a challenge, trust server-verified assurance and still check current application grants. Staff provisioning/recovery is restricted and audited, not public signup or an emergency bypass. Normal-user optional MFA is a separate choice, not a pilot requirement inferred here. |
 
-**Suggested owner response:** accept/adjust A1/A2 as directions and authorize the bounded **local synthetic** protocol spike in section 5. That would not approve a Supabase project, email sender/service, password/timeout numbers, physical session store/keys, real staff provisioning, spending or M02. Those retain explicit gates.
+**Historical suggested owner response (answered “lanjut saja”, Decision 0015):** accept/adjust A1/A2 as directions and authorize the bounded **local synthetic** protocol spike in section 5. That would not approve a Supabase project, email sender/service, password/timeout numbers, physical session store/keys, real staff provisioning, spending or M02. Those retain explicit gates.
 
 Password minimum/maximum, breach checks, rate limits/CAPTCHA, reset/verification expiry and support recovery rules remain to be reviewed against the chosen provider/project. Do not silently adopt a provider minimum, truncate passwords or invent numbers here. Keep neutral reset/signup responses where account-existence leakage is possible; never log passwords, links or tokens. The existing admin **15-minute idle / 8-hour absolute / 5-minute step-up** values remain **proposed**, not accepted by A1/A2 or this review.
 
@@ -63,7 +63,7 @@ Source response URLs/times, raw hashes and LF-normalized parsed-text hashes are 
 
 ## 4. Required evidence matrix for T07
 
-All cases below are **Not run**; root health tests, decoded sample JWTs and the DB probe do not satisfy them.
+At the review checkpoint all cases below were **Not run**. The subsequent [synthetic report](authentication-session-spike.md) exercises only local crypto/HTTP/session-double invariants; real provider/browser/native/durable-store proof remains missing. Root health tests, decoded sample JWTs and the DB probe do not satisfy those requirements.
 
 | Area | Required positive/negative/race evidence | What a local synthetic test cannot prove |
 |---|---|---|
@@ -78,7 +78,7 @@ All cases below are **Not run**; root health tests, decoded sample JWTs and the 
 
 ## 5. Proposed bounded local spike and acceptance limits
 
-**Not authorized or executed by this review.** If the owner accepts A1/A2 and permits the next spike, implement an isolated temp-workspace **Node 24 synthetic** protocol experiment using existing built-in crypto/test/HTTP tools where sufficient. No application auth routes, package installation, Docker/database, Supabase stack/project, browser/device, live email or real credentials are needed for its first phase.
+**Historical plan:** this review did not itself authorize execution. Decision 0015 subsequently authorized the first phase and its [results](authentication-session-spike.md) are now recorded. The original proposed scope was: if the owner accepts A1/A2 and permits the next spike, implement an isolated temp-workspace **Node 24 synthetic** protocol experiment using existing built-in crypto/test/HTTP tools where sufficient. No application auth routes, package installation, Docker/database, Supabase stack/project, browser/device, live email or real credentials are needed for its first phase.
 
 Use ephemeral asymmetric keys and synthetic issuer/subjects/session/realm fixtures, a task-owned loopback JWKS/HTTP server, injected clocks and explicit concurrency barriers. No remote discovery driven by test requests; no log of raw synthetic bearer/cookie/key values. Negative controls and resource teardown are required. Keep fixed test keys/data clearly synthetic; never import the original `.env` or real provider configuration. Stop/report a scope/tool gap rather than add an unreviewed SDK or pretend an in-memory session fixture is durable storage.
 
@@ -88,4 +88,4 @@ Record exact commands/results and limitations, then separately commit/push the b
 
 `pnpm check` passed **142 existing root tests** (21 tooling + 14 design/artwork + 88 boundary + 19 API), lint/types/API build and the **37-source / 131-directive** scan. Documentation checks passed **90 Markdown / 1,519 local links / four JSON examples**; `git diff --check` passed. Source-response/hash and preservation checks retain 67 requirement IDs, 224 tasks/20 plans/seven checked tasks, the app source/manifests/locks/policies/assets/native wrappers and all 13 historical snapshots. These are review/foundation checks, **not** executed identity/CSRF/MFA/provider tests. No auth/Flutter/native/browser spike, SDK installation, Docker operation or provider/email action occurred in this review.
 
-**Owner question:** accept **A1 (email/password + verification/recovery)** and **A2 (required staff TOTP)** as directions, and permit this **local synthetic protocol spike only**, without cloud/email/provider resources or application integration?
+**Historical owner question (subsequently accepted within Decision 0015's scope):** accept **A1 (email/password + verification/recovery)** and **A2 (required staff TOTP)** as directions, and permit this **local synthetic protocol spike only**, without cloud/email/provider resources or application integration?

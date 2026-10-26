@@ -18,7 +18,7 @@ Keep the existing one-NestJS authority; do not build a second backend inside a p
 
 **Suggested next owner answer:** accept or reject INF-01–04 as the technical direction; review INF-05 as the intended later session-store approach. Acceptance must be recorded with its exact scope. It must not be represented as full T06 approval or permission to install, provision, send email, spend or deploy. No default USD/IDR, geographic region or target OS is inferred.
 
-Authentication methods are still undecided. A possible first method is email/password with verified recovery through the provider, but this is **not selected**: email delivery/domain/support and abuse controls need an owner/provider decision. Passwordless/Google/Apple are alternatives requiring their own callback, secure storage and applicable store-policy review. Do not enable all methods or promise one based on this table.
+At this review checkpoint methods were undecided. [Decision 0015](decisions/0015-auth-methods-and-local-protocol-spike.md) subsequently accepts initial email/password with verified-email recovery and required staff TOTP as directions; actual provider/email/settings/abuse/session/native integration remains pending. Passwordless/Google/Apple are alternatives requiring their own callback, secure storage and applicable store-policy review. Do not enable all methods or promise one based on this table.
 
 ## 2. Official documentation findings and adoption blockers
 
@@ -52,7 +52,7 @@ Direction approval is now scoped by Decision 0013; **implementation, operational
 | Required decision | Candidate / missing answer | Gate or next proof |
 |---|---|---|
 | Database/ORM | INF-01/02; exact PostgreSQL/Prisma/driver versions unreviewed | Direction accepted; exact dependency review and separately authorized isolated synthetic migrations/rollback/concurrency/pooling tests remain |
-| Identity/methods | INF-03; [A1/A2 method/session proposal](authentication-session-review.md), first login/recovery method and issuer configuration still undecided | Owner method choice; M00-T07 verification/revocation/assurance spike; actual secure native persistence remains M00-T08 |
+| Identity/methods | INF-03; [A1/A2 directions](decisions/0015-auth-methods-and-local-protocol-spike.md) accepted, actual issuer/settings/protocol still unvalidated | Method direction accepted; M00-T07 actual provider verification/revocation/assurance and M00-T08 secure native persistence remain open |
 | Private storage | INF-04; object-region, limits/retention/provider-key scope undecided | Provider direction accepted; deny unauthorized access, revocation and reconciliation evidence before media slice |
 | Browser session store | INF-05; library, role isolation, encryption/key custody and lifetimes undecided | M00-T07 server-only refresh/CSRF/grant/MFA/logout evidence; later web/admin execution stays in roadmap order |
 | Hosting/topology | No API/worker/Next hosting vendor, plan, capacity or public domains selected | Persistent API needs, actual connection/resource budget and owner access/rollback responsibility before provisioning |

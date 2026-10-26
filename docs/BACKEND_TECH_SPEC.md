@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.11
+- **Version:** 0.12
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -9,7 +9,7 @@
 - **Mobile integration:** [MOBILE_TECH_SPEC.md](MOBILE_TECH_SPEC.md)
 - **Web integration:** [User website](WEB_PRD.md) · [Admin CMS](ADMIN_CMS_PRD.md)
 - **Accepted directions:** PostgreSQL/Prisma and Supabase Auth/private Storage under Decision 0013; not installed or provisioned
-- **Pending approval/validation:** Exact DB/ORM/SDK pins, auth methods/session protocol/store, API conventions, queues, hosting/regions/costs, numerical limits and operating policies
+- **Pending approval/validation:** Exact DB/ORM/SDK pins, auth integration/password policy/session protocol/store, API conventions, queues, hosting/regions/costs, numerical limits and operating policies
 
 > One authoritative backend for personal tracking, privacy-conscious progress sharing, and reliable social interactions. Not a separate backend per mode.
 
@@ -480,7 +480,7 @@ Login/recovery routes depend on the approved identity provider; do not invent a 
 
 ### 9.3 Sessions and operator access
 
-The [M00-T06/T07 method/session review](cookbook/authentication-session-review.md) prepares email/password + verification/recovery, staff TOTP and fail-closed protocol evidence for owner review. A1/A2, timeout/CSRF/revocation/staff-context details and its synthetic spike are not accepted or executed yet. Provider selection and the local DB probe do not prove those behaviors.
+[Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [synthetic protocol experiment](cookbook/authentication-session-spike.md) passes local invariant checks, not real Supabase/session/MFA evidence. Exact timeout/algorithm/CSRF/revocation/staff-context/store implementation and provider integration remain gates; no application auth endpoint exists. The [review](cookbook/authentication-session-review.md) retains the original proposal/evidence matrix.
 
 - Document token refresh and logout/all-session revocation behavior using the actual provider model.
 - JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise.

@@ -12,7 +12,7 @@ Confirmed frameworks: **Flutter mobile**, **NestJS backend**, and **two separate
 
 [Decision 0013](docs/cookbook/decisions/0013-provider-and-session-directions.md) accepts **PostgreSQL + Prisma, Supabase Auth/private Storage and separate server-side web/admin sessions** as directions. Full T06, exact packages/methods, physical hosting/session store, costs/regions and recovery remain open. The separately authorized [local DB probe](docs/cookbook/local-database-spike.md) initially passed ten driver cases and hit engine-checksum 403. The [same-revision verified retry](docs/cookbook/prisma-engine-follow-up.md) now passes Prisma Generate/build, two-database migration/repeat/status and seven generated-client cases. Its containers/ports are gone; Desktop/image/package caches and verified engine evidence remain. No application database, cloud resource or M02 implementation is enabled.
 
-The [login/session review](docs/cookbook/authentication-session-review.md) now proposes email/password with verified-email recovery and required staff TOTP. **Owner choices and the local synthetic auth spike remain pending**; no login, SDK, provider account or mail delivery is enabled.
+[Decision 0015](docs/cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [isolated synthetic protocol spike](docs/cookbook/authentication-session-spike.md) passes 92 cases twice plus six expected-red guard controls. No application login, SDK/provider account, real TOTP/email, durable store or browser/native auth integration is enabled.
 
 ## Start here
 

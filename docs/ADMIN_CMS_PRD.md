@@ -1,13 +1,13 @@
 # Your Own — Admin CMS PRD & Next.js Specification
 
-- **Version:** 0.7
+- **Version:** 0.8
 - **Status:** Detailed draft; no admin scaffold implemented
 - **Confirmed framework:** Next.js, as a separate application from the user website
 - **Backend authority:** NestJS operator services; no direct domain-database access from the dashboard
 - **Product authority:** [PRD.md](PRD.md)
 - **Engineering overview:** [System architecture and cross-cutting documents](cookbook/architecture.md)
 - **Related specifications:** [Backend](BACKEND_TECH_SPEC.md) · [User website](WEB_PRD.md) · [Mobile](MOBILE_TECH_SPEC.md)
-- **Pending approval:** Role assignments, identity/MFA/session protocol, exact pins and remaining packages/primitives, hosting, operating policies, and optional editorial CMS scope
+- **Pending approval:** Role assignments, identity/MFA/session integration and protocol, exact pins and remaining packages/primitives, hosting, operating policies, and optional editorial CMS scope
 
 > Operate and protect the product without turning administrative access into unrestricted access to people's private lives.
 
@@ -139,6 +139,8 @@ Changing/revoking a staff grant must affect subsequent backend operations prompt
 Prevent self-escalation, uncontrolled self-approval, and removal of the last required recovery administrator under the approved policy. Initial privileged accounts are provisioned through a restricted audited process, not public signup.
 
 ## 6. Staff authentication and sessions
+
+[Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts **required staff TOTP** as the second-factor direction, alongside current grants and required fresh step-up. The [synthetic protocol experiment](cookbook/authentication-session-spike.md) models assurance only; it does not run real TOTP enrollment/challenge/recovery, validate provider timestamps, approve policy numbers or create an admin application.
 
 ### Required controls
 
