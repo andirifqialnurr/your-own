@@ -1,6 +1,6 @@
 # Proposed local PostgreSQL / Prisma spike
 
-- **Status:** Plan only; execution authorization pending. No package/image pins, helper, database, container or schema has been created.
+- **Status:** Bounded execution authorized by the owner's “silahkan” in [Decision 0014](decisions/0014-local-database-spike.md); [execution results](local-database-spike.md) are **partial**: ten PostgreSQL/driver cases passed; Prisma generation/migrate remain blocked on native checksum access. The original plan below retains all required cases, not a claim that every case passed.
 - **Purpose:** Validate the accepted [Decision 0013](decisions/0013-provider-and-session-directions.md) DB/ORM direction with synthetic local evidence before affected M02 implementation. This does not close M00-T06 or replace M00-T07/T10/T11 and native gates.
 - **Existing tools:** Node 24.18.0 / pnpm 12.8.1; Docker may be used under the owner's existing-tool instruction when the bounded spike is separately authorized. Do not install/upgrade global tools or inspect unrelated host/device/account state.
 
@@ -35,4 +35,4 @@ Record exact tools, dependency lock/hash/notice review, image digest, migration/
 
 After a separately authorized run, commit/push its reviewed report independently under the owner's per-task instruction; do not copy disposable probe source into the product or open M02 automatically. Resolve remaining provider/hosting/region/budget/auth-method/session-store/secret/recovery decisions explicitly.
 
-**Execution question:** may the agent run this isolated synthetic local PostgreSQL/Prisma probe using the installed tools and Docker if needed, after exact package/image/resource review, with no Supabase/cloud project, paid service, external email or product migration?
+**Historical execution question (subsequently answered “silahkan”, Decision 0014):** may the agent run this isolated synthetic local PostgreSQL/Prisma probe using the installed tools and Docker if needed, after exact package/image/resource review, with no Supabase/cloud project, paid service, external email or product migration?
