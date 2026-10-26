@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.14
+- **Version:** 0.15
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -453,7 +453,7 @@ Some partial unique indexes, check constraints, and locking queries require revi
 
 ### 9.1 Identity integration
 
-Decision 0016 withdraws the managed-Supabase assumption. NestJS remains the identity/application authority, using reviewed maintained auth/session/password/MFA integrations rather than the disposable test harness. Exact libraries, token/session/hash protocols, email verification/recovery delivery and operational ownership require review before implementation. Neither NestJS nor the client frameworks enable a complete secure auth service automatically. The [framework-auth review](cookbook/framework-auth-review.md) now recommends evaluating first-party `@nestjs/authentication` 0.1.1 ahead of Better Auth, not adopting it: declared peers/static interfaces fit the direction, but its early API, Prisma store, current-session semantics and staff method/freshness require actual candidate evidence.
+Decision 0016 withdraws the managed-Supabase assumption. NestJS remains the identity/application authority, using reviewed maintained auth/session/password/MFA integrations rather than the disposable test harness. Exact libraries, token/session/hash protocols, email verification/recovery delivery and operational ownership require review before implementation. Neither NestJS nor the client frameworks enable a complete secure auth service automatically. The [framework-auth review](cookbook/framework-auth-review.md) now recommends evaluating first-party `@nestjs/authentication` 0.1.1 ahead of Better Auth, not adopting it: declared peers/static interfaces fit the direction and the subsequent [authorized real-package memory/loopback phase](cookbook/local-nest-authentication-spike.md) passes 55 Node test entries twice. Its early API, real Prisma store, current-session/JWT revocation and trusted staff method/freshness still require further proof; no product auth implementation follows.
 
 If JWT is selected, verify its signature, approved algorithm, issuer, audience, expiry and applicable temporal claims against fixed trusted configuration; reject request-supplied keys/issuers and support reviewed rotation/cache behavior. Opaque-session alternatives require equivalent current-session verification.
 

@@ -14,7 +14,7 @@ Current directions: **PostgreSQL + Prisma**, **Cloudflare R2 for private files**
 
 [Decision 0015](docs/cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [isolated synthetic protocol spike](docs/cookbook/authentication-session-spike.md) passes 92 cases twice plus six expected-red guard controls. No application login, SDK/provider account, real TOTP/email, durable store or browser/native auth integration is enabled.
 
-The next bounded [non-Supabase authentication review](docs/cookbook/framework-auth-review.md) recommends evaluating **first-party Nest authentication**, with Better Auth as an alternative. This is not package adoption: the early 0.1.1 candidate's static interfaces/declared peers were reviewed, but its real-module/Prisma-store/mobile/staff proof and proposed isolated spike still need approval/execution. No new auth route or dependency is enabled.
+The next bounded [non-Supabase authentication review](docs/cookbook/framework-auth-review.md) recommends evaluating **first-party Nest authentication**, with Better Auth as an alternative. [Decision 0018's isolated real-package phase](docs/cookbook/local-nest-authentication-spike.md) now passes 55 Node test entries twice, with five expected-red guard controls and verified listener teardown. That is not app package adoption: durable Prisma-store/mobile/staff/browser proof remains open and the next real-DB phase needs separate authorization. No application auth route or dependency is enabled.
 
 ## Start here
 

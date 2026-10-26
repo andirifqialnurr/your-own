@@ -1,7 +1,7 @@
 # M00-T07 — Non-Supabase framework authentication review
 
 - **Reviewed:** 2026-10-26 UTC, after `999d5ae`
-- **Status:** Recommendation/static artifact review only; package adoption and candidate execution pending, full T06/T07 unchecked
+- **Status:** Historical static review retained; [Decision 0018](decisions/0018-local-nest-authentication-spike.md) subsequently authorizes a [passed local real-package phase](local-nest-authentication-spike.md). Application adoption/full T06/T07 remain open
 - **Authority:** [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md), [English/continue instruction](r2-upload-check.md#7-subsequent-owner-browser-report), [backend identity contract](../BACKEND_TECH_SPEC.md#9-authentication-and-account-lifecycle)
 - **Current app:** Nest 12.2.0 / Node 24.18.0 / pnpm 12.8.1 / TypeScript 6.0.3, health endpoints only; no auth package, database/store or product auth route
 
@@ -71,7 +71,7 @@ One Nest-owned identity database/adapter surface, never three independent passwo
 - Fifteen public documentation/registry requests succeeded, plus the Nest tarball and two direct-version advisory queries. The first guessed Nest session Markdown source returned **404**; it is retained, not silently counted as useful content. The canonical session page was fetched as ancillary material; the recommendation relies on the actual authentication guide and published package. No authenticated R2/Auth/cloud request, original `.env` use, install, mail or settings change occurred in this review.
 - Evidence: `C:/Users/HP/AppData/Local/Temp/your-own-auth-followup-fcq3q4fs/` — `sources/` captures/hashes/statuses, retained source 404, `candidate-artifact.json`, `published/`, `direct-advisories.json`, extract logs and baseline. Static publisher sources are untrusted reference data, not permission to execute their install examples.
 
-The owner has not yet accepted this exact package/protocol or authorized the proposed candidate spike. Full M00-T06/T07 and M01/native/CI gates remain open; seven checked tasks and all immutable historical checkpoints remain unchanged.
+At this review checkpoint the owner had not accepted the exact package/protocol or authorized the spike. Their subsequent “continue” is scoped in Decision 0018 to the first external real-package phase only; its report supplies those results, not full app adoption, durable store or platform acceptance. The original Not-run matrix above remains the historical plan, not a claim that no subsequent phase ran. Full M00-T06/T07 and M01/native/CI gates remain open; seven checked tasks and all immutable historical checkpoints remain unchanged.
 
 ## 6. Repository verification
 
