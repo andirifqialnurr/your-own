@@ -72,6 +72,8 @@ Commands: each external graph `pnpm install --frozen-lockfile --ignore-scripts -
 
 No exact app package/protocol/schema/hosting/expiry/hash/key/recovery policy is adopted; early auth 0.1.1 maturity and existing native/bundled/notice/advisory obligations remain. Next bounded preparation should address **durable user/password/lifecycle transaction coordination and current-session/access-JWT invalidation**, then an explicit app-adoption decision/graph, rather than treating this prototype as M02. Real email, browser/BFF, Flutter OS-secure persistence/callbacks/account switching, rate/capacity/maintenance, grants/audit/recovery operations and native/CI/release gates remain open. Seven tasks remain checked; working R2/browser evidence, markers and historical script 403 are unchanged.
 
+**Subsequent scoped review:** the owner's next “continue” is [Decision 0021](decisions/0021-auth-transaction-design-review.md). Its [account-transaction/access-invalidation recommendation](authentication-transaction-review.md) is prepared from current sources; no new runtime prototype or product adoption is authorized or inferred from either phase.
+
 ## 7. Repository verification
 
 Initial `pnpm check` reached the existing API child-start **10-second timeout** (`null !== 1` in `environment.test.mjs`); `root-first.log` retains the failure. An unchanged separate repeat passes **142 root tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build and **37-source / 131-directive** import scan. No timeout/assertion/skip was relaxed. Documentation passes **103 Markdown / 1,681 local links / four JSON examples** and 29 owned JS/TS/JSON whitespace checks.

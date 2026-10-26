@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.17
+- **Version:** 0.18
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -483,7 +483,7 @@ Login/recovery routes depend on the reviewed non-Supabase auth integration and p
 [Decision 0015](cookbook/decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verified-email recovery and required staff TOTP as directions. The [synthetic protocol experiment](cookbook/authentication-session-spike.md) passes local invariant checks, not real auth/session/MFA evidence; Decision 0016 subsequently changes the provider direction without validating a replacement implementation. Exact timeout/algorithm/CSRF/revocation/staff-context/store implementation and provider integration remain gates; no application auth endpoint exists. The [review](cookbook/authentication-session-review.md) retains the original proposal/evidence matrix.
 
 - Document token refresh and logout/all-session revocation behavior using the actual approved auth/session model.
-- JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise.
+- JWT expiry alone is not an immediate per-device revocation design. Resolve this before making such a promise. The [account-transaction/access-invalidation review](cookbook/authentication-transaction-review.md), scoped by [Decision 0021](cookbook/decisions/0021-auth-transaction-design-review.md), proposes a monotonic credential generation plus live revocable grants and one typed unit of work. It explicitly retains opaque access as an alternative and the real library's hashing/event/independent-store transaction blockers. No model/claims/schema is adopted or runtime-proved by this static review.
 - Keep mobile credential storage concerns in the mobile spec; server credentials belong only in managed secrets.
 - Operator authentication requires MFA, restricted roles/scopes, trusted assurance and fresh step-up where required, and audited actions before public social operations.
 

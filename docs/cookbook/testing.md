@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.19
+- **Version:** 0.20
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -116,6 +116,8 @@ Use known synthetic private field canaries to inspect unauthorized responses, me
 ## 6. Browser and staff security
 
 The [framework-auth candidate matrix](framework-auth-review.md#4-proposed-ownership-and-next-local-evidence) retains the historical Not-run plan. [Decision 0018's first real-module phase](local-nest-authentication-spike.md) now passes **55 Node test entries twice** (including one parent), five expected-red owned guard controls, strict build/frozen graph and eight listener closures. The later [Decision 0019 database phase](prisma-auth-store-spike.md) separately passes **29 tests twice** (24 unmodified store contracts plus five owned), three observed lock barriers, four expected-red controls, rollback/role/restart checks and owned teardown. The separately authorized [Decision 0020 HTTP composition](durable-auth-http-spike.md) now passes **30 entries twice** (29 HTTP subtests plus one parent), six expected-red owned controls and 24 final listener closures. It uses real TOTP completion/step-up and server-stamped durable assurance metadata, but synthetic memory users/passwords/lifecycle/grants/mail. It asserts SQL 42501/read-failure denial and the still-valid access JWT after refresh revoke/password reset; it does not establish full network outage/reconnect, durable account transactions, combined app graph, browser/native/BFF, real mail or complete staff operations. Memory races, real DB barriers, scoped HTTP ordering and native proof remain distinct. The published email-service case's cheaper synthetic hash is explicitly separate from earlier default-cost hashing.
+
+[Decision 0021's account-transaction design review](authentication-transaction-review.md#6-required-evidence-before-adoption) adds a **Not-run** future matrix: rollback at write/commit boundaries, stale login across reset, grant-preserving rotation/logout races, generation-bound JWTs, refresh-reuse/MFA-failure commit outcomes, lifecycle/regrant, authoritative-read failure, fresh-process state and side-effect/hash-duration bounds. Static artifact/source checks and existing root tests do not execute this model. No new DB/HTTP experiment, package, browser/native proof or full task acceptance follows.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 

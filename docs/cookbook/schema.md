@@ -1,6 +1,6 @@
 # Your Own — Proposed Data Schema
 
-- **Version:** 0.3
+- **Version:** 0.4
 - **Status:** Logical design for review, not an executable Prisma schema or applied migration
 - **Related:** [Architecture](architecture.md) · [Backend](../BACKEND_TECH_SPEC.md) · [Security](security.md) · [Testing](testing.md)
 
@@ -31,7 +31,8 @@ PostgreSQL/Prisma are accepted directions under [Decision 0013](decisions/0013-p
 | Store | Data | Boundary |
 |---|---|---|
 | Application PostgreSQL | Accepted domain rows, receipts, changes, outbox, policies | API/worker roles only; restricted application namespace/exposure |
-| Identity provider | Credentials and external identity/session state | Provider-owned schema is not edited by application migrations |
+| Nest-owned identity integration | Credential/session/MFA/recovery state for the eventual selected maintained integration | One backend migration/identity authority, no client password stores; exact schema/policies pending |
+| External identity provider, only if later adopted | External credentials/issuer state | Provider-owned namespaces are not edited by application migrations; not the current default under Decision 0016 |
 | Private object storage | Poster/export/avatar bytes | Metadata in DB; current-context authorized delivery |
 | Flutter SQLite/Drift | Per-user personal projection, drafts, outbox, timer state | Not the cloud schema copied verbatim; encryption driver pending validation |
 | Browser session store | Opaque sessions and protected provider credentials | Separate web/admin scopes, least-privilege adapter |
@@ -82,14 +83,16 @@ This is an aggregate relationship map, not a complete SQL diagram. In particular
 | Table | Key fields | Rules |
 |---|---|---|
 | `users` | `id`, normalized username, display name, bio?, avatar ID?, lifecycle status, account visibility, `publication_epoch BIGINT` | Username unique under approved normalization; lifecycle and visibility independent |
-| `external_identities` | user FK, issuer, subject, provider metadata needed for operation | Unique issuer+subject; never merge users solely by email |
+| `external_identities`, only if an external issuer is later adopted | user FK, issuer, subject, provider metadata needed for operation | Unique issuer+subject; never merge users solely by email |
 | `user_preferences` | user PK/FK, timezone, locale, enabled modes, unit choices, hide-amounts, base currency? | Typed bounded settings; currency cannot relabel existing Money records |
 | `staff_grants` | staff user FK, role/capability scope, status, grantor, valid period, revision | Only privileged workflow changes these; no client `isAdmin` field |
 | `staff_roles` / `staff_role_capabilities` | role key and approved capability codes | Server-owned capability allowlist, no arbitrary executable policy strings |
 | `staff_session_contexts`, if needed | trusted identity/session reference, assurance, authentication time, expiry/revocation | Required only if the selected provider/session model needs application state; never trust browser-supplied assurance |
 | `deleted_identity_markers` | minimal protected identity reference/digest, validity/retention metadata | Prevent stale-token bootstrap resurrection; exact minimization/retention requires approval |
 
-Browser sessions are a separate infrastructure model: session digest/identifier, realm (`WEB`/`ADMIN`), subject, protected credential reference, expiry, rotation/revocation. Never store plaintext session secrets in audit rows. Select encryption/key/session-store implementation with the identity provider.
+Browser sessions are a separate infrastructure model: session digest/identifier, realm (`WEB`/`ADMIN`), subject, protected credential reference, expiry, rotation/revocation. Never store plaintext session secrets in audit rows. Select encryption/key/session-store implementation with the reviewed maintained identity integration.
+
+[Decision 0021's design review](authentication-transaction-review.md) corrects the historical unconditional provider-owned assumption under Decision 0016. It proposes a private account credential generation, stable revocable logical grants and explicit session/family bindings, separate from publication epoch and rotating token digests. These are review concepts, not approved physical tables/claims. Root-client stores, independent nested transactions or a route-level transaction wrapper do not establish atomic reset/account/session changes; shared typed unit-of-work and rollback/issuance proofs remain required.
 
 ### Proposed publication epoch behavior
 

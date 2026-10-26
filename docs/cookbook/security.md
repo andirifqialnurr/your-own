@@ -1,10 +1,10 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.8
+- **Version:** 0.9
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
-This policy spans Flutter, both Next.js applications, NestJS, workers, storage, identity, queues, and staff operations. Provider integration, encryption-driver, session, retention and legal-region decisions remain approval gates. [Decision 0015](decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verification/recovery and required staff TOTP directions. The [synthetic protocol report](authentication-session-spike.md) supplies local double/crypto/HTTP evidence only; required controls, real auth/session/MFA/browser/native proof, exact policies and store/key custody remain gates. [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md) subsequently withdraws Supabase in favor of framework-appropriate maintained auth and Cloudflare R2; no replacement auth implementation is validated. The [review](authentication-session-review.md) retains its historical proposal matrix.
+This policy spans Flutter, both Next.js applications, NestJS, workers, storage, identity, queues, and staff operations. Provider integration, encryption-driver, session, retention and legal-region decisions remain approval gates. [Decision 0015](decisions/0015-auth-methods-and-local-protocol-spike.md) accepts initial email/password + verification/recovery and required staff TOTP directions. The [synthetic protocol report](authentication-session-spike.md) supplies local double/crypto/HTTP evidence only; required controls, real auth/session/MFA/browser/native proof, exact policies and store/key custody remain gates. [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md) subsequently withdraws Supabase in favor of framework-appropriate maintained auth and Cloudflare R2; no replacement auth implementation is adopted in the application. The [review](authentication-session-review.md) retains its historical proposal matrix.
 
 ## Contents
 
@@ -67,6 +67,8 @@ The [non-Supabase framework review](framework-auth-review.md) recommends evaluat
 - Prevent stale tokens/offline commands from recreating deleted accounts.
 - Define refresh, logout, all-session/per-device revocation, key rotation, and outage behavior against the actual provider. Short expiry alone is not immediate revocation.
 - Server-side request authorization and sensitive transaction coordination must account for concurrent lifecycle changes.
+
+The [Decision 0021 review](authentication-transaction-review.md) proposes live account-generation/grant checks after signature verification and coordinated account/reset/revocation commits; these remain recommendations, not runtime evidence or approved policy. Post-commit authorization must be distinguished from recalling in-flight responses. Positive stale caches, upgrading an old token to the current generation, rolled-back refresh-reuse revocation and rollback-erased MFA failures would violate the proposed model. Authority-read failure must not become signature-only permission; provider diagnostics are not durable audit/outbox events. Exact availability, transaction/hash bounds, secrets and staff revision handling still need approval/testing.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 
