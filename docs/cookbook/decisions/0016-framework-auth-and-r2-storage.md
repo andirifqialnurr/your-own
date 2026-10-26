@@ -5,6 +5,7 @@
 - **Recorded by:** Coding agent
 - **Supersedes:** [Decision 0013](0013-provider-and-session-directions.md) INF-03/04 and [Decision 0015](0015-auth-methods-and-local-protocol-spike.md)'s Supabase/provider-managed implementation assumption only; preserve their historical evidence
 - **Evidence:** [R2/CDN connection check](../r2-connection-check.md)
+- **Later bounded authority:** [Decision 0017](0017-r2-synthetic-upload-and-prefixes.md) separately authorizes synthetic upload/read/cleanup and asset prefixes; the original read-only approval boundaries below remain historical, not blanket upload permission.
 
 ## Owner instructions
 

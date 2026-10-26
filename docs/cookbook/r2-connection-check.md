@@ -4,6 +4,7 @@
 - **Status:** Signed R2 connection passes; public file delivery unverified; private-storage acceptance and full T06/T07 remain open/unchecked
 - **Authority:** [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md), owner's explicit `.env`/R2 and subsequent public-CDN test requests
 - **Scope:** Existing owner-provided bucket/configuration only; no application storage/auth integration
+- **Later upload checkpoint:** [Decision 0017's separately authorized test](r2-upload-check.md) passes synthetic API PUT/GET/DELETE in both buckets, retaining only two zero-byte asset markers. Known-public-file CDN GET still returns 403; all read-only results below retain their original scope/status.
 
 ## 1. Method and secret boundary
 
