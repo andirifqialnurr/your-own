@@ -31,3 +31,7 @@ A successful synthetic PUT/GET/DELETE is a point-in-time integration result, not
 ## Execution checkpoint
 
 The [07:18:28 UTC report](../r2-upload-check.md) records real conditional PUT 200 / exact GET 200 / ETag-conditional DELETE 204 / post-delete HEAD 404 for **both** tiny text fixtures (181 total bytes). Two newly created zero-byte `public/assets/.keep` / `private/assets/.keep` markers remain as authorized organization. CDN GET of the existing public fixture still returned **403**, so an empty bucket is not sufficient explanation and public-file delivery remains unverified. Limited private denial controls passed only for the tested routes; no complete private-path audit is implied. Twenty-two main requests plus one diagnostic read; no config/policy/TLS bypass, owner data change, SDK/app integration or full gate advancement. All original read-only checkpoints are preserved.
+
+## Subsequent owner browser report
+
+The owner subsequently said the private bucket has no Public Development URL, only the public bucket does, and reported **“dia terdownload sih jatuhnya.”** after the public marker download test. [Record](../r2-upload-check.md#7-subsequent-owner-browser-report) this browser success as owner-reported, without fabricating response codes, content hashes, private-policy inspection or resolution of the separate script 403. No bucket/key/CORS/IP change or repeat upload follows. The later English/continue request brings forward non-Supabase auth/session decision preparation only; application/library/protocol adoption and M02 remain gated.

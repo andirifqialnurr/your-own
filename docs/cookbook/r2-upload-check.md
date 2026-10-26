@@ -1,7 +1,7 @@
 # M00-T06 — Synthetic R2 upload/read/cleanup and asset prefixes
 
 - **Checked:** 2026-10-26 UTC, starting 07:18:28
-- **Status:** Both buckets pass synthetic authenticated PUT/GET/DELETE; known-public-file CDN GET still 403; full storage/T06 acceptance remains unchecked
+- **Status:** Synthetic API PUT/GET/DELETE pass; owner reports public marker download in their browser, while recorded script CDN GET is 403; full storage/T06 acceptance remains unchecked
 - **Authority:** [Decision 0017](decisions/0017-r2-synthetic-upload-and-prefixes.md), explicit owner upload/prefix request
 - **Prior checkpoints:** [Read-only connection checks](r2-connection-check.md); their original empty-list/403 results remain unchanged
 
@@ -55,8 +55,16 @@ External sanitized evidence: `C:/Users/HP/AppData/Local/Temp/your-own-r2-upload-
 
 This proves only point-in-time authenticated upload/read/delete of tiny owned text fixtures. It does not prove the private bucket's complete public-path configuration, least-privilege key isolation, real media type/size/quarantine validation, application authorization, browser CORS, native SDK/storage, cache/revocation/deletion races, signed-URL expiry, retention, backup/restore or release readiness. No application upload endpoint is enabled. Full T06/T07/M01/M02 gates remain open.
 
-Next: verify the public bucket's exact enabled `r2.dev` URL/settings before another scoped CDN check, and verify private public delivery remains disabled before sensitive assets. Do not weaken private access or change CORS/IP rules merely to hide this 403.
+At this checkpoint the proposed next step was checking the public URL/settings. The subsequent owner browser report below changes that next action: do not keep asking for settings changes or repeat uploads merely to eliminate the script's 403. Private public-path verification before sensitive assets remains required.
 
 ## 6. Repository verification
 
-`pnpm check` passed **142 existing root tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build and the **37-source / 131-directive** import scan. Documentation checks passed **96 Markdown / 1,603 local links / four JSON examples** and 29 owned JS/TS/JSON whitespace checks. Diff/preservation/secret checks passed: eight documentation paths only, unchanged original config and application/policy/lock/asset/native/snapshot bytes, **67 requirement IDs / 224 tasks / 20 plans / seven checked tasks**. No Flutter/native/browser or application upload integration test ran. The external real R2 operations above are separate from that 142-test suite; the CDN failure remains explicitly open.
+`pnpm check` passed **142 existing root tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build and the **37-source / 131-directive** import scan. Documentation checks passed **96 Markdown / 1,603 local links / four JSON examples** and 29 owned JS/TS/JSON whitespace checks. Diff/preservation/secret checks passed: eight documentation paths only, unchanged original config and application/policy/lock/asset/native/snapshot bytes, **67 requirement IDs / 224 tasks / 20 plans / seven checked tasks**. No Flutter/native/browser or application upload integration test ran. The external real R2 operations above are separate from that 142-test suite; the recorded script CDN failure remains explicitly open.
+
+## 7. Subsequent owner browser report
+
+On 2026-10-26 the owner clarified that the private bucket has no Public Development URL and only the public bucket has one. After being asked to open the public `public/assets/.keep` URL, they replied **“dia terdownload sih jatuhnya.”** (it downloads). Record this as **owner-reported successful public marker download in their browser**, not an agent-observed HTTP 200, response-header capture, byte comparison, browser-CORS test or audit of every private/custom-domain path. A zero-byte marker uploaded as `application/octet-stream` normally downloads; this is expected, not a new error.
+
+Preserve the agent script's earlier 403s as distinct evidence. The reason for the browser/script difference remains unidentified; do not attribute it to keys, CORS, IP allowlisting, bucket misconfiguration, proxy or WAF without evidence. No new request, upload, cleanup, key rotation, CORS/public-policy or `.env` change was performed to record this report. Existing successful authenticated object checks and verified temporary-file cleanup remain valid; the two authorized zero-byte markers remain.
+
+The owner then requested **“response me in english. and continue your work”**. Continue in English with a bounded review of the non-Supabase auth/session integrations requested in Decision 0016. This is not permission to bypass pending auth-library/protocol/adoption gates, integrate storage/auth into the application or start M02. If the script discrepancy matters to later automated acceptance, investigate separately without weakening working bucket security. No further owner bucket-setting action is requested for this reported successful download.
