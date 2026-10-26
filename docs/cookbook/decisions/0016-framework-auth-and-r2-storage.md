@@ -39,3 +39,9 @@ No upload/overwrite/delete, bucket/public-policy/CORS/lifecycle change, provisio
 Signed bucket metadata/listing returned **HTTP 200 twice**; the bounded listing was empty. The configured public `r2.dev` base returned **403**, as did one random absent-object HEAD. TLS/HTTP reachability is established, **successful anonymous file delivery is not**. An existing known non-sensitive object or separately authorized small fixture upload is needed to finish that proof; do not relabel the 403 as a CDN pass or infer its cause.
 
 Keep full T06/T07 unchecked. Next: resolve private/public bucket separation and review a maintained auth/session integration without Supabase. No real auth, upload or private-file authorization capability is enabled by these checks.
+
+## Two-bucket continuation
+
+After the assistant explained two separate private/public buckets, the owner said **“sudah saya buat silahkan di cek lagi koneksi ke bucket private dan public nya”**. Record the owner-reported creation and authorize only read-only metadata checks against both configured targets plus anonymous public-CDN HEAD. This does not accept the earlier fixture-upload proposal or authorize uploads, deletes, public-policy changes, provisioning, credential changes, application integration or M02.
+
+The [follow-up](../r2-connection-check.md#5-two-bucket-follow-up) confirms distinct bucket names at the same S3 endpoint with shared credentials: signed HEAD/list return 200 on both, with empty listings. CDN base/absent-object HEAD remain 403. Configured bucket separation is observed, not proof of disabled public paths on the private bucket, actual CDN association/file delivery or final credential isolation. Preserve original single-target results and keep the full gates open.

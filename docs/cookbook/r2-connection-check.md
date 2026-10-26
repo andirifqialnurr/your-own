@@ -1,6 +1,6 @@
 # M00-T06 — Read-only R2 and public CDN connection check
 
-- **Checked:** 2026-10-26 UTC, starting 06:24:05; repeated at 06:25:40
+- **Checked:** 2026-10-26 UTC, starting 06:24:05; repeated at 06:25:40; [two-bucket follow-up](#5-two-bucket-follow-up) at 06:40:24
 - **Status:** Signed R2 connection passes; public file delivery unverified; private-storage acceptance and full T06/T07 remain open/unchecked
 - **Authority:** [Decision 0016](decisions/0016-framework-auth-and-r2-storage.md), owner's explicit `.env`/R2 and subsequent public-CDN test requests
 - **Scope:** Existing owner-provided bucket/configuration only; no application storage/auth integration
@@ -40,3 +40,22 @@ The owner reports enabling public CDN access and the configured public URL is on
 Sanitized local evidence: `C:/Users/HP/AppData/Local/Temp/your-own-r2-b1khpnnn/` — `probe-first.py`, `probe.py`, `result.json`, `result-reviewed.json`, `probe.log`, `probe-reviewed.log`, `endpoint-classification.json` and `baseline.json`. Private config hashes stay only in that external baseline; source and result artifacts contain no credentials/config values. Python processes terminated; no task listener, container or persistent resource was created. The existing owner bucket/public setting and unrelated Docker resources were untouched.
 
 `pnpm check` passed **142 existing root tests** (21 tooling + 14 design/artwork + 88 boundaries + 19 API), lint/types/API build, and the 37-source/131-directive import scan. Documentation checks passed **94 Markdown / 1,576 local links / four JSON examples**; `git diff --check` passed. Preservation checks retain the ignored `.env` bytes, unchanged app sources/locks/policies/assets/native wrappers, 13 historical snapshots and 67 requirement IDs / 224 tasks / 20 plans / seven checked tasks. Only decision/specification/report paths changed; no Flutter/native/real-auth test ran. These connection checks are separate from the root suite and do not close native/CI, full T06/T07, M01 or M02 gates.
+
+## 5. Two-bucket follow-up
+
+After the private/public separation explanation, the owner said **“sudah saya buat silahkan di cek lagi koneksi ke bucket private dan public nya”**. This authorizes read-only checks of both newly supplied targets, not the earlier proposed fixture upload. [Decision 0016's continuation](decisions/0016-framework-auth-and-r2-storage.md#two-bucket-continuation) records the boundary. The original single-target results above remain historical evidence.
+
+The ignored root config now additionally supplies **`R2_ENDPOINT_PUBLIC` and `R2_BUCKET_PUBLIC`**. For this external probe only, use `R2_ENDPOINT` / `R2_BUCKET` for the owner's private role, `R2_ENDPOINT_PUBLIC` / `R2_BUCKET_PUBLIC` for its public role, the shared `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY`, and `R2_PUBLIC_BASE_URL` for anonymous CDN requests. These are actual input names, not an adopted application env contract. Both S3 endpoints are equal and bucket names differ; two distinct bucket targets can be accessed through the same endpoint/credentials.
+
+At **06:40:24 UTC**, eight read-only requests completed in **2.498 seconds**:
+
+| Target | Signed HEAD | Signed list, max one | Listing result | Unsigned S3 HEAD |
+|---|---|---|---|---|
+| Configured private bucket | 200 | 200 | Zero objects, not truncated | 400 |
+| Configured public bucket | 200 | 200 | Zero objects, not truncated | 400 |
+
+Anonymous CDN base HEAD and a random absent-object HEAD both returned **403**. A known-public-object HEAD was **not run** because the public bucket is empty. No private object name is ever used to probe the public CDN. These results establish authenticated metadata access to two distinct configured buckets, not CDN-to-bucket association, successful public file delivery, disabled public paths on the private bucket, object write/read/delete permissions or least-privilege scope. Shared credentials work for these reads; separate least-privilege bucket credentials remain preferable.
+
+No fixture upload, delete, body download, settings/provisioning, SDK install or app integration occurred. TLS verification and redirect refusal remain enabled. Root/API `.env` bytes are unchanged and ignored. Local evidence: `C:/Users/HP/AppData/Local/Temp/your-own-r2-dual-bxkrwpaq/` — `probe.py`, reused `r2_transport.py`, sanitized `result.json`, `probe.log` and private-value-free validation output; config hashes remain external in `baseline.json`. The probe process exited and created no persistent resources. Next file-delivery proof needs a known non-sensitive public object or separate fixture upload/cleanup authorization; private public-path settings still need verification before sensitive media.
+
+Follow-up repository checks: `pnpm check` passed **142 existing root tests**, lint/types/API build and the 37-source/131-directive scan; **94 Markdown / 1,584 links / four JSON examples** passed documentation checks. `git diff --check` and preservation/secret checks passed: six documentation paths only; original config, application/lock/policy/asset/native/snapshot bytes retained; 67 requirement IDs, 224 tasks/20 plans/seven checked tasks unchanged. No Flutter/native or app-storage integration tests ran.
