@@ -1,6 +1,6 @@
 # Your Own — System Architecture
 
-- **Version:** 0.14
+- **Version:** 0.15
 - **Status:** Target architecture; local API/mobile foundations exist, full system not implemented
 - **Confirmed frameworks:** Flutter mobile, NestJS backend, Next.js user website, separate Next.js admin CMS
 - **Product authority:** [PRD.md](../PRD.md)
@@ -347,6 +347,8 @@ Device-local focus/water alerts are separate from server social/DM push. Push jo
 - Staff endpoints additionally require current grants/scopes, MFA, and fresh assurance where required. A normal user token or browser `isAdmin` flag is insufficient.
 - Admin operates on minimal account data and case-scoped evidence, not unrestricted trackers/private messages.
 - Logout/account switch clears the correct session-scoped data; unsynced mobile changes require an explicit handling path.
+
+The [Decision 0020 external composition](durable-auth-http-spike.md) supplies scoped real-module/PostgreSQL HTTP and TOTP method/time evidence, not product adoption. User/password/lifecycle/grant/mail fixtures remain in memory; reset/refresh revocation does not immediately invalidate access JWTs. Durable account transactions, the combined adoption graph, deployed BFF/browser/native and operational policy remain gates.
 
 [security.md](security.md) defines the trust boundaries and release controls.
 
