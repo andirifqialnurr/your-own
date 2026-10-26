@@ -1,6 +1,6 @@
 # Decision 0014 — Bounded local PostgreSQL / Prisma spike
 
-- **Status:** Authorized experiment executed partially; PostgreSQL driver cases passed, Prisma native engine blocked; not a product/production baseline
+- **Status:** Authorized local experiment and verified same-revision retry completed; not a product/production baseline
 - **Approved by:** Project owner, 2026-10-26 UTC
 - **Recorded by:** Coding agent
 - **Scope:** M00-T06 local DB/ORM validation only, before full M00/M01 exit; no M02 implementation
@@ -26,6 +26,10 @@ The owner replied **“silahkan”**. This authorizes the [proposed local spike]
 
 The expected generation/build, migrations, exact BIGINT, role denials, transaction/concurrency/constraint and teardown cases remain those in the plan. A setup failure is not a DB test pass; local PostgreSQL does not prove Supabase pooler/auth/storage/session/native or complete sync/Money/recovery behavior. Full T06, M00-T04/T05/T07–T14 and M01 native/CI gates remain open.
 
+## Engine-access continuation
+
+After the partial result was published as `1386ab1`, the owner's next **“continue”** on 2026-10-26 follows the explicit next step to resolve engine access. Continue one bounded review/retry of the **same exact revision**, official URL derivation, response provenance and checksums. If official artifact/checksum access succeeds, verify bytes and native notice/platform identity before reusing the isolated probe for the blocked generation/client/migration cases under the same limits. Do not ignore checksums, weaken TLS/proxy/security settings, use an untrusted mirror, silently switch package/engine/platform versions or alter the app graph. If the official artifact remains unavailable or a different candidate is required, report the evidence and proposed separately reviewed retry instead of manufacturing a pass. Preserve the earlier failed checkpoint.
+
 ## Tracking
 
-Use the M00-T06 task log and the [experiment report](../local-database-spike.md) for actual commands, exact identities, results/limits and next action. The initial strict-peer failure was resolved by reviewing/explicitly providing React peers without disabling the policy; native checksum 403 was not bypassed. No final package/image pin adoption follows. Commit/push reviewed task-sized results under the existing owner instruction, without copying disposable probe code into the product or automatically starting M02. Decision 0010's exact policy, owner and 2026-11-23 UTC latest review deadline are not renewed by this experiment.
+Use the M00-T06 task log and the [experiment report](../local-database-spike.md) for actual commands, exact identities, results/limits and next action. The initial strict-peer failure was resolved by reviewing/explicitly providing React peers without disabling the policy; native checksum 403 was not bypassed. The [same-revision follow-up](../prisma-engine-follow-up.md) later obtained official checksums/artifact, verified both hashes/platform/version before execution, and passed generation/build, actual Prisma migrations and seven generated-client cases. The original partial/failed checkpoint remains preserved. No final package/image pin adoption follows. Commit/push reviewed task-sized results under the existing owner instruction, without copying disposable probe code into the product or automatically starting M02. Decision 0010's exact policy, owner and 2026-11-23 UTC latest review deadline are not renewed by this experiment.

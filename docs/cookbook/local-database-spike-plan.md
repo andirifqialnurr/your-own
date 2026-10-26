@@ -1,6 +1,6 @@
 # Proposed local PostgreSQL / Prisma spike
 
-- **Status:** Bounded execution authorized by the owner's “silahkan” in [Decision 0014](decisions/0014-local-database-spike.md); [execution results](local-database-spike.md) are **partial**: ten PostgreSQL/driver cases passed; Prisma generation/migrate remain blocked on native checksum access. The original plan below retains all required cases, not a claim that every case passed.
+- **Status:** Bounded execution authorized by the owner's “silahkan” in [Decision 0014](decisions/0014-local-database-spike.md); the original [partial results](local-database-spike.md) are now supplemented by the [same-revision verified retry](prisma-engine-follow-up.md). The blocked generation/client/migration cases now pass within the local synthetic scope; no app/provider/release adoption follows. The original plan below remains the acceptance reference.
 - **Purpose:** Validate the accepted [Decision 0013](decisions/0013-provider-and-session-directions.md) DB/ORM direction with synthetic local evidence before affected M02 implementation. This does not close M00-T06 or replace M00-T07/T10/T11 and native gates.
 - **Existing tools:** Node 24.18.0 / pnpm 12.8.1; Docker may be used under the owner's existing-tool instruction when the bounded spike is separately authorized. Do not install/upgrade global tools or inspect unrelated host/device/account state.
 

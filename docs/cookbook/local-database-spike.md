@@ -2,7 +2,9 @@
 
 - **Checkpoint:** 2026-10-26 UTC, repository base `8d77fe1f4c87ae61d388534ff2cc0ed248fd1ab4`.
 - **Authorization:** Owner **“silahkan”** to the explicit local test question, [Decision 0014](decisions/0014-local-database-spike.md).
-- **Status:** **Partial / Prisma engine blocked.** Ten real PostgreSQL/driver cases passed. Prisma generation, generated-client build/runtime and Prisma Migrate did **not** pass; no M02 or full T06 acceptance follows.
+- **Historical checkpoint status:** **Partial / Prisma engine blocked.** Ten real PostgreSQL/driver cases passed. Prisma generation, generated-client build/runtime and Prisma Migrate did **not** pass; no M02 or full T06 acceptance follows.
+
+**Subsequent result:** the owner's same-revision continuation is recorded in the [verified engine follow-up](prisma-engine-follow-up.md): official access/checksums succeeded and the previously blocked Prisma cases passed. The original failures and claims below describe this earlier checkpoint, not the current retry result.
 
 ## 1. Isolated tools, dependencies and image
 
