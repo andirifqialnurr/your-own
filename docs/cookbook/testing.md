@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.17
+- **Version:** 0.18
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -115,7 +115,7 @@ Use known synthetic private field canaries to inspect unauthorized responses, me
 
 ## 6. Browser and staff security
 
-The [framework-auth candidate matrix](framework-auth-review.md#4-proposed-ownership-and-next-local-evidence) retains the historical Not-run plan. [Decision 0018's first real-module phase](local-nest-authentication-spike.md) now passes **55 Node test entries twice** (including one parent), five expected-red owned guard controls, strict build/frozen graph and eight listener closures. Synthetic memory/mail/loopback evidence is not the durable Prisma/PostgreSQL store contract suite, actual browser/native behavior or a complete staff TOTP method/time issuance protocol; those remain unrun and need separate scope/evidence.
+The [framework-auth candidate matrix](framework-auth-review.md#4-proposed-ownership-and-next-local-evidence) retains the historical Not-run plan. [Decision 0018's first real-module phase](local-nest-authentication-spike.md) now passes **55 Node test entries twice** (including one parent), five expected-red owned guard controls, strict build/frozen graph and eight listener closures. The later [Decision 0019 database phase](prisma-auth-store-spike.md) separately passes **29 tests twice** (24 unmodified store contracts plus five owned), three observed lock barriers, four expected-red controls, rollback/role/restart checks and owned teardown. This does not relabel memory races as SQL proof or establish the combined app/durable HTTP, browser/native, real mail or complete staff TOTP method/time issuance protocol; those need further scope/evidence. The published email-service case's cheaper synthetic hash is explicitly separate from earlier default-cost hashing.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 

@@ -3,6 +3,7 @@
 - **Executed:** 2026-10-26 UTC after `f2f1ad7`
 - **Status:** First real-package/memory/loopback phase passed; no application adoption, full T06/T07 unchecked
 - **Authority:** [Decision 0018](decisions/0018-local-nest-authentication-spike.md), owner's “continue” after the [candidate review](framework-auth-review.md)
+- **Later phase:** [Decision 0019](decisions/0019-local-prisma-auth-store.md) subsequently authorizes a [passed real Prisma/PostgreSQL store test](prisma-auth-store-spike.md). This document retains the original memory-only results and its then-unapproved next-phase proposal.
 - **Candidate:** `@nestjs/authentication` **0.1.1**, installed only in an external disposable workspace with the existing Nest 12.2.0 / Node 24.18.0 / pnpm 12.8.1 / TypeScript 6.0.3 graph
 
 ## 1. Graph, install and execution boundary

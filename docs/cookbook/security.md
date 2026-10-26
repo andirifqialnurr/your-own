@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.6
+- **Version:** 0.7
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -57,7 +57,7 @@ These controls address application threats; they do not prove identity, real-wor
 
 ## 3. Identity and lifecycle
 
-The [non-Supabase framework review](framework-auth-review.md) recommends evaluating a first-party Nest candidate, not installing/approving it. Published generic MFA state, JWT expiry/refresh revocation and library defaults do not prove fresh staff TOTP, current grants/admin realm, per-device access-token revocation or durable Prisma-store atomicity. The [authorized first real-module memory/HTTP phase](local-nest-authentication-spike.md) now supplies a tested subset and explicitly confirms the access-JWT revocation/touch/MFA-state limits. Real durable-store atomicity, production staff method/time binding and platform controls remain required; neither those memory results nor the earlier toy/static checks close them.
+The [non-Supabase framework review](framework-auth-review.md) recommends evaluating a first-party Nest candidate, not installing/approving it. Published generic MFA state, JWT expiry/refresh revocation and library defaults do not prove fresh staff TOTP, current grants/admin realm, per-device access-token revocation or durable Prisma-store atomicity. The [authorized first real-module memory/HTTP phase](local-nest-authentication-spike.md) now supplies a tested subset and explicitly confirms the access-JWT revocation/touch/MFA-state limits. The later [real PostgreSQL/Prisma store phase](prisma-auth-store-spike.md) verifies selected durable atomicity/replay/rollback/restart and role-denial contracts, not the whole auth/account transaction or deployed security boundary. Production staff method/time binding, current-session coordination, durable HTTP/BFF/platform controls and policies remain required; no immediate access-JWT revocation or production key/hash policy is inferred.
 
 - Verify approved token signature algorithms, issuer, audience, expiry, and applicable time claims using trusted configuration/rotating keys.
 - Never accept request-supplied issuer/JWKS URLs as trusted identity configuration.
