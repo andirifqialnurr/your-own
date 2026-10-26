@@ -1,7 +1,7 @@
 # M00-T07 — Durable account transactions and access invalidation
 
 - **Reviewed:** 2026-10-26 UTC after `24a97a8`
-- **Status:** Recommendation prepared; not implemented, owner-adopted or runtime verified
+- **Status:** Historical recommendation checkpoint; later selected prototype linked below, no product adoption
 - **Scope:** [Decision 0021](decisions/0021-auth-transaction-design-review.md)
 - **Authority:** [Backend identity contract](../BACKEND_TECH_SPEC.md#9-authentication-and-account-lifecycle), [security](security.md#3-identity-and-lifecycle), [logical schema](schema.md#3-identity-preferences-and-staff)
 - **Observed baseline:** [Decision 0020 HTTP evidence](durable-auth-http-spike.md); no earlier pass is relabeled
@@ -87,7 +87,7 @@ Invalid/revoked bindings yield the selected invalid-session response; authority 
 
 ## 6. Required evidence before adoption
 
-All rows below are **Not run for this proposed account/grant design**. Prior store barriers and HTTP tests remain scoped evidence, not substitutes.
+At this review checkpoint, all rows below were **Not run for this proposed account/grant design**. Prior store barriers and HTTP tests remain scoped evidence, not substitutes. The subsequently authorized [Decision 0022 prototype](account-transaction-prototype.md) now reports a selected service/process/SQL subset, not blanket completion of this matrix or product adoption.
 
 | Future case | Required observation |
 |---|---|
@@ -103,6 +103,8 @@ All rows below are **Not run for this proposed account/grant design**. Prior sto
 | Side effects / lost response / default-cost bounds | Audit/outbox commits exactly with intended state; diagnostics are not authoritative, no mail/cookie before commit, retries are explicit; bounded transaction/lock duration measured with default hashing. |
 
 An eventual external prototype should reuse the exact reviewed graphs without a merged product resolution, synthetic durable accounts, real PostgreSQL migrations/roles, independent instances/barriers, injected write/commit failures and guard-removal controls, with the existing C:-only resource envelope **freshly preflighted**. This paragraph is a proposed test boundary, not execution approval, new numerical production policy or a fixture implementation.
+
+**Subsequent scope/result:** after `2e0da4d`, the owner answered the explicit PostgreSQL prototype question with “continue”, recorded in [Decision 0022](decisions/0022-local-account-transaction-prototype.md). Its [result](account-transaction-prototype.md) passes 30 entries twice and six expected-red controls with durable synthetic account/grant state and shared typed transactions. This supplies new scoped evidence, not retroactive execution of the static review, complete matrix acceptance or permission to port the fixture.
 
 ## 7. Decision and verification record
 

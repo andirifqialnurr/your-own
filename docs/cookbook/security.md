@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.9
+- **Version:** 0.10
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -68,7 +68,7 @@ The [non-Supabase framework review](framework-auth-review.md) recommends evaluat
 - Define refresh, logout, all-session/per-device revocation, key rotation, and outage behavior against the actual provider. Short expiry alone is not immediate revocation.
 - Server-side request authorization and sensitive transaction coordination must account for concurrent lifecycle changes.
 
-The [Decision 0021 review](authentication-transaction-review.md) proposes live account-generation/grant checks after signature verification and coordinated account/reset/revocation commits; these remain recommendations, not runtime evidence or approved policy. Post-commit authorization must be distinguished from recalling in-flight responses. Positive stale caches, upgrading an old token to the current generation, rolled-back refresh-reuse revocation and rollback-erased MFA failures would violate the proposed model. Authority-read failure must not become signature-only permission; provider diagnostics are not durable audit/outbox events. Exact availability, transaction/hash bounds, secrets and staff revision handling still need approval/testing.
+The [Decision 0021 review](authentication-transaction-review.md) proposes live account-generation/grant checks after signature verification and coordinated account/reset/revocation commits; these remain recommendations, not runtime evidence or approved policy. Post-commit authorization must be distinguished from recalling in-flight responses. Positive stale caches, upgrading an old token to the current generation, rolled-back refresh-reuse revocation and rollback-erased MFA failures would violate the proposed model. Authority-read failure must not become signature-only permission; provider diagnostics are not durable audit/outbox events. Exact availability, transaction/hash bounds, secrets and staff revision handling still need approval/testing. The later [Decision 0022 evaluation](account-transaction-prototype.md) supplies selected owned-coordinator evidence: post-reset/cutoff live JWT denial despite a valid signature, typed reset atomicity with actual deferred COMMIT failure, refresh-reuse/factor-failure commit outcomes and staff remove/regrant revision checks. The bare library's earlier JWT limit is unchanged. Independent service IPC/SQL tests do not establish complete HTTP/BFF/browser/native or backup/key-custody/production security acceptance.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

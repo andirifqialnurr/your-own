@@ -1,6 +1,6 @@
 # Your Own — Proposed Data Schema
 
-- **Version:** 0.4
+- **Version:** 0.5
 - **Status:** Logical design for review, not an executable Prisma schema or applied migration
 - **Related:** [Architecture](architecture.md) · [Backend](../BACKEND_TECH_SPEC.md) · [Security](security.md) · [Testing](testing.md)
 
@@ -92,7 +92,7 @@ This is an aggregate relationship map, not a complete SQL diagram. In particular
 
 Browser sessions are a separate infrastructure model: session digest/identifier, realm (`WEB`/`ADMIN`), subject, protected credential reference, expiry, rotation/revocation. Never store plaintext session secrets in audit rows. Select encryption/key/session-store implementation with the reviewed maintained identity integration.
 
-[Decision 0021's design review](authentication-transaction-review.md) corrects the historical unconditional provider-owned assumption under Decision 0016. It proposes a private account credential generation, stable revocable logical grants and explicit session/family bindings, separate from publication epoch and rotating token digests. These are review concepts, not approved physical tables/claims. Root-client stores, independent nested transactions or a route-level transaction wrapper do not establish atomic reset/account/session changes; shared typed unit-of-work and rollback/issuance proofs remain required.
+[Decision 0021's design review](authentication-transaction-review.md) corrects the historical unconditional provider-owned assumption under Decision 0016. It proposes a private account credential generation, stable revocable logical grants and explicit session/family bindings, separate from publication epoch and rotating token digests. These are review concepts, not approved physical tables/claims. Root-client stores, independent nested transactions or a route-level transaction wrapper do not establish atomic reset/account/session changes; shared typed unit-of-work and rollback/issuance proofs remain required. The separately authorized [account/grant prototype](account-transaction-prototype.md) now supplies a selected real SQL/typed-transaction subset using four extra scratch tables and a unique family binding, including a deferred audit/outbox FK. It is not an accepted physical schema, production migration or proof of all lifecycle/retention/restore constraints.
 
 ### Proposed publication epoch behavior
 
