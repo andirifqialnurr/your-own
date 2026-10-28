@@ -75,7 +75,7 @@ No empty framework/provider/DB scaffolding, Flutter auth screen, Next.js app or 
 | Gate | Required next evidence/decision | Current status |
 |---|---|---|
 | Package/maturity | Explicit local candidate adoption, public extension/lifecycle semantics and upgrade/rollback ownership; maintained alternative if unacceptable | Pending; first-party artifact/runtime evidence only |
-| One actual combined app graph | Resolve/review the intended importer/pins/peers, fresh advisory/notice/native review, strict frozen/script-denied repeat and safe install scope | [External combined lock-only result](auth-database-lock-only.md); product graph adoption/production artifact and runtime evidence still pending |
+| One actual combined app graph | Resolve/review the intended importer/pins/peers, fresh advisory/notice/native review, strict frozen/script-denied repeat and safe install scope | [External frozen full/production dependency check](auth-database-install.md) passed; app adoption/generated client/integration and portable release artifact still pending |
 | Owned schema/migrations | Review stable IDs/account state, grants/family binding, constraints/lock order, audit/outbox minimization, migration/rollback/restore policy and synthetic seeds | Pending; scratch migrations not adopted |
 | Actual guarded HTTP | Real registered provider/AuthenticationGuard path with the new durable coordinator: DTO validation, no auth fallback, owner/email/lifecycle checks, post-commit cookies/results, Origin/CSRF/realm separation, replay/reset/races and secret-error redaction | Not run for the combined new composition |
 | Mail/verification/recovery | Unverified state transition, generic request response, durable protected mail work and delivery/retry policy, safe reset UX and staff recovery/provisioning | Memory sinks/selected earlier cases only; real delivery not authorized |
@@ -91,6 +91,8 @@ A later integration slice needs its own owner scope, resource preflight if exper
 **Subsequent graph/tooling review:** [Decision 0025](decisions/0025-auth-database-graph-review.md) separately authorizes the [saved-lock/placement review](auth-database-graph-review.md), not resolution/install/adoption. Root-development CLI/React/type peers are proposed, with explicit optional-CLI production-closure and Studio package-manager-engine gates. The 344-identity static union is not a product graph or fresh security/notice clearance.
 
 **Subsequent lock-only result:** [Decision 0026](decisions/0026-local-auth-database-lock-only.md) separately authorizes the [external two-importer resolution/review](auth-database-lock-only.md). A 344-package lock, frozen repeats and dated advisory queries pass, but no installation or application adoption occurred. Optional CLI/Studio/React remain reachable from API runtime lock edges, and lint peer contexts change through jiti; clean production artifact/runtime/engine evidence remains open.
+
+**Subsequent installation result:** [Decision 0027](decisions/0027-local-auth-database-install.md) authorizes the [reviewed external full/production phase](auth-database-install.md). Production actually selects 119 packages without CLI/Studio/React/TypeScript; exact archive/installed bytes, frozen repeats and bounded public imports/strict type/lint checks pass. This does not install into the app, test generation/queries/identity HTTP or clear notice/native/platform/early-package maintenance gates. A separate adoption/readiness choice must define any further integration scope.
 
 ## 6. Decision to record next
 
