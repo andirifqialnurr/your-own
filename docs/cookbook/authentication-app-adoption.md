@@ -75,7 +75,7 @@ No empty framework/provider/DB scaffolding, Flutter auth screen, Next.js app or 
 | Gate | Required next evidence/decision | Current status |
 |---|---|---|
 | Package/maturity | Explicit local candidate adoption, public extension/lifecycle semantics and upgrade/rollback ownership; maintained alternative if unacceptable | Pending; first-party artifact/runtime evidence only |
-| One actual combined app graph | Resolve/review the intended importer/pins/peers, fresh advisory/notice/native review, strict frozen/script-denied repeat and safe install scope | Pending; two experimental graphs are **not** one product lock |
+| One actual combined app graph | Resolve/review the intended importer/pins/peers, fresh advisory/notice/native review, strict frozen/script-denied repeat and safe install scope | [Static placement review prepared](auth-database-graph-review.md); actual combined resolution/production closure still pending |
 | Owned schema/migrations | Review stable IDs/account state, grants/family binding, constraints/lock order, audit/outbox minimization, migration/rollback/restore policy and synthetic seeds | Pending; scratch migrations not adopted |
 | Actual guarded HTTP | Real registered provider/AuthenticationGuard path with the new durable coordinator: DTO validation, no auth fallback, owner/email/lifecycle checks, post-commit cookies/results, Origin/CSRF/realm separation, replay/reset/races and secret-error redaction | Not run for the combined new composition |
 | Mail/verification/recovery | Unverified state transition, generic request response, durable protected mail work and delivery/retry policy, safe reset UX and staff recovery/provisioning | Memory sinks/selected earlier cases only; real delivery not authorized |
@@ -87,6 +87,8 @@ Potential exact-version graph inputs for a **later review**, not install instruc
 The reviewed Prisma CLI graph also needed explicit React/DOM **19.3.1** peers for its tooling. Do not silently inject them into the API, auto-install peers, invent a CLI-free migration/generator or create another workspace/importer. Choose/review the actual tooling placement and graph first. No Next.js adoption follows, and Decision 0010 policy A is not applied. Keep its exact policy B, strict peers, scripts denied, exact pins and `verifyDepsBeforeRun:error`; revalidate at adoption/change/release or by **2026-11-23 UTC** at latest. Existing Prisma/native/image/embedded attribution obligations remain shipping gates; dated advisory evidence is not fresh full-graph clearance.
 
 A later integration slice needs its own owner scope, resource preflight if experimental storage/DB is used, explicit graph/schema/protocol decisions and an honest readiness contract. It does not inherit permission from S0 or this review. Do not reuse the owner's R2/API `.env` as auth/key/DB configuration or commit new secrets/examples with real values.
+
+**Subsequent graph/tooling review:** [Decision 0025](decisions/0025-auth-database-graph-review.md) separately authorizes the [saved-lock/placement review](auth-database-graph-review.md), not resolution/install/adoption. Root-development CLI/React/type peers are proposed, with explicit optional-CLI production-closure and Studio package-manager-engine gates. The 344-identity static union is not a product graph or fresh security/notice clearance.
 
 ## 6. Decision to record next
 
