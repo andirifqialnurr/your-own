@@ -1,7 +1,7 @@
 # M00-T07 — Authentication app-adoption decision packet
 
 - **Prepared:** 2026-10-26 UTC after `2891854`
-- **Status:** Recommendation only; owner implementation/adoption decision pending
+- **Status:** Historical S0 recommendation checkpoint, later authorized in Decision 0024; current post-install recommendation is the [readiness supplement](auth-integration-readiness.md), not app adoption
 - **Review scope:** [Decision 0023](decisions/0023-auth-app-adoption-review.md)
 - **Authority:** [Backend](../BACKEND_TECH_SPEC.md#9-authentication-and-account-lifecycle), [security](security.md#3-identity-and-lifecycle), [schema](schema.md#3-identity-preferences-and-staff), [M02 prerequisites](../milestones/02-identity-and-data-foundation.md)
 
@@ -93,6 +93,8 @@ A later integration slice needs its own owner scope, resource preflight if exper
 **Subsequent lock-only result:** [Decision 0026](decisions/0026-local-auth-database-lock-only.md) separately authorizes the [external two-importer resolution/review](auth-database-lock-only.md). A 344-package lock, frozen repeats and dated advisory queries pass, but no installation or application adoption occurred. Optional CLI/Studio/React remain reachable from API runtime lock edges, and lint peer contexts change through jiti; clean production artifact/runtime/engine evidence remains open.
 
 **Subsequent installation result:** [Decision 0027](decisions/0027-local-auth-database-install.md) authorizes the [reviewed external full/production phase](auth-database-install.md). Production actually selects 119 packages without CLI/Studio/React/TypeScript; exact archive/installed bytes, frozen repeats and bounded public imports/strict type/lint checks pass. This does not install into the app, test generation/queries/identity HTTP or clear notice/native/platform/early-package maintenance gates. A separate adoption/readiness choice must define any further integration scope.
+
+**Subsequent readiness decision preparation:** [Decision 0028](decisions/0028-auth-integration-readiness-review.md) authorizes only the [post-install packet](auth-integration-readiness.md). Recommend holding application adoption and seeking explicit I1-only external adapter-contract and durable provider/guarded-HTTP proof. Static comparison records optional refresh claims/late-successor incompatibilities in the changed prototype; no contract is rerun, assertion waived or new experiment approved. The S0 question below remains the historical checkpoint, not a request to repeat S0 or inferred permission for M02.
 
 ## 6. Decision to record next
 
