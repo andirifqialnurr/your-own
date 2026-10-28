@@ -75,7 +75,7 @@ No empty framework/provider/DB scaffolding, Flutter auth screen, Next.js app or 
 | Gate | Required next evidence/decision | Current status |
 |---|---|---|
 | Package/maturity | Explicit local candidate adoption, public extension/lifecycle semantics and upgrade/rollback ownership; maintained alternative if unacceptable | Pending; first-party artifact/runtime evidence only |
-| One actual combined app graph | Resolve/review the intended importer/pins/peers, fresh advisory/notice/native review, strict frozen/script-denied repeat and safe install scope | [Static placement review prepared](auth-database-graph-review.md); actual combined resolution/production closure still pending |
+| One actual combined app graph | Resolve/review the intended importer/pins/peers, fresh advisory/notice/native review, strict frozen/script-denied repeat and safe install scope | [External combined lock-only result](auth-database-lock-only.md); product graph adoption/production artifact and runtime evidence still pending |
 | Owned schema/migrations | Review stable IDs/account state, grants/family binding, constraints/lock order, audit/outbox minimization, migration/rollback/restore policy and synthetic seeds | Pending; scratch migrations not adopted |
 | Actual guarded HTTP | Real registered provider/AuthenticationGuard path with the new durable coordinator: DTO validation, no auth fallback, owner/email/lifecycle checks, post-commit cookies/results, Origin/CSRF/realm separation, replay/reset/races and secret-error redaction | Not run for the combined new composition |
 | Mail/verification/recovery | Unverified state transition, generic request response, durable protected mail work and delivery/retry policy, safe reset UX and staff recovery/provisioning | Memory sinks/selected earlier cases only; real delivery not authorized |
@@ -89,6 +89,8 @@ The reviewed Prisma CLI graph also needed explicit React/DOM **19.3.1** peers fo
 A later integration slice needs its own owner scope, resource preflight if experimental storage/DB is used, explicit graph/schema/protocol decisions and an honest readiness contract. It does not inherit permission from S0 or this review. Do not reuse the owner's R2/API `.env` as auth/key/DB configuration or commit new secrets/examples with real values.
 
 **Subsequent graph/tooling review:** [Decision 0025](decisions/0025-auth-database-graph-review.md) separately authorizes the [saved-lock/placement review](auth-database-graph-review.md), not resolution/install/adoption. Root-development CLI/React/type peers are proposed, with explicit optional-CLI production-closure and Studio package-manager-engine gates. The 344-identity static union is not a product graph or fresh security/notice clearance.
+
+**Subsequent lock-only result:** [Decision 0026](decisions/0026-local-auth-database-lock-only.md) separately authorizes the [external two-importer resolution/review](auth-database-lock-only.md). A 344-package lock, frozen repeats and dated advisory queries pass, but no installation or application adoption occurred. Optional CLI/Studio/React remain reachable from API runtime lock edges, and lint peer contexts change through jiti; clean production artifact/runtime/engine evidence remains open.
 
 ## 6. Decision to record next
 
