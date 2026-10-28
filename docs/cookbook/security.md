@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.13
+- **Version:** 0.14
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -73,6 +73,8 @@ The [Decision 0021 review](authentication-transaction-review.md) proposes live a
 The [Decision 0023 app-adoption packet](authentication-app-adoption.md) recommends contract-only S0 as a separate owner decision, not authentication enablement. Type brands/trusted-context shapes cannot authenticate client JSON or replace live authority checks. Static review also identifies a cookie-idle integration mismatch between standalone validation and transaction-required touch; resolve/test it before real cookie integration, never weaken idle/transaction policy to hide it. A later principal must project verified-email and current scope/assurance appropriately; the fixture's `{id}` provider result is not full authorization. The separately authorized [Decision 0024 S0 boundary](identity-contract-s0.md) now supplies internal contracts and pure own-data/operator policies with synthetic tests, not an identity authority or active endpoint. Its read-only/shape checks do not establish provenance, freshness or current grants; never deserialize a client actor into trusted context. A pure allowed verdict cannot replace live authorization or domain transaction coordination.
 
 The [Decision 0028 readiness packet](auth-integration-readiness.md) separates the now-tested external dependency split from still-unproved durable provider/guarded HTTP. Its changed-store optional-claims/late-successor mismatch is static evidence, not a new runtime failure or permission to weaken tombstones. Resolve owned issuance versus generic storage semantics, actual verified-email/current capabilities, cookie touch/discard ownership and terminal-denial versus technical-unavailability behavior before adoption. Proposed I1 requires separate approval; no library/model, idle policy, application implementation or security gate is accepted by that review.
+
+The subsequent [Decision 0029](decisions/0029-local-auth-integration-i1.md) authorizes I1 only; [I1-A](auth-integration-adapter-i1-a.md) now verifies unchanged generic store contracts, explicit transaction/owner/grant binding and clean-production generated queries. Optional claims are data, not authentication authority; a stored late successor never clears its family's revocation tombstone. Per-user SQL serialization fixes observed parallel MFA insert/count undercounting; this is not a production rate/retention policy or proof that denial effects survive a larger account rollback. I1-B's actual durable provider/guarded-HTTP current-state/verified-email/exact-capability projection, cookie write ownership and COMMIT boundaries remain unrun. No app, production-key/session policy or release-security gate is adopted.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 
