@@ -18,6 +18,8 @@ The next bounded [non-Supabase authentication review](docs/cookbook/framework-au
 
 The owner's subsequent I1-only continuation is [Decision 0029](docs/cookbook/decisions/0029-local-auth-integration-i1.md). [I1-A adapter/generation checks](docs/cookbook/auth-integration-adapter-i1-a.md) now pass 35 cases twice, including all 24 unchanged published contracts, four expected-red controls and real generated-client queries in the clean production tree. Initial MFA concurrency failures are preserved/corrected; both owned DB/volume lifecycles are removed. I1-B's actual durable registered-provider/guarded HTTP remains next within scope, **not run**. Application code/dependencies/S0 and all full-task gates remain unchanged.
 
+The next authorized continuation now has a partial [I1-B1 bearer-HTTP checkpoint](docs/cookbook/auth-integration-bearer-i1-b1.md): 31 cases pass in full and clean-production service trees, three expected-red controls and unchanged adapter contracts pass, with durable state, independent processes and resource cleanup. Cookie sessions, actual verification/reset and fresh staff-TOTP/exact-capability acceptance remain unverified; operator issuance stays refused. This does not complete I1-B or enable application authentication.
+
 ## Start here
 
 1. Read the [product requirements](docs/PRD.md).

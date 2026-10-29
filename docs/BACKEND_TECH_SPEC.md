@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.23
+- **Version:** 0.24
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -490,6 +490,8 @@ Login/recovery routes depend on the reviewed non-Supabase auth integration and p
 The [post-install readiness review](cookbook/auth-integration-readiness.md), scoped by [Decision 0028](cookbook/decisions/0028-auth-integration-readiness-review.md), retains application adoption on hold. Actual frozen dependency selection is not durable guarded-HTTP proof. Static comparison finds the prototype's mandatory refresh grant claims/refusal of late revoked-family inserts incompatible with published optional-claims/tombstone contract cases; resolve this boundary without modifying vendor contracts or hiding failures. Verified-email/capability projection and cookie transaction ownership remain gaps. Proposed I1 external acceptance is Not run/unapproved here; no schema/protocol/provider or M02 scope is adopted.
 
 The later [Decision 0029 I1-only authorization](cookbook/decisions/0029-local-auth-integration-i1.md) now has [I1-A adapter/generation proof](cookbook/auth-integration-adapter-i1-a.md): 24 unchanged published contracts plus 11 owned cases pass twice, with four expected-red controls and generated-client queries in the clean production tree. The new generic persistence accepts absent/arbitrary claims and late successors without clearing revocation tombstones; server-owned account/grant transaction bindings are separate. Initial MFA insert/count concurrency failures are retained and corrected with per-user SQL serialization. This is not credential issuance/current-principal proof: actual durable registered-provider/guarded HTTP, projection, cookie ownership and COMMIT response/denial behavior remain I1-B, not run. No application code/dependency/schema/protocol or full M02 adoption follows.
+
+The subsequent [I1-B1 bearer checkpoint](cookbook/auth-integration-bearer-i1-b1.md) provides actual registered-provider/AuthenticationGuard HTTP evidence with durable account/grant/family/email projection to unchanged S0 own-data policy, independent full/production processes, post-commit logout/cutoff, coordinated SQL waits and rollback-safe audit/outbox mutation responses. All 31 selected HTTP cases pass in both service trees; unchanged adapter contracts pass twice. This is partial I1-B, not a complete identity integration: cookies, actual verified-email/reset callbacks, staff TOTP/capability acceptance and broader denial/operational cases remain unproved. No application code, schema or provider is adopted.
 
 ### 9.4 Next.js browser and staff integration
 

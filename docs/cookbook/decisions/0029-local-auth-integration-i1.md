@@ -1,6 +1,6 @@
 # Decision 0029 — Isolated I1 adapter and durable guarded-HTTP experiment
 
-- **Status:** Authorized; I1-A external adapter/generation gate verified, I1-B not run / next within scope
+- **Status:** Authorized; I1-A verified; I1-B1 partial bearer checkpoint verified, remaining I1-B gates open
 - **Authorized by:** Project owner, 2026-10-28 UTC
 - **Recorded by:** Coding agent
 - **Tasks:** Preparatory M00-T04/T06/T07; full tasks remain unchecked
@@ -24,6 +24,14 @@ After `471fc57`, the assistant asked: **“May I run I1 only next—isolated Pos
 The [adapter/generation result](../auth-integration-adapter-i1-a.md) passes **35 cases twice: 24 unchanged published contracts and 11 owned checks**, four targeted expected-red controls, fresh 19-file generation/repeat and two actual generated-client queries in the clean production tree. Generic persistence accepts absent/arbitrary claims and retains late-successor tombstones; server-owned transaction bindings are separate. The first runtime attempt failed two MFA concurrency assertions; per-user SQL serialization fixes the insert/count visibility issue without changing published tests. Original compile/runtime failures remain preserved. Both sequential owned DB/volume lifecycles are removed, with ports closed and unrelated services retained.
 
 This closes I1-A only, not I1 or any full task. Actual durable registered-provider/guarded HTTP, trusted verified-email/exact-capability projection, cookie touch/discard ownership, post-COMMIT revocation/response ordering and denial-effect durability remain **Not run in the new composition**. I1-B is the next separately committed phase within this authorization, subject to fresh resource/prerequisite checks and unchanged same-adapter contracts. No application/provider/schema adoption follows.
+
+## I1-B continuation
+
+After `bed0b89`, the assistant identified real-provider/guarded HTTP as next and the owner replied **“continue”**. Continue I1-B under the existing limits, with separate bounded checkpoints rather than claiming the whole matrix from partial results. Fresh preflight, same-adapter contracts and explicit remaining cookie/reset/MFA/COMMIT/operational gaps are mandatory; no application adoption follows.
+
+## I1-B1 checkpoint
+
+On 2026-10-29 UTC, the [partial bearer-HTTP result](../auth-integration-bearer-i1-b1.md) passes 31 actual HTTP cases in full and clean-production service trees, three targeted expected-red controls and the unchanged 35-case adapter gate twice. Five sequential owned DB/volume lifecycles and all 31 observed service/listener lifecycles across failed/preliminary/final runs close. This establishes only selected durable bearer/current-state/S0 own-data, SQL wait/denial, logout/cutoff and mutation COMMIT/recheck cases. Cookie idle/write ownership, actual verification/reset callbacks, fresh staff TOTP/exact-capability acceptance and remaining denial/issuance/operational cases remain unverified. Continue those remaining I1-B gates only after fresh prerequisites; no app adoption or task checkbox changes.
 
 ## Completion boundary
 

@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.14
+- **Version:** 0.15
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -75,6 +75,8 @@ The [Decision 0023 app-adoption packet](authentication-app-adoption.md) recommen
 The [Decision 0028 readiness packet](auth-integration-readiness.md) separates the now-tested external dependency split from still-unproved durable provider/guarded HTTP. Its changed-store optional-claims/late-successor mismatch is static evidence, not a new runtime failure or permission to weaken tombstones. Resolve owned issuance versus generic storage semantics, actual verified-email/current capabilities, cookie touch/discard ownership and terminal-denial versus technical-unavailability behavior before adoption. Proposed I1 requires separate approval; no library/model, idle policy, application implementation or security gate is accepted by that review.
 
 The subsequent [Decision 0029](decisions/0029-local-auth-integration-i1.md) authorizes I1 only; [I1-A](auth-integration-adapter-i1-a.md) now verifies unchanged generic store contracts, explicit transaction/owner/grant binding and clean-production generated queries. Optional claims are data, not authentication authority; a stored late successor never clears its family's revocation tombstone. Per-user SQL serialization fixes observed parallel MFA insert/count undercounting; this is not a production rate/retention policy or proof that denial effects survive a larger account rollback. I1-B's actual durable provider/guarded-HTTP current-state/verified-email/exact-capability projection, cookie write ownership and COMMIT boundaries remain unrun. No app, production-key/session policy or release-security gate is adopted.
+
+The later [I1-B1 partial bearer result](auth-integration-bearer-i1-b1.md) exercises the actual guard/provider against durable current account/grant/family/email state and unchanged S0 own-data policy. It separates terminal invalid identity from real SQL 42501/unavailable, tests post-commit logout/cutoff, two-process context isolation, mutation rechecks and actual deferred-COMMIT 23503 without success credentials. No positive operator/fresh-TOTP or cookie/verification/reset integration is claimed: operator issuance is refused, email transitions here use private fixture SQL rather than the maintained callback, and exact-capability acceptance remains pending. This does not accept production policy or waive the remaining I1-B/security gates.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 
