@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.16
+- **Version:** 0.17
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -79,6 +79,8 @@ The subsequent [Decision 0029](decisions/0029-local-auth-integration-i1.md) auth
 The later [I1-B1 partial bearer result](auth-integration-bearer-i1-b1.md) exercises the actual guard/provider against durable current account/grant/family/email state and unchanged S0 own-data policy. It separates terminal invalid identity from real SQL 42501/unavailable, tests post-commit logout/cutoff, two-process context isolation, mutation rechecks and actual deferred-COMMIT 23503 without success credentials. No positive operator/fresh-TOTP or cookie/verification/reset integration is claimed: operator issuance is refused, email transitions here use private fixture SQL rather than the maintained callback, and exact-capability acceptance remains pending. This does not accept production policy or waive the remaining I1-B/security gates.
 
 The [2026-11-01 integration batch security stop](auth-integration-batch-security-stop.md) identifies minimatch 10.2.6 in both repository tooling and the combined full graph: GHSA-g3hv-75wg-m249 / CVE-2026-118764, moderate/medium amplification DoS (described for attacker-controlled patterns with optimizationLevel ≥2). Package presence is not proof of exploitable application/API access; no exploit is executed. Historical production exclusion does not waive the full-graph gate. The batch stops before install/engine/DB/auth HTTP; no major-version override, severity exception, silent parent update or production-policy renewal is authorized. Review a maintained compatible remediation separately.
+
+The [Decision 0030 remediation review](minimatch-remediation-review.md) retains the stop. Static SHA-512-matched published 11.x artifacts contain the advisory-linked resource limits, but also remove RegExp/AST APIs and change matching behavior. Current caller overlap, no explicit optimizationLevel ≥2 in the three inspected sites and hypothetical empty fixed-version advisory responses do not establish safety or waive the original finding. A new runtime helper/notice surface and unsupported ^10→11 edges need separately authorized E1 graph/security/compatibility testing. No blanket override, vendor patch, advisory suppression or policy renewal is accepted.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

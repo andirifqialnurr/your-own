@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.27
+- **Version:** 0.28
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -128,6 +128,8 @@ The owner's subsequent [Decision 0029 I1-only authorization](decisions/0029-loca
 The subsequent [I1-B1 bearer checkpoint](auth-integration-bearer-i1-b1.md) passes 31 actual HTTP cases in full and clean-production service processes, three targeted expected-red controls and the same unchanged 35-case store suite twice. Real SQL row waits, SQLSTATE 42501 and deferred-COMMIT 23503 are distinct from the private guard-to-mutation coordination gap. The final suite closes 12 service/listener lifecycles; across failed, preliminary and final runs all 31 close and five DB/volume lifecycles are removed. Initial compile/realm/token-fixture failures remain; the known root child-start timeout fails once and all 176 root entries pass on unchanged retry. This closes only a partial bearer subset, not cookie, callback/reset, fresh staff-TOTP/capability or full I1-B acceptance.
 
 The requested next five-task batch [stops at the 2026-11-01 advisory gate](auth-integration-batch-security-stop.md), before installation or I1-B2–B6 execution. Do not count planned cases as passes or use historical zero-advisory results as current clearance. Full `pnpm check`/ESLint is not run because affected minimatch is in tooling; direct unaffected Node tooling/design/boundary/API suites pass 21+14+99+42 entries, plus compile/types and source/artwork checks. Preserve the first API invocation's wrong-CWD failure; only the working directory changes for its 42-case pass. These checks do not bypass the integration stop or constitute a full lint/CI/native pass.
+
+The later [remediation review/E1 proposal](minimatch-remediation-review.md#6-e1-proposalrequires-explicit-authorization) defines **unrun** checks for exact selectors/resolved deltas, artifact/security/notice review, frozen installs, fixed-version CJS/ESM/glob/Windows/partial semantics, file-discovery/ignore controls, type-aware lint and unchanged tests. Static API/source/guard inspection and hypothetical version-list queries do not execute that matrix. Existing unaffected 176 entries and compile/types pass separately; full pnpm check/ESLint remains held until a permitted patched graph is genuinely validated. No resolution/install/candidate-code execution or rule/assertion/timeout waiver is approved by the review.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 

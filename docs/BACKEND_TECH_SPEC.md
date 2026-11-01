@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.25
+- **Version:** 0.26
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -494,6 +494,8 @@ The later [Decision 0029 I1-only authorization](cookbook/decisions/0029-local-au
 The subsequent [I1-B1 bearer checkpoint](cookbook/auth-integration-bearer-i1-b1.md) provides actual registered-provider/AuthenticationGuard HTTP evidence with durable account/grant/family/email projection to unchanged S0 own-data policy, independent full/production processes, post-commit logout/cutoff, coordinated SQL waits and rollback-safe audit/outbox mutation responses. All 31 selected HTTP cases pass in both service trees; unchanged adapter contracts pass twice. This is partial I1-B, not a complete identity integration: cookies, actual verified-email/reset callbacks, staff TOTP/capability acceptance and broader denial/operational cases remain unproved. No application code, schema or provider is adopted.
 
 On 2026-11-01 the next five-task I1 batch [stops at security preflight](cookbook/auth-integration-batch-security-stop.md): fresh npm/OSV/GitHub records identify minimatch 10.2.6 in tooling as affected by GHSA-g3hv-75wg-m249. No further install/generation/DB/provider execution or application change follows. Historical production exclusion and earlier successful tests do not waive the reviewed full-graph gate. Remediation needs separate review/approval; published first fix 11.0.1 exceeds the current parents' ^10 ranges.
+
+The later [Decision 0030 remediation review](cookbook/decisions/0030-minimatch-remediation-review.md) is [prepared](cookbook/minimatch-remediation-review.md): latest parents still require affected 10.x, while minimatch 11.0.3 has major API/semantic changes and a new runtime helper. Three exact parent-scoped overrides are proposed only for a separately authorized external E1 experiment. Static artifacts and hypothetical advisory lists are not resolved-graph/runtime proof. No dependency/policy/application change, E1 execution or resumed I1 integration is approved by this review.
 
 ### 9.4 Next.js browser and staff integration
 

@@ -11,6 +11,8 @@
 
 **Current stop (2026-11-01):** The next five-task batch [stops before installation at a newly published minimatch advisory](auth-integration-batch-security-stop.md), affecting the reviewed full tooling graph and repository tooling. I1-B2–B6 remain unrun; separate remediation review/approval is required. Earlier passes and production-tooling exclusion do not waive this security gate or authorize a new version/override.
 
+**Subsequent review:** [Decision 0030's minimatch remediation packet](minimatch-remediation-review.md) proposes a separately approved E1 external override/compatibility experiment, not application changes or resumed integration. No newer 10.x/backport/parent fix was found; static 11.x major-change evidence requires real validation. E1 remains unapproved/unrun, and the current security stop still applies.
+
 ## 1. Decision requested
 
 **Hold application and production adoption. Recommend I1 only: one external, synthetic, real-provider/guarded-HTTP + durable-account integration experiment on the reviewed combined graph.** Keep first-party authentication **0.1.1** as an evaluated candidate for that experiment, not an accepted production dependency or stability promise. Its early maturity/public-seam maintenance burden remains explicit. Opaque access or another separately reviewed maintained integration remains available; neither is silently substituted.

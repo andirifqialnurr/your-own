@@ -22,6 +22,8 @@ The next authorized continuation now has a partial [I1-B1 bearer-HTTP checkpoint
 
 **Current safety stop:** The requested next five-task batch stopped before installation/testing at a [new minimatch advisory](docs/cookbook/auth-integration-batch-security-stop.md): **10.2.6 / GHSA-g3hv-75wg-m249** affects the full tooling graph. No new integration task is completed, dependency changed or gate waived. A separately scoped remediation review is needed before resuming; earlier passes remain dated evidence, not current advisory clearance.
 
+The owner subsequently authorized the [minimatch remediation review](docs/cookbook/minimatch-remediation-review.md), now prepared under [Decision 0030](docs/cookbook/decisions/0030-minimatch-remediation-review.md). No maintained parent/backport currently fixes the 10.x edge. A narrowly scoped **external E1 experiment** for 11.0.3 is proposed, not authorized or executed; major API/semantic changes and a new helper require testing. Application dependencies and the five-task security stop remain unchanged.
+
 ## Start here
 
 1. Read the [product requirements](docs/PRD.md).
