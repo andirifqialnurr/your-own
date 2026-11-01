@@ -5,6 +5,8 @@
 - **Result:** Bounded external technical matrix passes after retained launcher/fixture corrections; **no application or override-policy adoption**
 - **Tasks:** Preparatory M00-T04/T06/T07 only; seven tasks checked, full M02 Planned; I1-B2–B6 still **0/5**
 
+**Subsequent tooling-only authorization:** The owner's next “continue” is [Decision 0032](decisions/0032-minimatch-tooling-adoption.md). The [actual repository implementation](minimatch-tooling-adoption.md) now has the exact three overrides/generated lock and passing normal CLI checks, but a new supplemental ESLint/TypeScript API crash leaves verification blocked. This supersedes this document's adoption-unapproved/unpatched checkpoint prospectively only; E1 remains historical external evidence, not clearance of the later failure or resumed auth integration.
+
 ## 1. Scope and actual graphs
 
 The owner's “continue” answers the explicit **E1-only/no-application-changes** question, not a request to install into the application or resume the [five integration tasks](auth-integration-batch-security-stop.md). New repository-equivalent and combined root/API workspaces start from `6851ef4`; only the combined workspace additionally takes the previously reviewed external auth/Prisma manifests/lock. All new experimental allocations are on C:. Three clones have push disabled. No owner .env is copied or used.

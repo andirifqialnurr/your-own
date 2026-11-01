@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.18
+- **Version:** 0.19
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -83,6 +83,8 @@ The [2026-11-01 integration batch security stop](auth-integration-batch-security
 The [Decision 0030 remediation review](minimatch-remediation-review.md) retains the stop. Static SHA-512-matched published 11.x artifacts contain the advisory-linked resource limits, but also remove RegExp/AST APIs and change matching behavior. Current caller overlap, no explicit optimizationLevel ≥2 in the three inspected sites and hypothetical empty fixed-version advisory responses do not establish safety or waive the original finding. A new runtime helper/notice surface and unsupported ^10→11 edges need separately authorized E1 graph/security/compatibility testing. No blanket override, vendor patch, advisory suppression or policy renewal is accepted.
 
 The separately authorized [E1 result](minimatch-e1-validation.md) under [Decision 0031](decisions/0031-local-minimatch-e1.md) validates only actual external patched graphs: exact selected edges/helper, reviewed archives/notices, frozen script-denied installs, pre/post installed-byte checks and bounded fixed-version runtime/discovery/lint/resource evidence. Fresh npm/OSV over the actual 345-version union is empty at capture; the actual unchanged repository still reports minimatch 10.2.6. Existing notice/upstream-support gates remain. Preserve the unintended isolated Corepack 12.16.1 fetch/execution refused by the exact 12.8.1 guard, corrected pinned launcher and original fixture failures; do not treat them as passing attempts or a global/pin upgrade. No vendor guard/rule/project assertion/timeout is weakened. E1 does not accept a major override, waive the repository tooling security stop, renew the policy deadline or resume integration. Tooling-only adoption requires a separate owner decision and fresh actual-repository checks.
+
+The owner's subsequent [Decision 0032](decisions/0032-minimatch-tooling-adoption.md) conditionally authorizes only three exact repository tooling overrides and fresh checks. The [installed 201-identity result](minimatch-tooling-adoption.md) removes affected minimatch from the actual tree, with fresh empty actual-graph npm/OSV responses, reviewed notice/integrity/strict frozen installs and two normal full CLI passes. **Adoption verification remains blocked** by a new supplemental ESLint/TypeScript API crash; a reordered probe also fails before virtual input, so neither a cache/cross-drive/minimatch cause nor a fix is established. Stop further affected use/promotion/auth execution pending bounded diagnosis. Do not suppress rules, change pins/parser/vendor code, weaken assertions/timeouts or automatically restore vulnerable 10.2.6. Exact scope, owner accountability/safe removal and November 23 latest review deadline remain; this is no advisory/legal/production waiver or auth dependency adoption.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 
