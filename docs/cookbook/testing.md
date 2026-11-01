@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.26
+- **Version:** 0.27
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -126,6 +126,8 @@ The [post-install readiness matrix](auth-integration-readiness.md#4-required-i1-
 The owner's subsequent [Decision 0029 I1-only authorization](decisions/0029-local-auth-integration-i1.md) now has an [I1-A checkpoint](auth-integration-adapter-i1-a.md): **35 cases twice**, comprising all 24 unchanged published cases and 11 owned checks, four targeted expected-red controls, four actual SQL lock barriers per positive run and two generated-client production queries. The same underlying adapter is used by an explicit per-operation transaction facade and account-bound owned calls; no records/assertions/concurrency are rewritten. Initial exact-optional type errors and two real MFA concurrency failures remain preserved. Per-user SQL serialization corrects insert/count visibility under READ COMMITTED. I1-B remains Not run; current-principal/provider/guarded-HTTP and larger transaction-denial semantics cannot be inferred from this store gate. Any later adapter change requires a fresh unchanged-contract rerun.
 
 The subsequent [I1-B1 bearer checkpoint](auth-integration-bearer-i1-b1.md) passes 31 actual HTTP cases in full and clean-production service processes, three targeted expected-red controls and the same unchanged 35-case store suite twice. Real SQL row waits, SQLSTATE 42501 and deferred-COMMIT 23503 are distinct from the private guard-to-mutation coordination gap. The final suite closes 12 service/listener lifecycles; across failed, preliminary and final runs all 31 close and five DB/volume lifecycles are removed. Initial compile/realm/token-fixture failures remain; the known root child-start timeout fails once and all 176 root entries pass on unchanged retry. This closes only a partial bearer subset, not cookie, callback/reset, fresh staff-TOTP/capability or full I1-B acceptance.
+
+The requested next five-task batch [stops at the 2026-11-01 advisory gate](auth-integration-batch-security-stop.md), before installation or I1-B2–B6 execution. Do not count planned cases as passes or use historical zero-advisory results as current clearance. Full `pnpm check`/ESLint is not run because affected minimatch is in tooling; direct unaffected Node tooling/design/boundary/API suites pass 21+14+99+42 entries, plus compile/types and source/artwork checks. Preserve the first API invocation's wrong-CWD failure; only the working directory changes for its 42-case pass. These checks do not bypass the integration stop or constitute a full lint/CI/native pass.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 

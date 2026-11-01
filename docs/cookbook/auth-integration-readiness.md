@@ -9,6 +9,8 @@
 
 **Later partial I1-B evidence:** The next continuation after `bed0b89` has [I1-B1 bearer-HTTP results](auth-integration-bearer-i1-b1.md): 31 cases pass in full and clean-production service trees, three expected-red controls and unchanged adapter contracts. Current account/grant/family/email and S0 own-data policy, selected commit/revocation/race/error cases are now exercised through actual providers/guards. This is not the whole matrix: cookies, real verification/reset callbacks, fresh staff TOTP/exact capabilities and remaining operational/denial cases remain unverified. No app adoption follows.
 
+**Current stop (2026-11-01):** The next five-task batch [stops before installation at a newly published minimatch advisory](auth-integration-batch-security-stop.md), affecting the reviewed full tooling graph and repository tooling. I1-B2–B6 remain unrun; separate remediation review/approval is required. Earlier passes and production-tooling exclusion do not waive this security gate or authorize a new version/override.
+
 ## 1. Decision requested
 
 **Hold application and production adoption. Recommend I1 only: one external, synthetic, real-provider/guarded-HTTP + durable-account integration experiment on the reviewed combined graph.** Keep first-party authentication **0.1.1** as an evaluated candidate for that experiment, not an accepted production dependency or stability promise. Its early maturity/public-seam maintenance burden remains explicit. Opaque access or another separately reviewed maintained integration remains available; neither is silently substituted.

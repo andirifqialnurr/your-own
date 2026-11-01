@@ -1,6 +1,6 @@
 # Decision 0029 — Isolated I1 adapter and durable guarded-HTTP experiment
 
-- **Status:** Authorized; I1-A verified; I1-B1 partial bearer checkpoint verified, remaining I1-B gates open
+- **Status:** I1-A/B1 historical subsets verified; five-task continuation blocked at security preflight, remaining I1-B gates open
 - **Authorized by:** Project owner, 2026-10-28 UTC
 - **Recorded by:** Coding agent
 - **Tasks:** Preparatory M00-T04/T06/T07; full tasks remain unchecked
@@ -32,6 +32,14 @@ After `bed0b89`, the assistant identified real-provider/guarded HTTP as next and
 ## I1-B1 checkpoint
 
 On 2026-10-29 UTC, the [partial bearer-HTTP result](../auth-integration-bearer-i1-b1.md) passes 31 actual HTTP cases in full and clean-production service trees, three targeted expected-red controls and the unchanged 35-case adapter gate twice. Five sequential owned DB/volume lifecycles and all 31 observed service/listener lifecycles across failed/preliminary/final runs close. This establishes only selected durable bearer/current-state/S0 own-data, SQL wait/denial, logout/cutoff and mutation COMMIT/recheck cases. Cookie idle/write ownership, actual verification/reset callbacks, fresh staff TOTP/exact-capability acceptance and remaining denial/issuance/operational cases remain unverified. Continue those remaining I1-B gates only after fresh prerequisites; no app adoption or task checkbox changes.
+
+## Five-task continuation after 629bb55
+
+On 2026-11-01 UTC the owner requested: **“continue our next tasks. i want you to commit and push each tasks. do 5 tasks then stop”**. Continue only the remaining external I1 scope as five bounded checkpoints: **I1-B2 cookie transaction/expiry**, **I1-B3 verified-email callback/address safety**, **I1-B4 reset transaction/live cutoff**, **I1-B5 staff TOTP/exact capability**, **I1-B6 refresh-reuse/MFA-denial effects and regression closure**. Commit/push each separately, stop after the fifth; stop earlier on a safety/prerequisite blocker. This does not waive existing constraints, accept production policies or bring forward application/M02 work. Full task checkboxes stay unchanged.
+
+## Five-task batch safety stop
+
+The [2026-11-01 security-stop report](../auth-integration-batch-security-stop.md) records a new moderate/medium minimatch 10.2.6 advisory, GHSA-g3hv-75wg-m249 / CVE-2026-118764, in the reviewed full graph and repository tooling. Stop before installation or I1-B2 execution; **zero of the five requested integration tasks is completed**. Targeted npm/OSV/GitHub and static parent-range review only follow the stop. Historical clean-production exclusion does not waive the full-graph gate; 11.0.1 is the published first fix but outside all three current parent ^10 ranges. No package/override/policy change, new engine/DB/provider execution or automatic remediation permission follows. Record/push one blocker checkpoint, not five manufactured task commits. Next requires a separately bounded remediation review/decision.
 
 ## Completion boundary
 

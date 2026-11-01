@@ -20,6 +20,8 @@ The owner's subsequent I1-only continuation is [Decision 0029](docs/cookbook/dec
 
 The next authorized continuation now has a partial [I1-B1 bearer-HTTP checkpoint](docs/cookbook/auth-integration-bearer-i1-b1.md): 31 cases pass in full and clean-production service trees, three expected-red controls and unchanged adapter contracts pass, with durable state, independent processes and resource cleanup. Cookie sessions, actual verification/reset and fresh staff-TOTP/exact-capability acceptance remain unverified; operator issuance stays refused. This does not complete I1-B or enable application authentication.
 
+**Current safety stop:** The requested next five-task batch stopped before installation/testing at a [new minimatch advisory](docs/cookbook/auth-integration-batch-security-stop.md): **10.2.6 / GHSA-g3hv-75wg-m249** affects the full tooling graph. No new integration task is completed, dependency changed or gate waived. A separately scoped remediation review is needed before resuming; earlier passes remain dated evidence, not current advisory clearance.
+
 ## Start here
 
 1. Read the [product requirements](docs/PRD.md).
