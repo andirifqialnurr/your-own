@@ -28,6 +28,8 @@ The next continuation authorizes **E1 only** in [Decision 0031](docs/cookbook/de
 
 The next owner continuation authorizes the three exact tooling overrides in [Decision 0032](docs/cookbook/decisions/0032-minimatch-tooling-adoption.md). The [actual repository result](docs/cookbook/minimatch-tooling-adoption.md) installs the exact 201-package graph and passes fresh advisory/integrity review plus full `pnpm check`/build twice. **Verification remains blocked:** a supplemental public ESLint API probe crashes inside TypeScript 6.0.3; diagnostic/reordered attempts do not resolve it. No rules/pins/assertions/timeouts are weakened. Keep auth paused and stop further affected adoption/promotion pending bounded diagnosis; no auth/Prisma dependency or application-source change is made.
 
+The separately authorized [Decision 0033 diagnosis](docs/cookbook/eslint-api-crash-diagnosis.md) identifies the repeated typed-parse/single-run lifecycle: a second parse switches to an isolated program and crashes; a diagnostic long-lived worker retains full types and returns with unchanged assertions. The earlier “initial scan” interpretation is corrected to the second typed scan. Dependencies/configuration/source stay unchanged; tooling sign-off and all auth tasks remain paused pending separately approved external-harness correction and revalidation.
+
 ## Start here
 
 1. Read the [product requirements](docs/PRD.md).

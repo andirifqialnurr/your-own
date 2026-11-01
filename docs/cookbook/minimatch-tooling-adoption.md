@@ -5,6 +5,8 @@
 - **Status:** Overrides/generated lock installed; **verification blocked**, not an unqualified adoption pass
 - **Tasks:** Preparatory M00-T04; seven tasks checked, full M02 Planned; I1-B2–B6 **0/5**
 
+**Subsequent diagnosis, not sign-off:** [Decision 0033](decisions/0033-eslint-api-crash-diagnosis.md) now has [repeated typed-parse/single-run lifecycle evidence](eslint-api-crash-diagnosis.md). It corrects the stage interpretation below and proposes a scoped external-harness worker correction; it does not change dependencies, erase failed attempts, complete the paused validation or resume auth.
+
 ## 1. Authorized implementation and graph
 
 The owner's “continue” answers the exact three-tooling-overrides/checks/auth-paused question. Only `pnpm-workspace.yaml`, pnpm-generated `pnpm-lock.yaml` and affected documentation change. Root/API manifests, ESLint rules/parser configuration, application/S0 source, mobile and private configuration stay unchanged. No auth/Prisma/React dependency or application route/store/provider is added.
@@ -46,7 +48,7 @@ TypeError: Cannot read properties of undefined (reading 'includes')
   at getLocalModuleSpecifier
 ```
 
-The original run and a stage-logged diagnostic run reach the later filesystem glob scan after virtual text, failing at `app.module.ts:5` under **@typescript-eslint/no-misused-promises**. The hypothesis that merely reordering virtual/disk calls would resolve it is **not confirmed**: the reordered attempt fails in its **initial filesystem scan**, before virtual text, at `app.ts:8` under **@typescript-eslint/no-unsafe-assignment**. That failure and the unsuccessful reorder are retained. Effective-config comparisons preceding the scans match E1, and the first attempts pass the initial discovery/ignore/virtual-diagnostic assertions, but this does not establish a stable programmatic API pass.
+The original run and a stage-logged diagnostic run reach the later filesystem glob scan after virtual text, failing at `app.module.ts:5` under **@typescript-eslint/no-misused-promises**. The reordered attempt also fails before virtual text, at `app.ts:8` under **@typescript-eslint/no-unsafe-assignment**. **Historical interpretation corrected by Decision 0033:** this was initially described as an initial-scan failure, but that probe did not mark the intervening second typed glob call. Later stage-only evidence shows the first scan completes and the second typed scan crashes. Reordering did not resolve it; the original failure/logs remain unchanged. Effective-config comparisons preceding the scans match E1, and the first attempts pass the initial discovery/ignore/virtual-diagnostic assertions, but this does not establish a stable programmatic API pass.
 
 No minimatch regression, cross-drive cause, parser-cache cause or upstream fix is established. The two successful normal repository CLI checks do not erase this failure; nor does the API crash retroactively change those CLI runs into failures. **Stop supplemental validation here.** Do not change TypeScript/ESLint/pins, suppress either rule, alter parser policy, patch vendor internals, weaken assertions/timeouts or keep retrying until green. The planned six expected-red controls and restored/repeated final API matrix are **not reached**, not passed.
 

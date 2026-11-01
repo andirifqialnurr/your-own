@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.28
+- **Version:** 0.29
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -500,6 +500,8 @@ The later [Decision 0030 remediation review](cookbook/decisions/0030-minimatch-r
 The subsequent [Decision 0031 E1-only experiment](cookbook/decisions/0031-local-minimatch-e1.md) now has [bounded external validation](cookbook/minimatch-e1-validation.md): actual 201/345 identities, exact script-denied full/119-production payloads, repeated matching/types/resource/discovery/type-aware lint and full pnpm check/build pass, with original launcher/fixture failures retained. Fresh patched-union advisories are empty; the unchanged repository still reports the original finding. This supports a separate tooling-only override-adoption decision, not auth/Prisma application dependencies, protocols, principal production, resumed I1 or M02. All application configuration/source/S0 remains unchanged.
 
 The subsequent [Decision 0032 tooling-only implementation](cookbook/minimatch-tooling-adoption.md) replaces the repository's affected minimatch through exactly three parent-scoped overrides, preserving API/runtime manifests, rules/source/S0. Fresh 201-version advisory/artifact checks, frozen installs/bytes and full repository pnpm check/build pass twice. Supplemental programmatic ESLint/TypeScript validation crashes and remains unresolved despite diagnosis/reordering; this is **verification blocked**, not a completed adoption pass. No auth/Prisma schema/provider/dependency or resumed I1 is authorized, and no rule/pin/assertion/timeout waiver is accepted.
+
+The later [Decision 0033 API-crash diagnosis](cookbook/eslint-api-crash-diagnosis.md) reproduces the legacy-project parser's repeated-file single-run fallback, using public compiler services: full 687-file project first, one-file isolated context second. Child-only long-lived mode retains full project types and unchanged assertions; repository dependencies/parser policy/source remain unchanged. This diagnoses the validation harness's lifecycle mismatch, not production support, completed tooling validation or resumed auth. A new external-harness correction/revalidation needs separate authorization; seven checked tasks/full M02 Planned remain.
 
 ### 9.4 Next.js browser and staff integration
 
