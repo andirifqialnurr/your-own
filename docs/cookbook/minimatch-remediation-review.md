@@ -5,6 +5,8 @@
 - **Status:** Recommendation prepared; **no remediation implemented or graph resolved**
 - **Tasks:** Preparatory M00-T04/T06/T07; seven tasks checked, full M02 Planned
 
+**Subsequent E1-only execution:** The owner subsequently answered the explicit no-application-changes question with “continue”, recorded in [Decision 0031](decisions/0031-local-minimatch-e1.md). The [external validation result](minimatch-e1-validation.md) now passes its bounded actual graph/install/runtime/lint/security matrix after retained launcher/fixture corrections. This document retains the original review-only/proposal checkpoint; no scope is retroactively expanded. Application tooling is still unpatched and integration paused; separate tooling-only adoption approval is next.
+
 ## 1. Recommendation
 
 **Keep the [security stop](auth-integration-batch-security-stop.md). Request E1 only: an isolated compatibility/security experiment for three exact parent-scoped overrides to minimatch 11.0.3, with no application changes.** Do not automatically update parents, globally override minimatch, suppress the advisory or resume the five I1 tasks. This review does not accept an unsupported dependency combination as production policy.

@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.17
+- **Version:** 0.18
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -81,6 +81,8 @@ The later [I1-B1 partial bearer result](auth-integration-bearer-i1-b1.md) exerci
 The [2026-11-01 integration batch security stop](auth-integration-batch-security-stop.md) identifies minimatch 10.2.6 in both repository tooling and the combined full graph: GHSA-g3hv-75wg-m249 / CVE-2026-118764, moderate/medium amplification DoS (described for attacker-controlled patterns with optimizationLevel ≥2). Package presence is not proof of exploitable application/API access; no exploit is executed. Historical production exclusion does not waive the full-graph gate. The batch stops before install/engine/DB/auth HTTP; no major-version override, severity exception, silent parent update or production-policy renewal is authorized. Review a maintained compatible remediation separately.
 
 The [Decision 0030 remediation review](minimatch-remediation-review.md) retains the stop. Static SHA-512-matched published 11.x artifacts contain the advisory-linked resource limits, but also remove RegExp/AST APIs and change matching behavior. Current caller overlap, no explicit optimizationLevel ≥2 in the three inspected sites and hypothetical empty fixed-version advisory responses do not establish safety or waive the original finding. A new runtime helper/notice surface and unsupported ^10→11 edges need separately authorized E1 graph/security/compatibility testing. No blanket override, vendor patch, advisory suppression or policy renewal is accepted.
+
+The separately authorized [E1 result](minimatch-e1-validation.md) under [Decision 0031](decisions/0031-local-minimatch-e1.md) validates only actual external patched graphs: exact selected edges/helper, reviewed archives/notices, frozen script-denied installs, pre/post installed-byte checks and bounded fixed-version runtime/discovery/lint/resource evidence. Fresh npm/OSV over the actual 345-version union is empty at capture; the actual unchanged repository still reports minimatch 10.2.6. Existing notice/upstream-support gates remain. Preserve the unintended isolated Corepack 12.16.1 fetch/execution refused by the exact 12.8.1 guard, corrected pinned launcher and original fixture failures; do not treat them as passing attempts or a global/pin upgrade. No vendor guard/rule/project assertion/timeout is weakened. E1 does not accept a major override, waive the repository tooling security stop, renew the policy deadline or resume integration. Tooling-only adoption requires a separate owner decision and fresh actual-repository checks.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

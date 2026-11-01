@@ -13,6 +13,8 @@
 
 **Subsequent review:** [Decision 0030's minimatch remediation packet](minimatch-remediation-review.md) proposes a separately approved E1 external override/compatibility experiment, not application changes or resumed integration. No newer 10.x/backport/parent fix was found; static 11.x major-change evidence requires real validation. E1 remains unapproved/unrun, and the current security stop still applies.
 
+**Later E1-only result:** [Decision 0031](decisions/0031-local-minimatch-e1.md) now has [external minimatch validation](minimatch-e1-validation.md): actual 201/345 graphs, script-denied frozen full/119-production installs, exact bytes, matching/types/resource/discovery/lint controls and full pnpm check pass repeatedly, with original launcher/fixture failures retained. This supersedes the preceding E1-unapproved checkpoint only. The actual repository still has the affected version; tooling-only override adoption needs separate approval/revalidation. Do not resume I1-B2–B6 or adopt auth/Prisma dependencies, schema/protocols or a producer of trusted context. The original integration matrix and remaining acceptance gates remain intact.
+
 ## 1. Decision requested
 
 **Hold application and production adoption. Recommend I1 only: one external, synthetic, real-provider/guarded-HTTP + durable-account integration experiment on the reviewed combined graph.** Keep first-party authentication **0.1.1** as an evaluated candidate for that experiment, not an accepted production dependency or stability promise. Its early maturity/public-seam maintenance burden remains explicit. Opaque access or another separately reviewed maintained integration remains available; neither is silently substituted.
