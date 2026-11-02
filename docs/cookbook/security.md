@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.24
+- **Version:** 0.25
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -95,6 +95,8 @@ The later [Decision0035/B2 external cookie checkpoint](auth-integration-cookie-i
 The later [B3 verification/current-address checkpoint](auth-integration-verification-i1-b3.md) verifies actual maintained callbacks, library-hashed token lookup/account lock/conditional address update and same-transaction token/audit/outbox effects.12 cases pass in full/production/restored workers with three specific address/projection/mail-commit controls and unchanged contract/cookie regressions. Real SQL42501/deferred23503 and an observed address-change row wait refuse unsafe authority. A bounded memory mail sink publishes only after COMMIT with explicit completion—not shutdown or production durable delivery. Batch2/5; reset/staff/denial/operational/platform gates, policies/deadline/app unchanged.
 
 The subsequent [B4 reset/live-cutoff checkpoint](auth-integration-reset-i1-b4.md) uses maintained public reset/hash/session/token services with explicit public-callback/event completion for bounded async owned work.13 full/production/restored cases, two controls and unchanged contract/cookie/verification regressions pass; current verified address/hash/version, revocation, actual SQL waits/42501/23503 and rollback-safe mail/response boundaries are tested. Old JWT signature validity remains unchanged while live post-COMMIT authority denies. No private inFlight/issue import, automatic pre-COMMIT sign-in, global writer/logger suppression or production recovery/rate/capacity/outage policy. Batch3/5; staff/denial/operations/platform/adoption gates and deadline remain.
+
+The subsequent [B5 staff TOTP/exact-capability checkpoint](auth-integration-staff-i1-b5.md) verifies actual maintained encrypted enrollment/TOTP/replay/recovery plus same-call server method/time and current exact capability/staff revision.13 full/production/restored cases, three controls and prior regressions pass; events/client flags/generic MFA/iat/enrollment alone are not authority. Operator/private-tracker separation and actual42501/23503/rollback boundaries pass. A disposable RFC authenticator-input generator stays test-only; server crypto/verification remains maintained. Private provisioning is not production staff/recovery/key/timing policy. Batch4/5; B6 denial/regressions last, all application/operations/platform gates/deadline remain.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

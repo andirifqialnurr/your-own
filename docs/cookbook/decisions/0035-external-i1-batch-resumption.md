@@ -1,6 +1,6 @@
 # Decision 0035 — External I1-B2–B6 resumption
 
-- **Status:** I1-B2/B3/B4 selected external checkpoints verified (3/5); B5 staff assurance next, B6 unrun
+- **Status:** I1-B2–B5 selected external checkpoints verified (4/5); B6 denial/regressions next
 - **Owner / authorization:** Project owner, 2026-11-02 UTC after `f6a6903`
 - **Tasks:** Preparatory M00-T04/T06/T07 only; seven tasks checked and full M02 Planned
 - **Inputs:** [I1 scope and five bounded checkpoints](0029-local-auth-integration-i1.md), [acceptance matrix](../auth-integration-readiness.md), [completed local tooling gate](../tooling-harness-revalidation.md)
@@ -26,6 +26,10 @@ The [maintained verification/current-address result](../auth-integration-verific
 ## I1-B4 checkpoint
 
 The [maintained reset/live-cutoff result](../auth-integration-reset-i1-b4.md) passes13 full/production/restored reset cases, two live-cutoff/mail-commit controls, unchanged35 contracts twice and18 cookie/12 verification regressions. Explicit bounded public-callback/event completion keeps async request work in an owned transaction without shutdown/private helpers. Maintained hashing/reset/revocations, conditional generation/grant cutoff, still-valid bare JWT versus denied live authority, SQL address wait/42501/23503 and rollback-safe response/mail are exercised. Preserve prefer-const and verifier-Promise helper failures. Only3/5; B5 actual staff TOTP/exact capabilities next, no app/full I1/production adoption.
+
+## I1-B5 checkpoint
+
+The [actual staff TOTP/exact-capability result](../auth-integration-staff-i1-b5.md) passes13 full/production/restored staff cases, three freshness/capability/revision controls,35 unchanged contracts twice and18/12/13 earlier HTTP regressions. Actual maintained encrypted enrollment/TOTP/replay/recovery, correlated same-call server method/time, current staff revision/exact capability, no operator-private-data widening and real42501/23503 rollback are exercised. Private synthetic provisioning and diagnostic observation do not approve production staff operations or turn events/client flags into standalone authority. Only4/5; B6 refresh-reuse/MFA denial/regressions next, then stop.
 
 ## Runtime, privacy and completion limits
 

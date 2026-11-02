@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.35
+- **Version:** 0.36
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -144,6 +144,8 @@ The separately authorized [Decision0035/B2 cookie checkpoint](auth-integration-c
 The next [B3 maintained verification/current-address tests](auth-integration-verification-i1-b3.md) pass12 full/production/restored HTTP cases, three specific address/projection/post-COMMIT-mail controls,35 unchanged contracts twice and18 B2 regressions. Real callback-linked projection, current-address row wait, one-winner token race, purpose/replay/exact expiry,42501 and23503 rollback/no premature mail are distinct from B1's private email-state SQL. No real/durable mail, reset/staff/denial completion or application/operational/platform acceptance is inferred. Batch2/5; B4 next.
 
 The subsequent [B4 maintained reset/live-cutoff tests](auth-integration-reset-i1-b4.md) pass13 full/production/restored cases, two assertion-specific controls,35 unchanged contracts twice and18 cookie/12 verification regressions. Public callback/event completion—not shutdown—observes bounded async request work; actual default hashing, valid old JWT signature versus live cutoff, owner isolation/fingerprint/expiry/concurrency, SQL waits/42501/23503 and rollback-safe token/mail/response effects are exercised. Initial prefer-const/Promise-helper failures remain distinct. Batch3/5; staff/denial/operational/native/adoption acceptance remains open.
+
+The subsequent [B5 actual staff TOTP/exact-capability tests](auth-integration-staff-i1-b5.md) pass13 full/production/restored cases, three freshness/exact-capability/revision controls,35 unchanged contracts twice and18/12/13 earlier HTTP regressions. Real maintained encrypted TOTP/replay/recovery and same-call server stamp, exact freshness/future/generic-MFA refusal, current capability/removal/regrant, operator isolation and actual42501/23503/reopen cases pass. RFC authenticator-input generation remains runner-only, not a server verifier. No production provisioning/recovery/native/client policy is inferred. Batch4/5; B6 last then stop.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 
