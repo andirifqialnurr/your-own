@@ -1,6 +1,6 @@
 # Decision 0035 — External I1-B2–B6 resumption
 
-- **Status:** I1-B2/B3 selected external checkpoints verified (2/5); B4 reset next, B5/B6 unrun
+- **Status:** I1-B2/B3/B4 selected external checkpoints verified (3/5); B5 staff assurance next, B6 unrun
 - **Owner / authorization:** Project owner, 2026-11-02 UTC after `f6a6903`
 - **Tasks:** Preparatory M00-T04/T06/T07 only; seven tasks checked and full M02 Planned
 - **Inputs:** [I1 scope and five bounded checkpoints](0029-local-auth-integration-i1.md), [acceptance matrix](../auth-integration-readiness.md), [completed local tooling gate](../tooling-harness-revalidation.md)
@@ -22,6 +22,10 @@ The [cookie transaction/expiry result](../auth-integration-cookie-i1-b2.md) veri
 ## I1-B3 checkpoint
 
 The [maintained verification/current-address result](../auth-integration-verification-i1-b3.md) passes12 HTTP cases in full/production/restored workers, three specific address/projection/mail-commit controls, unchanged35 contracts twice and18 B2 cookie regressions. Maintained service/handler callbacks, library-hashed token owner discovery/account lock/conditional address update, replay/purpose/expiry/concurrency, real SQL address wait/42501/23503 and bounded post-COMMIT synthetic mail are exercised. No production mail/protocol, complete I1 or app adoption; B4 reset/live cutoff is next. The scoped batch is2/5.
+
+## I1-B4 checkpoint
+
+The [maintained reset/live-cutoff result](../auth-integration-reset-i1-b4.md) passes13 full/production/restored reset cases, two live-cutoff/mail-commit controls, unchanged35 contracts twice and18 cookie/12 verification regressions. Explicit bounded public-callback/event completion keeps async request work in an owned transaction without shutdown/private helpers. Maintained hashing/reset/revocations, conditional generation/grant cutoff, still-valid bare JWT versus denied live authority, SQL address wait/42501/23503 and rollback-safe response/mail are exercised. Preserve prefer-const and verifier-Promise helper failures. Only3/5; B5 actual staff TOTP/exact capabilities next, no app/full I1/production adoption.
 
 ## Runtime, privacy and completion limits
 

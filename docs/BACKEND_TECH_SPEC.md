@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.32
+- **Version:** 0.33
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -508,6 +508,8 @@ The subsequently authorized [Decision 0034 revalidation](cookbook/tooling-harnes
 The separately authorized [Decision0035/B2 cookie checkpoint](cookbook/auth-integration-cookie-i1-b2.md) now revalidates the exact patched external345 graph/full/119-production bytes and unchanged contracts, then exercises18 actual maintained provider/guard cookie cases in full/production/restored workers with three targeted controls. Typed account-owned touch/discard/rotation/idle/absolute/foreign-realm, actual42501 fail-closed activity,23503 issuance/rotation COMMIT rollback and selected Origin/session-bound CSRF/current-state cases pass. Preserve helper/inventory/startup failures and all production-policy/browser/native/operational limits. External batch1/5; B3 maintained verification callbacks/address safety remains next. No application source/S0/dependency/policy or M02 change.
 
 The next [B3 maintained verification/current-address checkpoint](cookbook/auth-integration-verification-i1-b3.md) passes12 full/production/restored HTTP cases, three targeted controls,35 unchanged contracts twice and18 B2 regressions. Actual maintained callbacks and library-hashed token/account-bound conditional address updates, replay/purpose/expiry/concurrency, real SQL waits/42501/23503 and post-COMMIT bounded synthetic mail are verified locally. This does not prove durable/real mail, final protocols, reset/staff/denial/operational/platform acceptance or application adoption. Batch2/5; B4 reset/live cutoff next.
+
+The subsequent [B4 maintained reset/live-cutoff checkpoint](cookbook/auth-integration-reset-i1-b4.md) passes13 full/production/restored cases, two controls,35 unchanged contracts twice and18/12 earlier HTTP regressions. Owned public-callback/event completion covers async request work; default maintained hashing/reset/revocations and conditional generation/grant updates share rollback-safe boundaries. A bare public verifier still verifies old access while live authority denies it after reset COMMIT; SQL waits/42501/23503/mail/response cases pass. Initial fixture helper/lint failures remain. Batch3/5; B5 staff TOTP/capabilities next, no app/production/M02 adoption.
 
 ### 9.4 Next.js browser and staff integration
 

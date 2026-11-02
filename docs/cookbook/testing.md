@@ -1,6 +1,6 @@
 # Your Own — Testing & Quality Strategy
 
-- **Version:** 0.34
+- **Version:** 0.35
 - **Status:** Verification strategy; initial API and Flutter host suites exist, native/product/CI coverage still pending
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Deployment](deployment.md) · [Design system](design-system.md)
 
@@ -142,6 +142,8 @@ The owner subsequently authorizes [Decision 0034's corrected external worker and
 The separately authorized [Decision0035/B2 cookie checkpoint](auth-integration-cookie-i1-b2.md) now passes fresh patched345/full/119-production inventories and generation20, unchanged35 contracts twice,18 HTTP cases in full/production/restored workers and three assertion-specific controls. Actual SQL42501 touch refusal and deferred23503 issuance/rotation rollback are not mocked failure flags; SQL row waits/reopen/clock boundaries and foreign-realm/Origin-CSRF cases have new-composition proof. Preserve the capped inventory, unsupported attribute, shadowed helper and15-second control-startup failures; the latter is not accepted as an intended control. One bounded rerun adds exit-waiting on failed startup only, with unchanged15-second/HTTP/assertion timeouts. Batch1/5; no complete I1, application/production browser policy, native/CI/operations or M02 acceptance follows.
 
 The next [B3 maintained verification/current-address tests](auth-integration-verification-i1-b3.md) pass12 full/production/restored HTTP cases, three specific address/projection/post-COMMIT-mail controls,35 unchanged contracts twice and18 B2 regressions. Real callback-linked projection, current-address row wait, one-winner token race, purpose/replay/exact expiry,42501 and23503 rollback/no premature mail are distinct from B1's private email-state SQL. No real/durable mail, reset/staff/denial completion or application/operational/platform acceptance is inferred. Batch2/5; B4 next.
+
+The subsequent [B4 maintained reset/live-cutoff tests](auth-integration-reset-i1-b4.md) pass13 full/production/restored cases, two assertion-specific controls,35 unchanged contracts twice and18 cookie/12 verification regressions. Public callback/event completion—not shutdown—observes bounded async request work; actual default hashing, valid old JWT signature versus live cutoff, owner isolation/fingerprint/expiry/concurrency, SQL waits/42501/23503 and rollback-safe token/mail/response effects are exercised. Initial prefer-const/Promise-helper failures remain distinct. Batch3/5; staff/denial/operational/native/adoption acceptance remains open.
 
 The [owner-authorized R2/CDN checks](r2-connection-check.md) establish signed metadata/list access only: 200 twice, empty listing; public base and absent-object HEAD return 403. No existing-object delivery, PUT/GET/DELETE, browser CORS, private/public bucket isolation, expiry/revocation/cache/deletion or backup proof exists. Connection success does not verify media authorization or the auth integration.
 

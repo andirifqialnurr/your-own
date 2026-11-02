@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.23
+- **Version:** 0.24
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -93,6 +93,8 @@ The subsequent [Decision 0034 completed revalidation](tooling-harness-revalidati
 The later [Decision0035/B2 external cookie checkpoint](auth-integration-cookie-i1-b2.md) now passes fresh patched345 full/119-production security/integrity gates, unchanged35 contracts twice and18 HTTP cases across full/production/restored workers with three specific controls. Realm filtering precedes cookie touch/discard; account locks/rereads and bound typed writers cover provider work. A request-frame marker converts the library's unchanged best-effort touch diagnostic into this experiment's explicit fail-closed503 after real42501; no global writer/logger suppression. Real23503 issuance/rotation COMMIT failures emit no new credentials and roll back, while selected current-state/Origin/session-bound CSRF checks pass. This is not production idle/session/availability policy, browser HTTPS/BFF/native, staff or full operational acceptance. Original helper/inventory and15-second startup failures remain; no timeout/assertion waiver. B2 is1/5, actual verification/reset/staff/denial work remains; app/policies/deadline unchanged.
 
 The later [B3 verification/current-address checkpoint](auth-integration-verification-i1-b3.md) verifies actual maintained callbacks, library-hashed token lookup/account lock/conditional address update and same-transaction token/audit/outbox effects.12 cases pass in full/production/restored workers with three specific address/projection/mail-commit controls and unchanged contract/cookie regressions. Real SQL42501/deferred23503 and an observed address-change row wait refuse unsafe authority. A bounded memory mail sink publishes only after COMMIT with explicit completion—not shutdown or production durable delivery. Batch2/5; reset/staff/denial/operational/platform gates, policies/deadline/app unchanged.
+
+The subsequent [B4 reset/live-cutoff checkpoint](auth-integration-reset-i1-b4.md) uses maintained public reset/hash/session/token services with explicit public-callback/event completion for bounded async owned work.13 full/production/restored cases, two controls and unchanged contract/cookie/verification regressions pass; current verified address/hash/version, revocation, actual SQL waits/42501/23503 and rollback-safe mail/response boundaries are tested. Old JWT signature validity remains unchanged while live post-COMMIT authority denies. No private inFlight/issue import, automatic pre-COMMIT sign-in, global writer/logger suppression or production recovery/rate/capacity/outage policy. Batch3/5; staff/denial/operations/platform/adoption gates and deadline remain.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 
