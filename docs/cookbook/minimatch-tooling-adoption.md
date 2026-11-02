@@ -2,10 +2,12 @@
 
 - **Recorded:** 2026-11-01 UTC after `d705516`
 - **Authority:** [Decision 0032](decisions/0032-minimatch-tooling-adoption.md), three exact overrides/repository checks only; auth paused
-- **Status:** Overrides/generated lock installed; **verification blocked**, not an unqualified adoption pass
+- **Status:** Original blocked checkpoint preserved below; specific local tooling validation subsequently completed under [Decision 0034](decisions/0034-tooling-harness-revalidation.md)
 - **Tasks:** Preparatory M00-T04; seven tasks checked, full M02 Planned; I1-B2–B6 **0/5**
 
 **Subsequent diagnosis, not sign-off:** [Decision 0033](decisions/0033-eslint-api-crash-diagnosis.md) now has [repeated typed-parse/single-run lifecycle evidence](eslint-api-crash-diagnosis.md). It corrects the stage interpretation below and proposes a scoped external-harness worker correction; it does not change dependencies, erase failed attempts, complete the paused validation or resume auth.
+
+**Subsequent completion, not historical relabeling:** [Decision 0034's corrected external worker/revalidation](tooling-harness-revalidation.md) now completes the missing repeated/control/restored/full-project and fresh normal repository checks. Only the local repository tooling validation stop closes; original API/cold-cache/known-timeout failures, unsupported-parent/shipping/platform limits and auth pause remain. No repository dependency/parser/application change or policy renewal occurs in that continuation.
 
 ## 1. Authorized implementation and graph
 

@@ -1,6 +1,6 @@
 # Decision 0032 — Exact minimatch tooling override adoption
 
-- **Status:** Conditionally authorized overrides/lock installed; **verification blocked** by supplemental ESLint/TypeScript API crash
+- **Status:** Exact conditional local tooling adoption now verified by [Decision 0034](0034-tooling-harness-revalidation.md); original blocked checkpoint/failures retained below
 - **Owner / accountable maintainer:** Project owner; no delegate named
 - **Authorization / review:** 2026-11-01 UTC, after `d705516`
 - **Next review due:** **2026-11-23 UTC at the latest**, or earlier affected change/adoption/release trigger; no automatic renewal
@@ -34,11 +34,15 @@ C is three dependency overrides, **not peer allowances**, a blanket minimatch ov
 - Preserve historical reports/13 snapshots, private .env bytes/untracked status, unrelated services/caches and application/S0 source. Only `pnpm-workspace.yaml`, the pnpm-generated lock and affected documentation are intended tracked changes. Root/API manifests and ESLint/parser/source remain unchanged.
 - New evidence/supplementary probes use C: with **<3 GiB additional /≥20 GiB free**; the explicitly authorized actual repository install/build necessarily uses its existing D: node_modules/dist and existing D: store, with ample space and no prune of unrelated caches. No owner .env is loaded into probes. Use the already installed pinned 12.8.1 binary and disable Corepack network to avoid repeating E1's unintended launcher fetch.
 
-## Recorded outcome — incomplete
+## Recorded outcome — original incomplete checkpoint
 
 The generated actual 201-identity lock exactly matches E1. Fresh actual-graph metadata/advisory/archive/notice review, frozen/script-denied install/repeat and exact installed-byte inventories pass. Actual unchanged pnpm check/build pass twice (176 existing entries per check). However, the supplemental public ESLint API probe crashes inside TypeScript 6.0.3 under no-misused-promises/no-unsafe-assignment. A diagnostic trace and reordered probe do not resolve it; root cause is not established and the new expected-red/repeated final API stages are not reached. Preserve these as failed attempts, not passes. No rule, pin, assertion, timeout or vendor change is used to hide the error.
 
 Stop further affected adoption/promotion and auth execution; retain the exact installed implementation rather than automatically restoring vulnerable 10.2.6. This is not an unqualified adoption/verification pass or a new risk waiver. Next needs bounded API-crash diagnosis, with no further dependency/policy/application changes unless separately approved.
+
+## Subsequent completion of local tooling validation
+
+After the separately authorized diagnosis, the owner's next continuation is [Decision 0034](0034-tooling-harness-revalidation.md). Its [corrected external-worker revalidation](../tooling-harness-revalidation.md) completes repeated positive/full-project/expected-red/restored checks, fresh actual-graph security/integrity/notices and unchanged normal repository CLI/frozen verification. The worker mode changes only in new external child processes, not the repository parser/rules/environment. The specific local tooling validation stop closes; cold-cache and known API child-start failures remain, including the unchanged successful retry. This is not a compiler-wide fix, production/support/legal waiver, new override acceptance/renewal, full M00/M01/M02 closure or permission to resume auth. Exact scope/owner controls/November 23 latest deadline remain.
 
 ## Completion boundary
 

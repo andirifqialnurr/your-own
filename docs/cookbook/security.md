@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.20
+- **Version:** 0.21
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -87,6 +87,8 @@ The separately authorized [E1 result](minimatch-e1-validation.md) under [Decisio
 The owner's subsequent [Decision 0032](decisions/0032-minimatch-tooling-adoption.md) conditionally authorizes only three exact repository tooling overrides and fresh checks. The [installed 201-identity result](minimatch-tooling-adoption.md) removes affected minimatch from the actual tree, with fresh empty actual-graph npm/OSV responses, reviewed notice/integrity/strict frozen installs and two normal full CLI passes. **Adoption verification remains blocked** by a new supplemental ESLint/TypeScript API crash; a reordered probe also fails before virtual input, so neither a cache/cross-drive/minimatch cause nor a fix is established. Stop further affected use/promotion/auth execution pending bounded diagnosis. Do not suppress rules, change pins/parser/vendor code, weaken assertions/timeouts or automatically restore vulnerable 10.2.6. Exact scope, owner accountability/safe removal and November 23 latest review deadline remain; this is no advisory/legal/production waiver or auth dependency adoption.
 
 The later [Decision 0033 diagnosis](eslint-api-crash-diagnosis.md) identifies the repeated-file single-run/isolated-program transition with public parser/compiler evidence and controlled child-only modes. Long-lived diagnostics retain full project types; disabling typed rules or silently accepting isolated-program diagnostics would not be equivalent. No repository policy/configuration/dependency change, private cache clearing, vendor patch, assertion waiver, automatic adoption sign-off or renewed deadline is applied. Reordered-probe stage attribution is explicitly corrected; all original failures remain. Owner authorization for new external-harness correction/full revalidation is next, not resumed auth or an advisory/support/legal waiver.
+
+The subsequent [Decision 0034 completed revalidation](tooling-harness-revalidation.md) closes only the specific local repository tooling validation stop. Full public project services guard the external worker, seven specific expected-red controls/restored positives complete, fresh actual-graph metadata/advisory/archive/notice and installed-byte checks pass, and normal default-profile repository CLI/frozen checks pass. Initial empty-cache offline and known 10-second API child-start failures remain; explicit metadata preparation/unchanged retry are distinct from those failed invocations. No rule/timeout/private-cache/vendor bypass, global worker mode, dependency/parser/app change or new risk waiver. Policies B/C, owner safe-removal controls and November 23 latest deadline remain. Unsupported parent declarations, arbitrary repeated single-run/autofix/IDE use, shipping/legal/native/CI gates and old external integration graphs are not cleared. Auth remains paused until separately scoped revalidation/continuation.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

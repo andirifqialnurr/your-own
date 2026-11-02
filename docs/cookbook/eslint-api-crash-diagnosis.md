@@ -5,6 +5,8 @@
 - **Result:** Repeated typed parsing under inferred single-run mode selects an isolated program; causal mechanism reproduced. **No fix or adoption sign-off applied.**
 - **Tasks:** Preparatory M00-T04 only; seven tasks checked, full M02 Planned; five auth tasks still 0/5
 
+**Subsequent separately authorized implementation:** [Decision 0034](decisions/0034-tooling-harness-revalidation.md) now has [corrected external-worker and completed local tooling validation](tooling-harness-revalidation.md). It preserves this diagnosis/original failures, keeps repository/default CLI configuration unchanged and completes the previously missing controls/restored/repeated checks with full project services. This is not a compiler-wide fix or resumed auth integration.
+
 ## 1. Scope and preservation
 
 The owner answered **“continue”** to **API-crash investigation only / no further dependency or application changes**. All new diagnostics/evidence are C:-only. The actual 201-identity lock, three exact minimatch overrides/policy B, Node **24.18.0**, pnpm **12.8.1**, TypeScript **6.0.3**, ESLint **10.13.0**, typescript-eslint/parser **8.72.0**, rules, parser configuration, application/S0, mobile and ignored private files remain unchanged. No install/resolution, vendor patch/private runtime import, cache-clearing hook, global environment/tool change, app/source canary, DB/HTTP/auth/native/cloud action or old-fixture rewrite occurs.
