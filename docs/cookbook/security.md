@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.22
+- **Version:** 0.23
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -91,6 +91,8 @@ The later [Decision 0033 diagnosis](eslint-api-crash-diagnosis.md) identifies th
 The subsequent [Decision 0034 completed revalidation](tooling-harness-revalidation.md) closes only the specific local repository tooling validation stop. Full public project services guard the external worker, seven specific expected-red controls/restored positives complete, fresh actual-graph metadata/advisory/archive/notice and installed-byte checks pass, and normal default-profile repository CLI/frozen checks pass. Initial empty-cache offline and known 10-second API child-start failures remain; explicit metadata preparation/unchanged retry are distinct from those failed invocations. No rule/timeout/private-cache/vendor bypass, global worker mode, dependency/parser/app change or new risk waiver. Policies B/C, owner safe-removal controls and November 23 latest deadline remain. Unsupported parent declarations, arbitrary repeated single-run/autofix/IDE use, shipping/legal/native/CI gates and old external integration graphs are not cleared. Auth remains paused until separately scoped revalidation/continuation.
 
 The later [Decision0035/B2 external cookie checkpoint](auth-integration-cookie-i1-b2.md) now passes fresh patched345 full/119-production security/integrity gates, unchanged35 contracts twice and18 HTTP cases across full/production/restored workers with three specific controls. Realm filtering precedes cookie touch/discard; account locks/rereads and bound typed writers cover provider work. A request-frame marker converts the library's unchanged best-effort touch diagnostic into this experiment's explicit fail-closed503 after real42501; no global writer/logger suppression. Real23503 issuance/rotation COMMIT failures emit no new credentials and roll back, while selected current-state/Origin/session-bound CSRF checks pass. This is not production idle/session/availability policy, browser HTTPS/BFF/native, staff or full operational acceptance. Original helper/inventory and15-second startup failures remain; no timeout/assertion waiver. B2 is1/5, actual verification/reset/staff/denial work remains; app/policies/deadline unchanged.
+
+The later [B3 verification/current-address checkpoint](auth-integration-verification-i1-b3.md) verifies actual maintained callbacks, library-hashed token lookup/account lock/conditional address update and same-transaction token/audit/outbox effects.12 cases pass in full/production/restored workers with three specific address/projection/mail-commit controls and unchanged contract/cookie regressions. Real SQL42501/deferred23503 and an observed address-change row wait refuse unsafe authority. A bounded memory mail sink publishes only after COMMIT with explicit completion—not shutdown or production durable delivery. Batch2/5; reset/staff/denial/operational/platform gates, policies/deadline/app unchanged.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

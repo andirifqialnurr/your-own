@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.31
+- **Version:** 0.32
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -506,6 +506,8 @@ The later [Decision 0033 API-crash diagnosis](cookbook/eslint-api-crash-diagnosi
 The subsequently authorized [Decision 0034 revalidation](cookbook/tooling-harness-revalidation.md) now completes the local repository tooling check: child-only long-lived API worker/full-project proof, original controls/restored/repeated checks, fresh actual 201-version security/integrity/notices and unchanged normal CLI/frozen verification pass. Retain the cold-cache and known API child-start timeout failures and unchanged retry. No repository dependency/parser/rule/source/S0 changes or auth adoption occurs; only the specific local tooling validation stop closes. External I1 fixtures/combined graph and all current-principal/transaction/cookie/staff/platform/operational gates require separate scoped continuation.
 
 The separately authorized [Decision0035/B2 cookie checkpoint](cookbook/auth-integration-cookie-i1-b2.md) now revalidates the exact patched external345 graph/full/119-production bytes and unchanged contracts, then exercises18 actual maintained provider/guard cookie cases in full/production/restored workers with three targeted controls. Typed account-owned touch/discard/rotation/idle/absolute/foreign-realm, actual42501 fail-closed activity,23503 issuance/rotation COMMIT rollback and selected Origin/session-bound CSRF/current-state cases pass. Preserve helper/inventory/startup failures and all production-policy/browser/native/operational limits. External batch1/5; B3 maintained verification callbacks/address safety remains next. No application source/S0/dependency/policy or M02 change.
+
+The next [B3 maintained verification/current-address checkpoint](cookbook/auth-integration-verification-i1-b3.md) passes12 full/production/restored HTTP cases, three targeted controls,35 unchanged contracts twice and18 B2 regressions. Actual maintained callbacks and library-hashed token/account-bound conditional address updates, replay/purpose/expiry/concurrency, real SQL waits/42501/23503 and post-COMMIT bounded synthetic mail are verified locally. This does not prove durable/real mail, final protocols, reset/staff/denial/operational/platform acceptance or application adoption. Batch2/5; B4 reset/live cutoff next.
 
 ### 9.4 Next.js browser and staff integration
 

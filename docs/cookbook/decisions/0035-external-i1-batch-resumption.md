@@ -1,6 +1,6 @@
 # Decision 0035 — External I1-B2–B6 resumption
 
-- **Status:** Fresh patched graph and I1-B2 cookie checkpoint verified (1/5); I1-B3 next, B4–B6 unrun
+- **Status:** I1-B2/B3 selected external checkpoints verified (2/5); B4 reset next, B5/B6 unrun
 - **Owner / authorization:** Project owner, 2026-11-02 UTC after `f6a6903`
 - **Tasks:** Preparatory M00-T04/T06/T07 only; seven tasks checked and full M02 Planned
 - **Inputs:** [I1 scope and five bounded checkpoints](0029-local-auth-integration-i1.md), [acceptance matrix](../auth-integration-readiness.md), [completed local tooling gate](../tooling-harness-revalidation.md)
@@ -18,6 +18,10 @@ This permits this exact patched graph **only in the external I1 experiment**, no
 ## I1-B2 checkpoint
 
 The [cookie transaction/expiry result](../auth-integration-cookie-i1-b2.md) verifies the fresh exact345/full and119-production byte prerequisites, engine/generation20, unchanged35-case contracts twice,18 HTTP cases in full/production/restored workers and three assertion-specific expected-red controls. Real owned touch/discard/rotation/idle/absolute expiry, foreign-realm isolation, current grant/account/verified-email/S0, Origin/session-bound CSRF, actual42501/write failure,23503 issuance/rotation COMMIT rollback and SQL revocation wait are exercised. Preserve unsupported-option/helper failures, incomplete180-second inventory attempt,16-case preliminary evidence and the15-second negative-control startup timeout; the latter is not a valid expected-red outcome. Cleanup-only exit-waiting and one bounded rerun preserve timeouts/assertions and complete the intended matrix. Close only B2's selected external checkpoint, not the remaining matrix or app/M02/production acceptance. I1-B3 is next within this authorization.
+
+## I1-B3 checkpoint
+
+The [maintained verification/current-address result](../auth-integration-verification-i1-b3.md) passes12 HTTP cases in full/production/restored workers, three specific address/projection/mail-commit controls, unchanged35 contracts twice and18 B2 cookie regressions. Maintained service/handler callbacks, library-hashed token owner discovery/account lock/conditional address update, replay/purpose/expiry/concurrency, real SQL address wait/42501/23503 and bounded post-COMMIT synthetic mail are exercised. No production mail/protocol, complete I1 or app adoption; B4 reset/live cutoff is next. The scoped batch is2/5.
 
 ## Runtime, privacy and completion limits
 
