@@ -1,6 +1,6 @@
 # Your Own — Security & Privacy Specification
 
-- **Version:** 0.25
+- **Version:** 0.26
 - **Status:** Required control design plus proposed implementations; not a security audit or compliance certification
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Testing](testing.md) · [Deployment](deployment.md)
 
@@ -97,6 +97,8 @@ The later [B3 verification/current-address checkpoint](auth-integration-verifica
 The subsequent [B4 reset/live-cutoff checkpoint](auth-integration-reset-i1-b4.md) uses maintained public reset/hash/session/token services with explicit public-callback/event completion for bounded async owned work.13 full/production/restored cases, two controls and unchanged contract/cookie/verification regressions pass; current verified address/hash/version, revocation, actual SQL waits/42501/23503 and rollback-safe mail/response boundaries are tested. Old JWT signature validity remains unchanged while live post-COMMIT authority denies. No private inFlight/issue import, automatic pre-COMMIT sign-in, global writer/logger suppression or production recovery/rate/capacity/outage policy. Batch3/5; staff/denial/operations/platform/adoption gates and deadline remain.
 
 The subsequent [B5 staff TOTP/exact-capability checkpoint](auth-integration-staff-i1-b5.md) verifies actual maintained encrypted enrollment/TOTP/replay/recovery plus same-call server method/time and current exact capability/staff revision.13 full/production/restored cases, three controls and prior regressions pass; events/client flags/generic MFA/iat/enrollment alone are not authority. Operator/private-tracker separation and actual42501/23503/rollback boundaries pass. A disposable RFC authenticator-input generator stays test-only; server crypto/verification remains maintained. Private provisioning is not production staff/recovery/key/timing policy. Batch4/5; B6 denial/regressions last, all application/operations/platform gates/deadline remain.
+
+The final [B6 durable denial/scoped regression checkpoint](auth-integration-denials-i1-b6.md) passes20 full/production/restored cases, two rollback-erased-denial controls, unchanged contracts and56 prior production HTTP cases. Maintained refresh-reuse/MFA required denial effects commit before401; technical SQL/23503 errors instead roll back/503. Server-owned realm/grant/account bindings, real SQL waits, current sensitive rechecks, trusted verifier negatives and reopen pass. The76 selected final production HTTP cases are not full-product security acceptance. **5/5 batch complete; stop after B6.** App/S0/policies/deadline and pending-MFA/client/provisioning/recovery/schema/protocol/support/operations/delivery/restore/platform/notice gates remain; separate next scope required.
 
 Identity provider webhook signatures/replay rules must be verified. A JSON payload stating “user deleted” or “MFA verified” is not trusted by itself.
 

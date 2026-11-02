@@ -1,6 +1,6 @@
 # Decision 0035 — External I1-B2–B6 resumption
 
-- **Status:** I1-B2–B5 selected external checkpoints verified (4/5); B6 denial/regressions next
+- **Status:** Five selected external checkpoints B2–B6 verified (5/5); batch stopped; full I1/app/production gates remain
 - **Owner / authorization:** Project owner, 2026-11-02 UTC after `f6a6903`
 - **Tasks:** Preparatory M00-T04/T06/T07 only; seven tasks checked and full M02 Planned
 - **Inputs:** [I1 scope and five bounded checkpoints](0029-local-auth-integration-i1.md), [acceptance matrix](../auth-integration-readiness.md), [completed local tooling gate](../tooling-harness-revalidation.md)
@@ -30,6 +30,10 @@ The [maintained reset/live-cutoff result](../auth-integration-reset-i1-b4.md) pa
 ## I1-B5 checkpoint
 
 The [actual staff TOTP/exact-capability result](../auth-integration-staff-i1-b5.md) passes13 full/production/restored staff cases, three freshness/capability/revision controls,35 unchanged contracts twice and18/12/13 earlier HTTP regressions. Actual maintained encrypted enrollment/TOTP/replay/recovery, correlated same-call server method/time, current staff revision/exact capability, no operator-private-data widening and real42501/23503 rollback are exercised. Private synthetic provisioning and diagnostic observation do not approve production staff operations or turn events/client flags into standalone authority. Only4/5; B6 refresh-reuse/MFA denial/regressions next, then stop.
+
+## I1-B6 checkpoint and batch stop
+
+The [durable denial/scoped regression result](../auth-integration-denials-i1-b6.md) passes20 full/production/restored cases, two rollback-erased-denial controls,35 unchanged contracts twice and all56 preceding production HTTP cases (76 distinct selected HTTP cases in the final production composition). Maintained refresh/MFA denial commits, technical23503 rollback, wrong-realm/replay/lockout/actual SQL wait/current-authority/mutation/transport/reopen cases are verified. The5/5 requested external checkpoints are complete; **stop after this fifth checkpoint**. No new failed B6 runtime attempt is called a pass, earlier failures stay immutable. Full I1/new-composition pending-MFA cookie/client/production provisioning/operational/delivery/restore/platform/schema/protocol/support/adoption gates remain; any next review/slice needs separate scope. No application/M02/policy/deadline advance.
 
 ## Runtime, privacy and completion limits
 

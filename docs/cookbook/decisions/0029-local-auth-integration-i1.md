@@ -1,6 +1,6 @@
 # Decision 0029 — Isolated I1 adapter and durable guarded-HTTP experiment
 
-- **Status:** I1-A/B1 historical subsets verified; five-task continuation blocked at security preflight, remaining I1-B gates open
+- **Status:** I1-A/B1 and separately authorized B2–B6 selected external checkpoints verified; historical security stop retained, full I1/application/production gates open
 - **Authorized by:** Project owner, 2026-10-28 UTC
 - **Recorded by:** Coding agent
 - **Tasks:** Preparatory M00-T04/T06/T07; full tasks remain unchecked
@@ -44,6 +44,10 @@ The [2026-11-01 security-stop report](../auth-integration-batch-security-stop.md
 ## Separately authorized patched-graph resumption
 
 After `f6a6903`, the owner answers the explicit external I1-B2–B6/fresh patched-graph question with **“continue”**, recorded in [Decision0035](0035-external-i1-batch-resumption.md). Only new external workspaces use the exact E1 patched345 graph after fresh review; the old344 fixtures remain immutable. [B2 cookie evidence](../auth-integration-cookie-i1-b2.md) now passes fresh full/clean-production byte/generation gates, unchanged35 contracts twice,18 actual HTTP cases in full/production/restored workers and three specific controls. Owned cookie activity/expiry/rotation/write failure/foreign-realm/current-state and selected COMMIT/CSRF cases are established; original helper/inventory/15-second startup failures remain. B2 is1/5, B3 next; app adoption/full I1/M02/policy/deadline gates remain unchanged.
+
+## Later five-checkpoint completion and stop
+
+[Decision0035's final B6 result](../auth-integration-denials-i1-b6.md) now closes the five named external checkpoints B2–B6, each separately committed/pushed. The final new production composition passes76 distinct selected HTTP cases and35 unchanged contracts twice;13 targeted controls across phases and original failures remain explicit. The old344 fixtures/security stop are not rewritten or reclassified. **Stop after B6.** Full I1/pending-MFA cookie/client/provisioning/recovery/schema/protocol/library support/operational/delivery/restore/platform/notices and app/M02 adoption remain open; further review or implementation needs separate bounded scope.
 
 ## Completion boundary
 

@@ -1,6 +1,6 @@
 # Your Own — Backend PRD & NestJS Technical Specification
 
-- **Version:** 0.34
+- **Version:** 0.35
 - **Status:** Target specification; local NestJS health scaffold exists, domain/provider services not implemented
 - **Confirmed backend framework:** NestJS
 - **Clients:** Flutter mobile first; confirmed Next.js user website and separate Next.js admin CMS
@@ -512,6 +512,8 @@ The next [B3 maintained verification/current-address checkpoint](cookbook/auth-i
 The subsequent [B4 maintained reset/live-cutoff checkpoint](cookbook/auth-integration-reset-i1-b4.md) passes13 full/production/restored cases, two controls,35 unchanged contracts twice and18/12 earlier HTTP regressions. Owned public-callback/event completion covers async request work; default maintained hashing/reset/revocations and conditional generation/grant updates share rollback-safe boundaries. A bare public verifier still verifies old access while live authority denies it after reset COMMIT; SQL waits/42501/23503/mail/response cases pass. Initial fixture helper/lint failures remain. Batch3/5; B5 staff TOTP/capabilities next, no app/production/M02 adoption.
 
 The subsequent [B5 actual staff TOTP/exact-capability checkpoint](cookbook/auth-integration-staff-i1-b5.md) passes13 full/production/restored cases, three controls,35 unchanged contracts twice and18/12/13 prior regressions. Maintained encrypted TOTP/replay/recovery, correlated server method/time, current staff revision/exact capabilities and42501/23503 boundaries are tested, not synthesized from flags/generic MFA/events alone. Operator scope cannot read private trackers. Private fixture provisioning does not accept production staff/recovery/client policy. Batch4/5; B6 last, no app/M02 adoption.
+
+The final [B6 durable denial/scoped regression checkpoint](cookbook/auth-integration-denials-i1-b6.md) passes20 full/production/restored cases, two denial-rollback controls,35 unchanged contracts twice and56 previous production HTTP cases (76 distinct selected cases in the final composition). Maintained refresh/MFA intentional-denial COMMIT versus technical rollback, SQL waits/current authority/transport/sensitive mutation/reopen pass. **5/5 external checkpoints complete; stop after B6.** Full I1/client pending-MFA/provisioning/recovery/schema/protocol/support/production/operations/restore/delivery/platform/notices and app/M02 adoption remain gated; no automatic fixture port or next implementation task.
 
 ### 9.4 Next.js browser and staff integration
 
