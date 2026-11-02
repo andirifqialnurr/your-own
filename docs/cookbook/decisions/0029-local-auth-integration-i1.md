@@ -41,6 +41,10 @@ On 2026-11-01 UTC the owner requested: **“continue our next tasks. i want you 
 
 The [2026-11-01 security-stop report](../auth-integration-batch-security-stop.md) records a new moderate/medium minimatch 10.2.6 advisory, GHSA-g3hv-75wg-m249 / CVE-2026-118764, in the reviewed full graph and repository tooling. Stop before installation or I1-B2 execution; **zero of the five requested integration tasks is completed**. Targeted npm/OSV/GitHub and static parent-range review only follow the stop. Historical clean-production exclusion does not waive the full-graph gate; 11.0.1 is the published first fix but outside all three current parent ^10 ranges. No package/override/policy change, new engine/DB/provider execution or automatic remediation permission follows. Record/push one blocker checkpoint, not five manufactured task commits. Next requires a separately bounded remediation review/decision.
 
+## Separately authorized patched-graph resumption
+
+After `f6a6903`, the owner answers the explicit external I1-B2–B6/fresh patched-graph question with **“continue”**, recorded in [Decision0035](0035-external-i1-batch-resumption.md). Only new external workspaces use the exact E1 patched345 graph after fresh review; the old344 fixtures remain immutable. [B2 cookie evidence](../auth-integration-cookie-i1-b2.md) now passes fresh full/clean-production byte/generation gates, unchanged35 contracts twice,18 actual HTTP cases in full/production/restored workers and three specific controls. Owned cookie activity/expiry/rotation/write failure/foreign-realm/current-state and selected COMMIT/CSRF cases are established; original helper/inventory/15-second startup failures remain. B2 is1/5, B3 next; app adoption/full I1/M02/policy/deadline gates remain unchanged.
+
 ## Completion boundary
 
 Close only genuinely verified external gates. Keep seven tasks checked and full M02 Planned; no working application identity, trusted actor producer, client storage, production key/recovery/retention/hosting policy or release is adopted. Production notice/native/embedded/portable-artifact obligations remain; any later application slice needs separate explicit scope/order approval.
