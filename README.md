@@ -43,6 +43,8 @@ The owner subsequently authorizes the **external worker correction and unfinishe
 
 ## Local setup
 
+Windows Docker shortcuts: [`docker-start.cmd`](docker-start.cmd) / [`docker-stop.cmd`](docker-stop.cmd) manage only a dedicated PostgreSQL18.6 sandbox, **preserving data on stop**. See [usage, exact image IDs and current free-space blocker](docs/cookbook/local-docker.md). They do not manage your merchant Redis/Versity containers, connect the API or resume auth work. Live DB lifecycle verification is currently blocked by the20GiB C: reserve; unit/lint and refused-start checks are not a DB startup pass.
+
 For the complete current **Windows host** lane, bootstrap a fresh checkout with `node scripts/check-local.mjs` (or append `--offline` with populated caches). This entry needs no installed project dependencies. After setup, `pnpm check:local` remains a convenient alias; `verifyDepsBeforeRun: error` prevents pnpm from implicitly installing before the script's guards. It verifies tool pins, frozen installs, generated content, documentation, API build/tests and Flutter analysis/format/widget/golden checks sequentially. See [scope, commands and CI/native blockers](docs/cookbook/local-verification.md). It does not install SDKs, build native targets or claim an iOS pass. The individual commands remain below.
 
 Installed-tool baseline: **Node 24.18.0 · pnpm 12.8.1 · Flutter 3.38.9 / Dart 3.10.8**. No global upgrade or extra workspace orchestrator is needed.

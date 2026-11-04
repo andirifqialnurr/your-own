@@ -1,6 +1,6 @@
 # Your Own — Deployment & Operations Plan
 
-- **Version:** 0.4
+- **Version:** 0.5
 - **Status:** Target runbook/topology; application cloud deployment/CI/store builds absent; owner-existing R2 tested read-only, not provisioned by the agent
 - **Related:** [Architecture](architecture.md) · [Schema](schema.md) · [Security](security.md) · [Testing](testing.md)
 
@@ -35,6 +35,8 @@ Hosting vendors, regions, resource sizes, exact versions, numerical service targ
 | Auth/storage/push | Nest-owned auth integration, R2 and separately reviewed push integration | Exact maintained auth libraries and explicit environment policies, credentials, isolation and ownership |
 
 Start with a simple persistent API, managed persistence, and a worker when required. No V1 Kubernetes/service-per-mode requirement. Next.js can use suitable serverless hosting, but NestJS sockets/workers do not become request-scoped functions as a result. Static web export is insufficient for the proposed session/BFF model.
+
+The owner-requested [local Windows Docker helpers](local-docker.md) under [Decision0036](decisions/0036-local-docker-helpers.md) manage a dedicated, manually stopped PostgreSQL sandbox only and preserve its volume. They never manage unrelated Redis/Versity services or configure the API. Live lifecycle checks are blocked at the20GiB C: reserve; unit/lint/refused-start evidence is not production, app DB-role, deployment or persistence acceptance. Prior disposable integration fixtures remain separate.
 
 ## 2. Environments and domains
 
