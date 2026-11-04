@@ -1,7 +1,7 @@
 # Decision 0036 — Owner-requested local Docker start/stop helpers
 
 - **Status:** Helpers implemented/unit-tested; live DB lifecycle blocked at C:<20GiB; no resumed roadmap/auth work
-- **Owner:** Project owner, explicit docker-start.cmd/docker-stop.cmd request after `0410c25`
+- **Owner:** Project owner, explicit docker-start.cmd/docker-stop.cmd request after `0410c25`, 2026-11-04 UTC
 - **Scope:** Local operator convenience / M01-T10 supporting slice; full tasks remain unchecked
 
 The owner requests convenient Windows helpers before continuing other work and asks whether two existing image IDs are used. Read-only Docker metadata identifies `b51665e…` as **redis:8.2-alpine** and `30292fc…` as **versity/versitygw:v1.8.0**, used by unrelated merchant-dev containers. Your Own does not use/reuse/manage them. The recorded external DB experiments used the reviewed **PostgreSQL18.6/linux-amd64** image, immutable reference `postgres@sha256:6b38fe68f2c02cafffbbce7496f76d110d8a947c039bd22c067e9a43c2250240`.
